@@ -122,18 +122,8 @@ So, to clone - do
 
 ```
 
-git clone --recursive git@github.com:ministryofjustice/et-full-system.git
+git clone git@github.com:hmcts/et-full-system.git
 
-```
-
-or if you already have cloned but forgot the '--recursive'
-
-```
-cd et-full-system
-
-git submodule update --init
-
-```
 
 ## Submodules Warning
 
