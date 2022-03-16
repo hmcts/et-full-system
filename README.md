@@ -125,41 +125,6 @@ So, to clone - do
 git clone git@github.com:hmcts/et-full-system.git
 
 
-## Submodules Warning
-
-If you are just running this and not making changes - you don't need to concern yourself with this section.
-
-If you haven't used submodules before, its worth studying the docs a little (https://git-scm.com/docs/git-submodule) so that
-you don't get yourself and others in a mess.
-
-All of the submodules are checked out in the 'systems' folder and the thing to remember is that the top level git repository does
-not store the contents of these folders, but instead it stores like a 'commit pointer' - so it is like saying - 'the code in this folder
-comes from this external repository with this commit'
-
-The first word of warning is when you first set it up and possibly when you do a 'git submodule update' - the 'child' git repositories
-are in a 'detached head' state.  This means if you start to make changes, then go to commit - it might let you, but you are not
-committing to a branch or anything - so it gets confused (I normally join it in feeling confused!!).  I think nowadays it gives you a warning, but its a bit late when youve
-just spent all day implementing a fancy new feature in one of these sub projects.
-
-So, if you want to edit any of these submodules in place (you can of course check out another copy of them to a completely isolated folder
-, but that way you cannot see your changes in this project until they are pushed and you do a 'git submodule update') - then you should
-change directory into the module you want to work on and checkout the branch you want - say 'develop' - then do your normal stuff
-including creating new branches etc..
-
-Don't worry too much about leaving it like this either.
-
-However, remember if you commit these 'pointers' to this repository, you may well be changing it to point to a commit
-in a branch of a submodule, so remember to create a branch of this repository as well - so that the 'develop' branch
-always points to the 'develop' branch (or equivalent) of all of the submodules.  If you also want a branch for your feature that
-you are working on, then your branch of this repository can contain pointers to wherever you like to suit your workflow - I would
-recomment creating the same branch name for the submodule(s) you are working on and this repository - that way, you can say to
-a colleague 'Can you check out this branch of the ET Full System repository and see if it works for you' - knowing that they will
-have the right branches of all the submodules too.
-
-Git has an alternative to submodules called a 'subtree' - but at this point in time, my knowledge of these is very limited
-but if anyone else does know about them and if they would be better than submodules then we may consider changing.
-
-
 # Initial Setting Up
 
 The system is very configurable so it can be run on whichever ports you want etc..
