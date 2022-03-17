@@ -50,6 +50,7 @@ Then("I should see an error message for entering invalid email address") do
 end
 
 When("entering {string} postcode") do |string|
+  et1_claimant_details_page.country.set(:"simple_form.options.claimant.address_country.united_kingdom")
   et1_claimant_details_page.post_code.set(string)
   et1_claimant_details_page.save_and_continue
 end

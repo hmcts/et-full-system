@@ -20,22 +20,10 @@ module EtFullSystem
         element :about_claim_info, :link_named, 'claims.claim_details.claim_details_hint', exact: false
         # Or upload it as a separate document
         element :upload_document, :summary_text, 'claims.claim_details.claim_details_upload'
-        # @!method claim_details_claimt_details_rtf
-        #   A govuk file field component wrapping the input, label, hint etc.. for the claim_details_claimt_details_rtf question
-        #   @return [EtTestHelpers::Components::GovUKFileField] The site prism section
-        gds_file_upload :claim_details_claim_details_rtf, :'simple_form.labels.claim_details.claim_details_rtf'
         # @!method file_upload
         #   A govuk file field component wrapping the input, label, hint etc.. for the file_upload question
-        #   @return [EtTestHelpers::Components::GovUKFileField] The site prism section
-        gds_file_upload :file_upload, :'simple_form.labels.claim_details.claim_details_rtf' do
-          include ::EtFullSystem::Test::UploadHelper
-          def set(value)
-            force_remote do
-              full_path = File.expand_path(File.join('test_common', 'fixtures', value))
-              input.set(full_path)
-            end
-          end
-        end
+        #   @return [EtTestHelpers::Components::GovUKFileDropzoneField] The site prism section
+        gds_file_dropzone_upload :file_upload, :'simple_form.labels.claim_details.claim_details_rtf'
 
         # @!method claim_details_claim_details
         #   A govuk text area component wrapping the input, label, hint etc.. for a text area
@@ -96,14 +84,14 @@ module EtFullSystem
           expect(self).to have_describe_your_claim_info
           expect(self).to have_about_claim_info
           expect(self).to have_upload_document
-          expect(self).to have_claim_details_claim_details_rtf
-          expect(claim_details_claim_details_rtf).to have_hint(text: t('simple_form.hints.claim_details.claim_details_rtf'))
+          expect(self).to have_file_upload
+          expect(file_upload).to have_hint(text: t('simple_form.hints.claim_details.claim_details_rtf'))
           # Limit is 2500 characters. (2500 characters remaining)
           other_claimants_fieldset.tap do |f|
             f.other_known_claimants.assert_valid_options
             f.other_known_claimants.assert_valid_hint
             # You can add the names of other people here. (optional)
-            expect(f.other_known_claimant_names).to have_hint  
+            expect(f.other_known_claimant_names).to have_hint
           end
           # Save and continue
           expect(self).to have_save_and_continue_button
@@ -123,7 +111,8 @@ module EtFullSystem
 
           if data.key?(:rtf_file)
             upload_document.click
-            file_upload.set(data[:rtf_file])
+            full_path = File.expand_path(File.join('test_common', 'fixtures', data[:rtf_file]))
+            file_upload.set(full_path)
           end
           claim_details_claim_details.set(data[:description])
           other_claimants_fieldset.other_known_claimants.set(data[:similar_claims])

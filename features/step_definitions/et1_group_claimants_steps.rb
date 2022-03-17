@@ -43,7 +43,7 @@ Then("I can very that the copy texts correctly dispayed for Upload user details 
 end
 
 When("I submit no to upload group claimant") do
-  @claimant = FactoryBot.create_list(:claimant, 1, :group_claims)
+  @claimant = FactoryBot.create_list(:claimant, 1)
   et1_group_claimants_page.set(@claimant)
   et1_group_claimants_upload_page.save_and_continue
   expect(et1_representatives_details_page).to have_page_header

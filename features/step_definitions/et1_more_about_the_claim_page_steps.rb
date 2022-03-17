@@ -19,9 +19,10 @@ end
 Then("I can verify that the copy text on More about the claim page displayed correctly") do
   et1_more_about_the_claim_page.other_important_details.set(:yes)
   expect(et1_more_about_the_claim_page.has_correct_translation?).to be true
-end 
+end
 
 Then("I submit without adding additional information about your claim") do
+  et1_more_about_the_claim_page.other_important_details.set(:no)
   et1_more_about_the_claim_page.save_and_continue
 end
 

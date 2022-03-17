@@ -44,13 +44,12 @@ module EtFullSystem
 
           # @!method file_upload
           #   A govuk file field component wrapping the input, label, hint etc.. for the file_upload question
-          #   @return [EtTestHelpers::Components::GovUKFileField] The site prism section
-          gds_file_upload :file_upload, :'simple_form.labels.additional_claimants_upload.additional_claimants_csv' do
+          #   @return [EtTestHelpers::Components::GovUKFileDropzoneField] The site prism section
+          gds_file_dropzone_upload :file_upload, :'simple_form.labels.additional_claimants_upload.additional_claimants_csv' do
             include ::EtFullSystem::Test::UploadHelper
             def set(value)
               force_remote do
-                full_path = File.expand_path(File.join('test_common', 'fixtures', value))
-                input.set(full_path)
+                super(value)
               end
             end
           end
@@ -112,7 +111,8 @@ module EtFullSystem
           group_claims_csv = user[0].dig(:group_claims_csv)
           if group_claims_csv.present?
             has_additional_claimants.set(:yes)
-            group_claims.file_upload.set(group_claims_csv)
+            full_path = File.expand_path(File.join('test_common', 'fixtures', group_claims_csv))
+            group_claims.file_upload.set(full_path)
           else
             has_additional_claimants.set(:no)
           end

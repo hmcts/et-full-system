@@ -162,7 +162,7 @@ cy:
         email_address: "Cyfeiriad e-bost"
         fax_number: Ffacs
         has_special_needs:
-          label: "Oes gennych chi anabledd sy'n golygu eich bod angen cymorth yn y gwrandawiad tribiwnlys? (dewisol)"
+          label: "Oes gennych chi anabledd sy'n golygu eich bod angen cymorth yn y gwrandawiad tribiwnlys?"
           hint: :'simple_form.hints.claimant.has_special_needs'
           options:
             yes: :'simple_form.yes'
@@ -198,7 +198,7 @@ cy:
 
       additional_claimants:
         has_multiple_claimants:
-          label: "A oes unigolion eraill sy'n gwneud hawliad gyda chi (yn erbyn yr un cyflogwr neu sefydliad)? (dewisol)"
+          label: "A oes unigolion eraill sy'n gwneud hawliad gyda chi (yn erbyn yr un cyflogwr neu sefydliad)?"
           options:
             'yes': :'simple_form.yes'
             'no': :'simple_form.no'
@@ -230,7 +230,7 @@ cy:
 
       representative:
         has_representative:
-          label: "Oes gennych chi rywun sydd wedi cytuno i'ch cynrychioli (e.e. trwy ddelio â gohebiaeth)? (dewisol)"
+          label: "Oes gennych chi rywun sydd wedi cytuno i'ch cynrychioli (e.e. trwy ddelio â gohebiaeth)?"
           options:
             'yes': :'simple_form.yes'
             'no': :'simple_form.no'
@@ -278,26 +278,26 @@ cy:
             invalid: :'activemodel.errors.models.respondent.attributes.address_post_code.invalid'
         work_address_telephone_number: Rhif ffôn (dewisol)
         work_address_building:
-          label: "Rhif neu enw'r adeilad (dewisol)"
+          label: "Rhif neu enw'r adeilad"
           errors:
             blank: :'activemodel.errors.models.respondent.attributes.work_address_building.blank'
         work_address_locality:
-          label: Tref/dinas (dewisol)
+          label: Tref/dinas
           errors:
             blank: :'activemodel.errors.models.respondent.attributes.work_address_locality.blank'
         work_address_street:
-          label: Stryd (dewisol)
+          label: Stryd
           errors:
             blank: :'activemodel.errors.models.respondent.attributes.work_address_street.blank'
         work_address_county:
           label: Sir (dewisol)
           hint: :'simple_form.hints.respondent.address_county'
         work_address_post_code:
-          label: Cod post (dewisol)
+          label: Cod post
           errors:
             blank: :'activemodel.errors.models.respondent.attributes.work_address_post_code.blank'
         worked_at_same_address:
-          label: "Oeddech chi'n gweithio yn yr un cyfeiriad a roddwyd uchod? (dewisol)"
+          label: "Oeddech chi'n gweithio yn yr un cyfeiriad a roddwyd uchod?"
           options:
             'yes': :'simple_form.labels.respondent.yes'
             'no': :'simple_form.labels.respondent.no'
@@ -356,7 +356,7 @@ cy:
             weeks: :'simple_form.options.employment.notice_pay_period_type.weeks'
             months: :'simple_form.options.employment.notice_pay_period_type.months'
         was_employed:
-          label: "Ydych chi erioed wedi cael eich cyflogi gan yr unigolyn neu'r sefydliad yr ydych chi'n gwneud yr hawliad hwn yn ei erbyn? (dewisol)"
+          label: "Ydych chi erioed wedi cael eich cyflogi gan yr unigolyn neu'r sefydliad yr ydych chi'n gwneud yr hawliad hwn yn ei erbyn?"
           options:
             yes: :'claims.employment.yes'
             no: :'claims.employment.no'
@@ -421,7 +421,7 @@ cy:
             no: :'simple_form.no'
       claim_details:
         other_known_claimants:
-          label: "Ydych chi'n gwybod am unrhyw hawlwyr eraill (nad ydynt eisoes wedi'u rhestru) sy'n gwneud hawliadau tebyg yn erbyn yr un cyflogwr? (dewisol)"
+          label: "Ydych chi'n gwybod am unrhyw hawlwyr eraill (nad ydynt eisoes wedi'u rhestru) sy'n gwneud hawliadau tebyg yn erbyn yr un cyflogwr?"
           hint: :'simple_form.hints.claim_details.other_known_claimants'
           options:
             yes: :'claims.claim_type.yes'
@@ -863,7 +863,7 @@ cy:
       header: Mwy am yr hawliad
       legend: "Manylion pwysig eraill"
       has_miscellaneous_information:
-        label: "Ydych chi eisiau darparu gwybodaeth ychwanegol am eich hawliad? (dewisol)"
+        label: "Ydych chi eisiau darparu gwybodaeth ychwanegol am eich hawliad?"
         hint: "Dylech gynnwys unrhyw beth fyddai'n helpu'r tribiwnlys i ddod i benderfyniad ynghylch p'un a ellir gwrando eich achos. Efallai y bydd yr atebydd yn gweld beth ydych yn ysgrifennu."
         options:
           "yes": 'Oes'

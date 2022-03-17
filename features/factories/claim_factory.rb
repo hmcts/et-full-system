@@ -3,6 +3,8 @@ FactoryBot.define do
     claim_types do
       build :claim_type, :all
     end
+    similar_claims {:"claims.claim_type.no"}
+    other_additional_information {:'claims.additional_information.has_miscellaneous_information.options.no'}
 
     description {'Full text version of claim'}
 
@@ -10,6 +12,7 @@ FactoryBot.define do
       claim_types do
         build :claim_type, :unfair_dismissal
       end
+      similar_claims {:"claims.claim_type.no"}
     end
   end
 
