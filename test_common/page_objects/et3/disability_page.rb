@@ -14,7 +14,7 @@ module EtFullSystem
         section :main_header, '.content-header' do
 
         end
-        section :error_summary, '.error-summary' do
+        section :error_summary, '.error-summary[aria-labelledby="error-summary-heading"]' do
           element :error_heading, :main_header, 'errors.header'
           element :description, :paragraph, 'errors.description'
           element :error_header, :error_summary_list, 'errors.disability.disability_blank', exact: true

@@ -1054,7 +1054,7 @@ en:
               blank: Enter the county from the respondent’s address
             address_post_code:
               blank: Enter the respondent’s postcode
-              invalid: Enter a valid UK postcode. If the respondent lives abroad, enter a SW55 9QT
+              invalid: Enter a valid UK postcode. If the respondent lives abroad, enter SW55 9QT
             work_address_building:
               blank: Enter the building name or number of your work address
             work_address_street:

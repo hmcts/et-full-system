@@ -15,12 +15,12 @@ module EtFullSystem
         section :main_header, '.content-header' do
 
         end
-        section :error_summary, '.error-summary' do
+        section :error_summary, '.error-summary[aria-labelledby="error-summary-heading"]' do
           element :error_heading, :main_header, 'errors.header'
           element :description, :paragraph, 'errors.description'
           element :error_list, :error_summary_list, 'errors.claimants_details.agree_with_dates_of_employment', exact: true
         end
-        
+
         section :claimants_name_question, :question_labelled, 'questions.claimants_name.label', exact: false do
           element :field, :css, "input"
           element :error_contains_numbers, :exact_error_text, 'errors.messages.contains_numbers', exact: false
@@ -143,7 +143,7 @@ module EtFullSystem
         def switch_to_welsh
           switch_language.welsh_link.click
         end
-  
+
         def switch_to_english
           switch_language.english_link.click
         end
@@ -156,7 +156,7 @@ module EtFullSystem
           # Do you agree with the details given by the claimant about Early Conciliation with Acas? (optional)
           expect(self).to have_agree_with_early_conciliation_details_question
           # Why do you disagree with the claimant? (optional)
-          expect(agree_with_early_conciliation_details_question).to have_disagree_conciliation_reason 
+          expect(agree_with_early_conciliation_details_question).to have_disagree_conciliation_reason
           # Are the dates of employment given by the claimant correct?
           expect(self).to have_agree_with_employment_dates_question
           # For example, 31 03 2010

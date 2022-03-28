@@ -13,10 +13,10 @@ module EtFullSystem
         section :main_header, '.content-header' do
           element :header, :content_header, 'response.header'
         end
-        section :error_summary, '.error-summary' do
+        section :error_summary, '.error-summary[aria-labelledby="error-summary-heading"]' do
           element :error_heading, :main_header, 'errors.header'
           element :description, :paragraph, 'errors.description'
-          element :error_header, :error_summary_list, 'errors.response.response_blank', exact: true
+          element :error_header, :error_summary_list, 'errors.response.response_blank'
         end
         section :defend_claim_question, :single_choice_option, 'questions.defend_claim.label', exact: false do
           include ::EtFullSystem::Test::I18n
@@ -48,7 +48,7 @@ module EtFullSystem
         def switch_to_welsh
           switch_language.welsh_link.click
         end
-  
+
         def switch_to_english
           switch_language.english_link.click
         end
