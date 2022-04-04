@@ -293,7 +293,7 @@ en:
       end_date_blank: Employment end can't be blank
       date_error: Invalid date
     disability:
-      disability_blank: It would help us if you could say what this disability is and tell us what assistance, if any, you will need as your claim progresses through the system, including for any hearings that maybe held at tribunal premises can't be blank
+      disability_blank: Enter disability information
     response:
       response_blank: Please select an option
     messages:
