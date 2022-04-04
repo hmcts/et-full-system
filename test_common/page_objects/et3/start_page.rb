@@ -4,8 +4,9 @@ module EtFullSystem
     module Et3
       class StartPage < BasePage
         include RSpec::Matchers
+        include EtTestHelpers::Page
         set_url ::EtFullSystem::Test::Configuration.et3_url
-        section :switch_language, '.switch-language' do
+        section :switch_language, '.language-picker' do
           include ::EtFullSystem::Test::I18n
           element :language, :link_named, 'switch.language'
           element :welsh_link, :link_or_button, t('switch.language', locale: :en)
@@ -40,16 +41,16 @@ module EtFullSystem
           element :content, :element_with_text, "introduction.data_content"
         end
         # Start now
-        element :start_button, :css, ".button.button-start"
-        element :return_button, :css, ".button-return"
+        gds_submit_button :start_button, :'introduction.start_now'
+        gds_submit_button :return_button, :'introduction.return_to_claim'
         def next
           start_button.click
         end
-  
+
         def switch_to_welsh
           switch_language.welsh_link.click
         end
-  
+
         def switch_to_english
           switch_language.english_link.click
         end
