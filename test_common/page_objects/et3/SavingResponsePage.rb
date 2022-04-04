@@ -8,7 +8,8 @@ module EtFullSystem
         section :main_header, '.main-header' do
           element :page_header, :page_title, 'saving_response.header'
         end
-        section :main_content, '#content .main-section .main-content' do
+        section :main_content, 'main' do
+          include EtTestHelpers::Section
           element :response_number_text, :paragraph, 'saving_response.application_number'
           element :response_number, '.reference-number'
           element :claims_intro_text, :paragraph, 'saving_response.intro_text'
@@ -27,7 +28,7 @@ module EtFullSystem
           element :print_link, :link_named, 'saving_response.print_link'
           element :print_copy, :paragraph, 'saving_response.print_copy', exact: false
           #save and continue button
-          element :save_and_continue, :submit_text, 'helpers.submit.update'
+          gds_submit_button :save_and_continue, :'components.save_and_continue_button'
         end
 
         def save_and_continue
