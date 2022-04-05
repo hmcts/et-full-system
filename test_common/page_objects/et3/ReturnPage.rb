@@ -7,18 +7,15 @@ module EtFullSystem
         #page title
         element :header, :main_header, 'return_response.header'
         section :main_content, '.main-section' do
+          include EtTestHelpers::Section
           #return to your claim
           element :sub_header, :legend_header, 'user_sessions.new.subheader'
           #response number
-          element :response_number_label, :form_labelled, 'simple_form.labels.user_session.new.reference'
-          element :response_number_hint, :paragraph, 'simple_form.hints.user_session.new.reference'
-          element :response_number, 'input#user_reference'
+          gds_text_input :response_number, :'simple_form.labels.user_session.new.reference'
           #memorable word
-          element :memorable_word_label, :form_labelled, 'simple_form.labels.user_session.new.password'
-          element :memorable_word_hint, :paragraph, 'simple_form.hints.user_session.new.password'
-          element :memorable_word, 'input#user_password'
+          gds_text_input :memorable_word, :'simple_form.labels.user_session.new.password'
           #find my response
-          element :find_my_response, :submit_text, 'return_response.find'
+          gds_submit_button :find_my_response, :'return_response.find'
           #don't have these details
           element :form_hint, :paragraph, 'user_sessions.new.hint_html', exact: false
           element :new_response, :link_named, 'user_sessions.new.link'

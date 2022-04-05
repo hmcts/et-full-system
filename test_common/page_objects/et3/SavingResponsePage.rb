@@ -14,15 +14,9 @@ module EtFullSystem
           element :response_number, '.reference-number'
           element :claims_intro_text, :paragraph, 'saving_response.intro_text'
           #email address
-          section :email_label, :question_labelled, 'saving_response.email_label' do
-            element :field, :css, "input"
-            def set(*args); field.set(*args); end
-          end
+          gds_text_input :email_label, :'saving_response.email_label'
           #create your memorable word
-          section :memorable_word_label, :question_labelled, 'saving_response.memorable_word_label', exact: false do
-            element :field, :css, "input"
-            def set(*args); field.set(*args); end
-          end
+          gds_text_input :memorable_word_label, :'saving_response.memorable_word_label', exact: false
           element :example_word, :paragraph, 'simple_form.hints.application_number.password'
           #print this page
           element :print_link, :link_named, 'saving_response.print_link'
