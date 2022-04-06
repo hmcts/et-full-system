@@ -4,6 +4,7 @@ module EtFullSystem
     module Et3
       class RespondentsDetailsPage < BasePage
         include RSpec::Matchers
+        include EtTestHelpers::Page
         section :switch_language, '.switch-language' do
           include ::EtFullSystem::Test::I18n
           element :language, :link_named, 'switch.language'
@@ -12,181 +13,48 @@ module EtFullSystem
         end
         # Respondent's Details
         element :header, :content_header, 'respondents_details.header'
-        element :error_header, :error_summary_heading, 'errors.header'
+        # @!method error_summary
+        #   A govuk error component
+        #   @return [EtTestHelpers::Components::GovUKErrorSummary] The site prism section
+        gds_error_summary :error_summary, :'errors.header'
         # Case number
-        section :case_number_question, :question_labelled, 'questions.case_number.label', exact: false do
-          element :field, :css, "input"
-          element :error_invalid, :exact_error_text, 'errors.respondents_details.case_number_invalid', exact: false
-          def set(*args); field.set(*args); end
-        end
+        gds_text_input :case_number_question, :'questions.case_number.label', exact: false
         # Name of individual, company or organisation
-        section :name_question, :question_labelled, 'questions.name.label', exact: false do
-          element :field, :css, "input"
-          element :error_blank, :exact_error_text, 'errors.respondents_details.company_name', exact: false
-          def set(*args); field.set(*args); end
-        end
+        gds_text_input :name_question, :'questions.name.label'
         # Name of contact (optional)
         # For example, John Smith
-        section :contact_question, :question_labelled, 'questions.contact.label', exact: false do
-          element :contact_hint, :form_hint, 'questions.contact.hint'
-          element :field, :css, "input"
-          element :error_contains_numbers, :exact_error_text, 'errors.respondents_details.contact_name_contain_numbers', exact: false
-          element :error_contains_no_spaces, :exact_error_text, 'errors.respondents_details.contains_no_spaces', exact: false
-          def set(*args); field.set(*args); end
-        end
+        gds_text_input :contact_question, :'questions.contact.label'
         # Building name or number
-        section :building_name_question, :question_labelled, 'questions.building_name.label', exact: false do
-          element :field, :css, "input"
-          element :error_blank, :exact_error_text, 'errors.respondents_details.building_name', exact: false
-          def set(*args); field.set(*args); end
-        end
+        gds_text_input :building_name_question, :'questions.building_name.label', exact: false
         # Street
-        section :street_question, :question_labelled, 'questions.street.label', exact: false do
-          element :field, :css, "input"
-          element :error_blank, :exact_error_text, 'errors.respondents_details.street', exact: false
-          def set(*args); field.set(*args); end
-        end
+        gds_text_input :street_question, :'questions.street.label', exact: false
         # Town/City
-        section :town_question, :question_labelled, 'questions.town.label', exact: false do
-          element :field, :css, "input"
-          element :error_blank, :exact_error_text, 'errors.respondents_details.town', exact: false
-          def set(*args); field.set(*args); end
-        end
+        gds_text_input :town_question, :'questions.town.label', exact: false
         # County (optional)
-        section :county_question, :question_labelled, 'questions.county.label', exact: false do
-          element :field, :css, "input"
-          def set(*args); field.set(*args); end
-        end
+        gds_text_input :county_question, :'questions.county.label', exact: false
         # Postcode
-        section :postcode_question, :question_labelled, 'questions.postcode.label', exact: false do
-          element :field, :css, "input"
-          element :error_blank, :exact_error_text, 'errors.respondents_details.postcode_blank', exact: false
-          element :error_invalid, :exact_error_text, 'errors.respondents_details.postcode_invalid', exact: false
-          def set(*args); field.set(*args); end
-        end
+        gds_text_input :postcode_question, :'questions.postcode.label', exact: false
         # Document exchange (DX) number (optional)
-        section :dx_number_question, :question_labelled, 'questions.dx_number.label', exact: false do
-          element :field, :css, "input"
-          def set(*args); field.set(*args); end
-        end
+        gds_text_input :dx_number_question, :'questions.dx_number.label', exact: false
         # Contact number (optional)
-        section :contact_number_question, :question_labelled, 'questions.contact_number.label', exact: false do
-          element :field, :css, "input"
-          element :error_invalid, :exact_error_text, 'errors.respondents_details.contact_number_invalid', exact: false
-          def set(*args); field.set(*args); end
-        end
+        gds_phone_input :contact_number_question, :'questions.contact_number.label', exact: false
         # Mobile number (optional)
         # If different to your primary contact numbe
-        section :contact_mobile_number_question, :question_labelled, 'questions.contact_mobile_number.label', exact: false do
-          element :mobile_hint, :form_hint, 'questions.contact_mobile_number.hint'
-          element :field, :css, "input"
-          element :error_invalid, :exact_error_text, 'errors.respondents_details.mobile_number_invalid', exact: false
-          def set(*args); field.set(*args); end
-        end
+        gds_phone_input :contact_mobile_number_question, :'questions.contact_mobile_number.label', exact: false
         # How would you prefer us to contact you? (optional)
-        section :contact_preference_question, :single_choice_option, 'questions.contact_preference.label', exact: false do |q|
-          include EtFullSystem::Test::I18n
-          # Email
-          section :select_email, :gds_multiple_choice_option, 'questions.contact_preference.email.label' do
-            element :selector, :css, 'input[type="radio"]'
-            def set(*args); selector.set(*args); end
-          end
-          # Post
-          section :select_post, :gds_multiple_choice_option, 'questions.contact_preference.post.label' do
-            element :selector, :css, 'input[type="radio"]'
-            def set(*args); selector.set(*args); end
-          end
-          # Fax
-          section :select_fax, :gds_multiple_choice_option, 'questions.contact_preference.fax.label' do
-            element :selector, :css, 'input[type="radio"]'
-            def set(*args); selector.set(*args); end
-          end
-          # Email address
-          section :preference_email, :inputtext_labelled, 'questions.contact_preference.email.input_label' do
-            def set(*args); root_element.set(*args); end
-          end
-          # Fax number
-          section :preference_fax, :inputtext_labelled, 'questions.contact_preference.fax.input_label' do
-            def set(*args); root_element.set(*args); end
-          end
-          element :error_invalid_email, :exact_error_text, 'errors.respondents_details.email_address_invalid', exact: false
-          element :error_invalid_fax, :exact_error_text, 'errors.respondents_details.invalid', exact: false
-          def set_for(user)
-            if (user.contact_preference != nil)
-              choose(factory_translate(user.contact_preference), name: 'respondents_detail[contact_preference]')
-              if t(user.contact_preference) == t('questions.contact_preference.email.label')
-                preference_email.set(user.email_address)
-              end
-              if t(user.contact_preference) == t('questions.contact_preference.post.label')
-                preference_email.set(user.post)
-              end
-              if t(user.contact_preference) == t('questions.contact_preference.fax.label')
-                preference_fax.set(user.fax_number)
-              end
-            end
-          end
-        end
+        gds_radios :contact_preference_question, :'questions.contact_preference'
+        gds_text_input :email_address_question, :'questions.email_address'
+        gds_text_input :fax_number_question, :'questions.fax_number'
+        gds_text_input :employment_at_site_number_question, :'questions.employment_at_site_number'
 
         # Does the respondent want to allow a video session ?
-        section :allow_video_attendance_question, :single_choice_option, 'questions.allow_video_attendance.label', exact: false do
-          include ::EtFullSystem::Test::I18n
-          element :error_allow_video_attendance, :error, 'errors.respondents_details.allow_video_attendance.blank'
-          element :has_allow_video_attendance_hint, :paragraph, 'questions.allow_video_attendance.hint'
-          section :yes, :form_labelled, 'questions.allow_video_attendance.yes' do
-            element :selector, :css, 'input'
-            def set(*args); selector.set(*args); end
-          end
-          element :no, :form_labelled, 'questions.allow_video_attendance.no' do
-            element :selector, :css, 'input'
-            def set(*args); selector.set(*args); end
-          end
-
-          def set(value)
-            return if value.nil?
-
-            choose(factory_translate(value), name: 'respondents_detail[video_call]')
-          end
-
-          def set_for(respondent)
-            set(respondent.allow_video_attendance)
-          end
-        end
-        # Does this organisation have more than one site in Great Britain?
-        section :organisation_employ_gb_question, :question_labelled, 'questions.organisation_employ_gb.label', exact: false do
-          element :field, :css, "input"
-          element :error_blank, :exact_error_text, 'errors.respondents_details.employed_elswhere_blank', exact: false
-          element :error_not_a_number, :exact_error_text, 'errors.respondents_details.not_a_number', exact: false
-          def set(*args); field.set(*args); end
-        end
+        gds_radios :allow_video_attendance_question, :'questions.allow_video_attendance'
         # How many people does this organisation employ in Great Britain? (optional)
-        # For example, 10
-        section :organisation_more_than_one_site_question, :single_choice_option, 'questions.organisation_more_than_one_site.label', exact: false do |q|
-          include EtFullSystem::Test::I18n
-          element :inclusion, :exact_error_text, 'errors.respondents_details.employed_elswhere_blank', exact: false
-          section :yes, :gds_multiple_choice_option, 'questions.organisation_more_than_one_site.yes.label', exact: false do
-            element :selector, :css, 'input'
-            def set(*args); selector.set(*args); end
-          end
-          section :no, :gds_multiple_choice_option, 'questions.organisation_more_than_one_site.no.label', exact: false do
-            element :selector, :css, 'input'
-            def set(*args); selector.set(*args); end
-          end
-          # How many people are employed at the place where the claimant worked?
-          # For example, 10
-          section :employment_at_site_number, :inputtext_labelled, 'questions.organisation_more_than_one_site.employment_at_site_number.label', exact: false do
-            element :employment_at_site_number_hint, :form_hint, 'questions.organisation_more_than_one_site.employment_at_site_number.hint'
-            def set(*args); root_element.set(*args); end
-          end
-          element :error_not_a_number, :exact_error_text, 'errors.respondents_details.not_a_number', exact: false
-          def set_for(user)
-            choose(factory_translate(user.organisation_more_than_one_site), name: 'respondents_detail[organisation_more_than_one_site]')
-            if t(user.organisation_more_than_one_site) == t('questions.organisation_more_than_one_site.yes.label')
-              employment_at_site_number.set(user.employment_at_site_number)
-            end
-          end
-        end
+        gds_text_input :organisation_employ_gb_question, :'questions.organisation_employ_gb', exact: false
+        # Does this organisation have more than one site in Great Britain? (optional)
+        gds_radios :organisation_more_than_one_site_question, :'questions.organisation_more_than_one_site', exact: false
         # Save and continue
-        element :continue_button, :submit_text, 'components.save_and_continue_button'
+        gds_submit_button :continue_button, :'components.save_and_continue_button'
         def next
           continue_button.click
         end
@@ -194,7 +62,7 @@ module EtFullSystem
         def switch_to_welsh
           switch_language.welsh_link.click
         end
-  
+
         def switch_to_english
           switch_language.english_link.click
         end
@@ -208,7 +76,7 @@ module EtFullSystem
           expect(self).to have_name_question
           # Name of contact (optional)
           expect(self).to have_contact_question
-          expect(contact_question).to have_contact_hint
+          expect(contact_question).to have_hint
           # Building name or number
           expect(self).to have_building_name_question
           # Street
@@ -225,24 +93,22 @@ module EtFullSystem
           expect(self).to have_contact_number_question
           # Mobile number (optional)
           expect(self).to have_contact_mobile_number_question
-          expect(contact_mobile_number_question).to have_mobile_hint
+          expect(contact_mobile_number_question).to have_hint
           # How would you prefer us to contact you? (optional)
           expect(self).to have_contact_preference_question
-          expect(contact_preference_question).to have_select_email
-          expect(contact_preference_question).to have_select_post
-          expect(contact_preference_question).to have_select_fax
           # Does this organisation have more than one site in Great Britain?
           expect(self).to have_organisation_employ_gb_question
         end
 
         def has_correct_blank_error_messages?
-          expect(self).to have_error_header
-          expect(case_number_question).to have_error_invalid
-          expect(name_question).to have_error_blank
-          expect(building_name_question).to have_error_blank
-          expect(street_question).to have_error_blank
-          expect(town_question).to have_error_blank
-          expect(postcode_question).to have_error_blank
+          expect(self).to have_error_summary
+          case_number_question.assert_error_message(t('errors.respondents_details.case_number_invalid'))
+          name_question.assert_error_message(t('errors.respondents_details.company_name'))
+          building_name_question.assert_error_message(t('errors.respondents_details.building_name'))
+          street_question.assert_error_message(t('errors.respondents_details.street'))
+          town_question.assert_error_message(t('errors.respondents_details.town'))
+          postcode_question.assert_error_message(t('errors.respondents_details.postcode_blank'))
+          true
         end
       end
     end

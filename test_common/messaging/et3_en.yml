@@ -30,28 +30,26 @@ en:
       hint: If different to your primary contact number
     contact_preference:
       label: How would you prefer us to contact you? (optional)
-      email:
-        label: Email
-        input_label: Email address
-      post:
-        label: Post
-      fax:
-        label: Fax
-        input_label: Fax number
+      options:
+        email: Email
+        post: Post
+        fax: Fax
+    email_address:
+      label: Email address
+    fax_number:
+      label: Fax number
     allow_video_attendance:
       label: Would you be able to take part in a hearing by video? (Requires internet access).
-      'yes':
-        label: 'Yes'
-      'no':
-        label: 'No'
+      options:
+        'yes': 'Yes'
+        'no': 'No'
     organisation_employ_gb:
       label: How many people does this organisation employ in Great Britain? (optional)
     organisation_more_than_one_site:
-      label: Does this organisation have more than one site in Great Britain?
-      'yes':
-        label: 'Yes'
-      'no':
-        label: 'No'
+      label: Does this organisation have more than one site in Great Britain? (optional)
+      options:
+        'yes': 'Yes'
+        'no': 'No'
       employment_at_site_number:
         label: How many people are employed at the place where the claimant worked?
         hint: For example, 10

@@ -30,28 +30,26 @@ cy:
       hint: "Os yw'n wahanol i'ch prif rif ffôn"
     contact_preference:
       label: Sut hoffech i ni gysylltu â chi? (dewisol)
-      email:
-        label: E-bost
-        input_label: Cyfeiriad e-bost
-      post:
-        label: Post
-      fax:
-        label: Ffacs
-        input_label: Rhif ffacs
+      options:
+        email: E-bost
+        post: Post
+        fax: Ffacs
+    email_adress:
+      label: Cyfeiriad e-bost
+    fax_number:
+      label: Rhif ffacs
     allow_video_attendance:
       label: A allech chi gymryd rhan mewn gwrandawiad drwy fideo? (angen mynediad i'r rhyngrwyd)
-      'yes':
-        label: Gallaf
-      'no':
-        label: Na allaf
+      options:
+        'yes': Gallaf
+        'no': Na allaf
     organisation_employ_gb:
       label: "Faint o bobl sy’n gyflogedig gan y sefydliad hwn ym Mhrydain Fawr? (dewisol)"
     organisation_more_than_one_site:
-      label: "A oes gan y sefydliad hwn fwy nag un safle ym Mhrydain Fawr?"
-      'yes':
-        label: Oes
-      'no':
-        label: Nac oes
+      label: "A oes gan y sefydliad hwn fwy nag un safle ym Mhrydain Fawr? (dewisol)"
+      options:
+        'yes': Oes
+        'no': Nac oes
       employment_at_site_number:
         label: "Faint o bobl sy’n gyflogedig ar y safle ble'r oedd yr hawlydd yn gweithio?"
     # Claimant's Details Page

@@ -20,7 +20,7 @@ module EtFullSystem
               phone_number: respondent[:contact_number] || '',
               mobile_number: respondent[:contact_mobile_number] || '',
               contact_preference: contact_preference(respondent[:contact_preference]),
-              allow_video_attendance: respondent[:allow_video_attendance].to_s.split('.')[-2] == 'yes',
+              allow_video_attendance: respondent[:allow_video_attendance].to_s.split('.').last == 'yes',
               email_address: respondent.fetch(:email_address, ''),
               fax_number: '',
               employ_gb: respondent[:organisation_employ_gb].to_s,

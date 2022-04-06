@@ -30,10 +30,13 @@ module EtFullSystem
         respondents_details_page.dx_number_question.set(user.dx_number)
         respondents_details_page.contact_number_question.set(user.contact_number)
         respondents_details_page.contact_mobile_number_question.set(user.contact_mobile_number)
-        respondents_details_page.contact_preference_question.set_for(user)
-        respondents_details_page.allow_video_attendance_question.set_for(user)
-        respondents_details_page.organisation_more_than_one_site_question.set_for(user)
+        respondents_details_page.contact_preference_question.set(user.contact_preference.to_s.split('.').last&.to_sym)
+        respondents_details_page.email_address_question.set(user.email_address) if user.contact_preference.to_s.split('.').last == 'email'
+        respondents_details_page.fax_number_question.set(user.fax_number) if user.contact_preference.to_s.split('.').last == 'fax'
+        respondents_details_page.organisation_more_than_one_site_question.set(user.organisation_more_than_one_site.to_s.split('.').last.to_sym)
+        respondents_details_page.employment_at_site_number_question.set(user.employment_at_site_number) if user.organisation_more_than_one_site.to_s.split('.')[-2] == 'yes'
         respondents_details_page.organisation_employ_gb_question.set(user.organisation_employ_gb)
+        respondents_details_page.allow_video_attendance_question.set(user.allow_video_attendance.to_s.split('.').last.to_sym)
 
         respondents_details_page.next
       end
@@ -51,8 +54,8 @@ module EtFullSystem
         respondents_details_page.street_question.set(user.street_name)
         respondents_details_page.town_question.set(user.town)
         respondents_details_page.postcode_question.set(user.postcode)
-        respondents_details_page.allow_video_attendance_question.set_for(user)
-        respondents_details_page.organisation_more_than_one_site_question.set_for(user)
+        respondents_details_page.allow_video_attendance_question.set(user.allow_video_attendance.to_s.split('.').last.to_sym)
+        respondents_details_page.organisation_more_than_one_site_question.set(user.organisation_more_than_one_site.to_s.split('.').last.to_sym)
 
         respondents_details_page.next
       end
