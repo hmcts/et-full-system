@@ -6,7 +6,7 @@ module EtFullSystem
         class EmploymentDetailsSection < ::EtFullSystem::Test::FileObjects::Et3PdfFileSection::Base
           def has_contents_for?(response:)
             expected_values = {
-              agree_with_dates: response[:agree_with_employment_dates].to_s.split('.')[-2] == 'yes',
+              agree_with_dates: response[:agree_with_employment_dates].to_s.split('.').last == 'yes',
               employment_start: response[:employment_start],
               employment_end: response[:employment_end],
               disagree_with_dates_reason: response[:disagree_employment] || '',

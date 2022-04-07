@@ -6,10 +6,10 @@ FactoryBot.define do
 
   trait :disagree_with_employment_dates do
     claimants_name { Faker::Name.name }
-    agree_with_early_conciliation_details {:"questions.agree_with_early_conciliation_details.no.label"}
+    agree_with_early_conciliation_details {:"questions.agree_with_early_conciliation_details.options.no"}
     disagree_conciliation_reason {"lorem ipsum conciliation"}
-    continued_employment {:"questions.continued_employment.no.label"}
-    agree_with_claimants_description_of_job_or_title {:"questions.agree_with_claimants_description_of_job_or_title.no.label"}
+    continued_employment {:"questions.continued_employment.options.no"}
+    agree_with_claimants_description_of_job_or_title {:"questions.agree_with_claimants_description_of_job_or_title.options.no"}
     disagree_claimants_job_or_title {"lorem ipsum job title"}
     agree_with_claimants_hours {:"questions.agree_with_claimants_hours.no.label"}
     queried_hours {32.0}
@@ -24,7 +24,7 @@ FactoryBot.define do
     disagree_claimant_pension_benefits_reason {"lorem ipsum claimant pension"}
     defend_claim {:"questions.defend_claim.yes.label"}
     defend_claim_facts {"lorem ipsum defence"}
-    agree_with_employment_dates {:"questions.agree_with_employment_dates.no.label"}
+    agree_with_employment_dates {:"questions.agree_with_employment_dates.options.no"}
     employment_start {"01/01/2017"}
     employment_end {"31/12/2017"}
     disagree_employment {"lorem ipsum employment"}
@@ -32,10 +32,10 @@ FactoryBot.define do
 
   trait :agree_with_employment_dates do
     claimants_name { Faker::Name.name }
-    agree_with_early_conciliation_details {:"questions.agree_with_early_conciliation_details.no.label"}
+    agree_with_early_conciliation_details {:"questions.agree_with_early_conciliation_details.options.no"}
     disagree_conciliation_reason {'lorem ipsum conciliation'}
-    continued_employment {:"questions.continued_employment.no.label"}
-    agree_with_claimants_description_of_job_or_title {:"questions.agree_with_claimants_description_of_job_or_title.no.label"}
+    continued_employment {:"questions.continued_employment.options.no"}
+    agree_with_claimants_description_of_job_or_title {:"questions.agree_with_claimants_description_of_job_or_title.options.no"}
     disagree_claimants_job_or_title {'lorem ipsum job title'}
     agree_with_claimants_hours {:"questions.agree_with_claimants_hours.no.label"}
     queried_hours {32.0}
@@ -50,7 +50,7 @@ FactoryBot.define do
     disagree_claimant_pension_benefits_reason {'lorem ipsum claimant pension'}
     defend_claim {:"questions.defend_claim.yes.label"}
     defend_claim_facts {'lorem ipsum defence'}
-    agree_with_employment_dates {:"questions.agree_with_employment_dates.yes.label"}
+    agree_with_employment_dates {:"questions.agree_with_employment_dates.options.yes"}
     employment_start {''}
     employment_end {''}
     disagree_employment {''}
@@ -58,9 +58,9 @@ FactoryBot.define do
 
   trait :et3_claimant_optionals do
     claimants_name {''}
-    agree_with_early_conciliation_details {:"questions.agree_with_early_conciliation_details.no.label"}
+    agree_with_early_conciliation_details {:"questions.agree_with_early_conciliation_details.options.no"}
     disagree_conciliation_reason {''}
-    continued_employment {:"questions.continued_employment.no.label"}
+    continued_employment {:"questions.continued_employment.options.no"}
     agree_with_claimants_description_of_job_or_title {nil}
     disagree_claimants_job_or_title {''}
     agree_with_claimants_hours {nil}
@@ -76,7 +76,7 @@ FactoryBot.define do
     disagree_claimant_pension_benefits_reason {''}
     defend_claim {:"questions.defend_claim.no.label"}
     defend_claim_facts {''}
-    agree_with_employment_dates {:"questions.agree_with_employment_dates.yes.label"}
+    agree_with_employment_dates {:"questions.agree_with_employment_dates.options.yes"}
     allow_video_attendance { :"questions.allow_video_attendance.no.label" }
     employment_start {''}
     employment_end {''}
