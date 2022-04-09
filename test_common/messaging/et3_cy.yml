@@ -88,50 +88,44 @@ cy:
     # Earnings and Benefits Page
     agree_with_claimants_hours:
       label: "A yw’r oriau gwaith yn gywir? (dewisol)"
-      'yes':
-        label: Ydy
-      'no':
-        label: Nac ydy
-      queried_hours:
-        label: "Dywedwch beth ydych chi’n credu yw’r oriau gwaith cywir (dewisol) "
+      options:
+        'yes': Ydy
+        'no': Nac ydy
+    queried_hours:
+      label: "Dywedwch beth ydych chi’n credu yw’r oriau gwaith cywir (dewisol) "
     agree_with_earnings_details:
       label: "A yw’r enillion yn gywir? (dewisol)"
-      'yes':
-        label: Ydy
-      'no':
-        label: Nac ydy
-      queried_pay_before_tax:
-        label: "Tâl cyn treth (dewisol)"
-      queried_pay_before_tax_period:
-        label: "Tâl cyn cyfnod treth (dewisol)"
-        monthly:
-          label: Misol
-        weekly:
-          label: Wythnosol
-      queried_take_home_pay:
-        label: "Tâl terfynol arferol (dewisol)"
-      queried_take_home_pay_period:
-        label: "Cyfnod tâl terfynol arferol (dewisol)"
-        monthly:
-          label: Misol
-        weekly:
-          label: Wythnosol
+      options:
+        'yes': Ydy
+        'no': Nac ydy
+    queried_pay_before_tax:
+      label: "Tâl cyn treth (dewisol)"
+    queried_pay_before_tax_period:
+      label: "Tâl cyn cyfnod treth (dewisol)"
+      options:
+        Monthly: Misol
+        Weekly: Wythnosol
+    queried_take_home_pay:
+      label: "Tâl terfynol arferol (dewisol)"
+    queried_take_home_pay_period:
+      label: "Cyfnod tâl terfynol arferol (dewisol)"
+      options:
+        Monthly: Misol
+        Weekly: Wythnosol
     agree_with_claimant_notice:
       label: "A yw’r manylion am gael eich talu am neu weithio cyfnod o rybudd yn gywir? (dewisol)"
-      'yes':
-        label: Ydy
-      'no':
-        label: Nac ydy
-      disagree_claimant_notice_reason:
-        label: "Nodwch y manylion rydych chi’n credu sy’n gywir."
+      options:
+        'yes': Ydy
+        'no': Nac ydy
+    disagree_claimant_notice_reason:
+      label: "Nodwch y manylion rydych chi’n credu sy’n gywir."
     agree_with_claimant_pension_benefits:
       label: "A yw’r manylion am bensiynau a budd-daliadau eraill yn gywir? (dewisol)"
-      'yes':
-        label: Ydw
-      'no':
-        label: Nac ydy
-      disagree_claimant_pension_benefits_reason:
-        label: "Nodwch y manylion rydych chi’n credu sy’n gywir."
+      options:
+        'yes': Ydw
+        'no': Nac ydy
+    disagree_claimant_pension_benefits_reason:
+      label: "Nodwch y manylion rydych chi’n credu sy’n gywir."
     # Response Page
     defend_claim:
       label: "A ydych yn amddiffyn yr hawliad?"

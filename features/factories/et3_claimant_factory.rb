@@ -11,16 +11,16 @@ FactoryBot.define do
     continued_employment {:"questions.continued_employment.options.no"}
     agree_with_claimants_description_of_job_or_title {:"questions.agree_with_claimants_description_of_job_or_title.options.no"}
     disagree_claimants_job_or_title {"lorem ipsum job title"}
-    agree_with_claimants_hours {:"questions.agree_with_claimants_hours.no.label"}
+    agree_with_claimants_hours {:"questions.agree_with_claimants_hours..options.no"}
     queried_hours {32.0}
-    agree_with_earnings_details {:"questions.agree_with_earnings_details.no.label"}
+    agree_with_earnings_details {:"questions.agree_with_earnings_details.options.no"}
     queried_pay_before_tax {1000.0}
     queried_pay_before_tax_period {"Monthly"}
     queried_take_home_pay {900.0}
     queried_take_home_pay_period {"Monthly"}
-    agree_with_claimant_notice {:"questions.agree_with_claimant_notice.no.label"}
+    agree_with_claimant_notice {:"questions.agree_with_claimant_notice.options.no"}
     disagree_claimant_notice_reason {"lorem ipsum notice reason"}
-    agree_with_claimant_pension_benefits {:"questions.agree_with_claimant_pension_benefits.no.label"}
+    agree_with_claimant_pension_benefits {:"questions.agree_with_claimant_pension_benefits.options.no"}
     disagree_claimant_pension_benefits_reason {"lorem ipsum claimant pension"}
     defend_claim {:"questions.defend_claim.yes.label"}
     defend_claim_facts {"lorem ipsum defence"}
@@ -37,16 +37,16 @@ FactoryBot.define do
     continued_employment {:"questions.continued_employment.options.no"}
     agree_with_claimants_description_of_job_or_title {:"questions.agree_with_claimants_description_of_job_or_title.options.no"}
     disagree_claimants_job_or_title {'lorem ipsum job title'}
-    agree_with_claimants_hours {:"questions.agree_with_claimants_hours.no.label"}
+    agree_with_claimants_hours {:"questions.agree_with_claimants_hours.options.no"}
     queried_hours {32.0}
-    agree_with_earnings_details {:"questions.agree_with_earnings_details.no.label"}
+    agree_with_earnings_details {:"questions.agree_with_earnings_details.options.no"}
     queried_pay_before_tax {1000.0}
     queried_pay_before_tax_period {"Monthly"}
     queried_take_home_pay {900.0}
     queried_take_home_pay_period {"Monthly"}
-    agree_with_claimant_notice {:"questions..agree_with_claimant_notice.no.label"}
+    agree_with_claimant_notice {:"questions.agree_with_claimant_notice.options.no"}
     disagree_claimant_notice_reason {'lorem ipsum notice reason'}
-    agree_with_claimant_pension_benefits {:"questions.agree_with_claimant_pension_benefits.no.label"}
+    agree_with_claimant_pension_benefits {:"questions.agree_with_claimant_pension_benefits.options.no"}
     disagree_claimant_pension_benefits_reason {'lorem ipsum claimant pension'}
     defend_claim {:"questions.defend_claim.yes.label"}
     defend_claim_facts {'lorem ipsum defence'}

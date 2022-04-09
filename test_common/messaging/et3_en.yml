@@ -89,50 +89,44 @@ en:
     # Earnings and Benefits Page
     agree_with_claimants_hours:
       label: Are the hours of work correct? (optional)
-      'yes':
-        label: 'Yes'
-      'no':
-        label: 'No'
-      queried_hours:
-        label: Tell us the details you believe to be correct.
+      options:
+        'yes': 'Yes'
+        'no': 'No'
+    queried_hours:
+      label: Tell us the details you believe to be correct.
     agree_with_earnings_details:
       label: Are the earnings correct? (optional)
-      'yes':
-        label: 'Yes'
-      'no':
-        label: 'No'
-      queried_pay_before_tax:
-        label: Pay before tax (optional)
-      queried_pay_before_tax_period:
-        label: Pay before tax period (optional)
-        monthly:
-          label: Monthly
-        weekly:
-          label: Weekly
-      queried_take_home_pay:
-        label: Normal take-home pay (optional)
-      queried_take_home_pay_period:
-        label: Normal take-home pay period (optional)
-        monthly:
-          label: Monthly
-        weekly:
-          label: Weekly
+      options:
+        'yes': 'Yes'
+        'no': 'No'
+    queried_pay_before_tax:
+      label: Pay before tax (optional)
+    queried_pay_before_tax_period:
+      label: Pay before tax period (optional)
+      options:
+        Monthly: Monthly
+        Weekly: Weekly
+    queried_take_home_pay:
+      label: Normal take-home pay (optional)
+    queried_take_home_pay_period:
+      label: Normal take-home pay period (optional)
+      options:
+        Monthly: Monthly
+        Weekly: Weekly
     agree_with_claimant_notice:
       label: Are the details about being paid for or working a period of notice correct? (optional)
-      'yes':
-        label: 'Yes'
-      'no':
-        label: 'No'
-      disagree_claimant_notice_reason:
-        label: Tell us the details you believe to be correct.
+      options:
+        'yes': 'Yes'
+        'no': 'No'
+    disagree_claimant_notice_reason:
+      label: Tell us the details you believe to be correct.
     agree_with_claimant_pension_benefits:
       label: Are the details about pensions and other benefits correct? (optional)
-      'yes':
-        label: 'Yes'
-      'no':
-        label: 'No'
-      disagree_claimant_pension_benefits_reason:
-        label: Tell us the details you believe to be correct. (optional)
+      options:
+        'yes': 'Yes'
+        'no': 'No'
+    disagree_claimant_pension_benefits_reason:
+      label: Tell us the details you believe to be correct. (optional)
     # Response Page
     defend_claim:
       label: Do you defend the claim ?
