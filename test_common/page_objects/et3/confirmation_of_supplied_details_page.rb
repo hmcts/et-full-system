@@ -109,7 +109,7 @@ module EtFullSystem
           end
           element :back_to_top, :link_named, 'confirmation.back_to_the_top'
         end
-        
+
         section :confirmation_of_earnings_and_benefits_answers, :table_captioned, 'questions.confirmation_of_earnings_and_benefits_answers.caption', exact: true do
           section :agree_with_claimants_hours_row, :table_row_with_td_labelled, 'questions.agree_with_claimants_hours.label', exact: true do
             element :agree_with_claimants_hours_answer, :return_answer
@@ -146,17 +146,17 @@ module EtFullSystem
           end
           element :back_to_top, :link_named, 'confirmation.back_to_the_top'
         end
-  
+
         section :confirmation_of_response_answers, :table_captioned, 'questions.confirmation_of_response_answers.caption', exact: true do
           section :defend_claim_row, :table_row_with_td_labelled, 'questions.defend_claim.label', exact: true do
             element :defend_claim_answer, :return_answer
           end
-          section :defend_claim_facts_row, :table_row_with_td_labelled, 'questions.defend_claim.defend_claim_facts.label', exact: true do
+          section :defend_claim_facts_row, :table_row_with_td_labelled, 'questions.defend_claim_facts.label', exact: true do
             element :defend_claim_facts_answer, :return_answer
           end
           element :back_to_top, :link_named, 'confirmation.back_to_the_top'
         end
-  
+
         section :confirmation_of_your_representative_answers, :table_captioned, 'questions.confirmation_of_your_representative_answers.caption', exact: true do
           section :have_representative_row, :table_row_with_td_labelled, 'questions.have_representative.label', exact: true do
             element :have_representative_answer, :return_answer
@@ -248,7 +248,7 @@ module EtFullSystem
         def switch_to_welsh
           switch_language.welsh_link.click
         end
-  
+
         def switch_to_english
           switch_language.english_link.click
         end

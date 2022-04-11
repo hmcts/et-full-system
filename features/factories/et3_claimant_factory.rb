@@ -22,7 +22,7 @@ FactoryBot.define do
     disagree_claimant_notice_reason {"lorem ipsum notice reason"}
     agree_with_claimant_pension_benefits {:"questions.agree_with_claimant_pension_benefits.options.no"}
     disagree_claimant_pension_benefits_reason {"lorem ipsum claimant pension"}
-    defend_claim {:"questions.defend_claim.yes.label"}
+    defend_claim {:"questions.defend_claim.options.yes"}
     defend_claim_facts {"lorem ipsum defence"}
     agree_with_employment_dates {:"questions.agree_with_employment_dates.options.no"}
     employment_start {"01/01/2017"}
@@ -48,7 +48,7 @@ FactoryBot.define do
     disagree_claimant_notice_reason {'lorem ipsum notice reason'}
     agree_with_claimant_pension_benefits {:"questions.agree_with_claimant_pension_benefits.options.no"}
     disagree_claimant_pension_benefits_reason {'lorem ipsum claimant pension'}
-    defend_claim {:"questions.defend_claim.yes.label"}
+    defend_claim {:"questions.defend_claim.options.yes"}
     defend_claim_facts {'lorem ipsum defence'}
     agree_with_employment_dates {:"questions.agree_with_employment_dates.options.yes"}
     employment_start {''}
@@ -74,7 +74,7 @@ FactoryBot.define do
     disagree_claimant_notice_reason {''}
     agree_with_claimant_pension_benefits {nil}
     disagree_claimant_pension_benefits_reason {''}
-    defend_claim {:"questions.defend_claim.no.label"}
+    defend_claim {:"questions.defend_claim.options.no"}
     defend_claim_facts {''}
     agree_with_employment_dates {:"questions.agree_with_employment_dates.options.yes"}
     allow_video_attendance { :"questions.allow_video_attendance.no.label" }

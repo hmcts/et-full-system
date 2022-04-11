@@ -116,7 +116,10 @@ module EtFullSystem
 
       def et3_answer_defend_claim_question
         user = @claimant[0]
-        response_page.defend_claim_question.set_for(user)
+        response_page.defend_claim_question.set(user.defend_claim.to_s.split('.').last.to_sym)
+        if user.defend_claim.to_s.split('.').last == 'yes'
+          response_page.defend_claim_facts.set(user.defend_claim_facts)
+        end
 
         response_page.next
       end

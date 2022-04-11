@@ -30,7 +30,10 @@ When(/^an employer responds to mandatory questions$/) do
   end
   claimants_details_page.next
   earnings_and_benefits_page.next
-  response_page.defend_claim_question.set_for(user)
+  response_page.defend_claim_question.set(user.defend_claim)
+  if user.defend_claim.to_s.split('.').last == 'yes'
+    user.defend_claim_facts.set(user.defend_claim_facts)
+  end
   response_page.next
   et3_answer_representative
   et3_answer_disability_question
@@ -58,7 +61,10 @@ When("an employer responds to a claim with special characters in the company's n
   end
   claimants_details_page.next
   earnings_and_benefits_page.next
-  response_page.defend_claim_question.set_for(user)
+  response_page.defend_claim_question.set(user.defend_claim)
+  if user.defend_claim.to_s.split('.').last == 'yes'
+    user.defend_claim_facts.set(user.defend_claim_facts)
+  end
   response_page.next
   et3_answer_representative
   et3_answer_disability_question

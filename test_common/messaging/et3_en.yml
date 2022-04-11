@@ -130,12 +130,11 @@ en:
     # Response Page
     defend_claim:
       label: Do you defend the claim ?
-      'yes':
-        label: 'Yes'
-      'no':
-        label: 'No'
-      defend_claim_facts:
-        label: Tell us the facts that you rely on to defend the claim.
+      options:
+        'yes': 'Yes'
+        'no': 'No'
+    defend_claim_facts:
+      label: Tell us the facts that you rely on to defend the claim.
     # Your Representatives Page
     have_representative:
       title: Do you have a representative?

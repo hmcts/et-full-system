@@ -21,6 +21,6 @@ When(/^I try to continue without providing a response to claim question$/) do
 end
 
 Then(/^I should see the error message saying the response to claim cant be blank$/) do
-  expect(response_page.error_summary).to have_error_header
+  expect(response_page).to have_error_summary
   expect(response_page.defend_claim_question).to have_error
 end
