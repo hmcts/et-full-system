@@ -4,6 +4,7 @@ module EtFullSystem
     module Et3
       class YourRepresentativePage < BasePage
         include RSpec::Matchers
+        include EtTestHelpers::Page
         section :switch_language, '.switch-language' do
           include ::EtFullSystem::Test::I18n
           element :language, :link_named, 'switch.language'
@@ -16,22 +17,9 @@ module EtFullSystem
 
         end
         element :header, :content_header, 'questions.have_representative.title'
-        section :representative_question, :single_choice_option, 'questions.have_representative.label', exact: true do
-          include ::EtFullSystem::Test::I18n
-          section :yes, :gds_multiple_choice_option, 'questions.have_representative.yes.label', exact: true do
-            element :selector, :css, 'input'
-            def set(*args); selector.set(*args); end
-          end
-          section :no, :gds_multiple_choice_option, 'questions.have_representative.no.label', exact: true do
-            element :selector, :css, 'input'
-            def set(*args); selector.set(*args); end
-          end
-          def set_for(user_persona)
-            choose(factory_translate(user_persona.have_representative), name: 'your_representative[have_representative]')
-          end
-        end
+        gds_radios :representative_question, :'questions.have_representative', exact: true
         # Save and continue
-        element :continue_button, :submit_text, 'components.save_and_continue_button'
+        gds_submit_button :continue_button, :'components.save_and_continue_button'
         def next
           continue_button.click
         end
@@ -39,7 +27,7 @@ module EtFullSystem
         def switch_to_welsh
           switch_language.welsh_link.click
         end
-  
+
         def switch_to_english
           switch_language.english_link.click
         end

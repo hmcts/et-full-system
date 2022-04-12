@@ -126,8 +126,8 @@ module EtFullSystem
 
       def et3_answer_representative
         user = @representative[0]
-        if user.representative_have == :"questions.have_representative.yes.label"
-          your_representative_page.representative_question.set_for(user)
+        if user.representative_have.to_s.split('.').last == "yes"
+          your_representative_page.representative_question.set(:yes)
           your_representative_page.next
           your_representatives_details_page.type_of_representative_question.set_for(user)
           your_representatives_details_page.representative_org_name_question.set(user.organisation_name)

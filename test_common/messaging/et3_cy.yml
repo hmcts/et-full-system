@@ -139,10 +139,9 @@ cy:
     have_representative:
       title: "Oes gennych chi gynrychiolydd?"
       label: "Dyma rywun sydd wedi cytuno i weithredu ar eich rhan."
-      'yes':
-        label: Oes
-      'no':
-        label: Nac oes
+      options:
+        'yes': Oes
+        'no': Nac oes
     # Your Representatives Details Page
     type_of_representative:
       label: Math o Gynrychiolydd

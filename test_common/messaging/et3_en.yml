@@ -139,10 +139,9 @@ en:
     have_representative:
       title: Do you have a representative?
       label: This is someone who has agreed to act on your behalf.
-      'yes':
-        label: 'Yes'
-      'no':
-        label: 'No'
+      options:
+        'yes': 'Yes'
+        'no': 'No'
     # Your Representatives Details Page
     type_of_representative:
       label: Type of Representative
