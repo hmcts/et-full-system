@@ -145,22 +145,15 @@ cy:
     # Your Representatives Details Page
     type_of_representative:
       label: Math o Gynrychiolydd
-      citizens_advice_bureau:
-        label: Canolfan Cyngor ar Bopeth
-      free_representation_unit:
-        label: Uned Cynrychiolaeth am Ddim
-      law_centre:
-        label: Canolfan y Gyfraith
-      union:
-        label: Uned
-      solicitor:
-        label: Cyfreithiwr
-      private_individual:
-        label: Unigolyn preifat
-      trade_association:
-        label: Cymdeithasau Masnach
-      other:
-        label: Arall
+      options:
+        citizens_advice_bureau: Canolfan Cyngor ar Bopeth
+        free_representation_unit: Uned Cynrychiolaeth am Ddim
+        law_centre: Canolfan y Gyfraith
+        union: Uned
+        solicitor: Cyfreithiwr
+        private_individual: Unigolyn preifat
+        trade_association: Cymdeithasau Masnach
+        other: Arall
     representative_org_name:
       label: "Enw sefydliad y cynrychiolydd (dewisol)"
     representative_name:
@@ -185,14 +178,13 @@ cy:
       label: "Cyfeirnod (dewisol)"
     representative_contact_preference:
       label: "Sut hoffech i ni gysylltu â'ch cynrychiolydd? (dewisol)"
-      email:
-        label: E-bost
-        input_label: Cyfeiriad e-bost
-      post:
-        label: Post
-      fax:
-        label: Ffacs
-        input_label: Rhif ffacs
+      email: E-bost
+      post: Post
+      fax: Ffacs
+    preference_email:
+      label: Cyfeiriad e-bost
+    preference_fax:
+      label: Rhif ffacs
     # Disability Page
     disability:
       label: A oes gennych chi anabledd? (dewisol)

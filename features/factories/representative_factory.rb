@@ -3,7 +3,7 @@ FactoryBot.define do
   end
 
   trait :et3_information do
-    type {:"questions.type_of_representative.solicitor.label"}
+    type {:"questions.type_of_representative.options.solicitor"}
     organisation_name { Faker::Company.bs }
     name { Faker::Name.name }
     building {'106'}
@@ -18,7 +18,7 @@ FactoryBot.define do
     representative_have {:"questions.have_representative.options.yes"}
     representative_mobile {'07987654321'}
     representative_reference {'Rep Ref'}
-    representative_contact_preference {:"questions.representative_contact_preference.fax.label"}
+    representative_contact_preference {:"questions.representative_contact_preference.options.fax"}
     representative_fax {'0207 345 6789'}
   end
 

@@ -20,7 +20,7 @@ module EtFullSystem
               phone_number: representative[:telephone_number] || '',
               mobile_number: representative[:representative_mobile] || '',
               reference: representative[:representative_reference] || '',
-              contact_preference: representative[:representative_contact_preference].to_s.split('.')[-2],
+              contact_preference: representative[:representative_contact_preference].to_s.split('.').last,
               fax_number: representative[:representative_fax] || ''
             }
             # @TODO Re add the code below once the email address is being filled in

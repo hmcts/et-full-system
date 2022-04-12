@@ -129,7 +129,7 @@ module EtFullSystem
         if user.representative_have.to_s.split('.').last == "yes"
           your_representative_page.representative_question.set(:yes)
           your_representative_page.next
-          your_representatives_details_page.type_of_representative_question.set_for(user)
+          your_representatives_details_page.type_of_representative_question.set(user.type.to_s.split('.').last.to_sym)
           your_representatives_details_page.representative_org_name_question.set(user.organisation_name)
           your_representatives_details_page.representative_name_question.set(user.name)
           your_representatives_details_page.representative_building_question.set(user.building)
@@ -141,7 +141,13 @@ module EtFullSystem
           your_representatives_details_page.representative_mobile_question.set(user.representative_mobile)
           your_representatives_details_page.representative_dx_number_question.set(user.dx_number)
           your_representatives_details_page.representative_reference_question.set(user.representative_reference)
-          your_representatives_details_page.representative_contact_preference_question.set_for(user)
+          your_representatives_details_page.representative_contact_preference_question.set(user.representative_contact_preference.to_s.split('.').last.to_sym)
+          if user.representative_contact_preference.end_with?('.email')
+            your_representatives_details_page.preference_email.set(user.representative_email)
+          end
+          if user.representative_contact_preference.end_with?('.fax')
+            your_representatives_details_page.preference_fax.set(user.representative_fax)
+          end
           your_representatives_details_page.next
         else
           your_representative_page.next
