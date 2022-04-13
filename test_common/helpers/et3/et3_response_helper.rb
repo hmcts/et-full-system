@@ -157,7 +157,10 @@ module EtFullSystem
 
       def et3_answer_disability_question
         user = @respondent[0]
-        disability_page.disability_question.set_for(user)
+        disability_page.disability_question.set(user.disability.to_s.split('.').last&.to_sym)
+        if user.disability&.end_with?('.yes') && user.disability_information != nil
+          disability_page.disability_information.set(user.disability_information)
+        end
 
         disability_page.next
       end

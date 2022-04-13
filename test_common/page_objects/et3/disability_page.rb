@@ -4,6 +4,7 @@ module EtFullSystem
     module Et3
       class DisabilityPage < BasePage
         include RSpec::Matchers
+        include EtTestHelpers::Page
         section :switch_language, '.switch-language' do
           include ::EtFullSystem::Test::I18n
           element :language, :link_named, 'switch.language'
@@ -14,37 +15,13 @@ module EtFullSystem
         section :main_header, '.content-header' do
 
         end
-        section :error_summary, '.error-summary[aria-labelledby="error-summary-heading"]' do
-          element :error_heading, :main_header, 'errors.header'
-          element :description, :paragraph, 'errors.description'
-          element :error_header, :error_summary_list, 'errors.disability.disability_blank', exact: true
-        end
+        gds_error_summary :error_summary, :'errors.header'
         element :error_header, :error_titled, 'errors.header', exact: true
-        section :disability_question, :single_choice_option, 'questions.disability.label', exact: false do
-          include ::EtFullSystem::Test::I18n
-          section :yes, :gds_multiple_choice_option, 'questions.disability.yes.label', exact: false do
-              element :selector, :css, 'input[type="radio"]'
-              def set(*args); selector.set(*args); end
-          end
-          section :no, :gds_multiple_choice_option, 'questions.disability.no.label', exact: false do
-            element :selector, :css, 'input[type="radio"]'
-            def set(*args); selector.set(*args); end
-          end
-          section :disability_information, :textarea_labelled, 'questions.disability.disability_information.label', exact: :false do
-            def set(*args); root_element.set(*args); end
-          end
-          element :error_too_long, :exact_error_text, 'errors.messages.too_long', exact: false
-          def set_for(user_persona)
-            if(user_persona.disability != nil)
-              choose(factory_translate(user_persona.disability), name: 'disability[disability]')
-              if t(user_persona.disability) == t('questions.disability.yes.label') && user_persona.disability_information != nil
-                disability_information.set(user_persona.disability_information)
-              end
-            end
-          end
-        end
+        gds_radios :disability_question, :'questions.disability', exact: false
+        gds_text_area :disability_information, :'questions.disability_information', exact: :false
+
         # Save and continue
-        element :continue_button, :submit_text, 'components.save_and_continue_button'
+        gds_submit_button :continue_button, :'components.save_and_continue_button'
         def next
           continue_button.click
         end

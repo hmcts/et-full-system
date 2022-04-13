@@ -24,11 +24,16 @@ Then(/^I should be taken to the employers contract claim page$/) do
 end
 
 When("I click on yes without providing the required disability question") do
-  user = FactoryBot.create_list(:et3_respondent, 1, :et3_respondent_answers, disability_information: '')
-  disability_page.disability_question.set_for(user[0])
+  user = FactoryBot.create(:et3_respondent, :et3_respondent_answers, disability_information: '')
+  disability_page.disability_question.set(user.disability.to_s.split('.').last.to_sym)
+  if user.disability.end_with?('.yes') && user.disability_information != nil
+    disability_page.disability_information.set(user.disability_information)
+  end
+
   disability_page.next
 end
 
 Then("I should see the error message saying the disability details cant be blank") do
-  expect(disability_page.error_summary).to have_error_header
+  expect(disability_page).to have_error_summary
+  disability_page.disability_information.assert_error_message(t('errors.disability.disability_blank'))
 end

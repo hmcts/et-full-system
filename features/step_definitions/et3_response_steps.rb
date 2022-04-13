@@ -22,7 +22,7 @@ When(/^an employer responds to mandatory questions$/) do
   et3_answer_respondents_details
 
   user = @claimant[0]
-  claimants_details_page.agree_with_employment_dates_question.set(user.agree_with_employment_dates.to_s.split('.').last.to_sym)
+  claimants_details_page.agree_with_employment_dates_question.set(user.agree_with_employment_dates.to_s.split('.').last&.to_sym)
   if user.agree_with_employment_dates.to_s.split('.').last == 'no'
     claimants_details_page.employment_start.set(user.employment_start)
     claimants_details_page.employment_end.set(user.employment_end)
