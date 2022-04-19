@@ -197,12 +197,11 @@ cy:
     # Employers Contract Claim Page
     make_employer_contract_claim:
       label: Ydych chi eisiau gwneud Hawliad Contract y Cyflogwr? (dewisol)
-      'yes':
-        label: Oes
-      'no':
-        label: Nac oes
-      claim_information:
-        label: Rhowch gefndir a manylion eich hawliad isod. Dylech gynnwys pob dyddiad pwysig (dewisol)
+      options:
+        'yes': Oes
+        'no': Nac oes
+    claim_information:
+      label: Rhowch gefndir a manylion eich hawliad isod. Dylech gynnwys pob dyddiad pwysig (dewisol)
     # Additional Informatation Page
     upload_additional_information:
       label: "Llwythwch ffeil i ddarparu unrhyw wybodaeth ychwanegol bwysig am eich ymateb nad ydych wedi’i chynnwys hyd yma (dewisol)"
@@ -410,6 +409,10 @@ cy:
     include_quote_case: "Bydd angen ichi gynnwys neu ddyfynnu eich rhif achos."
     return_link: Dychwelyd i GOV.UK
     return_href: https://gov.uk
+  confirmation_of_supplied_details:
+    upload_additional_information: "Llwythwch ffeil i ddarparu unrhyw wybodaeth ychwanegol bwysig am eich ymateb nad ydych wedi’i chynnwys hyd yma"
+    make_employer_contract_claim: Ydych chi eisiau gwneud Hawliad Contract y Cyflogwr?
+
   # PDF File lookup
   response_pdf_fields:
     header:

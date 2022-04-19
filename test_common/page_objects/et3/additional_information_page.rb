@@ -4,6 +4,7 @@ module EtFullSystem
   module Test
     module Et3
       class AdditionalInformationPage < BasePage
+        include EtTestHelpers::Page
         include ::EtFullSystem::Test::UploadHelper
         include RSpec::Matchers
         set_url '/respond/additional_information'
@@ -18,15 +19,9 @@ module EtFullSystem
 
         end
         element :error_header, :error_titled, 'errors.header', exact: true
-        section :upload_additional_information_question, :css, 'form.dropzone' do
-          include ::EtFullSystem::Test::I18n
-          element :upload_select, :select_button, 'questions.upload_additional_information.button'
-          element :error_too_long, :exact_error_text, 'errors.messages.too_long', exact: false
-          element :error_inclusion, :exact_error_text, 'errors.messages.inclusion', exact: false
-          def set(*args); upload_select.set(*args); end
-        end
+        gds_file_dropzone_upload :upload_additional_information_question, :'questions.upload_additional_information'
         # Save and continue
-        element :continue_button, :submit_text, 'components.save_and_continue_button'
+        gds_submit_button :continue_button, :'components.save_and_continue_button'
         def next
           continue_button.click
         end
@@ -34,7 +29,7 @@ module EtFullSystem
         def switch_to_welsh
           switch_language.welsh_link.click
         end
-  
+
         def switch_to_english
           switch_language.english_link.click
         end
@@ -44,12 +39,9 @@ module EtFullSystem
           return if respondent.nil?
           if data.key?(:rtf_file)
             force_remote do
-              page.attach_file nil, File.expand_path(File.join('test_common', 'fixtures', data[:rtf_file])) do
-                page.click_button t('questions.upload_additional_information.button')
-              end
+              upload_additional_information_question.set(File.expand_path(File.join('test_common', 'fixtures', data[:rtf_file])))
             end
           end
-          sleep 2
           page.has_content?('Remove file')
         end
       end

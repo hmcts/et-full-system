@@ -167,13 +167,16 @@ module EtFullSystem
 
       def et3_employers_contract_claim
         user = @respondent[0]
-        employers_contract_claim_page.make_employer_contract_claim_question.set_for(user)
+        employers_contract_claim_page.make_employer_contract_claim_question.set(user.make_employer_contract_claim.to_s.split('.').last.to_sym)
+        if user.make_employer_contract_claim.end_with?('yes')
+          employers_contract_claim_page.claim_information.set(user.claim_information)
+        end
 
         employers_contract_claim_page.next
       end
 
       def et3_answer_no_to_employers_contract_claim
-        employers_contract_claim_page.make_employer_contract_claim_question.no.selector.click
+        employers_contract_claim_page.make_employer_contract_claim_question.set(:no)
 
         employers_contract_claim_page.next
       end

@@ -224,10 +224,10 @@ module EtFullSystem
         end
 
         section :confirmation_of_employer_contract_claim_answers, :table_captioned, 'questions.confirmation_of_employer_contract_claim_answers.caption', exact: true do
-          section :make_employer_contract_claim_row, :table_row_with_td_labelled, 'questions.make_employer_contract_claim.label', exact: true do
+          section :make_employer_contract_claim_row, :table_row_with_td_labelled, 'confirmation_of_supplied_details.make_employer_contract_claim', exact: true do
             element :make_employer_contract_claim_answer, :return_answer
           end
-          section :claim_information_row, :table_row_with_td_labelled, 'questions.make_employer_contract_claim.claim_information.label', exact: true do
+          section :claim_information_row, :table_row_with_td_labelled, 'questions.claim_information.label', exact: true do
             element :claim_information_answer, :return_answer
           end
           element :edit_answers_link, :link_named, 'questions.confirmation_of_employer_contract_claim_answers.edit_answers'
@@ -235,7 +235,7 @@ module EtFullSystem
         end
 
         section :confirmation_of_additional_information_answers, :table_captioned, 'questions.confirmation_of_additional_information_answers.caption', exact: true do
-          section :upload_additional_information_row, :table_row_with_td_labelled, 'questions.upload_additional_information.label', exact: true do
+          section :upload_additional_information_row, :table_row_with_td_labelled, 'confirmation_of_supplied_details.upload_additional_information', exact: true do
             element :upload_additional_information_answer, :return_answer
           end
         end

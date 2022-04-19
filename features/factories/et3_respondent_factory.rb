@@ -34,7 +34,7 @@ FactoryBot.define do
     contact_preference {:"questions.contact_preference.options.email"}
     email_address {"sivvoy.taing@hmcts.net"}
     organisation_employ_gb {"100"}
-    make_employer_contract_claim {:"questions.make_employer_contract_claim.yes.label"}
+    make_employer_contract_claim {:"questions.make_employer_contract_claim.options.yes"}
     claim_information {"lorem ipsum info"}
     email_receipt {"sivvoy.taing@hmcts.net"}
     disability {:"questions.disability.options.yes"}
