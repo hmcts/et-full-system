@@ -56,9 +56,9 @@ module EtFullSystem
                   have_acas: be_blank,
                   acas_number: be_blank
                 }
-              }    
+              }
             end
-            
+
             expect(mapped_field_values).to include expected_values
           end
         end

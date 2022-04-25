@@ -21,7 +21,7 @@ module EtFullSystem
         #   @return [EtTestHelpers::Components::GovUKTextField] The site prism section
         gds_text_input :memorable_word_question, :'simple_form.labels.application_number.password'
 
-        
+
         element :claims_intro_text, :paragraph, 'claims.application_number.intro_text'
 
         # @!method email_question

@@ -1,4 +1,4 @@
-require_relative '../../../test_common/helpers/upload_helper'
+require_relative '../../helpers/upload_helper'
 require 'rspec/matchers'
 require 'csv'
 module EtFullSystem
@@ -72,7 +72,7 @@ module EtFullSystem
         end
 
         def assert_users_are_imported
-          filename = File.expand_path(File.join('test_common', 'fixtures', 'et_admin_users.csv'))
+          filename = File.expand_path(File.join('features', 'support', 'fixtures', 'et_admin_users.csv'))
           aggregate_failures 'Validating all users are imported' do
             CSV.foreach(filename, :headers => true) do |csv_row|
               expect(collection_contents.table).to have_user_matching(csv_row)
@@ -81,7 +81,7 @@ module EtFullSystem
         end
 
         def get_username_password(role)
-          filename = File.expand_path(File.join('test_common', 'fixtures', 'et_admin_users.csv'))
+          filename = File.expand_path(File.join('features', 'support', 'fixtures', 'et_admin_users.csv'))
           data = []
           CSV.foreach(filename, :headers => true) do |csv_row|
             if csv_row['Role'] == role
@@ -104,7 +104,7 @@ module EtFullSystem
         end
 
         def delete_uploaded_csv_users_from_admin
-          filename = File.expand_path(File.join('test_common', 'fixtures', 'et_admin_users.csv'))
+          filename = File.expand_path(File.join('features', 'support', 'fixtures', 'et_admin_users.csv'))
           aggregate_failures 'Validating user has been deleted' do
             CSV.foreach(filename, :headers => true) do |csv_row|
               delete_user_from_admin(csv_row['email'])

@@ -1,5 +1,5 @@
 require_relative './base_page'
-require_relative '../../../test_common/helpers/upload_helper'
+require_relative '../../helpers/upload_helper'
 module EtFullSystem
   module Test
     module Et1
@@ -111,7 +111,7 @@ module EtFullSystem
           group_claims_csv = user[0].dig(:group_claims_csv)
           if group_claims_csv.present?
             has_additional_claimants.set(:yes)
-            full_path = File.expand_path(File.join('test_common', 'fixtures', group_claims_csv))
+            full_path = File.expand_path(File.join('features', 'support', 'fixtures', group_claims_csv))
             group_claims.file_upload.set(full_path)
           else
             has_additional_claimants.set(:no)

@@ -67,7 +67,7 @@ Then("users have successfully been imported") do
     admin_pages.any_page.menu.click_users
   ensure
     admin_api = EtFullSystem::Test::AdminApi.new atos_interface: atos_interface
-    filename = File.expand_path(File.join('test_common', 'fixtures', 'et_admin_users.csv'))
+    filename = File.expand_path(File.join('features', 'support', 'fixtures', 'et_admin_users.csv'))
     aggregate_failures 'Validating user has been deleted' do
       CSV.foreach(filename, :headers => true) do |csv_row|
         admin_api.delete_user_by_email(csv_row['email'])

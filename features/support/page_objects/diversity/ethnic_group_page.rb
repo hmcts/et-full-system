@@ -84,7 +84,7 @@ module EtFullSystem
             subgroup_method = :"#{ethnicity_subgroup_short}_subgroup"
             fieldset_method = :"#{ethnicity_subgroup_short}_fieldset"
             if main_content.respond_to?(fieldset_method)
-              main_content.send(fieldset_method).send(subgroup_method).set(answers[:ethnicity_subgroup])  
+              main_content.send(fieldset_method).send(subgroup_method).set(answers[:ethnicity_subgroup])
             end
           end
           save_and_continue

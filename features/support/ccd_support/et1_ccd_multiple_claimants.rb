@@ -102,7 +102,7 @@ module EtFullSystem
 
         def multiple_claimants_xls(claimants)
           if claimants[0].dig(:group_claims_csv)
-            filename = File.expand_path(File.join('test_common', 'fixtures', 'simple_user_with_csv_group_claims.csv'))
+            filename = File.expand_path(File.join('features', 'support', 'fixtures', 'simple_user_with_csv_group_claims.csv'))
             data = []
             CSV.foreach(filename, :headers => true) do |csv_row|
               data << csv_row

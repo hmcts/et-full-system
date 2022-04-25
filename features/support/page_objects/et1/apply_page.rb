@@ -35,7 +35,7 @@ module EtFullSystem
           element :guide, :link_named, 'shared.aside.read_guide'
           element :contact_use, :link_named, 'shared.aside.contact_us'
         end
-        
+
         def start_a_claim
           start_a_claim_button.click
         end

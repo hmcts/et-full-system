@@ -1,5 +1,5 @@
 require_relative './base_page'
-require_relative '../../../test_common/helpers/upload_helper'
+require_relative '../../helpers/upload_helper'
 module EtFullSystem
   module Test
     module Et3
@@ -39,7 +39,7 @@ module EtFullSystem
           return if respondent.nil?
           if data.key?(:rtf_file)
             force_remote do
-              upload_additional_information_question.set(File.expand_path(File.join('test_common', 'fixtures', data[:rtf_file])))
+              upload_additional_information_question.set(File.expand_path(File.join('features', 'support', 'fixtures', data[:rtf_file])))
             end
           end
           page.has_content?('Remove file')

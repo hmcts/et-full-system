@@ -1,2 +1,2 @@
-require_relative '../../test_common/messaging'
+require_relative './messaging'
 World(EtFullSystem::Test::I18n)

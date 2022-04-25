@@ -1,5 +1,5 @@
 require_relative './base_page'
-require_relative '../../../test_common/helpers/upload_helper'
+require_relative '../../helpers/upload_helper'
 module EtFullSystem
   module Test
     module Et1
@@ -111,7 +111,7 @@ module EtFullSystem
 
           if data.key?(:rtf_file)
             upload_document.click
-            full_path = File.expand_path(File.join('test_common', 'fixtures', data[:rtf_file]))
+            full_path = File.expand_path(File.join('features', 'support', 'fixtures', data[:rtf_file]))
             file_upload.set(full_path)
           end
           claim_details_claim_details.set(data[:description])

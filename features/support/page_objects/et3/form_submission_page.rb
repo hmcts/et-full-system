@@ -27,7 +27,7 @@ module EtFullSystem
         def switch_to_welsh
           switch_language.welsh_link.click
         end
-  
+
         def switch_to_english
           switch_language.english_link.click
         end

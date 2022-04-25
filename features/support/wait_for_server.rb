@@ -1,4 +1,5 @@
-require_relative './test_common'
+require_relative 'configuration'
+require 'httparty'
 module EtFullSystem
   module Test
     class WaitForServer

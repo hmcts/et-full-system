@@ -1,4 +1,4 @@
-require_relative '../../../test_common/helpers/upload_helper'
+require_relative '../../helpers/upload_helper'
 module EtFullSystem
   module Test
     module Admin
@@ -12,7 +12,7 @@ module EtFullSystem
         def choose_file(users)
           users_csv = users.dig(:users_file)
           force_remote do
-            full_path = File.expand_path(File.join('test_common', 'fixtures', users_csv))
+            full_path = File.expand_path(File.join('features', 'support', 'fixtures', users_csv))
             main_content.choose_file.set(full_path)
           end
           import_button

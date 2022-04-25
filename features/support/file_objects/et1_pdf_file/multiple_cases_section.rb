@@ -10,7 +10,7 @@ module EtFullSystem
               expected_values = {
                   have_similar_claims: true,
                   other_claimants: claim.other_claimant_names
-              } 
+              }
             else
               expected_values = {
                 have_similar_claims: false,
