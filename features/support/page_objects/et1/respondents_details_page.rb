@@ -12,7 +12,7 @@ module EtFullSystem
         gds_error_summary :error_summary, :'shared.error_notification.default_message'
 
         # About the respondent
-        element :respondent_header, :legend_header, 'claims.respondent.respondent_legend'
+        element :respondent_header, :govuk_fieldset, :'claims.respondent.respondent_legend'
         element :respondent_summary, :paragraph, 'claims.respondent.form_hint'
         # @!method name
         #   A govuk text field component wrapping the input, label, hint etc..
@@ -42,7 +42,7 @@ module EtFullSystem
 
         gds_phone_input :telephone_number, :'simple_form.labels.respondent.address_telephone_number'
         # Your work address
-        element :work_address_header, :legend_header, 'claims.respondent.workaddress_legend'
+        element :work_address_header, :govuk_fieldset, :'claims.respondent.workaddress_legend'
 
         # @!method work_address
         #   A govuk fieldset component

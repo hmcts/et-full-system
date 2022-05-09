@@ -34,8 +34,8 @@ module EtFullSystem
         #Support links
         section :support, 'aside[role="complementary"]' do
           element :suport_header, :support_header, 'shared.aside.gethelp_header'
-          element :guide, :link_named, 'shared.aside.read_guide'
-          element :contact_use, :link_named, 'shared.aside.contact_us'
+          element :guide, :govuk_link, :'shared.aside.read_guide'
+          element :contact_use, :govuk_link, :'shared.aside.contact_us'
         end
 
         def switch_to_welsh

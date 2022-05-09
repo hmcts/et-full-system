@@ -11,19 +11,19 @@ module EtFullSystem
         #   @return [EtTestHelpers::Components::GovUKErrorSummary] The site prism section
         gds_error_summary :error_summary, :'shared.error_notification.default_message'
         # Your employment details
-        element :your_employment_details_header, :legend_header, 'claims.employment.situation_legend'
+        element :your_employment_details_header, :govuk_fieldset, :'claims.employment.situation_legend'
         # @!method your_employment_details
         #   A govuk radio button component for your_employment_details question
         #   @return [EtTestHelpers::Components::GovUKCollectionRadioButtons] The site prism section
         gds_radios :your_employment_details, :'simple_form.labels.employment.was_employed'
         # What is your current work situation in relation to the employer you're making a claim against?
-        element :current_work_situation_labelled, :legend_header, 'claims.employment.current_situation', exact: false
+        element :current_work_situation_labelled, :govuk_fieldset, :'claims.employment.current_situation', exact: false
         # @!method employment_current_situation
         #   A govuk radio button component for employment_current_situation question
         #   @return [EtTestHelpers::Components::GovUKCollectionRadioButtons] The site prism section
         gds_radios :employment_current_situation, :'claims.employment.current_situation'
         # Employment details
-        element :employment_details_header, :legend_header, 'claims.employment.situation_legend'
+        element :employment_details_header, :govuk_fieldset, :'claims.employment.situation_legend'
 
         # @!method employment_job_title
         #   A govuk text field component wrapping the input, label, hint etc..
@@ -65,7 +65,7 @@ module EtFullSystem
         gds_text_input :employment_average_hours_worked_per_week,
                        :'simple_form.labels.employment.average_hours_worked_per_week'
         # Pay, pension and benefits
-        element :pay_pension_benefits, :legend_header, 'claims.employment.pay_legend'
+        element :pay_pension_benefits, :govuk_fieldset, :'claims.employment.pay_legend'
         # @!method employment_pay_period_type
         #   A govuk radio button component for pay_period_type question
         #   @return [EtTestHelpers::Components::GovUKCollectionRadioButtons] The site prism section

@@ -6,7 +6,7 @@ module EtFullSystem
         include RSpec::Matchers
         section :feedback_notice, '.feedback-notice' do
           include ::EtFullSystem::Test::I18n
-          element :language, :link_named, 'switch.language'
+          element :language, :govuk_link, :'switch.language'
           element :welsh_link, :link_or_button, t('switch.language', locale: :en)
           element :english_link, :link_or_button, t('switch.language', locale: :cy)
         end
@@ -16,7 +16,7 @@ module EtFullSystem
           #Thank you for completing this diversity monitoring questionnaire.
           element :content, :paragraph, 'diversities.submit.thank_you'
           #Return to GOV.UK
-          element :return_button, :link_named, 'diversities.submit.return'
+          element :return_button, :govuk_button_link, :'diversities.submit.return'
         end
 
         def return_to_gov_uk

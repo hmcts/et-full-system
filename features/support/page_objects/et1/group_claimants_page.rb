@@ -12,25 +12,25 @@ module EtFullSystem
         gds_error_summary :error_summary, :'shared.error_notification.default_message'
 
         # People making a claim with you
-        element :legend_group_claims, :legend_header, 'claims.additional_claimants.subheader', exact: false
+        element :legend_group_claims, :govuk_fieldset, :'claims.additional_claimants.subheader', exact: false
         gds_radios :has_multiple_claimants, :'simple_form.labels.additional_claimants.has_multiple_claimants'
 
         section :number_claimants_info, '#number_claimants_info' do
-          element :five_more_claimants, :panel_indent, 'claims.additional_claimants.number_claimants_info', exact: false
-          element :six_more_claimants, :panel_indent, 'claims.additional_claimants.csv_upload_text_html', exact: false
-          element :csv_upload_link, :link_named, 'claims.additional_claimants.csv_upload_link', exact: false
+          element :five_more_claimants, :element_with_text, 'claims.additional_claimants.number_claimants_info', exact: false
+          element :six_more_claimants, :element_with_text, 'claims.additional_claimants.csv_upload_text_html', exact: false
+          element :csv_upload_link, :govuk_link, :'claims.additional_claimants.csv_upload_link', exact: false
         end
 
-        section :about_claimant_2, GroupClaimantSection, :group_claimants, 'claims.additional_claimants.person',
-                number: 2
-        section :about_claimant_3, GroupClaimantSection, :group_claimants, 'claims.additional_claimants.person',
-                number: 3
-        section :about_claimant_4, GroupClaimantSection, :group_claimants, 'claims.additional_claimants.person',
-                number: 4
-        section :about_claimant_5, GroupClaimantSection, :group_claimants, 'claims.additional_claimants.person',
-                number: 5
-        section :about_claimant_6, GroupClaimantSection, :group_claimants, 'claims.additional_claimants.person',
-                number: 6
+        section :about_claimant_2, GroupClaimantSection, :govuk_fieldset, :'claims.additional_claimants.person',
+                { translation_options: { number: 2 } }
+        section :about_claimant_3, GroupClaimantSection, :govuk_fieldset, :'claims.additional_claimants.person',
+                { translation_options: { number: 3 } }
+        section :about_claimant_4, GroupClaimantSection, :govuk_fieldset, :'claims.additional_claimants.person',
+                { translation_options: { number: 4 } }
+        section :about_claimant_5, GroupClaimantSection, :govuk_fieldset, :'claims.additional_claimants.person',
+                { translation_options: { number: 5 } }
+        section :about_claimant_6, GroupClaimantSection, :govuk_fieldset, :'claims.additional_claimants.person',
+                { translation_options: { number: 6 } }
 
         gds_submit_button :add_more_claimants_link, :'claims.additional_claimants.add_fields'
         gds_submit_button :save_and_continue_button, t('helpers.submit.update')

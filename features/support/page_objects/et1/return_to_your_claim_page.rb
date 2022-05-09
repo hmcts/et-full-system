@@ -7,7 +7,7 @@ module EtFullSystem
         # page title
         element :header, :main_header, 'user_sessions.new.header'
         # return to your claim
-        element :sub_header, :legend_header, 'user_sessions.new.subheader'
+        element :sub_header, :govuk_fieldset, :'user_sessions.new.subheader'
         # claim number
         # @!method claim_number
         #   A govuk text field component wrapping the input, label, hint etc..
@@ -23,8 +23,8 @@ module EtFullSystem
         gds_submit_button :find_my_claim_button, :'helpers.submit.user_session.create'
         # don't have these details
         element :form_hint, :paragraph, 'user_sessions.new.hint_html', exact: false
-        element :new_claim, :link_named, 'user_sessions.new.link'
-        element :reset_memorable_word_element, :link_named, 'helpers.link.user_session.reset_memorable_word'
+        element :new_claim, :govuk_link, :'user_sessions.new.link'
+        element :reset_memorable_word_element, :govuk_link, :'helpers.link.user_session.reset_memorable_word'
         section :flash_heading, '#flash-summary' do
           element :memorable_word_email_sent_flash_element, :paragraph,
                   'simple_form.labels.user_session.memorable_word.email_sent_flash_text'
@@ -36,8 +36,8 @@ module EtFullSystem
         # Support links
         section :support, 'aside[role="complementary"]' do
           element :suport_header, :support_header, 'shared.aside.gethelp_header'
-          element :guide, :link_named, 'shared.aside.read_guide'
-          element :contact_use, :link_named, 'shared.aside.contact_us'
+          element :guide, :govuk_link, :'shared.aside.read_guide'
+          element :contact_use, :govuk_link, :'shared.aside.contact_us'
         end
 
         def find_my_claim

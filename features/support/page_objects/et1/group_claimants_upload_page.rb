@@ -13,23 +13,23 @@ module EtFullSystem
         gds_error_summary :error_summary, :'shared.error_notification.default_message'
 
         # People making a claim with you
-        element :people_making_claim, :legend_header, 'claims.additional_claimants.subheader'
+        element :people_making_claim, :govuk_fieldset, :'claims.additional_claimants.subheader'
 
         # @!method has_additional_claimants
         #   A govuk radio button component for has_additional_claimants question
         #   @return [EtTestHelpers::Components::GovUKCollectionRadioButtons] The site prism section
         gds_radios :has_additional_claimants, :'simple_form.labels.additional_claimants_upload.has_additional_claimants'
 
-        element :manually_link, :link_named, 'claims.additional_claimants_upload.has_additional_claimants_link',
+        element :manually_link, :govuk_link, :'claims.additional_claimants_upload.has_additional_claimants_link',
                 exact: false
 
         # Spreadsheet for group claim
-        section :group_claims, :legend_header, 'claims.additional_claimants_upload.steps_header' do
+        section :group_claims, :govuk_fieldset, :'claims.additional_claimants_upload.steps_header' do
           include EtTestHelpers::Section
           # Step 1
           element :step_1, :paragraph, 'claims.additional_claimants_upload.step_one_header'
-          element :download_spreadsheet_template_link, :link_named,
-                  'claims.additional_claimants_upload.download_template_html', exact: false
+          element :download_spreadsheet_template_link, :govuk_link,
+                  :'claims.additional_claimants_upload.download_template_html', exact: false
           element :use_your_own_text, :paragraph, 'claims.additional_claimants_upload.use_your_own_text', exact: false
           element :dob_info, :paragraph, 'claims.additional_claimants_upload.dob_info'
           # Step 2

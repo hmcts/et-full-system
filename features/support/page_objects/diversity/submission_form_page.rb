@@ -6,7 +6,7 @@ module EtFullSystem
         include RSpec::Matchers
         section :feedback_notice, '.feedback-notice' do
           include ::EtFullSystem::Test::I18n
-          element :language, :link_named, 'switch.language'
+          element :language, :govuk_link, :'switch.language'
           element :welsh_link, :link_or_button, t('switch.language', locale: :en)
           element :english_link, :link_or_button, t('switch.language', locale: :cy)
         end
@@ -18,57 +18,57 @@ module EtFullSystem
             #What is the type of your claim?
             section :claim_type_row, :govuk_summary_list_row, :'summary.claim.label' do
               element :answer, :govuk_summary_list_col
-              element :link, :link_named, 'summary.claim.edit_link'
+              element :link, :govuk_link, :'summary.claim.edit_link', exact: false
             end
             #What is your sex?
             section :sex_row, :govuk_summary_list_row, :'summary.sex.label' do
               element :answer, :govuk_summary_list_col
-              element :link, :link_named, 'summary.sex.edit_link'
+              element :link, :govuk_link, :'summary.sex.edit_link', exact: false
             end
             #Which of the options below best describes your sexual identity?
             section :sexual_identity_row, :govuk_summary_list_row, :'summary.sexual_identity.label' do
               element :answer, :govuk_summary_list_col
-              element :link, :link_named, 'summary.sexual_identity.edit_link'
+              element :link, :govuk_link, :'summary.sexual_identity.edit_link', exact: false
             end
             #What is your relationship status?
             section :relationship_row, :govuk_summary_list_row, :'summary.relationship.label' do
               element :answer, :govuk_summary_list_col
-              element :link, :link_named, 'summary.relationship.edit_link'
+              element :link, :govuk_link, :'summary.relationship.edit_link', exact: false
             end
             #Which age group are you in?
             section :age_row, :govuk_summary_list_row, :'summary.age.label' do
               element :answer, :govuk_summary_list_col
-              element :link, :link_named, 'summary.age.edit_link'
+              element :link, :govuk_link, :'summary.age.edit_link', exact: false
             end
             #Do you have any caring responsibilities?
             section :care_row, :govuk_summary_list_row, :'summary.care.label' do
               element :answer, :govuk_summary_list_col
-              element :link, :link_named, 'summary.care.edit_link'
+              element :link, :govuk_link, :'summary.care.edit_link', exact: false
             end
             #What is your religion?
             section :religion_row, :govuk_summary_list_row, :'summary.religion.label' do
               element :answer, :govuk_summary_list_col
-              element :link, :link_named, 'summary.religion.label'
+              element :link, :govuk_link, :'summary.religion.label', exact: false
             end
             #What is your ethnic group?
             section :ethnicity_group_row, :govuk_summary_list_row, :'summary.ethnicity_group.label' do
               element :answer, :govuk_summary_list_col
-              element :link, :link_named, 'summary.ethnicity_group.edit_link'
+              element :link, :govuk_link, :'summary.ethnicity_group.edit_link', exact: false
             end
             #What is your ethnic type?
             section :ethnicity_type_row, :govuk_summary_list_row, :'summary.ethnicity_type.label' do
               element :answer, :govuk_summary_list_col
-              element :link, :link_named, 'summary.ethnicity_type.edit_link'
+              element :link, :govuk_link, :'summary.ethnicity_type.edit_link', exact: false
             end
             #Do you have any physical or mental health conditions or illnesses lasting or expected to last for 12 months or more?
             section :health_row, :govuk_summary_list_row, :'summary.health.label' do
               element :answer, :govuk_summary_list_col
-              element :link, :link_named, 'summary.health.edit_link'
+              element :link, :govuk_link, :'summary.health.edit_link', exact: false
             end
             #Were you pregnant when you were dismissed?
             section :pregnancy_row, :govuk_summary_list_row, :'summary.pregnancy' do
               element :answer, :govuk_summary_list_col
-              element :link, :link_named, 'summary.pregnancy.edit_link'
+              element :link, :govuk_link, :'summary.pregnancy.edit_link', exact: false
             end
           end
 

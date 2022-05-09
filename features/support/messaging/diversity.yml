@@ -76,7 +76,7 @@ en:
       ethnicity_subgroup:
         white:
           label: What is your ethnic type?
-          options: 
+          options:
             english-welsh-scottish-northern-irish-british: "English / Welsh / Scottish / Northern Irish / British"
             irish: Irish
             gypsy-or-irish-traveller: Gypsy or Irish Traveller
@@ -177,38 +177,38 @@ en:
     yes_answer: 'Yes'
     no_answer: 'No'
     prefer-not-to-say: Prefer not to say
-    
-  summary: 
-    claim: 
+
+  summary:
+    claim:
       label: "What is the type of your claim?"
       edit_link: :'diversities.edit'
-    sex: 
+    sex:
       label: "What is your sex?"
       edit_link: :'diversities.edit'
-    sexual_identity: 
+    sexual_identity:
       label: "Which of the options below best describes your sexual identity?"
       edit_link: :'diversities.edit'
-    relationship: 
+    relationship:
       label: "What is your relationship status?"
       edit_link: Edit Relationship answers
-    age: 
+    age:
       label: "Which age group are you in?"
       edit_link: :'diversities.edit'
-    care: 
+    care:
       label: "Do you have any caring responsibilities?"
       edit_link: :'diversities.edit'
-    religion: 
+    religion:
       label: "What is your religion?"
       edit_link: Edit Religion answers
-    ethnicity_group: 
+    ethnicity_group:
       label: "What is your ethnic group?"
       edit_link: Edit Ethnicity answers
-    ethnicity_type: 
+    ethnicity_type:
       label: "What is your ethnic type?"
       edit_link: Edit Ethnicity answers
-    health: 
+    health:
       label: "Do you have any physical or mental health conditions or illnesses lasting or expected to last for 12 months or more?"
       edit_link: Edit Disability answers
-    pregnancy: 
+    pregnancy:
       label: "Were you pregnant when you were dismissed?"
       edit_link: Edit Pregnancy answers

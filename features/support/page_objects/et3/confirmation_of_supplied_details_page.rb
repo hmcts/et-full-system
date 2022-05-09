@@ -7,7 +7,7 @@ module EtFullSystem
         include RSpec::Matchers
         section :switch_language, '.switch-language' do
           include ::EtFullSystem::Test::I18n
-          element :language, :link_named, 'switch.language'
+          element :language, :govuk_link, :'switch.language'
           element :welsh_link, :link_or_button, t('switch.language', locale: :en)
           element :english_link, :link_or_button, t('switch.language', locale: :cy)
         end
@@ -16,9 +16,8 @@ module EtFullSystem
         section :main_header, '.content-header' do
 
         end
-        element :error_header, :error_titled, 'errors.header', exact: true
         gds_text_input :email_receipt_question, :'questions.email_receipt.label', exact: false
-        section :confirmation_of_respondents_details_answers, :check_answers_section, 'questions.confirmation_of_respondents_details_answers.caption', exact: true do
+        section :confirmation_of_respondents_details_answers, :govuk_summary_list, :'questions.confirmation_of_respondents_details_answers.caption', exact: true do
           section :case_number_row, :govuk_summary_list_row, :'questions.case_number.label', exact: true do
             element :case_number_answer, :govuk_summary_list_col
           end
@@ -70,10 +69,10 @@ module EtFullSystem
           section :employment_at_site_number_row, :govuk_summary_list_row, :'questions.organisation_more_than_one_site.employment_at_site_number.label', exact: true do
             element :employment_at_site_number_answer, :govuk_summary_list_col
           end
-          element :back_to_top, :link_named, 'confirmation.back_to_the_top'
+          element :back_to_top, :govuk_link, :'confirmation.back_to_the_top'
         end
 
-        section :confirmation_of_claimants_details_answers, :check_answers_section, 'questions.confirmation_of_claimants_details_answers.caption', exact: true do
+        section :confirmation_of_claimants_details_answers, :govuk_summary_list, :'questions.confirmation_of_claimants_details_answers.caption', exact: true do
           section :claimants_name_row, :govuk_summary_list_row, :'questions.claimants_name.label', exact: true do
             element :claimants_name_answer, :govuk_summary_list_col
           end
@@ -104,10 +103,10 @@ module EtFullSystem
           section :disagree_claimants_job_or_title_row, :govuk_summary_list_row, :'questions.agree_with_claimants_description_of_job_or_title.disagree_claimants_job_or_title.label', exact: true do
             element :disagree_claimants_job_or_title_answer, :govuk_summary_list_col
           end
-          element :back_to_top, :link_named, 'confirmation.back_to_the_top'
+          element :back_to_top, :govuk_link, :'confirmation.back_to_the_top'
         end
 
-        section :confirmation_of_earnings_and_benefits_answers, :check_answers_section, 'questions.confirmation_of_earnings_and_benefits_answers.caption', exact: true do
+        section :confirmation_of_earnings_and_benefits_answers, :govuk_summary_list, :'questions.confirmation_of_earnings_and_benefits_answers.caption', exact: true do
           section :agree_with_claimants_hours_row, :govuk_summary_list_row, :'questions.agree_with_claimants_hours.label', exact: true do
             element :agree_with_claimants_hours_answer, :govuk_summary_list_col
           end
@@ -141,27 +140,27 @@ module EtFullSystem
           section :disagree_claimant_pension_benefits_reason_row, :govuk_summary_list_row, :'questions.agree_with_claimant_pension_benefits.disagree_claimant_pension_benefits_reason.label', exact: true do
             element :disagree_claimant_pension_benefits_reason_answer, :govuk_summary_list_col
           end
-          element :back_to_top, :link_named, 'confirmation.back_to_the_top'
+          element :back_to_top, :govuk_link, :'confirmation.back_to_the_top'
         end
 
-        section :confirmation_of_response_answers, :check_answers_section, 'questions.confirmation_of_response_answers.caption', exact: true do
+        section :confirmation_of_response_answers, :govuk_summary_list, :'questions.confirmation_of_response_answers.caption', exact: true do
           section :defend_claim_row, :govuk_summary_list_row, :'questions.defend_claim.label', exact: true do
             element :defend_claim_answer, :govuk_summary_list_col
           end
           section :defend_claim_facts_row, :govuk_summary_list_row, :'questions.defend_claim_facts.label', exact: true do
             element :defend_claim_facts_answer, :govuk_summary_list_col
           end
-          element :back_to_top, :link_named, 'confirmation.back_to_the_top'
+          element :back_to_top, :govuk_link, :'confirmation.back_to_the_top'
         end
 
-        section :confirmation_of_your_representative_answers, :check_answers_section, 'questions.confirmation_of_your_representative_answers.caption', exact: true do
+        section :confirmation_of_your_representative_answers, :govuk_summary_list, :'questions.confirmation_of_your_representative_answers.caption', exact: true do
           section :have_representative_row, :govuk_summary_list_row, :'questions.have_representative.label', exact: true do
             element :have_representative_answer, :govuk_summary_list_col
           end
-          element :back_to_top, :link_named, 'confirmation.back_to_the_top'
+          element :back_to_top, :govuk_link, :'confirmation.back_to_the_top'
         end
 
-        section :confirmation_of_your_representatives_details_answers, :check_answers_section, 'questions.confirmation_of_your_representatives_details_answers.caption', exact: true do
+        section :confirmation_of_your_representatives_details_answers, :govuk_summary_list, :'questions.confirmation_of_your_representatives_details_answers.caption', exact: true do
           section :type_of_representative_row, :govuk_summary_list_row, :'questions.type_of_representative.label', exact: true do
             element :type_of_representative_answer, :govuk_summary_list_col
           end
@@ -207,31 +206,31 @@ module EtFullSystem
           section :fax_row, :govuk_summary_list_row, :'questions.representative_contact_preference.fax.input_label', exact: true do
             element :fax_answer, :govuk_summary_list_col
           end
-          element :back_to_top, :link_named, 'confirmation.back_to_the_top'
+          element :back_to_top, :govuk_link, :'confirmation.back_to_the_top'
         end
 
-        section :confirmation_of_disability_answers, :check_answers_section, 'questions.confirmation_of_disability_answers.caption', exact: true do
+        section :confirmation_of_disability_answers, :govuk_summary_list, :'questions.confirmation_of_disability_answers.caption', exact: true do
           section :disability_row, :govuk_summary_list_row, :'questions.disability.label', exact: true do
             element :disability_answer, :govuk_summary_list_col
           end
           section :disability_information_row, :govuk_summary_list_row, :'questions.disability.disability_information.label', exact: true do
             element :disability_information_answer, :govuk_summary_list_col
           end
-          element :back_to_top, :link_named, 'confirmation.back_to_the_top'
+          element :back_to_top, :govuk_link, :'confirmation.back_to_the_top'
         end
 
-        section :confirmation_of_employer_contract_claim_answers, :check_answers_section, 'questions.confirmation_of_employer_contract_claim_answers.caption', exact: true do
+        section :confirmation_of_employer_contract_claim_answers, :govuk_summary_list, :'questions.confirmation_of_employer_contract_claim_answers.caption', exact: true do
           section :make_employer_contract_claim_row, :govuk_summary_list_row, :'confirmation_of_supplied_details.make_employer_contract_claim', exact: true do
             element :make_employer_contract_claim_answer, :govuk_summary_list_col
           end
           section :claim_information_row, :govuk_summary_list_row, :'questions.claim_information.label', exact: true do
             element :claim_information_answer, :govuk_summary_list_col
           end
-          element :edit_answers_link, :link_named, 'questions.confirmation_of_employer_contract_claim_answers.edit_answers'
-          element :back_to_top, :link_named, 'confirmation.back_to_the_top'
+          element :edit_answers_link, :govuk_link, :'questions.confirmation_of_employer_contract_claim_answers.edit_answers'
+          element :back_to_top, :govuk_link, :'confirmation.back_to_the_top'
         end
 
-        section :confirmation_of_additional_information_answers, :check_answers_section, 'questions.confirmation_of_additional_information_answers.caption', exact: true do
+        section :confirmation_of_additional_information_answers, :govuk_summary_list, :'questions.confirmation_of_additional_information_answers.caption', exact: true do
           section :upload_additional_information_row, :govuk_summary_list_row, :'confirmation_of_supplied_details.upload_additional_information', exact: true do
             element :upload_additional_information_answer, :govuk_summary_list_col
           end

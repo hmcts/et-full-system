@@ -20,22 +20,21 @@ module EtFullSystem
         #   @return [EtTestHelpers::Components::GovUKCollectionRadioButtons] The site prism section
         gds_radios :additional_respondents, :'claims.additional_respondents.additional_respondents'
 
-        section :respondent_2, AdditionalRespondentSection, :group_claimants, 'claims.additional_respondents.person',
-                number: 2
-        section :respondent_3, AdditionalRespondentSection, :group_claimants, 'claims.additional_respondents.person',
-                number: 3
-        section :respondent_4, AdditionalRespondentSection, :group_claimants, 'claims.additional_respondents.person',
-                number: 4
-        section :respondent_5, AdditionalRespondentSection, :group_claimants, 'claims.additional_respondents.person',
-                number: 5
-        section :respondent_6, AdditionalRespondentSection, :group_claimants, 'claims.additional_respondents.person',
-                number: 6
+        section :respondent_2, AdditionalRespondentSection, :govuk_fieldset, :'claims.additional_respondents.person',
+                translation_options: { number: 2 }
+        section :respondent_3, AdditionalRespondentSection, :govuk_fieldset, :'claims.additional_respondents.person',
+                translation_options: { number: 3 }
+        section :respondent_4, AdditionalRespondentSection, :govuk_fieldset, :'claims.additional_respondents.person',
+                translation_options: { number: 4 }
+        section :respondent_5, AdditionalRespondentSection, :govuk_fieldset, :'claims.additional_respondents.person',
+                translation_options: { number: 5 }
+        section :respondent_6, AdditionalRespondentSection, :govuk_fieldset, :'claims.additional_respondents.person',
+                translation_options: { number: 6 }
 
         # Add another respondent
         gds_submit_button :add_another_respondent_button, :'claims.additional_respondents.add_fields'
         # Remove another respondent
-        element :remove_another_respondent_button, :remove_multiple,
-                'claims.additional_respondents.remove_resource_link'
+        element :remove_another_respondent_button, :govuk_link, :'claims.additional_respondents.remove_resource_link'
         # Save and continue
         gds_submit_button :save_and_continue_button, t('helpers.submit.update')
 

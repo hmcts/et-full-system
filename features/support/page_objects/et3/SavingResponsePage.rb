@@ -19,7 +19,7 @@ module EtFullSystem
           gds_text_input :memorable_word_label, :'saving_response.memorable_word_label', exact: false
           element :example_word, :paragraph, 'simple_form.hints.application_number.password'
           #print this page
-          element :print_link, :link_named, 'saving_response.print_link'
+          element :print_link, :govuk_link, :'saving_response.print_link'
           element :print_copy, :paragraph, 'saving_response.print_copy', exact: false
           #save and continue button
           gds_submit_button :save_and_continue, :'components.save_and_continue_button'

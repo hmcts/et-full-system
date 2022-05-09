@@ -7,7 +7,7 @@ module EtFullSystem
         # More about the claim
         element :page_header, :page_title, 'claims.additional_information.header', exact: false
         # Other important details
-        section :other_important_details, :legend_header, 'claims.additional_information.legend' do
+        section :other_important_details, :govuk_fieldset, :'claims.additional_information.legend' do
           include EtTestHelpers::Section
           # Do you want to provide additional information about your claim? (optional)
           # @!method miscellaneous_information

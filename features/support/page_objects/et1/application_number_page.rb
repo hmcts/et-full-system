@@ -36,7 +36,7 @@ module EtFullSystem
         element :example_word, '#save-and-return-user-password-hint'
 
         #print this page
-        element :print_link, :link_named, 'user_sessions.reminder.print_link'
+        element :print_link, :govuk_link, :'user_sessions.reminder.print_link'
         element :print_copy, :paragraph, 'claims.application_number.print_copy', exact: false
 
         # @!method save_and_continue_button

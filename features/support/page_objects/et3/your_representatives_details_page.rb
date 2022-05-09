@@ -7,13 +7,12 @@ module EtFullSystem
         include RSpec::Matchers
         section :switch_language, '.switch-language' do
           include ::EtFullSystem::Test::I18n
-          element :language, :link_named, 'switch.language'
+          element :language, :govuk_link, :'switch.language'
           element :welsh_link, :link_or_button, t('switch.language', locale: :en)
           element :english_link, :link_or_button, t('switch.language', locale: :cy)
         end
         # Your representative details age
         element :header, :content_header, 'your_representatives_details.header'
-        element :error_header, :error_titled, 'errors.header', exact: true
         gds_radios :type_of_representative_question, :'questions.type_of_representative', exact: false
         gds_text_input :representative_org_name_question, :'questions.representative_org_name', exact: false
         gds_text_input :representative_name_question, :'questions.representative_name', exact: false

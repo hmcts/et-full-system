@@ -7,7 +7,7 @@ module EtFullSystem
         include RSpec::Matchers
         section :switch_language, '.switch-language' do
           include ::EtFullSystem::Test::I18n
-          element :language, :link_named, 'switch.language'
+          element :language, :govuk_link, :'switch.language'
           element :welsh_link, :link_or_button, t('switch.language', locale: :en)
           element :english_link, :link_or_button, t('switch.language', locale: :cy)
         end
@@ -17,9 +17,9 @@ module EtFullSystem
         element :thank_you, :element_with_text, 'submission.thank_you'
         element :office_contact, :element_with_text, 'submission.office_contact'
         element :submission_date, :element_with_text, 'submission.date'
-        element :valid_pdf_download, :link_named, 'links.form_submission.valid_pdf_download'
-        element :invalid_pdf_download, :link_named, 'links.form_submission.invalid_pdf_download'
-        element :return_to_govuk_button, :link_named, 'submission.return_link'
+        element :valid_pdf_download, :govuk_link, :'links.form_submission.valid_pdf_download'
+        element :invalid_pdf_download, :govuk_link, :'links.form_submission.invalid_pdf_download'
+        element :return_to_govuk_button, :govuk_link, :'submission.return_link'
         def return
           return_to_govuk_button.click
         end

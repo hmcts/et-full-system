@@ -10,7 +10,7 @@ module EtFullSystem
         set_url '/respond/additional_information'
         section :switch_language, '.switch-language' do
           include ::EtFullSystem::Test::I18n
-          element :language, :link_named, 'switch.language'
+          element :language, :govuk_link, :'switch.language'
           element :welsh_link, :link_or_button, t('switch.language', locale: :en)
           element :english_link, :link_or_button, t('switch.language', locale: :cy)
         end
@@ -18,7 +18,6 @@ module EtFullSystem
         section :main_header, '.content-header' do
 
         end
-        element :error_header, :error_titled, 'errors.header', exact: true
         gds_file_dropzone_upload :upload_additional_information_question, :'questions.upload_additional_information'
         # Save and continue
         gds_submit_button :continue_button, :'components.save_and_continue_button'

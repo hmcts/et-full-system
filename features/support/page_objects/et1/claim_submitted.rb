@@ -25,7 +25,7 @@ module EtFullSystem
           # Download your claim
           section :download_application, :grid_row_with_col_labelled,
                   'claim_confirmations.show.download_application.header' do
-            element :download_application_link, :link_named, 'claim_confirmations.show.download_application.link_html'
+            element :download_application_link, :govuk_link, :'claim_confirmations.show.download_application.link_html'
           end
           # Claim submitted
           section :submission_information, :grid_row_with_col_labelled,
@@ -44,12 +44,12 @@ module EtFullSystem
             element :answer, :css, '.answer'
           end
         end
-        element :print_this_page, :link_named, 'claim_confirmations.show.print_link_html'
+        element :print_this_page, :govuk_link, :'claim_confirmations.show.print_link_html'
         element :for_your_record, :paragraph, 'claim_confirmations.show.print_link_info', exact: false
-        element :your_feedback, :link_named, 'claim_confirmations.show.feedback_html'
+        element :your_feedback, :govuk_link, :'claim_confirmations.show.feedback_html'
         element :your_feedback_info, :paragraph, 'claim_confirmations.show.feedback_info', exact: false
         element :diversity_info, :paragraph, 'claim_confirmations.show.diversity_html', exact: false
-        element :diversity_link_element, :link_named, 'claim_confirmations.show.diversity_link'
+        element :diversity_link_element, :govuk_link, :'claim_confirmations.show.diversity_link'
 
         def diversity_link
           diversity_link_element.click

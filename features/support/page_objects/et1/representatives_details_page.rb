@@ -17,7 +17,7 @@ module EtFullSystem
         # All correspondence
         element :contact_info, :paragraph, 'claims.representative.contact_info', exact: false
         # About your representative
-        element :about_your_representative, :legend_header, 'claims.representative.representative_legend'
+        element :about_your_representative, :govuk_fieldset, :'claims.representative.representative_legend'
         # @!method type
         #   A govukselect component wrapping the select, label, hint etc..
         #   @return [EtTestHelpers::Components::GovUKCollectionSelect] The site prism section
@@ -29,14 +29,13 @@ module EtFullSystem
           end
         end
         section :name, :question_labelled, 'simple_form.labels.representative.name' do
-          element :blank_organisation_name, :error, 'activemodel.errors.models.representative.attributes.name.blank'
           element :field, :css, 'input'
           def set(*args)
             field.set(*args)
           end
         end
         # Representative's contact details
-        element :representative_contact_details, :legend_header, 'claims.representative.contact_legend'
+        element :representative_contact_details, :govuk_fieldset, :'claims.representative.contact_legend'
         # @!method building
         #   A govuk text field component wrapping the input, label, hint etc..
         #   @return [EtTestHelpers::Components::GovUKTextField] The site prism section
@@ -58,15 +57,12 @@ module EtFullSystem
         #   A govuk text field component wrapping the input, label, hint etc..
         #   @return [EtTestHelpers::Components::GovUKTextField] The site prism section
         gds_text_input :post_code, :'simple_form.labels.representative.address_post_code'
-        element :blank_telephone_number, :error,
-                'activemodel.errors.models.representative.attributes.address_locality.blank'
         section :telephone_number, :question_labelled, 'simple_form.labels.representative.address_telephone_number' do
           element :field, :css, 'input'
           def set(*args)
             field.set(*args)
           end
         end
-        element :blank_mobile, :error, 'activemodel.errors.models.representative.attributes.address_locality.blank'
         section :alternative_telephone_number, :question_labelled,
                 'simple_form.labels.representative.mobile_number' do
           element :field, :css, 'input'
@@ -74,10 +70,6 @@ module EtFullSystem
             field.set(*args)
           end
         end
-        element :invalid_email_address, :error,
-                'activemodel.errors.models.representative.attributes.email_address.invalid'
-        element :blank_email_address, :error,
-                'activemodel.errors.models.representative.attributes.email_address.blank'
         gds_email_input :email_address, :'simple_form.labels.representative.email_address'
 
         # @!method representative_contact_preference
@@ -87,7 +79,7 @@ module EtFullSystem
 
         gds_text_input :dx_number, :'simple_form.labels.representative.dx_number'
         # What is Dx number?
-        element :what_is_dx_number, :summary_text, 'claims.representative.what_is_dx.detail'
+        element :what_is_dx_number, :govuk_details, :'claims.representative.what_is_dx.detail'
         element :dx_information, :paragraph, 'claims.representative.what_is_dx.summary'
         # Save and continue
         gds_submit_button :save_and_continue_button, t('helpers.submit.update')

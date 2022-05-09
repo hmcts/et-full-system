@@ -10,8 +10,7 @@ module EtFullSystem
         #   A govuk error component
         #   @return [EtTestHelpers::Components::GovUKErrorSummary] The site prism section
         gds_error_summary :error_message, :'shared.error_notification.default_message' do
-          element :error_summary, :content_header, 'shared.error_notification.error_summary', exact: false
-          element :default_message, :li, 'activemodel.errors.models.claim_type.attributes.blank', exact: false
+          element :default_message, :listing_containing_text, 'activemodel.errors.models.claim_type.attributes.blank', exact: false
         end
         # What your claim is about
         element :about_claim, :content_header, 'claims.claim_type.claim_type'
@@ -39,7 +38,7 @@ module EtFullSystem
         gds_text_area :claim_type_other_claim_details, :'simple_form.labels.claim_type.other_claim_details'
 
         # Whistleblowing claim
-        section :whistleblowing_claim, :legend_header, 'claims.claim_type.whistleblowing' do
+        section :whistleblowing_claim, :govuk_fieldset, :'claims.claim_type.whistleblowing' do
           include EtTestHelpers::Section
           # @!method is_whistleblowing
           #   A govuk radio button component for is_whistleblowing question

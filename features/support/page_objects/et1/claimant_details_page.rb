@@ -11,7 +11,7 @@ module EtFullSystem
         #   @return [EtTestHelpers::Components::GovUKErrorSummary] The site prism section
         gds_error_summary :error_summary, :'shared.error_notification.default_message'
         # About the claimant
-        element :legend_personal_details, :legend_header, 'claims.claimant.legend_personal_details', exact: false
+        element :legend_personal_details, :govuk_fieldset, :'claims.claimant.legend_personal_details', exact: false
         # information about the person
         element :personal_details_description, :paragraph, 'claims.claimant.personal_details_description',
                 exact: false
@@ -19,9 +19,7 @@ module EtFullSystem
         # @!method title
         #   A govukselect component wrapping the select, label, hint etc..
         #   @return [EtTestHelpers::Components::GovUKCollectionSelect] The site prism section
-        gds_select :title, :'simple_form.labels.claimant.title' do
-          element :error_title, :error, 'activemodel.errors.models.claimant.attributes.title.blank', exact: false
-        end
+        gds_select :title, :'simple_form.labels.claimant.title'
 
         # first name
         # @!method first_name
@@ -40,10 +38,7 @@ module EtFullSystem
         #   @return [EtTestHelpers::Components::GovUKDateField] The site prism section
         gds_date_input :date_of_birth, :'claims.personal_details.date_of_birth'
 
-        gds_radios :gender, :'claims.claimant.gender' do
-          include ::EtFullSystem::Test::I18n
-          element :error_gender, :error, 'activemodel.errors.models.claimant.attributes.gender.blank'
-        end
+        gds_radios :gender, :'claims.claimant.gender'
         # has special needs
         # @!method claimant_has_special_needs
         #   A govuk radio button component for claimant_has_special_needs question
@@ -55,7 +50,7 @@ module EtFullSystem
         gds_text_area :assistance, :'simple_form.labels.claimant.special_needs'
 
         # Claimant's contact details
-        element :claimants_contact_details, :legend_header, 'claims.claimant.legend_contact_details', exact: false
+        element :claimants_contact_details, :govuk_fieldset, :'claims.claimant.legend_contact_details', exact: false
         # @!method building
         #   A govuk text field component wrapping the input, label, hint etc..
         #   @return [EtTestHelpers::Components::GovUKTextField] The site prism section

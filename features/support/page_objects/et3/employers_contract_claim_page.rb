@@ -7,7 +7,7 @@ module EtFullSystem
         include EtTestHelpers::Page
         section :switch_language, '.switch-language' do
           include ::EtFullSystem::Test::I18n
-          element :language, :link_named, 'switch.language'
+          element :language, :govuk_link, :'switch.language'
           element :welsh_link, :link_or_button, t('switch.language', locale: :en)
           element :english_link, :link_or_button, t('switch.language', locale: :cy)
         end
@@ -15,7 +15,6 @@ module EtFullSystem
         section :main_header, '.content-header' do
 
         end
-        element :error_header, :error_titled, 'errors.header', exact: true
         gds_radios :make_employer_contract_claim_question, :'questions.make_employer_contract_claim', exact: true
         gds_text_area :claim_information, :'questions.claim_information', exact: true
         # Save and continue

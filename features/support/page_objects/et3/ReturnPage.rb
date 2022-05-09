@@ -9,7 +9,7 @@ module EtFullSystem
         section :main_content, '.main-section' do
           include EtTestHelpers::Section
           #return to your claim
-          element :sub_header, :legend_header, 'user_sessions.new.subheader'
+          element :sub_header, :govuk_fieldset, :'user_sessions.new.subheader'
           #response number
           gds_text_input :response_number, :'simple_form.labels.user_session.new.reference'
           #memorable word
@@ -18,8 +18,8 @@ module EtFullSystem
           gds_submit_button :find_my_response, :'return_response.find'
           #don't have these details
           element :form_hint, :paragraph, 'user_sessions.new.hint_html', exact: false
-          element :new_response, :link_named, 'user_sessions.new.link'
-          element :reset_memorable_word_element, :link_named, 'helpers.link.user_session.reset_memorable_word'
+          element :new_response, :govuk_link, :'user_sessions.new.link'
+          element :reset_memorable_word_element, :govuk_link, :'helpers.link.user_session.reset_memorable_word'
         end
         section :flash_heading, '#flash-summary' do
           element :memorable_word_email_sent_flash_element, :content_header, 'simple_form.labels.user_session.memorable_word.email_sent_flash_text'
