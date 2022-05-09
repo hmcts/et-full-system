@@ -22,10 +22,18 @@ When(/^an employer responds to mandatory questions$/) do
   et3_answer_respondents_details
 
   user = @claimant[0]
-  claimants_details_page.agree_with_employment_dates_question.set_for(user)
+  claimants_details_page.agree_with_employment_dates_question.set(user.agree_with_employment_dates.to_s.split('.').last&.to_sym)
+  if user.agree_with_employment_dates.to_s.split('.').last == 'no'
+    claimants_details_page.employment_start.set(user.employment_start)
+    claimants_details_page.employment_end.set(user.employment_end)
+    claimants_details_page.disagree_employment.set(user.disagree_employment)
+  end
   claimants_details_page.next
   earnings_and_benefits_page.next
-  response_page.defend_claim_question.set_for(user)
+  response_page.defend_claim_question.set(user.defend_claim)
+  if user.defend_claim.to_s.split('.').last == 'yes'
+    user.defend_claim_facts.set(user.defend_claim_facts)
+  end
   response_page.next
   et3_answer_representative
   et3_answer_disability_question
@@ -45,10 +53,18 @@ When("an employer responds to a claim with special characters in the company's n
   et3_answer_respondents_details
 
   user = @claimant[0]
-  claimants_details_page.agree_with_employment_dates_question.set_for(user)
+  claimants_details_page.agree_with_employment_dates_question.set(user.agree_with_employment_dates.to_s.split('.').last.to_sym)
+  if user.agree_with_employment_dates.to_s.split('.').last == 'no'
+    claimants_details_page.employment_start.set(user.employment_start)
+    claimants_details_page.employment_end.set(user.employment_end)
+    claimants_details_page.disagree_employment.set(user.disagree_employment)
+  end
   claimants_details_page.next
   earnings_and_benefits_page.next
-  response_page.defend_claim_question.set_for(user)
+  response_page.defend_claim_question.set(user.defend_claim)
+  if user.defend_claim.to_s.split('.').last == 'yes'
+    user.defend_claim_facts.set(user.defend_claim_facts)
+  end
   response_page.next
   et3_answer_representative
   et3_answer_disability_question
@@ -68,7 +84,12 @@ When(/^a DUMMY USER responds to a claim$/) do
   et3_answer_respondents_details
 
   user = @claimant[0]
-  claimants_details_page.agree_with_employment_dates_question.set_for(user)
+  claimants_details_page.agree_with_employment_dates_question.set(user.agree_with_employment_dates.to_s.split('.').last.to_sym)
+  if user.agree_with_employment_dates.to_s.split('.').last == 'no'
+    claimants_details_page.employment_start.set(user.employment_start)
+    claimants_details_page.employment_end.set(user.employment_end)
+    claimants_details_page.disagree_employment.set(user.disagree_employment)
+  end
   claimants_details_page.next
   earnings_and_benefits_page.next
   response_page.defend_claim_question.set_for(user)

@@ -9,8 +9,8 @@ FactoryBot.define do
     town {"westminster"}
     county {"london"}
     postcode {"wc1 1aa"}
-    organisation_more_than_one_site {:"questions.organisation_more_than_one_site.no.label"}
-    allow_video_attendance { :"questions.allow_video_attendance.yes.label" }
+    organisation_more_than_one_site {:"questions.organisation_more_than_one_site.options.no"}
+    allow_video_attendance { :"questions.allow_video_attendance.options.yes" }
     memorable_word { 'password' }
   end
 
@@ -22,7 +22,7 @@ FactoryBot.define do
     town {'dumm data'}
     county {'dumm data'}
     postcode {'M1 1AQ'}
-    organisation_more_than_one_site {:"questions.organisation_more_than_one_site.no.label"}
+    organisation_more_than_one_site {:"questions.organisation_more_than_one_site.options.no"}
   end
 
   trait :et3_respondent_answers do
@@ -31,13 +31,13 @@ FactoryBot.define do
     dx_number {"234242342"}
     contact_number {"02081234567"}
     contact_mobile_number {"07123456789"}
-    contact_preference {:"questions.contact_preference.email.label"}
+    contact_preference {:"questions.contact_preference.options.email"}
     email_address {"sivvoy.taing@hmcts.net"}
     organisation_employ_gb {"100"}
-    make_employer_contract_claim {:"questions.make_employer_contract_claim.yes.label"}
+    make_employer_contract_claim {:"questions.make_employer_contract_claim.options.yes"}
     claim_information {"lorem ipsum info"}
     email_receipt {"sivvoy.taing@hmcts.net"}
-    disability {:"questions.disability.yes.label"}
+    disability {:"questions.disability.options.yes"}
     disability_information {"Lorem ipsum disability"}
   end
 
@@ -59,6 +59,6 @@ FactoryBot.define do
     email_receipt {''}
     disability {nil}
     disability_information {''}
-    allow_video_attendance { :"questions.allow_video_attendance.no.label" }
+    allow_video_attendance { :"questions.allow_video_attendance.options.no" }
   end
 end
