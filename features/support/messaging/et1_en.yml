@@ -752,13 +752,13 @@ en:
           still_employed: :'simple_form.options.employment.current_situation.still_employed'
           notice_period: :'simple_form.options.employment.current_situation.notice_period'
           employment_terminated: :'simple_form.options.employment.current_situation.employment_terminated'
-      start_date: Employment start date
+      start_date: Employment start date (optional)
       end_date: Employment end date
       paid_for_notice_period:
         "yes": 'Yes'
         "no": 'No'
       worked_notice_period_or_paid_in_lieu:
-        label: Did you work (or get paid for) a period of notice?
+        label: Did you work (or get paid for) a period of notice? (optional)
         options:
           yes: :'claims.employment.yes'
           no: :'claims.employment.no'
