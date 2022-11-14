@@ -753,7 +753,7 @@ en:
           notice_period: :'simple_form.options.employment.current_situation.notice_period'
           employment_terminated: :'simple_form.options.employment.current_situation.employment_terminated'
       start_date: Employment start date (optional)
-      end_date: Employment end date
+      end_date: Employment end date (optional)
       paid_for_notice_period:
         "yes": 'Yes'
         "no": 'No'
@@ -765,7 +765,7 @@ en:
 
       new_job_start_date: New job start date
       new_job_pay_before_tax_type: How often are you paid
-      notice_period_end_date: Notice period end date
+      notice_period_end_date: Notice period end date (optional)
       employment_details_legend: Employment details
       pay_legend: Pay, pension and benefits
       new_job_legend: New Job
