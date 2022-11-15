@@ -14,17 +14,6 @@ When(/^I enter an ACAS certificate number in the ACAS search field$/) do
   admin_pages.acas_search_page.search(@certificate.number)
 end
 
-When(/^I enter an invalid format ACAS certificate number$/) do
-  if ENV['ENVIRONMENT'] == 'local'
-    @certificate = build(:acas_mock_certificate, :mock_invalid)
-  else
-    @certificate = build(:acas_certificate, :invalid)
-  end
-  
-  admin_pages.any_page.menu.choose_acas_certificates
-  admin_pages.acas_search_page.search(@certificate.number)
-end
-
 When(/^I enter a not found ACAS certificate number$/) do
   @certificate = build(:acas_mock_certificate, :mock_not_found)
   admin_pages.any_page.menu.choose_acas_certificates
@@ -44,11 +33,6 @@ end
 
 Then(/^the system should return feedback from acas 'No certificate returned from ACAS for R000201\/18\/68'$/) do
   expect(admin_pages.acas_search_results_page).to have_not_found_certificate_message_for(@certificate)
-end
-
-
-Then(/^the system should return feedback from acas 'Please enter a valid certificate number'$/) do
-  expect(admin_pages.acas_search_results_page).to have_invalid_certificate_message_for(@certificate)
 end
 
 

@@ -15,10 +15,6 @@ Feature:
    When I enter an ACAS certificate number in the ACAS search field
    Then I can download the contents of the acas document
 
-  Scenario: Invalid format
-   Given I am an ACAS administrator
-   When I enter an invalid format ACAS certificate number
-   Then the system should return feedback from acas 'Please enter a valid certificate number'
 
   Scenario: ACAS Certificate logging for Certificate found
     When an ET Administrator with full access can view successful Acas Certificate log
