@@ -62,11 +62,6 @@ Then("I can see who has downloaded ACAS certificate {string}") do |string|
   expect(@certificate.number).to eq(acas_details_from_log['certificate_number'])
   expect(@certificate.user_id).to eq(acas_details_from_log["#{::EtFullSystem::Test::Configuration.admin_username}"])
   expect("#{string}").to eq(acas_details_from_log['message'])
-  if @certificate.method_of_issue.present?
-    expect(@certificate.method_of_issue).to eq(acas_details_from_log['method_of_issue'])
-  else
-    expect(nil).to eq(acas_details_from_log['method_of_issue'])
-  end
 end
 
 When(/^an ET Administrator with full access ca view invalid Acas Certificate log$/) do
