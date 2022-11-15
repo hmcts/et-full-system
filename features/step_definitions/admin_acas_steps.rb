@@ -26,10 +26,6 @@ When(/^I enter a 'server error' ACAS certificate number$/) do
   admin_pages.acas_search_page.search(@certificate.number)
 end
 
-Then(/^I can view the contents of the acas document$/) do
-  expect(admin_pages.acas_search_results_page).to have_valid_certificate_for(@certificate)
-end
-
 
 Then(/^the system should return feedback from acas 'No certificate returned from ACAS for R000201\/18\/68'$/) do
   expect(admin_pages.acas_search_results_page).to have_not_found_certificate_message_for(@certificate)

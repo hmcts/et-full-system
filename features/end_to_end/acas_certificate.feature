@@ -5,11 +5,6 @@ Feature:
   So I can validate the certificate number and its contents
   And view logs detailing user access and error messages
 
-  Scenario: View an ACAS Certificate's data
-   Given I am an ACAS administrator
-   When I enter an ACAS certificate number in the ACAS search field
-   Then I can view the contents of the acas document
-
   Scenario: Download a ACAS Certificate
    Given I am an ACAS administrator
    When I enter an ACAS certificate number in the ACAS search field
