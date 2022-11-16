@@ -64,17 +64,3 @@ Then("I can see who has downloaded ACAS certificate {string}") do |string|
   expect("#{string}").to eq(acas_details_from_log['message'])
 end
 
-When(/^an ET Administrator with full access ca view invalid Acas Certificate log$/) do
-  admin_username = ::EtFullSystem::Test::Configuration.admin_username
-  admin_password = ::EtFullSystem::Test::Configuration.admin_password
-  admin_pages.dashboard_page.admin_login(admin_username, admin_password)
-
-  if ENV['ENVIRONMENT'] == 'local'
-    @certificate = build(:acas_mock_certificate, :mock_invalid)
-  else
-    @certificate = create(:acas_certificate, :invalid)
-  end
-
-  admin_pages.any_page.menu.choose_acas_certificates
-  admin_pages.acas_search_page.search(@certificate.number)
-end

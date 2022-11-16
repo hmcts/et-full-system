@@ -353,7 +353,7 @@ en:
 
         other_outcome: What compensation or other outcome(s) do you want?
         other_known_claimants: "Do you know of any other claimants (not already listed) making similar claims against the same employer? (optional)"
-        other_known_claimant_names: You can add the names of other people here.
+        other_known_claimant_names: You can add the names of other people here. (optional)
         is_whistleblowing:
           hint: :'simple_form.hints.claim_type.is_whistleblowing'
           label: Are you reporting suspected wrongdoing at work?
