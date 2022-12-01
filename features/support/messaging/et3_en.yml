@@ -119,7 +119,7 @@ en:
         'yes': 'Yes'
         'no': 'No'
     disagree_claimant_notice_reason:
-      label: Tell us the details you believe to be correct.
+      label: Tell us the details you believe to be correct. (optional)
     agree_with_claimant_pension_benefits:
       label: Are the details about pensions and other benefits correct? (optional)
       options:
