@@ -352,7 +352,7 @@ en:
             new_employment_and_compensation: :'simple_form.options.claim_outcome.desired_outcomes.new_employment_and_compensation'
 
         other_outcome: What compensation or other outcome(s) do you want?
-        other_known_claimants: "Do you know of any other claimants (not already listed) making similar claims against the same employer? (optional)"
+        other_known_claimants: Do you know of any other claimants (not already listed) making similar claims against the same employer?
         other_known_claimant_names: You can add the names of other people here. (optional)
         is_whistleblowing:
           hint: :'simple_form.hints.claim_type.is_whistleblowing'
@@ -382,7 +382,7 @@ en:
             no: :'simple_form.no'
       claim_details:
         other_known_claimants:
-          label: "Do you know of any other claimants (not already listed) making similar claims against the same employer?"
+          label: Do you know of any other claimants (not already listed) making similar claims against the same employer?
           hint: :'simple_form.hints.claim_details.other_known_claimants'
           options:
             yes: :'claims.claim_type.yes'
