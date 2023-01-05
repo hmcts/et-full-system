@@ -353,7 +353,7 @@ en:
 
         other_outcome: What compensation or other outcome(s) do you want?
         other_known_claimants: "Do you know of any other claimants (not already listed) making similar claims against the same employer? (optional)"
-        other_known_claimant_names: You can add the names of other people here.
+        other_known_claimant_names: You can add the names of other people here. (optional)
         is_whistleblowing:
           hint: :'simple_form.hints.claim_type.is_whistleblowing'
           label: Are you reporting suspected wrongdoing at work?
@@ -713,7 +713,7 @@ en:
       workaddress_legend: Your work address
       form_hint: "The contact details of the person or organisation you're making a claim against (known as the 'respondent'). The address will be used for correspondence about the case."
       work_address: "Give details of your work address."
-      acas_early_conciliation_certificate_number_html: "Nearly everyone should have this number before they fill in a claim form. You can find it on your Acas certificate. Read more about the "
+      acas_early_conciliation_certificate_number_html: "Nearly everyone should have this number before they fill in a claim form. You can find it on your Acas certificate. If you have been provided with an MU number from ACAS as part of a group notification you should use that number rather than an individual R prefixed certificate number.Read more about the "
       acas_early_conciliation_certificate_number_link: "Acas early conciliation service"
 
     additional_respondents:
@@ -752,20 +752,20 @@ en:
           still_employed: :'simple_form.options.employment.current_situation.still_employed'
           notice_period: :'simple_form.options.employment.current_situation.notice_period'
           employment_terminated: :'simple_form.options.employment.current_situation.employment_terminated'
-      start_date: Employment start date
-      end_date: Employment end date
+      start_date: Employment start date (optional)
+      end_date: Employment end date (optional)
       paid_for_notice_period:
         "yes": 'Yes'
         "no": 'No'
       worked_notice_period_or_paid_in_lieu:
-        label: Did you work (or get paid for) a period of notice?
+        label: Did you work (or get paid for) a period of notice? (optional)
         options:
           yes: :'claims.employment.yes'
           no: :'claims.employment.no'
 
       new_job_start_date: New job start date
       new_job_pay_before_tax_type: How often are you paid
-      notice_period_end_date: Notice period end date
+      notice_period_end_date: Notice period end date (optional)
       employment_details_legend: Employment details
       pay_legend: Pay, pension and benefits
       new_job_legend: New Job
@@ -925,7 +925,7 @@ en:
               blank: "Enter the additional claimant’s postcode"
               invalid: Enter a valid UK postcode. If you live abroad, enter SW55 9QT
             date_of_birth:
-              invalid: "Enter the claimant’s date of birth in the correct format (DD/MM/YYYY)"
+              invalid: "Enter a valid date of birth in the correct format (DD/MM/YYYY)"
         additional_claimant:
           attributes:
             title:
@@ -958,7 +958,7 @@ en:
         claimant:
           attributes:
             date_of_birth:
-              invalid: "Enter the claimant’s date of birth in the correct format (DD/MM/YYYY)"
+              invalid: "Enter a valid date of birth in the correct format (DD/MM/YYYY)"
               too_young: "Claimant must be 16 years of age or over"
             title:
               blank: Select a title from the list

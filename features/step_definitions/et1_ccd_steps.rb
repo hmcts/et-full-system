@@ -159,21 +159,6 @@ Then /^the claim should be present in CCD with an attached acas certificate$/ do
   expect(ccd_object.find_pdf_file).to match_et1_pdf_for(claim: @claim, claimants: @claimant, representative: @representative.first, respondents: @respondent, employment: @employment)
 end
 
-Then /^the claim should be present in CCD with no attached acas certificate$/ do
-  office = @respondent[0]["expected_office"]
-  ccd_office_lookup = ::EtFullSystem::Test::CcdOfficeLookUp
-  ccd_object = EtFullSystem::Test::Ccd::Et1CcdSingleClaimant.find_by_reference(@claim_reference, ccd_office_lookup.office_lookup[office][:single][:case_type_id])
-
-  ccd_object.assert_primary_reference(@claim_reference)
-  ccd_object.assert_primary_claimants(@claimant)
-  ccd_object.assert_primary_representative(@representative)
-  ccd_object.assert_primary_employment(@employment, @claimant)
-  ccd_object.assert_claimant_work_address(@respondent.first)
-  ccd_object.assert_respondents(@respondent)
-  ccd_object.assert_no_acas_pdf_file
-  expect(ccd_object.find_pdf_file).to match_et1_pdf_for(claim: @claim, claimants: @claimant, representative: @representative.first, respondents: @respondent, employment: @employment)
-end
-
 Then /^the RTF file should be present in CCD$/ do
   office = @respondent[0]["expected_office"]
   ccd_office_lookup = ::EtFullSystem::Test::CcdOfficeLookUp
