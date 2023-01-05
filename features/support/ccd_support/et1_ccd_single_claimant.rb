@@ -137,6 +137,10 @@ module EtFullSystem
           expect(find_file_document(response, /\Aacas.*\.pdf\z/)).to be_present, 'Cannot find acas file - should start with acas and end in .pdf'
         end
 
+        def assert_no_acas_pdf_file
+          expect(find_file_document(response, /\Aacas.*\.pdf\z/)).not_to be_present, 'Found an acas file starting with acas and end in .pdf but this was not expected'
+        end
+
         def assert_acas_pdf_file_quantity(quantity)
           count = response.dig('case_fields', 'documentCollection').count do |doc|
             doc.dig('value', 'typeOfDocument') == 'ACAS Certificate'

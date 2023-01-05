@@ -40,6 +40,11 @@ FactoryBot.define do
       telephone_number {nil}
     end
 
+    trait :invalid_acas_number do
+      yes_acas
+      acas_number { 'R000201/18/68' }
+    end
+
     factory :et3_data, traits: [:work_address, :yes_acas]
   end
 end

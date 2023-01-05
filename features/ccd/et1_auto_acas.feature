@@ -10,3 +10,8 @@ Feature:
     Given an employee making a claim wanting to be contacted by 'post'
     When the completed form is submitted
     Then the claim should be present in CCD with an attached acas certificate
+
+  Scenario: A claim with an invalid acas certificate still sends the claim without a certificate
+    Given an employee making a claim with an invalid acas certificate wanting to be contacted by 'post'
+    When the completed form is submitted
+    Then the claim should be present in CCD with no attached acas certificate
