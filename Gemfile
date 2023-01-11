@@ -11,8 +11,8 @@ group :test do
   gem 'site_prism', '~> 3.7'
   gem 'i18n', '~> 1.8'
   gem 'activesupport', '~> 6.0'
-  gem 'selenium-webdriver', '~> 3.141'
-  gem 'webdrivers', '~> 4.0'
+  gem 'selenium-webdriver', '~> 4.7'
+  gem 'webdrivers', '~> 5.2'
   gem 'capybara-screenshot', '~> 1.0'
   gem 'cucumber', '~> 7.0'
   gem 'aws-sdk-s3', '~> 1.9'
@@ -30,7 +30,7 @@ group :test do
   gem 'settingslogic'
   gem 'mail'
   gem 'et_ccd_client', git: 'https://github.com/hmcts/et-ccd-client-ruby.git', tag: 'v0.1.51'
-  gem 'et_test_helpers', git: 'https://github.com/hmcts/et_test_helpers.git', tag: 'v1.1.1'
+  gem 'et_test_helpers', git: 'https://github.com/hmcts/et_test_helpers.git', tag: 'v1.1.4'
 end
 
 group :development, :test do
