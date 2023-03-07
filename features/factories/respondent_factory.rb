@@ -4,13 +4,13 @@ FactoryBot.define do
   factory :respondent, class: OpenStruct do
     name { Faker::Company.name }
     trait :work_address do
-        work_building {'101'}
-        work_street {'Petty France'}
-        work_locality {'London'}
-        work_county {'Greater London'}
-        work_post_code {'WD18 7SQ'}
-        work_telephone_number {'03333 423554'}
-        expected_office { '33' }
+        work_building {'20'}
+        work_street {'York St'}
+        work_locality {'Glasgow'}
+        work_county {'Lanarkshire'}
+        work_post_code {'G2 8GT'}
+        work_telephone_number {'0141 302 5858'}
+        expected_office { '41' }
     end
 
     trait :yes_acas do

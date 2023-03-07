@@ -73,3 +73,4 @@ Feature:
     Given claimant work postcode 'Z1 2LL' then submission office will be '99'
     When the completed form is submitted
     Then I can download the form from the secondary queue and that the filename starts with '99'
+    # Check that it exists in the admin for office 99 instead of downloading file.
