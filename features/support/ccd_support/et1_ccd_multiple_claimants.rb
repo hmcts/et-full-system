@@ -66,10 +66,7 @@ module EtFullSystem
             end
 
             filenames = created_case.dig('case_fields', 'documentCollection').map {|doc| doc.dig('value', 'uploadedDocument', 'document_filename') }
-            expected_filenames = [
-              "et1_#{claimant.first.first_name.underscore}_#{claimant.first.last_name.underscore}.pdf",
-              "acas_#{respondents.first.name}.pdf"
-            ]
+            expected_filenames = %W[et1_#{claimant.first.first_name.underscore}_#{claimant.first.last_name.underscore}.pdf acas_#{respondents.first.name}.pdf]
             # The first respondent's acas is guaranteed to be in CCD but the other 4 (max) may come
             # later - and are not really important - so we ignore them if they are present
             respondents[1..4].each do |respondent|
