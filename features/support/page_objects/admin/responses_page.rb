@@ -27,7 +27,7 @@ module EtFullSystem
             next v.to_s unless v.to_s.split('.').last =~ /\Ayes|no\z/
             v.to_s.split('.').last == 'yes'
           end
-          if (expected_values[:employment_end] != false && expected_values[:employment_end] != "") || expected_values[:employment_end] != ""
+          if expected_values[:employment_end] != ""
             expected_values.each_pair do |k,v|
               expected_values[k] = k.in?(date_keys) ? Date.parse(v).strftime('%Y-%m-%d') : v
             end
@@ -50,15 +50,18 @@ module EtFullSystem
           next v.to_s unless v.is_a?(Symbol)
           next v.to_s unless v.to_s.split('.').last =~ /\Ayes|no\z/
           v.to_s.split('.').last == 'yes'
-        end
+          end
+        static_values = expected_values.slice(:defend_claim, :claimants_name)
         expected_values = expected_values.to_h.transform_values do |v|
           next v unless v == false || v == ""
           expected_values[v] = nil
-        end
+          end
+        expected_values[:defend_claim] = static_values[:defend_claim]
+        expected_values[:claimants_name] = static_values[:claimants_name]
         expect(responses_data.first).to include(expected_values.except(:disagree_claimant_notice_reason, :disagree_claimant_pension_benefits_reason, :allow_video_attendance).stringify_keys)
         end
         #TODO: remove exceptions (see bug ticket RST-4945)
-        end
-      end
       end
     end
+  end
+end
