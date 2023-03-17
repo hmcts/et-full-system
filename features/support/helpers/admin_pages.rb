@@ -88,6 +88,10 @@ module EtFullSystem
       def self.diversity_responses_page
         Admin::DiversityResponsesPage.new
       end
+
+      def self.responses_page
+        Admin::ResponsesPage.new
+      end
     end
   end
 end

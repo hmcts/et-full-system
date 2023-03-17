@@ -25,4 +25,6 @@ Feature: Manage postcodes assigned to local offices
   Scenario: Filename based on newly added postcode 'BT' to 'Default' office
     Given a new postcode 'BT' is added to 'Default' office
     When a claimant submitted an ET1 form using postcode BT1 1AA
-    And I can download the form from the secondary queue and that the filename starts with '99'
+    And I can download the form from the secondary queue and that the filename starts with '100'
+    Then the claim should be present in CCD
+    #99 forms bypass CCD, so doesn't need to check to see if there

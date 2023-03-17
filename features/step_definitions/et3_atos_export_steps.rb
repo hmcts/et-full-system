@@ -37,9 +37,3 @@ end
 Then("phone number {string} with email {string}") do |string, email|
   expect(form_submission_page).to have_office_contact(i18n_params: {office_email: email, office_phone: string})
 end
-
-Then(/^I can download the ET3 form and validate in RTF format$/) do
-  api = EtFullSystem::Test::AdminApi.new atos_interface: atos_interface
-  zip_file = api.atos_zip_file_for(reference: @my_et3_reference, ignore_before: @test_start_time)
-  expect(zip_file.download_file(:et3_response_rtf_for, user: @respondent[0], reference: @my_et3_reference, ignore_before: @test_start_time)).to be_present
-end

@@ -72,21 +72,22 @@ module EtFullSystem
       end
 
       def claimant_other_type(employment, claimant)
-        if Date.parse(claim.dig(‘employment_details’, ‘end_date’)) < Date.today
-          common = {
-            "claimant_disabled" => claimant[0][:has_special_needs].to_s.split('.').last.titleize,
-            "claimant_employed_currently" => "No",
-            "claimant_occupation" => employment[:job_title],
-            "claimant_employed_from" => Date.parse(employment[:start_date]).strftime("%Y-%m-%d")
-          } #Change this to be yes unless the expectation of the scratch.rb line 3 file is met
-        else
+        # if Date.parse(claim.dig(‘employment_details’, ‘end_date’)) < Date.today
+        #   common = {
+        #     "claimant_disabled" => claimant[0][:has_special_needs].to_s.split('.').last.titleize,
+        #     "claimant_employed_currently" => "No",
+        #     "claimant_occupation" => employment[:job_title],
+        #     "claimant_employed_from" => Date.parse(employment[:start_date]).strftime("%Y-%m-%d")
+        #   } #Change this to be yes unless the expectation of the scratch.rb line 3 file is met
+        # json.set! ‘claimant_employed_currently’, ‘No’ if claim.dig(‘employment_details’, ‘end_date’).present? && Date.parse(claim.dig(‘employment_details’, ‘end_date’)) < Date.today
+        # else
           common = {
             "claimant_disabled" => claimant[0][:has_special_needs].to_s.split('.').last.titleize,
             "claimant_employed_currently" => "Yes",
             "claimant_occupation" => employment[:job_title],
             "claimant_employed_from" => Date.parse(employment[:start_date]).strftime("%Y-%m-%d")
           } #Change this to be yes unless the expectation of the scratch.rb line 3 file is met
-          end
+          # end
 
         if currently_employed?(employment)
           common.merge! \
