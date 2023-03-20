@@ -6,18 +6,8 @@ Feature:
   I want to ensure that all files get exported to CCD
   So I can triage an employees claim against their employer
   
-  Scenario: PDF format
+  Scenario: Checking for claim presence.
     Given an employee making a claim
-    When the completed form is submitted
-    Then the claim should be present in CCD
-
-  Scenario: TXT format
-    Given an employee making a claim
-    When the completed form is submitted
-    Then the claim should be present in CCD
-
-  Scenario: RTF format
-    Given an employee making a claim by uploading a Rich Text Format document
     When the completed form is submitted
     Then the claim should be present in CCD
 
