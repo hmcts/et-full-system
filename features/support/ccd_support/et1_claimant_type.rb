@@ -92,7 +92,7 @@ module EtFullSystem
             "claimant_employed_currently" => "Yes",
             "claimant_occupation" => employment[:job_title],
             "claimant_employed_from" => Date.parse(employment[:start_date]).strftime("%Y-%m-%d")
-          } #Change this to be yes unless the expectation of the scratch.rb line 3 file is met
+          }
         end
 
         if currently_employed?(employment)
