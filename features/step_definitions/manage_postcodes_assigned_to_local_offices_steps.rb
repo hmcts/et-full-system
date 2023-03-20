@@ -63,3 +63,9 @@ When("a claimant submitted an ET1 form using postcode BT1 1AA") do
   et1_answer_more_about_the_claim_questions
   et1_submit_claim
 end
+
+Then(/^I can verify the claim has correct office code and reference$/) do
+  respondent = @respondent[0]
+  @claim_reference = et1_claim_submitted.claim_number
+  admin_pages.claims_page.check_json_99(respondent, @claim_reference)
+end

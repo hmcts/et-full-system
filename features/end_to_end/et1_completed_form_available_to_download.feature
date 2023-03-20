@@ -53,19 +53,16 @@ Feature:
 
   Scenario: Ignore special characters in first and last name when generating filenames
     When a claimant submitted an ET1 with special characters in the first and last name 
-#    Then I can download the form and validate in PDF format
     Then the claim should be present in CCD
 
   Scenario: No employment details
     Given a claimant submitted an ET1 with no employment details
     When the completed form is submitted
-#    Then  I can download the form and validate in PDF format
     Then the claim should be present in CCD
 
   Scenario: claimant's address is outside UK
     Given a claimant submitted an ET1 who live outside UK
     When the completed form is submitted
-#    Then  I can download the form and validate in PDF format
     Then the claim should be present in CCD
 
   Scenario: Claimant home postcode G1 1BL will be forwarded to Glasgow office
@@ -73,9 +70,7 @@ Feature:
     When the completed form is submitted 
     Then the claim should be present in CCD
 
-  #TODO: Fix this specific test
   Scenario: Claimant's work address is unknown
     Given claimant work postcode 'Z1 2LL' then submission office will be '99'
     When the completed form is submitted
-    Then I can download the form from the secondary queue and that the filename starts with '99'
-    # Check that it exists in the admin for office 99 instead of downloading file.
+    Then I can verify the claim has correct office code and reference
