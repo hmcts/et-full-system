@@ -175,7 +175,7 @@ Then /^the RTF file should be present in CCD$/ do
   expect(File.size(ccd_object.find_rtf_file)).to eq File.size(File.expand_path(File.join('features', 'support', 'fixtures', @claim['rtf_file'])))
 end
 
-Then /^the multiple claimaints should be present in CCD$/ do
+Then /^the multiple claimants should be present in CCD$/ do
   admin_api = EtFullSystem::Test::AdminApi.new atos_interface: atos_interface
   claim = admin_api.exported_to_ccd_claim(reference: @claim_reference)
   office = @respondent[0]["expected_office"]

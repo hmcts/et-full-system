@@ -29,7 +29,7 @@ Feature:
   Scenario: 2 people making a claim
     Given '2' employees making a claim
     When the completed form is submitted
-    Then the multiple claimaints should be present in CCD
+    Then the multiple claimants should be present in CCD
 
   Scenario: Respondent details - 3 Respondents
     Given an employee making a claim against '3' respondents
@@ -39,12 +39,12 @@ Feature:
   Scenario: Validate TXT file when uploading CSV data
     Given 7 employees making a claim by uploading CSV file
     When the completed form is submitted
-    Then the multiple claimaints should be present in CCD
+    Then the multiple claimants should be present in CCD
 
   Scenario: Validate CSV file when uploading CSV data
     Given 7 employees making a claim by uploading CSV file
     When the completed form is submitted
-    Then the multiple claimaints should be present in CCD
+    Then the multiple claimants should be present in CCD
 
   Scenario: Making claim against 3 employers
     Given an employee making a claim against 3 employers

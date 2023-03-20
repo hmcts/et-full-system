@@ -56,8 +56,7 @@ Feature:
     When the completed form is submitted
     Then the claim should be present in CCD
 
-  # Bug in welsh version see: https://tools.hmcts.net/jira/browse/RST-1951
-#  TODO: Fix this test, fix placing et1_claimant_type.rb line 74
+
   Scenario: Employment details - no longer working for this employer
     Given an employee making a claim against an employer who is no longer working for them
     When the completed form is submitted

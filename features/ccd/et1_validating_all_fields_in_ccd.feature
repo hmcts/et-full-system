@@ -119,27 +119,27 @@ Feature:
   Scenario: Multiple claimaints - RTF, PDF and CSV format
     Given an employee submitting an ET1 form by uploading CSV and RTF documents
     When the completed form is submitted
-    Then the multiple claimaints should be present in CCD
+    Then the multiple claimants should be present in CCD
 
   Scenario: Multiple claimants - RTF format
     Given an multiple claimants making a claim by uploading a Rich Text Format document
     When the completed form is submitted
-    Then the multiple claimaints should be present in CCD
+    Then the multiple claimants should be present in CCD
 
   Scenario: Multiple claimants - manually entering 3 claimaint's details
     Given '3' employees making a claim
     When the completed form is submitted
-    Then the multiple claimaints should be present in CCD
+    Then the multiple claimants should be present in CCD
 
   Scenario: Multiple claimants - uploading multiple claimants using CSV file
     Given 7 employees making a claim by uploading CSV file
     When the completed form is submitted
-    Then the multiple claimaints should be present in CCD
+    Then the multiple claimants should be present in CCD
 
   Scenario: Multiple claimants and multiple respondents
     Given '3' employees making a claim with multiple respondents
     When the completed form is submitted
-    Then the multiple claimaints should be present in CCD
+    Then the multiple claimants should be present in CCD
 
   Scenario: A claim for the default office should go wherever the administrator wants
     Given a claimant submitted an ET1 with a work post code of "Z1 2LL"
