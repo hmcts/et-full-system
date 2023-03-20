@@ -45,22 +45,22 @@ module EtFullSystem
         end
 
         def minimal_check_json(user, reference)
-        responses_data = admin_api.responses(q:{reference_cont:reference})
-        expected_values = user.to_h.transform_values do |v|
-          next v.to_s unless v.is_a?(Symbol)
-          next v.to_s unless v.to_s.split('.').last =~ /\Ayes|no\z/
-          v.to_s.split('.').last == 'yes'
+          responses_data = admin_api.responses(q:{reference_cont:reference})
+          expected_values = user.to_h.transform_values do |v|
+            next v.to_s unless v.is_a?(Symbol)
+            next v.to_s unless v.to_s.split('.').last =~ /\Ayes|no\z/
+            v.to_s.split('.').last == 'yes'
           end
-        static_values = expected_values.slice(:defend_claim, :claimants_name)
-        expected_values = expected_values.to_h.transform_values do |v|
-          next v unless v == false || v == ""
-          expected_values[v] = nil
+          static_values = expected_values.slice(:defend_claim, :claimants_name)
+          expected_values = expected_values.to_h.transform_values do |v|
+            next v unless v == false || v == ""
+            expected_values[v] = nil
           end
-        expected_values[:defend_claim] = static_values[:defend_claim]
-        expected_values[:claimants_name] = static_values[:claimants_name]
-        expect(responses_data.first).to include(expected_values.except(:disagree_claimant_notice_reason, :disagree_claimant_pension_benefits_reason, :allow_video_attendance).stringify_keys)
+          expected_values[:defend_claim] = static_values[:defend_claim]
+          expected_values[:claimants_name] = static_values[:claimants_name]
+          expect(responses_data.first).to include(expected_values.except(:disagree_claimant_notice_reason, :disagree_claimant_pension_benefits_reason, :allow_video_attendance).stringify_keys)
+          #TODO: remove exceptions (see bug ticket RST-4945)
         end
-        #TODO: remove exceptions (see bug ticket RST-4945)
       end
     end
   end
