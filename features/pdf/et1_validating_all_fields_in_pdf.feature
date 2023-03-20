@@ -50,12 +50,10 @@ Feature:
     When the completed form is submitted
     Then the claim should be present in CCD
 
-
   Scenario: Employment details - working a notice period for this employer
     Given an employee making a claim against an employer who is working against their notice period
     When the completed form is submitted
     Then the claim should be present in CCD
-
 
   Scenario: Employment details - no longer working for this employer
     Given an employee making a claim against an employer who is no longer working for them
