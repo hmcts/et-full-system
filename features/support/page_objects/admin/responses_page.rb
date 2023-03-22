@@ -47,7 +47,6 @@ module EtFullSystem
         def minimal_check_json(user, reference)
           responses_data = admin_api.responses(q:{reference_cont:reference})
           expected_values = user.to_h.transform_values do |v|
-            next v.to_s unless v.is_a?(Symbol)
             next v.to_s unless v.to_s.split('.').last =~ /\Ayes|no\z/
             v.to_s.split('.').last == 'yes'
           end
