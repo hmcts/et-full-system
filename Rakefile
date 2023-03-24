@@ -1,5 +1,4 @@
 require_relative 'features/support/configuration'
-require_relative 'features/support/atos_interface.rb'
 require "parallel_tests/tasks"
 require 'aws-sdk-s3'
 require 'azure/storage'

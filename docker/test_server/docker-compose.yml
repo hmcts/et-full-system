@@ -27,7 +27,6 @@ services:
       - et1_bundle:/home/app/full_system/systems/et1/.bundle
       - et3_bundle:/home/app/full_system/systems/et3/.bundle
       - api_bundle:/home/app/full_system/systems/api/.bundle
-      - atos_bundle:/home/app/full_system/systems/atos/.bundle
       - admin_bundle:/home/app/full_system/systems/admin/.bundle
     environment:
       DB_HOST: 'db'
@@ -52,9 +51,6 @@ services:
       MY_API:
       MY_ADMIN:
       MY_FAKE_ACAS:
-      MY_ATOS:
-      ATOS_API_USERNAME: atos
-      ATOS_API_PASSWORD: password
       RAILS_LOG_TO_STDOUT: 'true'
       AZURE_STORAGE_BLOB_HOST: 'http://azure_blob_storage.${SERVER_DOMAIN:-et.127.0.0.1.nip.io}:${SERVER_PORT:-3100}'
       AZURE_STORAGE_BLOB_FORCE_PATH_STYLE: 'true'
@@ -77,7 +73,6 @@ services:
           - s3.${SERVER_DOMAIN:-et.127.0.0.1.nip.io}
           - azure_blob_storage.${SERVER_DOMAIN:-et.127.0.0.1.nip.io}
           - azure.${SERVER_DOMAIN:-et.127.0.0.1.nip.io}
-          - atos.${SERVER_DOMAIN:-et.127.0.0.1.nip.io}
           - mail.${SERVER_DOMAIN:-et.127.0.0.1.nip.io}
 
 #command: bash -lc "cd /home/app/full_system/systems/api && REDIS_DATABASE=2 bundle exec sidekiq"
@@ -115,7 +110,6 @@ volumes:
   et3_bundle:
   admin_bundle:
   api_bundle:
-  atos_bundle:
 networks:
   et_full_system:
 

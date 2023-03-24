@@ -2,9 +2,8 @@
 @javascript
 @smoke
 Feature: ET3 response to local office
-  As an ATOS admin
-  I want to be able to download completed Employment Tribunal response form
-  So I can triage an employers response made against them
+  As an admin
+  I want to be able to check data in the admin json.
 
   Scenario: View a file claim in the admin interface
     Given an employer responds to a claim

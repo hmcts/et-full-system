@@ -2,10 +2,6 @@ defaults: &defaults
   admin_username: admin
   admin_password: password
   admin_email: admin@example.com
-  atos_username: atos
-  atos_password: password
-  atos_secondary_username: atos2
-  atos_secondary_password: password
   ccd_sidam_username: m@m.com
   ccd_sidam_password: p
 local: &local
@@ -17,7 +13,6 @@ local: &local
   diversity_url: http://et1.et.127.0.0.1.nip.io:3100/apply/diversity
   et1_admin_url: http://et1.et.127.0.0.1.nip.io:3100/apply/admin
   et3_url: http://et3.et.127.0.0.1.nip.io:3100
-  atos_api_url: http://atos.et.127.0.0.1.nip.io:3100
   admin_url: http://admin.et.127.0.0.1.nip.io:3100/admin
   sidekiq_url: http://et1.et.127.0.0.1.nip.io:3100/apply/sidekiq
   mailhog_search_url: http://mail.et.127.0.0.1.nip.io:3100/api/v2/search
@@ -64,7 +59,6 @@ production:
   # diversity_url: https://www.employmenttribunals.service.gov.uk/apply/diversity
   # et1_admin_url: https://www.employmenttribunals.service.gov.uk/apply/admin
   # et3_url: https://tribunal-response.employmenttribunals.service.gov.uk/
-  # atos_api_url: https://atos-api.employmenttribunals.service.gov.uk
   # admin_url: https://admin.employmenttribunals.service.gov.uk/admin
   # api_url: https://api.employmenttribunals.service.gov.uk
   # ccd_client_url: http://localhost:3451
@@ -75,7 +69,6 @@ dev:
   et3_url: https://et3-dev-azure.dev.et.dsd.io
   admin_url: https://et-admin-dev-azure.dev.et.dsd.io/admin
   api_url: https://et-api-dev-azure.dev.et.dsd.io
-  atos_api_url: https://et-atos-api-dev-azure.dev.et.dsd.io
   sidekiq_url: https://et-dev-azure.dev.et.dsd.io/apply/sidekiq
   ccd_idam_base_url: https://idam-api-idam-demo.service.core-compute-idam-demo.internal
   ccd_document_store_url_rewrite: false
@@ -89,12 +82,7 @@ staging:
   et3_url: https://et3-stg-azure.staging.et.dsd.io
   admin_url: https://et-admin-stg-azure.staging.et.dsd.io/admin
   api_url: https://et-api-stg-azure.staging.et.dsd.io
-  atos_api_url: https://et-atos-api-stg-azure.staging.et.dsd.io
   sidekiq_url: https://et-stg-azure.staging.et.dsd.io/apply/sidekiq
-  atos_username: atos
-  atos_password: password
-  atos_secondary_username: atos2
-  atos_secondary_password: password
   ccd_idam_base_url: https://idam-api-idam-stg.service.core-compute-idam-demo.internal
   ccd_document_store_url_rewrite: false
   ccd_sidam_username: eric.ccdcooper@gmail.com

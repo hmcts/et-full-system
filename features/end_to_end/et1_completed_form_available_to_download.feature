@@ -1,7 +1,7 @@
 @e2e
 @javascript @smoke
 Feature:
-  As an ATOS admin
+  As an admin
   I want to be able to download completed Employment Tribunal forms
   I want to ensure that all files get exported to CCD
   So I can triage an employees claim against their employer

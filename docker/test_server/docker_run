@@ -8,14 +8,12 @@ sudo chown app:app /home/app/full_system/systems/et1/log
 sudo chown app:app /home/app/full_system/systems/et3/log
 sudo chown app:app /home/app/full_system/systems/admin/log
 sudo chown app:app /home/app/full_system/systems/api/log
-sudo chown app:app /home/app/full_system/systems/atos/lib/rails_container/log
 sudo chown app:app /home/app/full_system/systems/et3/node_modules
 sudo chown app:app /home/app/full_system/systems/admin/node_modules
 sudo chown app:app /home/app/full_system/systems/et1/.bundle
 sudo chown app:app /home/app/full_system/systems/et3/.bundle
 sudo chown app:app /home/app/full_system/systems/api/.bundle
 sudo chown app:app /home/app/full_system/systems/admin/.bundle
-sudo chown app:app /home/app/full_system/systems/atos/.bundle
 sudo chown app:app /home/app/full_system/systems/et_ccd_export/.bundle
 sudo chown app:app /home/app/minio_data
 sudo chown app:app /home/app/azure_storage_data
@@ -47,12 +45,6 @@ else
     sudo bash -c "SERVER_PORT=$SERVER_PORT SERVER_DOMAIN=$SERVER_DOMAIN MY_ET3=$MY_ET3 envsubst '\$SERVER_PORT \$SERVER_DOMAIN \$MY_ET3' < /home/app/full_system/docker/test_server/nginx_config/et3_local.conf.template > /etc/nginx/sites-enabled/et3_server.conf"
 fi
 
-if [ -z "$MY_ATOS" ]; then
-    sudo bash -c "SERVER_PORT=$SERVER_PORT SERVER_DOMAIN=$SERVER_DOMAIN CLOUD_PROVIDER=$CLOUD_PROVIDER envsubst '\$SERVER_PORT \$SERVER_DOMAIN \$CLOUD_PROVIDER' < /home/app/full_system/docker/test_server/nginx_config/atos_server.conf.template > /etc/nginx/sites-enabled/atos_server.conf"
-else
-    sudo bash -c "SERVER_PORT=$SERVER_PORT SERVER_DOMAIN=$SERVER_DOMAIN MY_ATOS=$MY_ATOS envsubst '\$SERVER_PORT \$SERVER_DOMAIN \$MY_ATOS' < /home/app/full_system/docker/test_server/nginx_config/atos_local.conf.template > /etc/nginx/sites-enabled/atos_server.conf"
-fi
-
 sudo bash -c "SERVER_PORT=$SERVER_PORT SERVER_DOMAIN=$SERVER_DOMAIN envsubst '\$SERVER_PORT \$SERVER_DOMAIN' < /home/app/full_system/docker/test_server/acas_templates/acas_wsdl.txt.template > /home/app/acas_wsdl.txt"
 
 
@@ -73,8 +65,6 @@ echo "------------------------------------------------ API SERVICE -------------
 bash --login -c "cd /home/app/full_system/systems/api && /usr/local/rvm/bin/rvm use && bundle install --jobs=4 --without=development test --with=production && RAILS_ENV=production bundle exec rails db:create db:migrate db:seed"
 echo "------------------------------------------------ ADMIN SERVICE ---------------------------------------------------"
 bash --login -c "cd /home/app/full_system/systems/admin && /usr/local/rvm/bin/rvm use && bundle install --jobs=4 --without=development test --with=production && RAILS_ENV=production SEED_EXAMPLE_USERS=true bundle exec rails db:seed assets:precompile"
-echo "------------------------------------------------ ATOS FILE TRANSFER SERVICE ---------------------------------------------------"
-bash --login -c "cd /home/app/full_system/systems/atos && /usr/local/rvm/bin/rvm use && bundle install --jobs=4 --without=development test --with=production"
 echo "------------------------------------------------ ET CCD EXPORT SERVICE ---------------------------------------------------"
 bash --login -c "cd /home/app/full_system/systems/et_ccd_export && /usr/local/rvm/bin/rvm use && bundle install --jobs=4 --without=development test --with=production"
 

@@ -12,7 +12,6 @@ server {
        passenger_env_var WEB_CONCURRENCY 4;
        passenger_env_var SECRET_KEY_BASE sdlkjewfkjhfviuhduihenrjk435r89esfd7cv983qh2n4r3q27yh4u5rtfg;
        passenger_env_var DEVISE_SECRET_KEY JK3N45KH56743JN25J1B5H43B24H35BJ6575KN21NRNKFASDF89DU23I4NK5TGKFD;
-       passenger_env_var ATOS_API_URL "http://atos.${SERVER_DOMAIN}:${SERVER_PORT}";
        passenger_env_var ACAS_API_URL "http://api.${SERVER_DOMAIN}:${SERVER_PORT}/et_acas_api";
        passenger_env_var ET_API_URL 'http://api.${SERVER_DOMAIN}:${SERVER_PORT}/api';
        passenger_env_var REDIS_HOST redis;
@@ -29,8 +28,6 @@ server {
        passenger_env_var AWS_ENDPOINT 'http://s3.${SERVER_DOMAIN}:${SERVER_PORT}';
        passenger_env_var AWS_S3_FORCE_PATH_STYLE 'true';
        passenger_env_var RAILS_ENV 'production';
-       passenger_env_var ATOS_API_USERNAME 'atos';
-       passenger_env_var ATOS_API_PASSWORD 'password';
        passenger_env_var AZURE_STORAGE_BLOB_HOST 'http://azure_blob_storage.${SERVER_DOMAIN}:${SERVER_PORT}';
        passenger_env_var AZURE_STORAGE_BLOB_FORCE_PATH_STYLE 'true';
        passenger_env_var AZURE_STORAGE_ACCOUNT 'devstoreaccount1';
