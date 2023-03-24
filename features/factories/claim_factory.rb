@@ -28,7 +28,7 @@ FactoryBot.define do
     send_to_relevant_person {:"simple_form.yes"}
     similar_claims {:"claims.claim_type.yes"}
     add_other_claimants {'Jimmy Barnes, Bryon Adams, Shelly Temple, Doris Day'}
-    other_claimant_names {'Similar Claim1, Similar Claim2'}
+    other_claimant_names {'Similar ClaimA, Similar ClaimB'}
     rtf_file {'simple_user_with_rtf.rtf'}
     other_additional_information {:'claims.additional_information.has_miscellaneous_information.options.yes'}
     other_important_details {'Here are some very important details that need to be considered'}

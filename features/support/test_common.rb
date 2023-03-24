@@ -6,7 +6,6 @@ require_relative './file_objects'
 require_relative './messaging'
 require_relative './helpers'
 require_relative './common_admin_window'
-require_relative './atos_interface'
 require_relative './rspec_eventually'
 require_relative './housekeeping'
 require_relative './matchers'
@@ -18,7 +17,6 @@ include EtFullSystem::Test::Et1ClaimHelper
 include EtFullSystem::Test::Et3ResponseHelper
 include EtFullSystem::Test::DiversityHelper
 include EtFullSystem::Test::CommonAdminWindow
-include EtFullSystem::Test::AtosInterfaceHelper
 include EtFullSystem::Test::Housekeeping
 include EtFullSystem::Test::Et1Export
 include EtFullSystem::Test::Et3Export

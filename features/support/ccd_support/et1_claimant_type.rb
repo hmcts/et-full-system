@@ -15,8 +15,8 @@ module EtFullSystem
       def claimant_csv_ind_type(claimant)
         {
           "claimant_title1" => claimant["Title"], 
-          "claimant_first_names" => claimant["First name"].downcase, 
-          "claimant_last_name" => claimant["Last name"].downcase, 
+          "claimant_first_names" => claimant["First name"],
+          "claimant_last_name" => claimant["Last name"],
           "claimant_date_of_birth" => Date.parse(claimant["Date of birth"]).strftime("%Y-%m-%d"),
           "claimant_gender" => nil
         }
@@ -194,11 +194,11 @@ module EtFullSystem
       def secondary_xls_claimant_type_address(claimant)
         {"claimant_addressUK" =>
           {"AddressLine1" => claimant["Building number or name"], 
-            "AddressLine2" => claimant["Street"].downcase, 
-            "PostTown" => claimant["Town/city"].downcase, 
-            "County" => claimant["County"].downcase, 
+            "AddressLine2" => claimant["Street"],
+            "PostTown" => claimant["Town/city"],
+            "County" => claimant["County"],
             "Country" => nil, 
-            "PostCode" => claimant["Postcode"].downcase
+            "PostCode" => claimant["Postcode"]
           },
         "claimant_phone_number" => nil,
         "claimant_mobile_number" => nil,

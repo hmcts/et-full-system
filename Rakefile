@@ -33,16 +33,6 @@ task :setup_buckets do
   end
 end
 
-desc "Deletes all exported zip files from the server"
-task :delete_zip_files_from_server do
-  atos1 = EtFullSystem::Test::AtosInterface.new username: EtFullSystem::Test::Configuration.atos_username,
-                                                password: EtFullSystem::Test::Configuration.atos_password
-  atos2 = EtFullSystem::Test::AtosInterface.new username: EtFullSystem::Test::Configuration.atos_secondary_username,
-                                                password: EtFullSystem::Test::Configuration.atos_secondary_password
-  atos1.delete_zip_files
-  atos2.delete_zip_files
-end
-
 desc 'Configures the azure containers needed by the applications (local environment only)'
 task :setup_azure_containers do
   client = Azure::Storage.client storage_account_name: ENV.fetch('AZURE_STORAGE_ACCOUNT', 'devstoreaccount1'),

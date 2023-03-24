@@ -41,10 +41,6 @@ Feature:
     When the completed form is submitted
     Then the claim should be present in CCD
 
-  Scenario: Ignore special characters in first and last name when generating filenames
-    When a claimant submitted an ET1 with special characters in the first and last name 
-    Then the claim should be present in CCD
-
   Scenario: No employment details
     Given a claimant submitted an ET1 with no employment details
     When the completed form is submitted
