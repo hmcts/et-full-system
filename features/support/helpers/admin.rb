@@ -2,7 +2,7 @@ module EtFullSystem
   module Test
     module Admin
       def admin_api
-        EtFullSystem::Test::AdminApi.new atos_interface: atos_interface
+        EtFullSystem::Test::AdminApi.new
       end
 
       def admin_pages

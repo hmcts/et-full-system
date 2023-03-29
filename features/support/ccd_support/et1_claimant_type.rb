@@ -15,8 +15,8 @@ module EtFullSystem
       def claimant_csv_ind_type(claimant)
         {
           "claimant_title1" => claimant["Title"], 
-          "claimant_first_names" => claimant["First name"].downcase, 
-          "claimant_last_name" => claimant["Last name"].downcase, 
+          "claimant_first_names" => claimant["First name"],
+          "claimant_last_name" => claimant["Last name"],
           "claimant_date_of_birth" => Date.parse(claimant["Date of birth"]).strftime("%Y-%m-%d"),
           "claimant_gender" => nil
         }
@@ -72,12 +72,28 @@ module EtFullSystem
       end
 
       def claimant_other_type(employment, claimant)
-        common = {
-          "claimant_disabled" => claimant[0][:has_special_needs].to_s.split('.').last.titleize,
-          "claimant_employed_currently" => "Yes", 
-          "claimant_occupation" => employment[:job_title],
-          "claimant_employed_from" => Date.parse(employment[:start_date]).strftime("%Y-%m-%d")
-        }
+        if employment[:end_date].nil? || employment[:end_date] == ""
+          common = {
+            "claimant_disabled" => claimant[0][:has_special_needs].to_s.split('.').last.titleize,
+            "claimant_employed_currently" => "Yes",
+            "claimant_occupation" => employment[:job_title],
+            "claimant_employed_from" => Date.parse(employment[:start_date]).strftime("%Y-%m-%d")
+          }
+        elsif employment[:end_date].to_date < Date.today
+          common = {
+                "claimant_disabled" => claimant[0][:has_special_needs].to_s.split('.').last.titleize,
+                "claimant_employed_currently" => "No",
+                "claimant_occupation" => employment[:job_title],
+                "claimant_employed_from" => Date.parse(employment[:start_date]).strftime("%Y-%m-%d")
+          }
+        else
+          common = {
+            "claimant_disabled" => claimant[0][:has_special_needs].to_s.split('.').last.titleize,
+            "claimant_employed_currently" => "Yes",
+            "claimant_occupation" => employment[:job_title],
+            "claimant_employed_from" => Date.parse(employment[:start_date]).strftime("%Y-%m-%d")
+          }
+        end
 
         if currently_employed?(employment)
           common.merge! \
@@ -178,11 +194,11 @@ module EtFullSystem
       def secondary_xls_claimant_type_address(claimant)
         {"claimant_addressUK" =>
           {"AddressLine1" => claimant["Building number or name"], 
-            "AddressLine2" => claimant["Street"].downcase, 
-            "PostTown" => claimant["Town/city"].downcase, 
-            "County" => claimant["County"].downcase, 
+            "AddressLine2" => claimant["Street"],
+            "PostTown" => claimant["Town/city"],
+            "County" => claimant["County"],
             "Country" => nil, 
-            "PostCode" => claimant["Postcode"].downcase
+            "PostCode" => claimant["Postcode"]
           },
         "claimant_phone_number" => nil,
         "claimant_mobile_number" => nil,

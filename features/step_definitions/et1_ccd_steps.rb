@@ -129,7 +129,7 @@ Given("an employee submitting an ET1 form by uploading CSV and RTF documents") d
 end
 
 Then /^the claim should be present in CCD$/ do
-  admin_api = EtFullSystem::Test::AdminApi.new atos_interface: atos_interface
+  admin_api = EtFullSystem::Test::AdminApi.new
   office = @respondent[0]["expected_office"]
   ccd_office_lookup = ::EtFullSystem::Test::CcdOfficeLookUp
   ccd_object = EtFullSystem::Test::Ccd::Et1CcdSingleClaimant.find_by_reference(@claim_reference, ccd_office_lookup.office_lookup[office][:single][:case_type_id])
@@ -175,8 +175,8 @@ Then /^the RTF file should be present in CCD$/ do
   expect(File.size(ccd_object.find_rtf_file)).to eq File.size(File.expand_path(File.join('features', 'support', 'fixtures', @claim['rtf_file'])))
 end
 
-Then /^the multiple claimaints should be present in CCD$/ do
-  admin_api = EtFullSystem::Test::AdminApi.new atos_interface: atos_interface
+Then /^the multiple claimants should be present in CCD$/ do
+  admin_api = EtFullSystem::Test::AdminApi.new
   claim = admin_api.exported_to_ccd_claim(reference: @claim_reference)
   office = @respondent[0]["expected_office"]
   ccd_office_lookup = ::EtFullSystem::Test::CcdOfficeLookUp

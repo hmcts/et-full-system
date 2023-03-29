@@ -2,9 +2,8 @@
 Feature:
   As Submission page
   I want to ensure that user can view the submission details in Welsh or in English
-
   Scenario: with a representative, respondent and claimant
-    Given an employee making a claim
+    Given an employee making a claim with email
     And the claimant is on the Submission page
     Then I should see a valid submission page
 

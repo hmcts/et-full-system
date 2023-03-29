@@ -57,7 +57,7 @@ When(/^an ET Administrator with full access can view successful Acas Certificate
 end
 
 Then("I can see who has downloaded ACAS certificate {string}") do |string|
-  api = EtFullSystem::Test::AdminApi.new atos_interface: atos_interface
+  api = EtFullSystem::Test::AdminApi.new
   acas_details_from_log = api.acas_certificate_logs_api.select { |a| a['certificate_number'] == "#{@certificate.number}"}[0]
   expect(@certificate.number).to eq(acas_details_from_log['certificate_number'])
   expect(@certificate.user_id).to eq(acas_details_from_log["#{::EtFullSystem::Test::Configuration.admin_username}"])

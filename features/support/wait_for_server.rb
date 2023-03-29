@@ -47,4 +47,3 @@ end
 EtFullSystem::Test::WaitForServer.new("#{::EtFullSystem::Test::Configuration.et1_url}/apply/ping.json").wait
 EtFullSystem::Test::WaitForServer.new("#{::EtFullSystem::Test::Configuration.et3_url}/ping.json").wait
 EtFullSystem::Test::WaitForServer.new("#{::EtFullSystem::Test::Configuration.admin_url.gsub(/\/admin\z/, '')}/ping.json").wait
-EtFullSystem::Test::WaitForServer.new("#{::EtFullSystem::Test::Configuration.atos_api_url}/ping.json").wait

@@ -109,7 +109,6 @@ module EtFullSystem
               'uploadedDocument' => a_hash_including(
                 'document_url' => an_instance_of(String),
                 'document_binary_url' => an_instance_of(String),
-                'document_filename' => 'et3_atos_export.pdf'
               )
             )
         end

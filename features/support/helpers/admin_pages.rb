@@ -53,10 +53,6 @@ module EtFullSystem
         Admin::JobSidekiqCronPage.new
       end
 
-      def self.atos_files_page
-        Admin::AtosFilesPage.new
-      end
-
       def self.office_postcodes_page
         Admin::OfficePostcodesPage.new
       end
@@ -87,6 +83,10 @@ module EtFullSystem
 
       def self.diversity_responses_page
         Admin::DiversityResponsesPage.new
+      end
+
+      def self.responses_page
+        Admin::ResponsesPage.new
       end
     end
   end

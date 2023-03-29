@@ -74,6 +74,14 @@ module EtFullSystem
           row = main_table.row_with_reference(reference: reference)
           row.erroring_ccd_state_link.click
         end
+
+        def check_json_99(respondent, reference)
+          responses_data = admin_api.claims(q:{reference_cont:reference})
+          verification_keys = respondent.to_h.slice(:expected_office)
+          verification_keys[:office_code] = (verification_keys.delete :expected_office).to_i
+          verification_keys.merge!(reference: reference)
+          expect(responses_data.first).to include(verification_keys.stringify_keys)
+        end
       end
     end
   end

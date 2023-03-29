@@ -43,11 +43,12 @@ Then("the deleted postcode is no longer saved in the system") do
 end
 
 When("a claimant submitted an ET1 form using postcode BT1 1AA") do
-  @claimant = FactoryBot.create_list(:claimant, 1, :person_data)  
-  @representative = FactoryBot.create_list(:representative, 1, :et1_information)
+  @claimant = FactoryBot.create_list(:claimant, 1, :person_data, :contact_by_post)
+  @representative = FactoryBot.create_list(:representative, 1, :et1_information, :contact_by_post)
   @respondent = FactoryBot.create_list(:respondent,  1, :yes_acas, :both_addresses, work_post_code: 'BT1 1AA', expected_office: '99')
   @employment = FactoryBot.create(:employment, :no_employment)
   @claim = FactoryBot.create(:claim, :yes_to_whistleblowing_claim)
+
 
   start_a_new_et1_claim
   et1_answer_login
@@ -61,4 +62,10 @@ When("a claimant submitted an ET1 form using postcode BT1 1AA") do
   et1_answer_claim_outcome_questions
   et1_answer_more_about_the_claim_questions
   et1_submit_claim
+end
+
+Then(/^I can verify the claim has correct office code and reference$/) do
+  respondent = @respondent[0]
+  @claim_reference = et1_claim_submitted.claim_number
+  admin_pages.claims_page.check_json_99(respondent, @claim_reference)
 end

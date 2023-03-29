@@ -1,5 +1,4 @@
 require_relative 'features/support/configuration'
-require_relative 'features/support/atos_interface.rb'
 require "parallel_tests/tasks"
 require 'aws-sdk-s3'
 require 'azure/storage'
@@ -31,16 +30,6 @@ task :setup_buckets do
       retry
     end
   end
-end
-
-desc "Deletes all exported zip files from the server"
-task :delete_zip_files_from_server do
-  atos1 = EtFullSystem::Test::AtosInterface.new username: EtFullSystem::Test::Configuration.atos_username,
-                                                password: EtFullSystem::Test::Configuration.atos_password
-  atos2 = EtFullSystem::Test::AtosInterface.new username: EtFullSystem::Test::Configuration.atos_secondary_username,
-                                                password: EtFullSystem::Test::Configuration.atos_secondary_password
-  atos1.delete_zip_files
-  atos2.delete_zip_files
 end
 
 desc 'Configures the azure containers needed by the applications (local environment only)'

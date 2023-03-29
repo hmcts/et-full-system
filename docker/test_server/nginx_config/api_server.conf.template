@@ -25,8 +25,6 @@ server {
        passenger_env_var AWS_S3_FORCE_PATH_STYLE 'true';
        passenger_env_var RAILS_ENV 'production';
        passenger_env_var ACAS_SERVICE_URL 'http://acas.${SERVER_DOMAIN}:${SERVER_PORT}/Lookup/ECService.svc';
-       passenger_env_var ATOS_API_USERNAME 'atos';
-       passenger_env_var ATOS_API_PASSWORD 'password';
        passenger_env_var RAILS_MAX_THREADS 10;
        passenger_env_var RAVEN_DSN 'https://929365547a42468fb521248a96100646:139af8327fa340b88088efeae059fca8@sentry.io/1254109';
        passenger_env_var RAILS_LOG_TO_STDOUT 'true';

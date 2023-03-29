@@ -5,7 +5,7 @@ module EtFullSystem
         set_url "/diversity_responses"
 
         def has_response_for?(data)
-          api = EtFullSystem::Test::AdminApi.new atos_interface: atos_interface
+          api = EtFullSystem::Test::AdminApi.new
           expected_data = data.to_h.inject({}) do |acc, (k, v)|
             # Value should always be 'diversities.<page>.question.options.<value>'
             acc[k] = v&.to_s&.split('.')&.last

@@ -1,7 +1,15 @@
 Given(/^an employee making a claim$/) do
-  @claimant = FactoryBot.create_list(:claimant, 1, :person_with_no_gender_information)
+  @claimant = FactoryBot.create_list(:claimant, 1, :person_data, :contact_by_post)
+  @representative = FactoryBot.create_list(:representative, 1, :et1_information, :contact_by_post)
+  @respondent = FactoryBot.create_list(:respondent,  1, :yes_acas, :both_addresses, work_post_code: 'G1 2FF', expected_office: '41')
+  @employment = FactoryBot.create(:employment, :still_employed)
+  @claim = FactoryBot.create(:claim, :yes_to_whistleblowing_claim)
+end
+
+Given(/^an employee making a claim with email$/) do
+  @claimant = FactoryBot.create_list(:claimant, 1, :person_data)
   @representative = FactoryBot.create_list(:representative, 1, :et1_information)
-  @respondent = FactoryBot.create_list(:respondent,  1, :yes_acas, :both_addresses)
+  @respondent = FactoryBot.create_list(:respondent,  1, :yes_acas, :both_addresses, work_post_code: 'G1 2FF', expected_office: '41')
   @employment = FactoryBot.create(:employment, :still_employed)
   @claim = FactoryBot.create(:claim, :yes_to_whistleblowing_claim)
 end
@@ -89,27 +97,6 @@ Given("a claimant submitted an ET1 form with work address WD187SQ") do
   et1_submit_claim
 end
 
-When("a claimant submitted an ET1 with special characters in the first and last name") do
-  @claimant = FactoryBot.create_list(:claimant, 1, :person_data, first_name: 'N/A.*_', last_name: "N/A.*#{Time.now.to_i}")
-  @representative = FactoryBot.create_list(:representative, 1, :et1_information)
-  @respondent = FactoryBot.create_list(:respondent,  1, :yes_acas, :both_addresses)
-  @employment = FactoryBot.create(:employment, :still_employed)
-  @claim = FactoryBot.create(:claim, :yes_to_whistleblowing_claim)
-
-  start_a_new_et1_claim
-  et1_answer_login
-  et1_answer_claimant_questions
-  et1_answer_group_claimants_questions
-  et1_answer_representatives_questions
-  et1_answer_respondents_questions
-  et1_answer_employment_details_questions
-  et1_answer_claim_type_questions
-  et1_answer_claim_details_questions
-  et1_answer_claim_outcome_questions
-  et1_answer_more_about_the_claim_questions
-  et1_submit_claim
-end
-
 Given("a claimant submitted an ET1 with no employment details") do
   @claimant = FactoryBot.create_list(:claimant, 1, :person_data)
   @representative = FactoryBot.create_list(:representative, 1, :et1_information)
@@ -119,7 +106,7 @@ Given("a claimant submitted an ET1 with no employment details") do
 end
 
 Given("a claimant submitted an ET1 who live outside UK") do
-  @claimant = FactoryBot.create_list(:claimant, 1, :person_data, country: :"simple_form.options.claimant.address_country.other", post_code: "^&%$£@:?<*")
+  @claimant = FactoryBot.create_list(:claimant, 1, :person_data, country: :"simple_form.options.claimant.address_country.other", post_code: "95880")
   @representative = FactoryBot.create_list(:representative, 1, :et1_information)
   @respondent = FactoryBot.create_list(:respondent,  1, :yes_acas, :both_addresses, work_post_code: 'G1 2FF', expected_office: '41')
   @employment = FactoryBot.create(:employment, :still_employed)

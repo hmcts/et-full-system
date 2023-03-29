@@ -6,10 +6,6 @@ module EtFullSystem
       include ::RSpec::Matchers
       include ::EtFullSystem::Test::I18n
 
-      # @param [::EtFullSystem::Test::AtosInterface] atos_interface
-      def initialize(atos_interface: nil)
-        self.atos_interface = atos_interface
-      end
 
       def url
         Configuration.admin_url
@@ -197,23 +193,6 @@ module EtFullSystem
         sidekiq_cron_agent.current_page.form(action: "/admin/sidekiq/cron/export_claims_job/enque").submit
       end
 
-      def atos_zip_file_for_claim(claim_reference:, ignore_before: 15.minutes.ago, timeout: 40, sleep: 1)
-        atos_zip_file_for(reference: claim_reference, ignore_before: ignore_before, sleep: sleep, timeout: timeout)
-      end
-
-      def atos_zip_file_for(reference:, ignore_before:, timeout: 40, sleep: 1)
-        Timeout.timeout(timeout) do
-          loop do
-            run_export_cron_job
-            zip_file = atos_interface.zip_file_for_reference(reference, ignore_before: ignore_before)
-            break zip_file unless zip_file.nil?
-            sleep(sleep)
-          end
-        end
-      rescue Timeout::Error
-        raise "An ATOS zip file for reference #{reference} was not found"
-      end
-
       def processed_claim(claim_reference:, timeout: 30, sleep: 0.5)
         login
         Timeout.timeout(timeout) do
@@ -347,7 +326,7 @@ module EtFullSystem
         @agent ||= Mechanize.new
       end
       
-      attr_accessor :sidekiq_cron_agent, :cookies_hash, :last_response, :csrf_token, :sidekiq_authenticity_token, :sidekiq_cron_form_url, :atos_interface, :logged_in, :mechanize_logged_in
+      attr_accessor :sidekiq_cron_agent, :cookies_hash, :last_response, :csrf_token, :sidekiq_authenticity_token, :sidekiq_cron_form_url, :logged_in, :mechanize_logged_in
     end
   end
 end
