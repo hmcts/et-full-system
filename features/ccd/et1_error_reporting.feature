@@ -17,7 +17,7 @@ Feature:
 #    Given a claimant submitting data to trigger a 502 error once only in a secondary claimant using fake ccd
 #    When the completed form is submitted
 #    Then the claim in the admin should show that the export sent to CCD
-    #TODO: fix the above when et-fake-ccd gem is updated to match it
+    #TODO: fix the above when et-fake-ccd gem is updated to match it : RST-5303
 
   Scenario: Submitting a claim that goes through to the admin
     Given a claimant submitting mandatory Claimant's Details fields
