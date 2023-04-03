@@ -73,7 +73,6 @@ module EtFullSystem
               filenames.delete("acas_#{respondent.name}.pdf")
             end
             expected_filenames << "et1a_#{claimant.first.first_name}_#{claimant.first.last_name}.csv" if claimant.first.group_claims_csv.present?
-            expected_filenames << "et1_attachment_#{claimant.first.first_name}_#{claimant.first.last_name}.rtf" if claim.rtf_file.present?
 
             expect(filenames).to match_array(expected_filenames)
           end

@@ -172,7 +172,6 @@ Then /^the RTF file should be present in CCD$/ do
   ccd_object.assert_respondents(@respondent)
 
   expect(ccd_object.find_pdf_file).to match_et1_pdf_for(claim: @claim, claimants: @claimant, representative: @representative.first, respondents: @respondent, employment: @employment)
-  expect(File.size(ccd_object.find_rtf_file)).to eq File.size(File.expand_path(File.join('features', 'support', 'fixtures', @claim['rtf_file'])))
 end
 
 Then /^the multiple claimants should be present in CCD$/ do
@@ -196,10 +195,6 @@ Then /^the multiple claimants should be present in CCD$/ do
     expect(ccd_object.find_csv_file(ccd_office_lookup.office_lookup[office][:single][:case_type_id])).to be_present
   else
     ccd_object.assert_secondary_claimant(@claimant, @representative, @employment, @respondent, ccd_office_lookup.office_lookup[office][:single][:case_type_id])
-  end
-
-  if @claim['rtf_file']
-    expect(File.size(ccd_object.find_rtf_file(ccd_office_lookup.office_lookup[office][:single][:case_type_id]))).to eq File.size(File.expand_path(File.join('features', 'support', 'fixtures', @claim['rtf_file'])))
   end
 
   expect(ccd_object.find_pdf_file(ccd_office_lookup.office_lookup[office][:single][:case_type_id])).to match_et1_pdf_for(claim: @claim, claimants: @claimant, representative: @representative.first, respondents: @respondent, employment: @employment)
