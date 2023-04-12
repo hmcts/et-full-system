@@ -1,1 +1,3 @@
-default: --publish-quiet --retry 1 --tags "not @broken"  --format progress
+default: --publish --retry 1 --tags "not @broken"  --format progress
+parallel: --publish-quiet --retry 1 --tags "not @broken" --format progress
+# command: bundle exec parallel_cucumber features -n 3
