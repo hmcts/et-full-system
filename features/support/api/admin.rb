@@ -152,7 +152,7 @@ module EtFullSystem
         login
         response = request(:get, "#{url}/diversity_responses.json?
           claim_type_contains=data[:claim_type]
-          &sex_contains=data[:sex_contains] 
+          &sex_contains=data[:sex_contains]
           &sexual_identity_contains=data[:sexual_identity]
           &age_group_contains=data[:age_group]
           &ethnicity_contains=data[:ethnicity]
@@ -271,6 +271,21 @@ module EtFullSystem
         Thread.current[:admin_api_cached_office_data] ||= offices
       end
 
+      def wait_for_response_in_office(response_reference, office_code, timeout: 30, sleep: 0.5)
+        login
+        office = office_data_for(office_code)
+        Timeout.timeout(timeout) do
+          loop do
+            response = admin_api.responses(q: {office_id_eq: office['id'], reference_cont: @my_et3_reference}).first
+            return response if response.present?
+
+            sleep 5
+          end
+        end
+      rescue Timeout::Error
+        raise "The response with reference '#{response_reference}' was not found in office code '#{office_code}'"
+      end
+
       private
 
       def wait_for(timeout: 5, sleep: 0.1, raise: true)
@@ -325,7 +340,7 @@ module EtFullSystem
       def agent
         @agent ||= Mechanize.new
       end
-      
+
       attr_accessor :sidekiq_cron_agent, :cookies_hash, :last_response, :csrf_token, :sidekiq_authenticity_token, :sidekiq_cron_form_url, :logged_in, :mechanize_logged_in
     end
   end
