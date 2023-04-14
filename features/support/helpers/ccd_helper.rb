@@ -40,6 +40,72 @@ module EtFullSystem
           raise "No claims were present in CCD and for some reason one could not be created - suggests a problem with the app or maybe a wrong office code" if result.nil?
         end
       end
+
+      def create_reformed_claim_in_ccd(office_code:)
+        office_lookup = ::EtFullSystem::Test::CcdOfficeLookUp.office_lookup
+        case_type_id = office_lookup[office_code.to_s][:single][:case_type_id]
+
+        resp = ccd.caseworker_start_case_creation(case_type_id: case_type_id, extra_headers: {})
+        data = {
+          data: {
+            receiptDate: '2023-01-01',
+            caseSource: 'ET1 Online',
+            feeGroupReference: "#{office_code}1234567890",
+            managingOffice: "Bristol",
+            claimant_TypeOfClaimant: 'Individual',
+            positionType: 'Received by Auto-Import',
+            claimantIndType: {
+              claimant_title1: 'Mr',
+              claimant_first_names: 'John',
+              claimant_last_name: 'Smith',
+              claimant_date_of_birth: '1980-01-01',
+              claimant_gender: nil,
+            },
+            claimantType: {
+              claimant_addressUK: {
+                AddressLine1: '1 High Street',
+                AddressLine2: 'Bla',
+                PostTown: 'London',
+                County: 'London',
+                Country: nil,
+                PostCode: 'SW1A 1AA'
+              },
+              claimant_phone_number: '01234567890',
+              claimant_mobile_number: '01234567890',
+              claimant_email_address: 'test@test.com',
+              claimant_contact_preference: 'Email'
+            },
+            caseType: 'Single',
+            claimantWorkAddress: {
+              claimant_work_address: {
+                AddressLine1: '1 High Street',
+                AddressLine2: 'Bla',
+                PostTown: 'London',
+                County: 'London',
+                Country: nil,
+                PostCode: 'SW1A 1AA'
+              },
+              claimant_work_phone_number: '01234567890'
+            },
+            respondentCollection: [],
+            claimantOtherType: {
+              claimant_disabled: 'No'
+            },
+            claimantRepresentedQuestion: 'No',
+            documentCollection: []
+          },
+          event: {
+            id: 'initiateCase',
+            summary: '',
+            description: ''
+          },
+          event_token: resp['token'],
+          ignore_warning: false,
+          draft_id: nil
+        }
+
+        ccd.caseworker_case_create(data.to_json, case_type_id: case_type_id, extra_headers: {})
+      end
     end
   end
 end
