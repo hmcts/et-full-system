@@ -146,5 +146,3 @@ Feature:
     When the completed form is submitted
     And the administrator exports the claim to the scotland office
     Then the claim should be present in the "41" office CCD system
-  Scenario: Garys test
-    Then garys stuff should work
