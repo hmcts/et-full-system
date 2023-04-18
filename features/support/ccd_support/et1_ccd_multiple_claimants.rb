@@ -73,7 +73,7 @@ module EtFullSystem
               filenames.delete("acas_#{respondent.name}.pdf")
             end
             expected_filenames << "et1a_#{claimant.first.first_name}_#{claimant.first.last_name}.csv" if claimant.first.group_claims_csv.present?
-            expected_filenames << "et1_attachment_#{claimant.first.first_name}_#{claimant.first.last_name}.rtf" if claim.rtf_file.present?
+            expected_filenames << "et1_attachment_#{claimant.first.first_name}_#{claimant.first.last_name}.pdf" if claim.rtf_file.present?
 
             expect(filenames).to match_array(expected_filenames)
           end
@@ -88,7 +88,7 @@ module EtFullSystem
         def find_rtf_file(ccd_office)
           case_references = response.dig('case_fields', 'caseIdCollection').first.dig('value', 'ethos_CaseReference')
           created_case = ccd.caseworker_search_latest_by_ethos_case_reference(case_references, case_type_id: ccd_office)
-          download_file(created_case, 'rtf')
+          download_file(created_case, 'pdf')
         end
 
         def find_csv_file(ccd_office)
