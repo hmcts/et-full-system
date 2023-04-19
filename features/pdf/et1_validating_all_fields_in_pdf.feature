@@ -16,7 +16,7 @@ Feature:
     Then the claim should be present in CCD
 
   Scenario: Respondent details - Another person has the Acas number
-    Given an employee making a claim with joint claim acas number
+    Given an employee making a claim with joint claim ACAS number
     When the completed form is submitted
     Then the claim should be present in CCD
 
@@ -26,7 +26,7 @@ Feature:
     Then the claim should be present in CCD
 
   Scenario: Respondent details - Employer already been in touch
-    Given an employee making a claim with employer contacted acas
+    Given an employee making a claim with employer contacted ACAS
     When the completed form is submitted
     Then the claim should be present in CCD
 
