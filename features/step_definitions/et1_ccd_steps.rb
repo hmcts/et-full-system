@@ -54,7 +54,7 @@ Given("a claimant submitting mandatory Claimant's Details fields") do
   @claim = FactoryBot.create(:claim, :yes_to_whistleblowing_claim)
 end
 
-Given("an employee submitting mandatory respresentative fields") do
+Given("an employee submitting mandatory representative fields") do
   @claimant = FactoryBot.create_list(:claimant, 1, :person_data)
   @representative = FactoryBot.create_list(:representative, 1, :et1_information, organisation_name: '', telephone_number: '', alternative_telephone_number: '', email_address: 'anonymous@example.com', dx_number: '')
   @respondent = FactoryBot.create_list(:respondent,  1, :yes_acas, :both_addresses, work_post_code: 'M1 1AQ', expected_office: '24')
@@ -70,7 +70,7 @@ Given("an employee making a claim where the respondent provided the same address
   @claim = FactoryBot.create(:claim, :yes_to_whistleblowing_claim)
 end
 
-Given("an employee making a claim where the additional respondents provided an acas number") do
+Given("an employee making a claim where the additional respondents provided an ACAS number") do
   @claimant = FactoryBot.create_list(:claimant, 1, :person_data)
   @representative = FactoryBot.create_list(:representative, 1, :et1_information)
   @respondent = FactoryBot.create_list(:respondent,  1, :yes_acas, :both_addresses, work_post_code: 'M1 1AQ', expected_office: '24')
@@ -79,7 +79,7 @@ Given("an employee making a claim where the additional respondents provided an a
   @claim = FactoryBot.create(:claim, :yes_to_whistleblowing_claim)
 end
 
-Given("an employee making a claim where the additional respondents gave reason for not having an acas number") do
+Given("an employee making a claim where the additional respondents gave reason for not having an ACAS number") do
   @claimant = FactoryBot.create_list(:claimant, 1, :person_data)
   @representative = FactoryBot.create_list(:representative, 1, :et1_information)
   @respondent = FactoryBot.create_list(:respondent,  1, :yes_acas, :both_addresses, work_post_code: 'G1 2FF', expected_office: '41')
@@ -259,7 +259,7 @@ Given(/^a claimant submitting data to trigger a 401 error for the first 3 reques
   @claim = FactoryBot.create(:claim, :yes_to_whistleblowing_claim)
 end
 
-And(/^the CCD claim should have (\d+) acas certificates$/) do |number|
+And(/^the CCD claim should have (\d+) ACAS certificates$/) do |number|
   sleep 10
   office = @respondent[0]["expected_office"]
   ccd_office_lookup = ::EtFullSystem::Test::CcdOfficeLookUp
