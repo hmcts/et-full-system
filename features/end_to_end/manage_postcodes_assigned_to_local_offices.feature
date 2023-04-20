@@ -14,7 +14,7 @@ Feature: Manage postcodes assigned to local offices
 
   Scenario: Assign postcode to a different office
     Given a postcode 'TT' is assigned to 'Default' office
-    When I reassign the postcode to 'Southampton' office
+    When I reassign the postcode to 'Manchester' office
     Then the postcode will be assigned to the different office and no longer assigned to the original office
 
   Scenario: Delete existing postcode
