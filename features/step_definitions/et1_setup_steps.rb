@@ -14,7 +14,7 @@ Given(/^an employee making a claim with email$/) do
   @claim = FactoryBot.create(:claim, :yes_to_whistleblowing_claim)
 end
 
-Given(/^an employee making a claim without a respresentative$/) do
+Given(/^an employee making a claim without a representative$/) do
   @claimant = FactoryBot.create_list(:claimant, 1, :person_data)
   @representative = FactoryBot.create_list(:representative, 1, :et1_no_representative)
   @respondent = FactoryBot.create_list(:respondent,  1, :yes_acas, :both_addresses, work_post_code: 'G1 2FF', expected_office: '41')

@@ -14,7 +14,7 @@ Given("an employee making a claim against {string} respondents") do |string|
   @claim = FactoryBot.create(:claim, :yes_to_whistleblowing_claim)
 end
 
-Given("an employee making a claim with joint claim acas number") do
+Given("an employee making a claim with joint claim ACAS number") do
   @claimant = FactoryBot.create_list(:claimant, 1, :person_data)
   @representative = FactoryBot.create_list(:representative, 1, :et1_information)
   @respondent = FactoryBot.create_list(:respondent, 1, :no_acas, :both_addresses, :no_acas, :both_addresses, work_post_code: 'G1 2FF', expected_office: '41')
@@ -30,7 +30,7 @@ Given("an employee making a claim with no jurisdiction") do
   @claim = FactoryBot.create(:claim, :yes_to_whistleblowing_claim)
 end
 
-Given("an employee making a claim with employer contacted acas") do
+Given("an employee making a claim with employer contacted ACAS") do
   @claimant = FactoryBot.create_list(:claimant, 1, :person_data)
   @representative = FactoryBot.create_list(:representative, 1, :et1_information)
   @respondent = FactoryBot.create_list(:respondent, 1, :no_acas, :both_addresses, :no_acas, :both_addresses, no_acas_number_reason: :"simple_form.options.respondent.no_acas_number_reason.employer_contacted_acas", work_post_code: 'G1 2FF', expected_office: '41')
