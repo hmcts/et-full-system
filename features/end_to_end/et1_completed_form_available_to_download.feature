@@ -12,7 +12,7 @@ Feature:
     Then the claim should be present in CCD
 
   Scenario: No representative
-    Given an employee making a claim without a respresentative
+    Given an employee making a claim without a representative
     When the completed form is submitted
     Then the claim should be present in CCD
 
