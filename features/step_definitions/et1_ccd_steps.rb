@@ -161,6 +161,7 @@ end
 
 Then /^the RTF file should be present in CCD$/ do
   office = @respondent[0]["expected_office"]
+  claimant = @claimant[0]
   ccd_office_lookup = ::EtFullSystem::Test::CcdOfficeLookUp
   ccd_object = EtFullSystem::Test::Ccd::Et1CcdSingleClaimant.find_by_reference(@claim_reference, ccd_office_lookup.office_lookup[office][:single][:case_type_id])
 
@@ -172,7 +173,7 @@ Then /^the RTF file should be present in CCD$/ do
   ccd_object.assert_respondents(@respondent)
 
   expect(ccd_object.find_pdf_file).to match_et1_pdf_for(claim: @claim, claimants: @claimant, representative: @representative.first, respondents: @respondent, employment: @employment)
-  expect(File.size(ccd_object.find_rtf_file)).to eq File.size(File.expand_path(File.join('features', 'support', 'fixtures', @claim['rtf_file'])))
+  expect (ccd_object.as_json['response']['case_fields']['documentCollection'][1]['value']['uploadedDocument']['document_filename'].downcase) == (%W[et1_attachment_#{claimant[:first_name].underscore}_#{claimant[:last_name].downcase}.pdf])
 end
 
 Then /^the multiple claimants should be present in CCD$/ do
