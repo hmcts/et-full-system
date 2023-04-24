@@ -159,7 +159,7 @@ Then /^the claim should be present in CCD with an attached acas certificate$/ do
   expect(ccd_object.find_pdf_file).to match_et1_pdf_for(claim: @claim, claimants: @claimant, representative: @representative.first, respondents: @respondent, employment: @employment)
 end
 
-Then /^the RTF file should be present in CCD$/ do
+Then /^the PDF file should be present in CCD$/ do
   office = @respondent[0]["expected_office"]
   claimant = @claimant[0]
   ccd_office_lookup = ::EtFullSystem::Test::CcdOfficeLookUp
