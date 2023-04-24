@@ -114,7 +114,7 @@ Feature:
   Scenario: Single claimant - RTF format
     Given an employee making a claim by uploading a Rich Text Format document
     When the completed form is submitted
-    Then the RTF file should be present in CCD
+    Then the PDF file should be present in CCD
 
   Scenario: Multiple claimants - RTF, PDF and CSV format
     Given an employee submitting an ET1 form by uploading CSV and RTF documents
