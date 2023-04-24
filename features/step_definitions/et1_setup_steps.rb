@@ -46,6 +46,14 @@ Given(/^an employee making a claim by uploading a Rich Text Format document$/) d
   @claim = FactoryBot.create(:claim, :upload_your_claim_statement)
 end
 
+Given(/^an employee making a claim by uploading a large Rich Text Format document$/) do
+  @claimant = FactoryBot.create_list(:claimant, 1, :person_data)
+  @representative = FactoryBot.create_list(:representative, 1, :et1_information)
+  @respondent = FactoryBot.create_list(:respondent,  1, :yes_acas, :both_addresses, work_post_code: 'G1 2FF', expected_office: '41')
+  @employment = FactoryBot.create(:employment, :still_employed)
+  @claim = FactoryBot.create(:claim, :upload_your_larger_claim_statement)
+end
+
 Given("an employee making a claim against {int} employers") do |string|
   @claimant = FactoryBot.create_list(:claimant, 1, :person_data)
   @representative = FactoryBot.create_list(:representative, 1, :et1_information)
