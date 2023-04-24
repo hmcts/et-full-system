@@ -116,12 +116,12 @@ Feature:
     When the completed form is submitted
     Then the RTF file should be present in CCD
 
-  Scenario: Single claimaint - large RTF format
+  Scenario: Single claimant - large RTF format
     Given an employee making a claim by uploading a large Rich Text Format document
     When the completed form is submitted
     Then the RTF file should be present in CCD
 
-  Scenario: Multiple claimaints - RTF, PDF and CSV format
+  Scenario: Multiple claimants - RTF, PDF and CSV format
     Given an employee submitting an ET1 form by uploading CSV and RTF documents
     When the completed form is submitted
     Then the multiple claimants should be present in CCD
