@@ -62,7 +62,7 @@ module EtFullSystem
         end
 
         def change_office()
-          data = self.page.find(:css, "a[href='/admin/responses?scope=all']").text.delete('All ()') # This allows us to create a matcher for the top row of the data
+          data = self.page.find(:css, "a[href='/admin/responses?scope=all']").text.delete('All ()') # This allows us to create a CSS matcher for the top row of the data
           self.page.find(:css,"tr[id='response_#{data}'] a[title='Edit']").click
           self.page.find(:css, '#select2-response_office_id-container').click
           self.page.find(:css, "span[class='select2-container select2-container--default select2-container--open'] li:nth-child(2)").click
