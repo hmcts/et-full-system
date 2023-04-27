@@ -6,5 +6,5 @@ Feature: Checking the responses page in the admin
     Given an administrator login
     And selected responses section of the admin
 
-  Scenario: View the admin interface
+  Scenario: View the responses admin interface
     Then I should see the ET3 responses page

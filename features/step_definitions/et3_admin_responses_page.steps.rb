@@ -4,4 +4,5 @@ end
 
 Then(/^I should see the ET3 responses page$/) do
   expect(page.current_url).to include("/admin/responses")
+  expect(admin_pages.responses_page).to be_displayed()
 end
