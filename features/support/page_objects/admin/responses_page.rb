@@ -71,7 +71,7 @@ module EtFullSystem
 
         def verify_office()
           data = self.page.find(:css, "a[href='/admin/responses?scope=all']").text.delete('All ()')
-          self.page.find(:css, "tr[id='response_348'] td[class='col col-office']").text == "Bristol"
+          self.page.find(:css, "tr[id='response_#{data}'] td[class='col col-office']").text == "Bristol"
         end
       end
     end
