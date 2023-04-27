@@ -10,6 +10,7 @@ module EtFullSystem
         element :claimant_name, 'td.col.col-claimants_name'
 
 
+
         def find_user(user, reference)
           expect(self).to be_displayed()
           expect(respondent_name).to have_content(user.name)
@@ -61,9 +62,16 @@ module EtFullSystem
         end
 
         def change_office()
-          data = self.page.find("a[href='/admin/responses?scope=all']").text.delete('All ()') # This allows us to create a matcher for the top row of the data
+          data = self.page.find(:css, "a[href='/admin/responses?scope=all']").text.delete('All ()') # This allows us to create a matcher for the top row of the data
           self.page.find(:css,"tr[id='response_#{data}'] a[title='Edit']").click
-          sleep(10)
+          self.page.find(:css, '#select2-response_office_id-container').click
+          self.page.find(:css, "span[class='select2-container select2-container--default select2-container--open'] li:nth-child(2)").click
+          self.page.find(:css, "input[value='Update Response']").click
+        end
+
+        def verify_office()
+          data = self.page.find(:css, "a[href='/admin/responses?scope=all']").text.delete('All ()')
+          self.page.find(:css, "tr[id='response_348'] td[class='col col-office']").text == "Bristol"
         end
       end
     end

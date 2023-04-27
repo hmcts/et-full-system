@@ -10,4 +10,5 @@ Feature: Checking the responses page in the admin
     Then I should see the ET3 responses page
 
     Scenario: Editing the default office
-      When I select the edit button for the first row
+      When I select the edit button for the first row and change the office
+      Then I should see the updated office in the responses page
