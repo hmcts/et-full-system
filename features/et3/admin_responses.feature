@@ -8,3 +8,6 @@ Feature: Checking the responses page in the admin
 
   Scenario: View the responses admin interface
     Then I should see the ET3 responses page
+
+    Scenario: Editing the default office
+      When I select the edit button for the first row

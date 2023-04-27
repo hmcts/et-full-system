@@ -10,7 +10,6 @@ module EtFullSystem
         element :claimant_name, 'td.col.col-claimants_name'
 
 
-
         def find_user(user, reference)
           expect(self).to be_displayed()
           expect(respondent_name).to have_content(user.name)
@@ -59,6 +58,12 @@ module EtFullSystem
           expected_values[:claimants_name] = static_values[:claimants_name]
           expect(responses_data.first).to include(expected_values.except(:disagree_claimant_notice_reason, :disagree_claimant_pension_benefits_reason, :allow_video_attendance).stringify_keys)
           #TODO: remove exceptions (see bug ticket RST-4945)
+        end
+
+        def change_office()
+          data = self.page.find("a[href='/admin/responses?scope=all']").text.delete('All ()') # This allows us to create a matcher for the top row of the data
+          self.page.find(:css,"tr[id='response_#{data}'] a[title='Edit']").click
+          sleep(10)
         end
       end
     end
