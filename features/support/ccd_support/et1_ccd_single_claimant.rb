@@ -136,10 +136,10 @@ module EtFullSystem
           expect(find_file_document(response, /\Aacas.*\.pdf\z/)).to be_present, 'Cannot find acas file - should start with acas and end in .pdf'
         end
 
-        def find_acas_names(quantity)
+        def find_acas_names(expected_acas_amount)
           name = response.dig('case_fields', 'documentCollection')
-          acas_names = name[1..5].map { |r| "#{r["value"]["uploadedDocument"]["document_filename"]}" }
-          expect(acas_names.count).to eql quantity
+          acas_names = name[1..expected_acas_amount].map { |r| "#{r["value"]["uploadedDocument"]["document_filename"]}" }
+          expect(acas_names.count).to eql expected_acas_amount
           acas_names
         end
 
