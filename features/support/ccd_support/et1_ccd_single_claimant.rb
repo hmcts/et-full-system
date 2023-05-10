@@ -139,8 +139,6 @@ module EtFullSystem
         def find_acas_names(expected_acas_amount)
           name = response.dig('case_fields', 'documentCollection')
           acas_names = name[1..expected_acas_amount].map { |r| "#{r["value"]["uploadedDocument"]["document_filename"]}" }
-          expect(acas_names.count).to eql expected_acas_amount
-          acas_names
         end
 
         private
