@@ -265,7 +265,7 @@ And(/^the CCD claim should have (\d+) ACAS certificates$/) do |number|
   ccd_office_lookup = ::EtFullSystem::Test::CcdOfficeLookUp
   ccd_object = EtFullSystem::Test::Ccd::Et1CcdSingleClaimant.find_by_reference(@claim_reference, ccd_office_lookup.office_lookup[office][:single][:case_type_id])
   expected_names = []
-  (0..4).step(1) do |value|
+  (0..4).each do |value|
     expected_names << "acas_#{@respondent[value][:name]}.pdf"
   end
   expect(ccd_object.find_acas_names(5)).to match_array(expected_names)

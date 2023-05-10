@@ -139,7 +139,7 @@ module EtFullSystem
         def find_acas_names(quantity)
           name = response.dig('case_fields', 'documentCollection')
           acas_names = []
-          (1..5).step(1) do |value|
+          (1..5).each do |value|
             acas_names << name[value]["value"]["uploadedDocument"]["document_filename"]
           end
           expect(acas_names.count). to eql quantity
