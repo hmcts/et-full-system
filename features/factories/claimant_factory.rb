@@ -8,7 +8,7 @@ FactoryBot.define do
     special_needs { 'My special needs are as follows' }
     telephone_number { '01234 567890' }
     alternative_telephone_number { '01234 098765' }
-    email_address { "sivvoy.taing@hmcts.net" }
+    email_address { "claimant@hmcts.net" }
     correspondence { :"simple_form.options.claimant.contact_preference.email" }
     memorable_word { 'password' }
     allow_video_attendance { :"simple_form.options.claimant.allow_video_attendance.yes" }
