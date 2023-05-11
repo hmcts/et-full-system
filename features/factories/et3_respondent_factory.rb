@@ -32,11 +32,11 @@ FactoryBot.define do
     contact_number {"02081234567"}
     contact_mobile_number {"07123456789"}
     contact_preference {:"questions.contact_preference.options.email"}
-    email_address {"sivvoy.taing@hmcts.net"}
+    email_address {"respondent@hmcts.net"}
     organisation_employ_gb {"100"}
     make_employer_contract_claim {:"questions.make_employer_contract_claim.options.yes"}
     claim_information {"lorem ipsum info"}
-    email_receipt {"sivvoy.taing@hmcts.net"}
+    email_receipt {"respondent@hmcts.net"}
     disability {:"questions.disability.options.yes"}
     disability_information {"Lorem ipsum disability"}
   end
