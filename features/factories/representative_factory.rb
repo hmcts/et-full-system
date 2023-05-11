@@ -13,7 +13,7 @@ FactoryBot.define do
     post_code {'SW1H 9PP'}
     telephone_number {'01111 123456'}
     alternative_telephone_number {'02222 654321'}
-    email_address  {'sivvoy.taing@hmcts.net'}
+    email_address  {'representative@hmcts.net'}
     dx_number  {'dx1234567890'}
     representative_have {:"questions.have_representative.options.yes"}
     representative_mobile {'07987654321'}
@@ -33,7 +33,7 @@ FactoryBot.define do
     post_code {'SW1H 9PP'}
     telephone_number {'01111 123456'}
     alternative_telephone_number {'02222 654321'}
-    email_address  {'sivvoy.taing@hmcts.net'}
+    email_address  {'representative@hmcts.net'}
     dx_number  { nil }
     representative_have {'Yes'}
     representative_mobile {'07987654321'}
