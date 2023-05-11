@@ -20,7 +20,7 @@ module EtFullSystem
                 average_weekly_hours: employment.try(:average_weekly_hours).try(:to_f).try(:to_s),
                 pay_before_tax: pay_tax(employment.try(:pay_before_tax), employment.pay_period_type.to_s.split('.').last),
                 pay_after_tax: pay_tax(employment.try(:pay_after_tax), employment.pay_period_type.to_s.split('.').last),
-                paid_for_notice_period: nil,
+                paid_for_notice_period: false,
                 notice_period: notice_period(employment.notice_period, employment.notice_period_type),
                 employers_pension_scheme: employers_pension_scheme(employment),
                 benefits: employment.try(:benefits)
