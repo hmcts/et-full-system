@@ -140,7 +140,6 @@ Then /^the claim should be present in CCD$/ do
   ccd_object.assert_primary_employment(@employment, @claimant)
   ccd_object.assert_claimant_work_address(@respondent.first)
   ccd_object.assert_respondents(@respondent)
-
   expect(ccd_object.find_pdf_file).to match_et1_pdf_for(claim: @claim, claimants: @claimant, representative: @representative.first, respondents: @respondent, employment: @employment)
 end
 
@@ -261,9 +260,9 @@ Given(/^a claimant submitting data to trigger a 401 error for the first 3 reques
 end
 
 And(/^the CCD claim should have (\d+) ACAS certificates$/) do |number|
-  sleep 10
   office = @respondent[0]["expected_office"]
   ccd_office_lookup = ::EtFullSystem::Test::CcdOfficeLookUp
   ccd_object = EtFullSystem::Test::Ccd::Et1CcdSingleClaimant.find_by_reference(@claim_reference, ccd_office_lookup.office_lookup[office][:single][:case_type_id])
-  ccd_object.assert_acas_pdf_file_quantity(5)
+  expected_names = @respondent[0..number].map { |r| "acas_#{r[:name]}.pdf" }
+  expect(ccd_object.find_acas_names(number)).to match_array(expected_names)
 end
