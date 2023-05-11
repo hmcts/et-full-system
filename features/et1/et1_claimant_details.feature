@@ -28,6 +28,14 @@ Feature:
     When entering an invalid email address
     Then I should see an error message for entering invalid email address
 
+  Scenario: Invalid first name
+    When entering an invalid first name
+    Then I should see an error message
+
+  Scenario: Invalid last name
+    When entering an invalid last name
+    Then I should see an error message
+
   Scenario: Invalid UK postcode error message
     When entering 'UTOI&*"?£$' postcode
     Then I should see an error message for invalid UK postcode please use SW55 9QT

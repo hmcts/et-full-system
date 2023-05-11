@@ -75,3 +75,13 @@ end
 Then("I should see an invalid error message for allow video attendance claimant details page") do
   expect(et1_claimant_details_page.has_correct_invalid_error_message_for_allow_video_attendance?).to be true
 end
+
+When(/^entering an invalid first name$/) do
+  et1_claimant_details_page.first_name.set('¡€#')
+  et1_claimant_details_page.save_and_continue
+end
+
+When(/^entering an invalid last name$/) do
+  et1_claimant_details_page.last_name.set('!@£')
+  et1_claimant_details_page.save_and_continue
+end
