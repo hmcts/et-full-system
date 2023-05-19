@@ -60,6 +60,19 @@ module EtFullSystem
           expect(responses_data.first).to include(expected_values.except(:disagree_claimant_notice_reason, :disagree_claimant_pension_benefits_reason, :allow_video_attendance).stringify_keys)
           #TODO: remove exceptions (see bug ticket RST-4945)
         end
+
+        def change_office()
+          data = self.page.find(:css, "a[href='/admin/responses?scope=all']").text.delete('All ()') # This allows us to create a CSS matcher for the top row of the data
+          self.page.find(:css,"tr[id='response_#{data}'] a[title='Edit']").click
+          self.page.find(:css, '#select2-response_office_id-container').click
+          self.page.find(:css, "span[class='select2-container select2-container--default select2-container--open'] li:nth-child(2)").click
+          self.page.find(:css, "input[value='Update Response']").click
+        end
+
+        def verify_office()
+          data = self.page.find(:css, "a[href='/admin/responses?scope=all']").text.delete('All ()')
+          self.page.find(:css, "tr[id='response_#{data}'] td[class='col col-office']").text == "Bristol"
+        end
       end
     end
   end
