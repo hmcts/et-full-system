@@ -266,3 +266,16 @@ And(/^the CCD claim should have (\d+) ACAS certificates$/) do |number|
   expected_names = @respondent[0..number].map { |r| "acas_#{r[:name]}.pdf" }
   expect(ccd_object.find_acas_names(number)).to match_array(expected_names)
 end
+
+And(/^the PDF is converted correctly$/) do
+  office = @respondent[0]["expected_office"]
+  claimant = @claimant[0]
+  ccd_office_lookup = ::EtFullSystem::Test::CcdOfficeLookUp
+  ccd_object = EtFullSystem::Test::Ccd::Et1CcdSingleClaimant.find_by_reference(@claim_reference, ccd_office_lookup.office_lookup[office][:single][:case_type_id])
+
+  ccd_pdf = ccd_object.find_pdf_file
+
+  expect(ccd_pdf).to match_et1_pdf_for(claim: @claim, claimants: @claimant, representative: @representative.first, respondents: @respondent, employment: @employment)
+  # expect(ccd_pdf).to match('simple_user_with_rtf.rtf')
+  ccd_pdf.body.should == 'simple_user_with_rtf.rtf'
+end
