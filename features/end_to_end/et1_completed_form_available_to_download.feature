@@ -62,7 +62,7 @@ Feature:
     Then I can verify the claim has correct office code and reference
 
   Scenario: Claimant's rtf file is converted to a pdf in CCD
-    Given an employee making a claim by uploading a large Rich Text Format document
+    Given an employee making a claim by uploading a Rich Text Format document
     When the completed form is submitted
     Then the PDF file should be present in CCD
     And the PDF is converted correctly

@@ -274,8 +274,12 @@ And(/^the PDF is converted correctly$/) do
   ccd_object = EtFullSystem::Test::Ccd::Et1CcdSingleClaimant.find_by_reference(@claim_reference, ccd_office_lookup.office_lookup[office][:single][:case_type_id])
 
   ccd_pdf = ccd_object.find_pdf_file
+  rtf_file = 'features/support/fixtures/simple_user_with_rtf.rtf'
 
   expect(ccd_pdf).to match_et1_pdf_for(claim: @claim, claimants: @claimant, representative: @representative.first, respondents: @respondent, employment: @employment)
-  # expect(ccd_pdf).to match('simple_user_with_rtf.rtf')
-  ccd_pdf.body.should == 'simple_user_with_rtf.rtf'
+
+  pdf_content = File.read(ccd_pdf)
+  rtf_content = File.read(rtf_file)
+
+  expect(pdf_content).to eq(rtf_content)
 end
