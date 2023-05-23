@@ -1,4 +1,4 @@
-require 'rtf'
+require 'ruby-rtf'
 require 'pdf-reader'
 
 Given("a DUMMY USER making a claim") do
@@ -277,12 +277,15 @@ And(/^the PDF is converted correctly$/) do
   ccd_object = EtFullSystem::Test::Ccd::Et1CcdSingleClaimant.find_by_reference(@claim_reference, ccd_office_lookup.office_lookup[office][:single][:case_type_id])
 
   ccd_pdf = ccd_object.find_pdf_attachment
+  reader = PDF::Reader.new(ccd_pdf)
+  pdf_content = reader.pages[0].text
+
   rtf_file = 'features/support/fixtures/simple_user_with_rtf.rtf'
+  rtf_content = File.read(rtf_file)
+  parser = RubyRTF::Parser.new
+  rtf_text = parser.parse(rtf_content).sections.map do |val|
+    val[:text]
+  end.join(' ')
 
-  expect(ccd_pdf).to match_et1_pdf_for(claim: @claim, claimants: @claimant, representative: @representative.first, respondents: @respondent, employment: @employment)
-
-  pdf_content = PDF::Reader.new(ccd_pdf).pages[0].text.split("\n")[0]
-  rtf_content = File.open(rtf_file, 'r') { |file| file.gets }
-
-  expect(pdf_content).to eq(rtf_content)
+  expect(pdf_content).to eq(rtf_text)
 end

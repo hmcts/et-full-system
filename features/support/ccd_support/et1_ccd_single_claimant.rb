@@ -126,7 +126,6 @@ module EtFullSystem
 
         def find_pdf_attachment
           download_file(response, /\Aet1_attachment_[A-Za-z]+_[A-Za-z]+\.pdf\z/)
-          # download_file(response, 'pdf')
         end
 
         def find_rtf_file

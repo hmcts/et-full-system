@@ -210,10 +210,10 @@ GEM
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.10.0)
     rspec-support (3.10.2)
-    rtf (0.3.3)
     ruby-debug-ide (0.7.3)
       rake (>= 0.8.1)
     ruby-rc4 (0.1.5)
+    ruby-rtf (0.0.5)
     rubyntlm (0.6.3)
     rubyzip (2.3.2)
     safe_shell (1.1.0)
@@ -277,8 +277,8 @@ DEPENDENCIES
   pry
   rake
   rspec (~> 3.7)
-  rtf
   ruby-debug-ide
+  ruby-rtf
   rubyzip (~> 2.3)
   selenium-webdriver (~> 4.7)
   settingslogic
