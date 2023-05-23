@@ -1,3 +1,6 @@
+require 'rtf'
+require 'pdf-reader'
+
 Given("a DUMMY USER making a claim") do
   @claimant = FactoryBot.create_list(:claimant, 1, :dummy_data, )
   @representative = FactoryBot.create_list(:representative, 1, :et1_information)
@@ -273,13 +276,13 @@ And(/^the PDF is converted correctly$/) do
   ccd_office_lookup = ::EtFullSystem::Test::CcdOfficeLookUp
   ccd_object = EtFullSystem::Test::Ccd::Et1CcdSingleClaimant.find_by_reference(@claim_reference, ccd_office_lookup.office_lookup[office][:single][:case_type_id])
 
-  ccd_pdf = ccd_object.find_pdf_file
+  ccd_pdf = ccd_object.find_pdf_attachment
   rtf_file = 'features/support/fixtures/simple_user_with_rtf.rtf'
 
   expect(ccd_pdf).to match_et1_pdf_for(claim: @claim, claimants: @claimant, representative: @representative.first, respondents: @respondent, employment: @employment)
 
-  pdf_content = File.read(ccd_pdf)
-  rtf_content = File.read(rtf_file)
+  pdf_content = PDF::Reader.new(ccd_pdf).pages[0].text.split("\n")[0]
+  rtf_content = File.open(rtf_file, 'r') { |file| file.gets }
 
   expect(pdf_content).to eq(rtf_content)
 end
