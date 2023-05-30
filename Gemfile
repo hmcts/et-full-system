@@ -32,9 +32,8 @@ group :test do
   gem 'et_ccd_client', git: 'https://github.com/hmcts/et-ccd-client-ruby.git', tag: 'v0.4.0'
   gem 'et_test_helpers', git: 'https://github.com/hmcts/et_test_helpers.git', tag: 'v1.1.4'
 
-  # rtf and pdf file readers
-  gem 'ruby-rtf'
-  gem 'pdf-reader'
+  # rtf and pdf file reader
+  gem 'yomu'
 end
 
 group :development, :test do
