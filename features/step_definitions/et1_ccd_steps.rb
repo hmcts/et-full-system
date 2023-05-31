@@ -287,10 +287,4 @@ And(/^the PDF is converted correctly$/) do
   expect(rtf_file_first.length).to eq(pdf_content_first.length)
   expect(rtf_file_second.length).to eq(pdf_content_second.length)
   expect(File.size(ccd_pdf)).not_to eq(File.size(rtf_file))
-
-  # puts(rtf_file_first)
-  # puts(pdf_content_first)
-  # puts("")
-  # puts(rtf_file_second)
-  # puts(pdf_content_second)
 end
