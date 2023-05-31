@@ -33,7 +33,8 @@ group :test do
   gem 'et_test_helpers', git: 'https://github.com/hmcts/et_test_helpers.git', tag: 'v1.1.4'
 
   # rtf and pdf file reader
-  gem 'yomu'
+  gem 'ruby-rtf'
+  gem 'pdf-reader'
 end
 
 group :development, :test do

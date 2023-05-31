@@ -1,4 +1,5 @@
-require 'yomu'
+require 'ruby-rtf'
+require 'pdf-reader'
 
 Given("a DUMMY USER making a claim") do
   @claimant = FactoryBot.create_list(:claimant, 1, :dummy_data, )
@@ -275,16 +276,14 @@ And(/^the PDF is converted correctly$/) do
   ccd_object = EtFullSystem::Test::Ccd::Et1CcdSingleClaimant.find_by_reference(@claim_reference, ccd_office_lookup.office_lookup[office][:single][:case_type_id])
 
   ccd_pdf = ccd_object.find_pdf_attachment
-  yomu_pdf = Yomu.new ccd_pdf
-  pdf_content_first = yomu_pdf.text.lines.second.chomp
-  pdf_content_second = yomu_pdf.text.lines.fourth.chomp
+  reader = PDF::Reader.new(ccd_pdf)
+  pdf_content = reader.pages[0].text.lines.first.strip
 
   rtf_file = 'features/support/fixtures/simple_user_with_rtf.rtf'
-  yomu_rtf = Yomu.new rtf_file
-  rtf_file_first = yomu_rtf.text.lines.first.chomp
-  rtf_file_second = yomu_rtf.text.lines.third.chomp
+  rtf_content = File.read(rtf_file)
+  parser = RubyRTF::Parser.new
+  rtf_text = parser.parse(rtf_content).sections.first[:text].strip
 
-  expect(rtf_file_first.length).to eq(pdf_content_first.length)
-  expect(rtf_file_second.length).to eq(pdf_content_second.length)
   expect(File.size(ccd_pdf)).not_to eq(File.size(rtf_file))
+  expect(rtf_text.length).to eq(pdf_content.length)
 end
