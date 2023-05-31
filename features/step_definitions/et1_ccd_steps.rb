@@ -174,7 +174,7 @@ Then /^the PDF file should be present in CCD$/ do
   ccd_object.assert_respondents(@respondent)
 
   expect(ccd_object.find_pdf_file).to match_et1_pdf_for(claim: @claim, claimants: @claimant, representative: @representative.first, respondents: @respondent, employment: @employment)
-  expect (ccd_object.as_json['response']['case_fields']['documentCollection'][1]['value']['uploadedDocument']['document_filename'].downcase) == (%W[et1_attachment_#{claimant[:first_name].underscore}_#{claimant[:last_name].downcase.delete("'")}.pdf])
+  expect(ccd_object.as_json['response']['case_fields']['documentCollection'][1]['value']['uploadedDocument']['document_filename'].downcase) == (%W[et1_attachment_#{claimant[:first_name].underscore}_#{claimant[:last_name].downcase.delete("'")}.pdf])
 end
 
 Then /^the multiple claimants should be present in CCD$/ do
@@ -271,26 +271,26 @@ end
 
 And(/^the PDF is converted correctly$/) do
   office = @respondent[0]["expected_office"]
-  claimant = @claimant[0]
   ccd_office_lookup = ::EtFullSystem::Test::CcdOfficeLookUp
   ccd_object = EtFullSystem::Test::Ccd::Et1CcdSingleClaimant.find_by_reference(@claim_reference, ccd_office_lookup.office_lookup[office][:single][:case_type_id])
 
-  ccd_object.assert_primary_reference(@claim_reference)
-  ccd_object.assert_primary_claimants(@claimant)
-  ccd_object.assert_primary_representative(@representative)
-  ccd_object.assert_primary_employment(@employment, @claimant)
-  ccd_object.assert_claimant_work_address(@respondent.first)
-  ccd_object.assert_respondents(@respondent)
-
   ccd_pdf = ccd_object.find_pdf_attachment
   yomu_pdf = Yomu.new ccd_pdf
-  pdf_content = yomu_pdf.text.lines.second.chomp
+  pdf_content_first = yomu_pdf.text.lines.second.chomp
+  pdf_content_second = yomu_pdf.text.lines.fourth.chomp
 
   rtf_file = 'features/support/fixtures/simple_user_with_rtf.rtf'
   yomu_rtf = Yomu.new rtf_file
-  rtf_text = yomu_rtf.text.lines.first.chomp
+  rtf_file_first = yomu_rtf.text.lines.first.chomp
+  rtf_file_second = yomu_rtf.text.lines.third.chomp
 
-  expect(rtf_text.length).to eq(pdf_content.length)
-  puts(rtf_text)
-  puts(pdf_content)
+  expect(rtf_file_first.length).to eq(pdf_content_first.length)
+  expect(rtf_file_second.length).to eq(pdf_content_second.length)
+  expect(File.size(ccd_pdf)).not_to eq(File.size(rtf_file))
+
+  # puts(rtf_file_first)
+  # puts(pdf_content_first)
+  # puts("")
+  # puts(rtf_file_second)
+  # puts(pdf_content_second)
 end
