@@ -280,11 +280,15 @@ And(/^the PDF is converted correctly$/) do
   pdf_content_first_line = reader.pages[0].text.lines.first.strip
   pdf_content_second_line = reader.pages[0].text.lines.second.strip
 
+  rtf_text_first_line = nil
+  rtf_text_second_line = nil
   rtf_file = 'features/support/fixtures/simple_user_with_rtf.rtf'
-  rtf_content = File.read(rtf_file)
-  parser = RubyRTF::Parser.new
-  rtf_text_first_line = parser.parse(rtf_content).sections.first[:text].strip
-  rtf_text_second_line = parser.parse(rtf_content).sections.second[:text].strip
+  silence_warnings do
+    rtf_content = File.read(rtf_file)
+    parser = RubyRTF::Parser.new
+    rtf_text_first_line = parser.parse(rtf_content).sections.first[:text].strip
+    rtf_text_second_line = parser.parse(rtf_content).sections.second[:text].strip
+  end
 
   expect(File.size(ccd_pdf)).not_to eq(File.size(rtf_file))
   expect(rtf_text_first_line.length).to eq(pdf_content_first_line.length)

@@ -66,4 +66,3 @@ Feature:
     When the completed form is submitted
     Then the PDF file should be present in CCD
     And the PDF is converted correctly
-    # last step - downlaod file from CCD using download_file(), compare the first line of the PDF with the .rtf to check they match
