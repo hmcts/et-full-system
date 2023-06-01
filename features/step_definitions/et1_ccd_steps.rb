@@ -175,8 +175,7 @@ Then /^the PDF file should be present in CCD$/ do
   ccd_object.assert_respondents(@respondent)
 
   expect(ccd_object.find_pdf_file).to match_et1_pdf_for(claim: @claim, claimants: @claimant, representative: @representative.first, respondents: @respondent, employment: @employment)
-  expect(ccd_object.as_json['response']['case_fields']['documentCollection'][1]['value']['uploadedDocument']['document_filename'].downcase) == (%W[et1_attachment_#{claimant[:first_name].underscore}_#{claimant[:last_name].downcase.delete("'")}.pdf])
-end
+  expect (ccd_object.as_json.dig('response', 'case_fields', 'documentCollection', 1, 'value', 'uploadedDocument', 'document_filename').to_s.downcase.delete("'")) == (%W[et1_attachment_#{claimant[:first_name].underscore}_#{claimant[:last_name].downcase.delete("'")}.pdf]) end
 
 Then /^the multiple claimants should be present in CCD$/ do
   admin_api = EtFullSystem::Test::AdminApi.new
@@ -286,8 +285,9 @@ And(/^the PDF is converted correctly$/) do
   silence_warnings do
     rtf_content = File.read(rtf_file)
     parser = RubyRTF::Parser.new
-    rtf_text_first_line = parser.parse(rtf_content).sections.first[:text].strip
-    rtf_text_second_line = parser.parse(rtf_content).sections.second[:text].strip
+    rtf_sections = parser.parse(rtf_content).sections
+    rtf_text_first_line = rtf_sections.first[:text].strip
+    rtf_text_second_line = rtf_sections.second[:text].strip
   end
 
   expect(File.size(ccd_pdf)).not_to eq(File.size(rtf_file))

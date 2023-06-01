@@ -273,12 +273,12 @@ DEPENDENCIES
   mechanize (~> 2.7, >= 2.7.6)
   parallel_tests
   pdf-forms (~> 1.1, >= 1.1.1)
-  pdf-reader
+  pdf-reader (~> 2.11.0)
   pry
   rake
   rspec (~> 3.7)
   ruby-debug-ide
-  ruby-rtf
+  ruby-rtf (~> 0.0.5)
   rubyzip (~> 2.3)
   selenium-webdriver (~> 4.7)
   settingslogic
