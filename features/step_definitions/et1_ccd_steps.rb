@@ -1,3 +1,6 @@
+require 'ruby-rtf'
+require 'pdf-reader'
+
 Given("a DUMMY USER making a claim") do
   @claimant = FactoryBot.create_list(:claimant, 1, :dummy_data, )
   @representative = FactoryBot.create_list(:representative, 1, :et1_information)
@@ -172,8 +175,7 @@ Then /^the PDF file should be present in CCD$/ do
   ccd_object.assert_respondents(@respondent)
 
   expect(ccd_object.find_pdf_file).to match_et1_pdf_for(claim: @claim, claimants: @claimant, representative: @representative.first, respondents: @respondent, employment: @employment)
-  expect (ccd_object.as_json['response']['case_fields']['documentCollection'][1]['value']['uploadedDocument']['document_filename'].downcase) == (%W[et1_attachment_#{claimant[:first_name].underscore}_#{claimant[:last_name].downcase.delete("'")}.pdf])
-end
+  expect (ccd_object.as_json.dig('response', 'case_fields', 'documentCollection', 1, 'value', 'uploadedDocument', 'document_filename').to_s.downcase.delete("'")) == (%W[et1_attachment_#{claimant[:first_name].underscore}_#{claimant[:last_name].downcase.delete("'")}.pdf]) end
 
 Then /^the multiple claimants should be present in CCD$/ do
   admin_api = EtFullSystem::Test::AdminApi.new
@@ -265,4 +267,30 @@ And(/^the CCD claim should have (\d+) ACAS certificates$/) do |number|
   ccd_object = EtFullSystem::Test::Ccd::Et1CcdSingleClaimant.find_by_reference(@claim_reference, ccd_office_lookup.office_lookup[office][:single][:case_type_id])
   expected_names = @respondent[0..number].map { |r| "acas_#{r[:name]}.pdf" }
   expect(ccd_object.find_acas_names(number)).to match_array(expected_names)
+end
+
+And(/^the PDF is converted correctly$/) do
+  office = @respondent[0]["expected_office"]
+  ccd_office_lookup = ::EtFullSystem::Test::CcdOfficeLookUp
+  ccd_object = EtFullSystem::Test::Ccd::Et1CcdSingleClaimant.find_by_reference(@claim_reference, ccd_office_lookup.office_lookup[office][:single][:case_type_id])
+
+  ccd_pdf = ccd_object.find_pdf_attachment
+  reader = PDF::Reader.new(ccd_pdf)
+  pdf_content_first_line = reader.pages[0].text.lines.first.strip
+  pdf_content_second_line = reader.pages[0].text.lines.second.strip
+
+  rtf_text_first_line = nil
+  rtf_text_second_line = nil
+  rtf_file = 'features/support/fixtures/simple_user_with_rtf.rtf'
+  silence_warnings do
+    rtf_content = File.read(rtf_file)
+    parser = RubyRTF::Parser.new
+    rtf_sections = parser.parse(rtf_content).sections
+    rtf_text_first_line = rtf_sections.first[:text].strip
+    rtf_text_second_line = rtf_sections.second[:text].strip
+  end
+
+  expect(File.size(ccd_pdf)).not_to eq(File.size(rtf_file))
+  expect(rtf_text_first_line.length).to eq(pdf_content_first_line.length)
+  expect(rtf_text_second_line.length).to eq(pdf_content_second_line.length)
 end
