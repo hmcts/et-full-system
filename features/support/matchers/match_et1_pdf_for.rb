@@ -1,5 +1,5 @@
-def match_et1_pdf_for(expected)
-  EtFullSystem::Test::MatchEt1PdfFor.new(expected)
+def match_et1_pdf_for(**expected)
+  EtFullSystem::Test::MatchEt1PdfFor.new(**expected)
 end
 
 module EtFullSystem
