@@ -28,7 +28,7 @@ end
 
 Then("I should be able to submit two claimant details") do
   has_loaded = expect(et1_group_claimants_page).to have_page_header(wait: 1)
-  raise "Page not loaded within #{wait_time} seconds" unless has_loaded
+  raise "Page not loaded within 1 second" unless has_loaded
   et1_group_claimants_page.set(@claimant)
   et1_group_claimants_page.save_and_continue
   expect(et1_representatives_details_page).to have_page_header(wait: 0.05)
