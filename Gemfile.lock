@@ -12,15 +12,16 @@ GIT
 
 GIT
   remote: https://github.com/hmcts/et_test_helpers.git
-  revision: 6c97b12e3666570b100046cfbc6c804bed364761
-  tag: v1.1.4
+  revision: d94202ab4fb009044e6e833080d81845ce4188c2
+  tag: v1.3.2
   specs:
-    et_test_helpers (1.1.4)
+    et_test_helpers (1.3.2)
       activesupport (> 5.0)
       capybara (~> 3)
       i18n (~> 1.8)
       rspec (>= 3.0)
-      site_prism (~> 3.5)
+      site_prism (>= 3.5)
+      webmock
 
 GEM
   remote: https://rubygems.org/

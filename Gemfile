@@ -30,7 +30,7 @@ group :test do
   gem 'settingslogic'
   gem 'mail'
   gem 'et_ccd_client', git: 'https://github.com/hmcts/et-ccd-client-ruby.git', tag: 'v0.4.0'
-  gem 'et_test_helpers', git: 'https://github.com/hmcts/et_test_helpers.git', tag: 'v1.1.4'
+  gem 'et_test_helpers', git: 'https://github.com/hmcts/et_test_helpers.git', tag: 'v1.3.2'
 
   # rtf and pdf file reader
   gem 'ruby-rtf', '~> 0.0.5'
