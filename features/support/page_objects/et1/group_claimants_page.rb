@@ -4,6 +4,7 @@ module EtFullSystem
     module Et1
       class GroupClaimantsPage < BasePage
         include RSpec::Matchers
+        include EtTestHelpers::Page
         # Group claims
         element :page_header, :page_title, 'claims.additional_claimants.header', exact: false
         # @!method error_summary

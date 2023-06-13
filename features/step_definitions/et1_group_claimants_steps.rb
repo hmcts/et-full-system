@@ -27,10 +27,13 @@ Then("I can very that the copy texts correctly dispayed for group claimants") do
 end
 
 Then("I should be able to submit two claimant details") do
-  sleep(0.05)
+  # sleep(0.05)
+  wait_time = 1 # Maximum wait time in seconds
+  has_loaded = expect(et1_group_claimants_page).to have_page_header(wait: wait_time)
+  raise "Page not loaded within #{wait_time} seconds" unless has_loaded
   et1_group_claimants_page.set(@claimant)
   et1_group_claimants_page.save_and_continue
-  expect(et1_representatives_details_page).to have_page_header
+  expect(et1_representatives_details_page).to have_page_header(wait: 0.05)
 end
 
 When("there are group claimants") do
