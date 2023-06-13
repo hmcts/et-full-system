@@ -101,7 +101,6 @@ module EtFullSystem
           ::EtFullSystem::Test::Messaging.instance.t(*args, **kwargs)
         end
 
-
         def factory_translate(*args)
           ::EtFullSystem::Test::Messaging.instance.factory_translate(*args)
         end
