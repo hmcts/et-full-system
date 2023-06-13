@@ -27,9 +27,7 @@ Then("I can very that the copy texts correctly dispayed for group claimants") do
 end
 
 Then("I should be able to submit two claimant details") do
-  # sleep(0.05)
-  wait_time = 1 # Maximum wait time in seconds
-  has_loaded = expect(et1_group_claimants_page).to have_page_header(wait: wait_time)
+  has_loaded = expect(et1_group_claimants_page).to have_page_header(wait: 1)
   raise "Page not loaded within #{wait_time} seconds" unless has_loaded
   et1_group_claimants_page.set(@claimant)
   et1_group_claimants_page.save_and_continue
