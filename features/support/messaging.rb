@@ -86,8 +86,8 @@ module EtFullSystem
 
       private
 
-      def t(*args)
-        ::EtFullSystem::Test::Messaging.instance.t(*args)
+      def t(*args, **kwargs)
+        ::EtFullSystem::Test::Messaging.instance.t(*args, **kwargs)
       end
 
       def factory_translate(value, *args)
@@ -97,8 +97,8 @@ module EtFullSystem
       end
 
       class_methods do
-        def t(*args)
-          ::EtFullSystem::Test::Messaging.instance.t(*args)
+        def t(*args, **kwargs)
+          ::EtFullSystem::Test::Messaging.instance.t(*args, **kwargs)
         end
 
         def factory_translate(*args)
