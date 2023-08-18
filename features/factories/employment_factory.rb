@@ -9,6 +9,7 @@ FactoryBot.define do
     trait :notice_period do
       employment_details {:"claims.employment.yes"}
       current_work_situation {:"simple_form.options.employment.current_situation.notice_period"}
+      current_situation {"notice_period"}
       job_title { Faker::Company.profession }
       start_date {'18/11/2009'}
       end_date {''}
@@ -33,6 +34,7 @@ FactoryBot.define do
     trait :still_employed do
       employment_details {:"claims.employment.yes"}
       current_work_situation {:"simple_form.options.employment.current_situation.still_employed"}
+      current_situation {"still_employed"}
       job_title { Faker::Company.profession }
       start_date {'18/11/2009'}
       end_date {''}
