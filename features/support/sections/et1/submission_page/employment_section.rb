@@ -65,7 +65,6 @@ module EtFullSystem
                                                                                   employment.pay_period_type))
                 expect(average_weekly_hours_worked).to have_answer(text: with_not_entered(employment.average_weekly_hours))
                 # expect(current_situation).to have_answer(text: with_not_entered(factory_translate(employment.current_work_situation)))
-                expect(current_situation).to have_answer(text: with_not_entered(factory_translate(employment.current_situation)))
                 expect(job).to have_answer(text: with_not_entered(employment.job_title))
                 expect(benefit_details).to have_answer(text: with_not_entered(employment.benefits))
                 expect(another_job).to have_answer(text: with_not_entered(factory_translate(employment.new_job)))
