@@ -197,36 +197,19 @@ module EtFullSystem
           if data[:employment_details] == :"claims.employment.yes"
 
             your_employment_details.set(data[:employment_details])
-            # employment_current_situation.set(data[:current_situation])
-            # id="employment-current-situation-still-employed-field"
 
-            if data[:current_situation] == "notice_period"
+            if data[:current_situation].to_s.split('.').last == "notice_period"
               employment_current_situation.set("employment-current-situation-notice-period-field")
               notice_period.set(data[:notice_period_end_date])
-            elsif data[:current_situation] == "still_employed"
+            elsif data[:current_situation].to_s.split('.').last == "still_employed"
               employment_current_situation.set("employment-current-situation-still-employed-field")
-            elsif data[:current_situation] == "employment_terminated"
+            elsif data[:current_situation].to_s.split('.').last == "employment_terminated"
               employment_current_situation.set("employment-current-situation-employment-terminated-field")
               employment_end_date.set(data[:end_date])
             end
 
             employment_job_title.set(data[:job_title])
             employment_start_date.set(data[:start_date])
-
-            # if data[:current_situation] == :notice_period
-            #   notice_period.set(data[:notice_period_end_date])
-            # end
-            # if data[:current_situation] == :employment_terminated
-            #   employment_end_date.set(data[:end_date])
-            # end
-
-            # original
-            # if data[:current_situation] == :"simple_form.options.employment.current_situation.notice_period"
-            #   notice_period.set(data[:notice_period_end_date])
-            # end
-            # if data[:current_situation] == :"simple_form.options.employment.current_situation.employment_terminated"
-            #   employment_end_date.set(data[:end_date])
-            # end
 
             if data[:paid_for_notice_period] == :"claims.employment.paid_for_notice_period.yes"
               worked_notice_period_or_paid_in_lieu.set(data[:paid_for_notice_period])
