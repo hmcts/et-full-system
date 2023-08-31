@@ -9,7 +9,7 @@ module EtFullSystem
               expected_values = {
                 job_title: employment.job_title,
                 start_date: employment.start_date,
-                employment_continuing: employment.end_date.empty? || date_in_future(employment.end_date).present?,
+                employment_continuing: employment.current_situation.to_s.split('.').last == 'still_employed' || employment.current_situation.to_s.split('.').last == 'notice_period' ,
                 ended_date: employment.end_date,
                 ending_date: employment.notice_period_end_date
               }
