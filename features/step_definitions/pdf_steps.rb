@@ -133,3 +133,12 @@ Given("an employee making a claim without providing anymore information") do
   @employment = FactoryBot.create(:employment, :notice_period)
   @claim = FactoryBot.create(:claim, :no_to_other_important_details)
 end
+
+Given(/^an employee making a claim without a date of birth$/) do
+  @claimant = FactoryBot.create_list(:claimant, 1, :person_data_no_dob)
+  @representative = FactoryBot.create_list(:representative, 1, :et1_information)
+  @respondent = FactoryBot.create_list(:respondent,  1, :yes_acas, :both_addresses)
+  @employment = FactoryBot.create(:employment, :notice_period)
+  @claim = FactoryBot.create(:claim, :no_to_other_important_details)
+end
+

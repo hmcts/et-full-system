@@ -32,6 +32,17 @@ FactoryBot.define do
       post_code { 'SW1H 9AJ' }
     end
 
+    trait :person_data_no_dob do
+      title { :"simple_form.options.claimant.title.ms" }
+      first_name { Faker::Name.first_name }
+      last_name { Faker::Name.last_name }
+      building { Faker::Address.building_number }
+      street { Faker::Address.street_name }
+      locality { 'London' }
+      county { 'Manchester' }
+      post_code { 'SW1H 9AJ' }
+    end
+
     trait :fake_ccd_error_422_claimant do
       title { :"simple_form.options.claimant.title.ms" }
       first_name { 'Force' }
