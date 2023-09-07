@@ -1777,7 +1777,7 @@ en:
           ms: 'Ms'
         questions:
           full_name: 'Full name'
-          date_of_birth: 'Date of birth (optional)'
+          date_of_birth: 'Date of birth'
           address: 'Address'
     additional_information:
       title: 'Additional information'

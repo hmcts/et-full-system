@@ -1799,7 +1799,7 @@ cy:
           ms: 'Ms'
         questions:
           full_name: 'Enw llawn'
-          date_of_birth: 'Dyddiad geni (dewisol)'
+          date_of_birth: 'Dyddiad geni'
           address: 'Cyfeiriad'
     additional_information:
       title: 'Gwybodaeth ychwanegol'
