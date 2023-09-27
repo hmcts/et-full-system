@@ -44,6 +44,6 @@ module EtFullSystem
     end
   end
 end
-EtFullSystem::Test::WaitForServer.new("#{::EtFullSystem::Test::Configuration.et1_url}/apply/ping.json").wait
-EtFullSystem::Test::WaitForServer.new("#{::EtFullSystem::Test::Configuration.et3_url}/ping.json").wait
-EtFullSystem::Test::WaitForServer.new("#{::EtFullSystem::Test::Configuration.admin_url.gsub(/\/admin\z/, '')}/ping.json").wait
+EtFullSystem::Test::WaitForServer.new("#{::EtFullSystem::Test::Configuration.et1_url}/health").wait
+EtFullSystem::Test::WaitForServer.new("#{::EtFullSystem::Test::Configuration.et3_url}/health").wait
+EtFullSystem::Test::WaitForServer.new("#{::EtFullSystem::Test::Configuration.admin_url.gsub(/\/admin\z/, '')}/health").wait
