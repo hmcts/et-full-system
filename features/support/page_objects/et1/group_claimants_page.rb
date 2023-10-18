@@ -139,7 +139,7 @@ module EtFullSystem
           set_field s, :title, claimant_data
           set_field s, :first_name, claimant_data
           set_field s, :last_name, claimant_data
-          set_field s, :date_of_birth, claimant_data
+          set_field s, :date_of_birth_optional, claimant_data
           set_field s, :building, claimant_data
           set_field s, :street, claimant_data
           set_field s, :locality, claimant_data

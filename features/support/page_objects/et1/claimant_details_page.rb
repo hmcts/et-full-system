@@ -211,7 +211,7 @@ module EtFullSystem
           set_field(:title, data) unless data[:title].nil?
           set_field(:first_name, data)
           set_field(:last_name, data)
-          set_field(:date_of_birth, data)
+          set_field(:date_of_birth_optional, data)
           set_field(:gender, data)
 
           claimant_has_special_needs.set(data[:has_special_needs])
