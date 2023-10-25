@@ -36,6 +36,7 @@ FactoryBot.define do
       title { :"simple_form.options.claimant.title.ms" }
       first_name { Faker::Name.first_name }
       last_name { Faker::Name.last_name }
+      date_of_birth { nil }
       building { Faker::Address.building_number }
       street { Faker::Address.street_name }
       locality { 'London' }

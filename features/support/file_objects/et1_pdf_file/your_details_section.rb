@@ -1,4 +1,4 @@
-require_relative './base'
+require_relative './base.rb'
 module EtFullSystem
   module Test
     module FileObjects
@@ -9,9 +9,12 @@ module EtFullSystem
               title: title_for(claimant.title)&.camelcase,
               first_name: claimant.first_name,
               last_name: claimant.last_name,
-              dob_day: claimant.date_of_birth&.split('/')&.at(0) || '',
-              dob_month: claimant.date_of_birth&.split('/')&.at(1) || '',
-              dob_year: claimant.date_of_birth&.split('/')&.at(2) || '',
+              # dob_day: claimant.date_of_birth.split('/')[0],
+              # dob_month: claimant.date_of_birth.split('/')[1],
+              # dob_year: claimant.date_of_birth.split('/')[2],
+              dob_day: claimant.date_of_birth.nil? ? "" : claimant.date_of_birth.split('/')[0],
+              dob_month: claimant.date_of_birth.nil? ? "" : claimant.date_of_birth.split('/')[1],
+              dob_year: claimant.date_of_birth.nil? ? "" : claimant.date_of_birth.split('/')[2],
               gender: gender_for(claimant.gender, optional: true),
               building: claimant.building,
               street: claimant.street,
