@@ -15,6 +15,11 @@ Feature:
     When the completed form is submitted
     Then the claim should be present in CCD
 
+  Scenario: Your details - no date of birth
+    Given an employee making a claim without a date of birth
+    When the completed form is submitted
+    Then the claim should be present in CCD
+
   Scenario: Your details - title Mr, Gender Male
     Given a Male employee making a claim
     When the completed form is submitted

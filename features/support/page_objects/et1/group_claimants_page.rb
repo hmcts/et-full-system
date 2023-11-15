@@ -102,7 +102,7 @@ module EtFullSystem
           expect(self).to have_error_summary
           expect(about_claimant_2.first_name).to have_error(text: t('activemodel.errors.models.additional_claimants_form/additional_claimant.attributes.first_name.blank'))
           expect(about_claimant_2.last_name).to have_error(text: t('activemodel.errors.models.additional_claimants_form/additional_claimant.attributes.last_name.blank'))
-          expect(about_claimant_2.date_of_birth).to have_error(text: t('activemodel.errors.models.claimant.attributes.date_of_birth.invalid'))
+          expect(about_claimant_2.date_of_birth).not_to have_error(text: t('activemodel.errors.models.claimant.attributes.date_of_birth.invalid'))
           expect(about_claimant_2.building).to have_error(text: t('activemodel.errors.models.additional_claimants_form/additional_claimant.attributes.address_building.blank'))
           expect(about_claimant_2.street).to have_error(text: t('activemodel.errors.models.additional_claimants_form/additional_claimant.attributes.address_street.blank'))
           expect(about_claimant_2.locality).to have_error(text: t('activemodel.errors.models.additional_claimants_form/additional_claimant.attributes.address_locality.blank'))

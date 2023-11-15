@@ -624,7 +624,7 @@ cy:
   claims:
     personal_details:
       date_of_birth:
-        label: Dyddiad geni
+        label: Dyddiad geni (dewisol)
         hint: :'simple_form.hints.claimant.date_of_birth'
         parts:
           day: :'simple_form.labels.claimant.date_of_birth.day'

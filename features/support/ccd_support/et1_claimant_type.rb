@@ -3,11 +3,12 @@ module EtFullSystem
     module Et1ClaimantType
       def claimant_ind_type(claimant, secondary: false)
           gender = { 'prefer_not_to_say' => 'Not Known', 'male' => 'Male', 'female' => 'Female' }[claimant[:gender].to_s.split(".").last]
+          date_of_birth = Date.parse(claimant[:date_of_birth]).strftime("%Y-%m-%d") unless claimant[:date_of_birth].nil?
           {
             "claimant_title1" => claimant[:title].to_s.split('.').last.titleize,
             "claimant_first_names" => claimant[:first_name], 
             "claimant_last_name" => claimant[:last_name], 
-            "claimant_date_of_birth" => Date.parse(claimant[:date_of_birth]).strftime("%Y-%m-%d"),
+            "claimant_date_of_birth" => date_of_birth,
             "claimant_gender" => secondary ? nil : gender
           }
       end
