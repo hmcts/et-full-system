@@ -44,7 +44,7 @@ module EtFullSystem
         end
 
         def find_postcode(postcode)
-          url = "#{self.class.base_url}/office_postcodes?q[postcode_contains]=#{postcode}&commit=Filter&order=id_desc"
+          url = "#{self.class.base_url}/office_postcodes?q[postcode_cont]=#{postcode}&commit=Filter&order=id_desc"
           results = JSON.parse(ajax_get(url))
           results.first
         end

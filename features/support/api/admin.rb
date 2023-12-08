@@ -97,7 +97,7 @@ module EtFullSystem
 
       def delete_user_by_email(email)
         mechanize_login
-        query = { q: { email_equals: email } }
+        query = { q: { email_eq: email } }
         response_for_csrf = agent.get("#{url}/users?#{query.to_query}")
         csrf_token = response_for_csrf.search('meta[name=csrf-token]').first['content']
         response = agent.get("#{url}/users.json?#{query.to_query}")
@@ -112,7 +112,7 @@ module EtFullSystem
 
       def find_office_postcode(postcode, timeout: 5, sleep: 0.1, raise: false)
         wait_for(timeout: timeout, sleep: sleep, raise: raise) do
-          office_postcodes(q: {postcode_equals: postcode}).first
+          office_postcodes(q: {postcode_eq: postcode}).first
         end
       end
 
@@ -126,7 +126,7 @@ module EtFullSystem
         login
         Timeout.timeout(timeout) do
           loop do
-            responses = responses q: {reference_equals: reference}
+            responses = responses q: {reference_eq: reference}
             return responses.first if responses.first[:uploaded_files].any? {|f| f['filename'] =~ /\Aet3_.*\.pdf\z/}
             sleep(sleep)
           end
@@ -139,7 +139,7 @@ module EtFullSystem
         login
         Timeout.timeout(timeout) do
           loop do
-            claims = claims q: {reference_equals: reference}
+            claims = claims q: {reference_eq: reference}
             return claims.first if claims.first['ecm_state'].start_with?('complete')
             sleep(sleep)
           end
@@ -151,26 +151,26 @@ module EtFullSystem
       def admin_diversity_data
         login
         response = request(:get, "#{url}/diversity_responses.json?
-          claim_type_contains=data[:claim_type]
-          &sex_contains=data[:sex_contains]
-          &sexual_identity_contains=data[:sexual_identity]
-          &age_group_contains=data[:age_group]
-          &ethnicity_contains=data[:ethnicity]
-          &ethnicity_subgroup_contains=data[:ethnicity_subgroup]
-          &disability_contains=data[:disability]
-          &caring_responsibility_contains=data[:caring_responsibility]
-          &gender_contains=data[:gender]
-          &gender_at_birth_contains=data[:gender_at_birth]
-          &pregnancy_contains=data[:pregnancy]
-          &relationship_contains=data[:relationship]
-          &religion_contains=data[:religion]", cookies: cookies_hash)
+          claim_type_cont=data[:claim_type]
+          &sex_cont=data[:sex_contains]
+          &sexual_identity_cont=data[:sexual_identity]
+          &age_group_cont=data[:age_group]
+          &ethnicity_cont=data[:ethnicity]
+          &ethnicity_subgroup_cont=data[:ethnicity_subgroup]
+          &disability_cont=data[:disability]
+          &caring_responsibility_cont=data[:caring_responsibility]
+          &gender_cont=data[:gender]
+          &gender_at_birth_cont=data[:gender_at_birth]
+          &pregnancy_cont=data[:pregnancy]
+          &relationship_cont=data[:relationship]
+          &religion_cont=data[:religion]", cookies: cookies_hash)
         response[0].delete_if { |k, v| %w"id created_at updated_at".include? k}
       end
 
       def export_response_to_ccd(external_system_id:, response_reference:)
         response = processed_response(response_reference)
         mechanize_login
-        #  {"utf8"=>"✓", "authenticity_token"=>"r5OI+QKjssqdg7YkdFI2pHxVTD+xi82wGjaLQQA0/J7O7OC6gBi7gzoywY08yV9rXBO3kFR0yloBMY1ALjPXyg==", "batch_action"=>"export", "batch_action_inputs"=>"{\"external_system_id\":\"17\"}", "collection_selection_toggle_all"=>"on", "collection_selection"=>["1"], "q"=>{"reference_equals"=>"242000000200"}}
+        #  {"utf8"=>"✓", "authenticity_token"=>"r5OI+QKjssqdg7YkdFI2pHxVTD+xi82wGjaLQQA0/J7O7OC6gBi7gzoywY08yV9rXBO3kFR0yloBMY1ALjPXyg==", "batch_action"=>"export", "batch_action_inputs"=>"{\"external_system_id\":\"17\"}", "collection_selection_toggle_all"=>"on", "collection_selection"=>["1"], "q"=>{"reference_eq"=>"242000000200"}}
         p = agent.current_page
         # <meta name="csrf-token" content="ytwP931nOlzYVWOENBNJHKk8J3uL6iZElQ4Pr9lz++nZOdQuDsBUQjkCNh8ZWdE5cJxcAGyql11WANN
         token = p.search('meta[name=csrf-token]').first['content']
@@ -197,7 +197,7 @@ module EtFullSystem
         login
         Timeout.timeout(timeout) do
           loop do
-            filtered_claims = claims q: {reference_equals: claim_reference}
+            filtered_claims = claims q: {reference_eq: claim_reference}
             return filtered_claims.first if filtered_claims.first.present? && filtered_claims.first[:uploaded_files].any? {|f| f['filename'] =~ /\Aet1_.*\.pdf\z/}
             sleep(sleep)
           end
@@ -211,7 +211,7 @@ module EtFullSystem
         filtered_claims = []
         Timeout.timeout(timeout) do
           loop do
-            filtered_claims = claims q: {reference_equals: reference}
+            filtered_claims = claims q: {reference_eq: reference}
             return filtered_claims.first if filtered_claims.first.present? && filtered_claims.first[:ecm_state] == 'failed'
             yield filtered_claims.first if block_given?
             sleep(sleep)
@@ -226,7 +226,7 @@ module EtFullSystem
         login
         Timeout.timeout(timeout) do
           loop do
-            filtered_claims = claims q: {reference_equals: reference}
+            filtered_claims = claims q: {reference_eq: reference}
             return filtered_claims.first if filtered_claims.first.present? && filtered_claims.first[:ecm_state] == 'erroring'
             yield if block_given?
             sleep(sleep)
@@ -240,7 +240,7 @@ module EtFullSystem
         login
         Timeout.timeout(timeout) do
           loop do
-            filtered_claims = claims q: {reference_equals: reference}
+            filtered_claims = claims q: {reference_eq: reference}
             return filtered_claims.first if filtered_claims.first.present? && filtered_claims.first[:ecm_state] == 'complete'
             yield if block_given?
             sleep(sleep)
@@ -254,7 +254,7 @@ module EtFullSystem
         login
         Timeout.timeout(timeout) do
           loop do
-            filtered_responses = responses q: {case_number_equals: case_number}
+            filtered_responses = responses q: {case_number_eq: case_number}
             return filtered_responses.first if filtered_responses.first.present? && filtered_responses.first[:ecm_state] == 'complete'
             sleep(sleep)
           end
