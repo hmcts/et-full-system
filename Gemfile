@@ -14,7 +14,7 @@ group :test do
   gem 'selenium-webdriver', '~> 4.7'
   gem 'webdrivers', '~> 5.2'
   gem 'capybara-screenshot', '~> 1.0'
-  gem 'cucumber', '~> 8.0'
+  gem 'cucumber', '~> 9.0'
   gem 'aws-sdk-s3', '~> 1.9'
   gem 'azure-storage', '~> 0.15.0.preview', require: false
 
