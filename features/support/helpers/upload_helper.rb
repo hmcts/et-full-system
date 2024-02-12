@@ -2,7 +2,7 @@ module EtFullSystem
   module Test
     module UploadHelper
       def force_remote
-        browser = page.send(:driver).browser
+        browser = Capybara.current_session.send(:driver).browser
         if browser.respond_to?(:file_detector=)
           old_file_detector = browser.send(:bridge).file_detector
           browser.file_detector = lambda do |args|
