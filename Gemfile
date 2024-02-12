@@ -42,5 +42,4 @@ group :development, :test do
   gem 'parallel_tests'
 end
 
-gem 'thor', '~> 0.20.3'
 gem 'rake'
