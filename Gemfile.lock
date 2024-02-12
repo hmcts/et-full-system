@@ -110,7 +110,7 @@ GEM
       ruby2_keywords
     factory_bot (6.4.5)
       activesupport (>= 5.0.0)
-    faker (2.23.0)
+    faker (3.2.3)
       i18n (>= 1.8.11, < 2)
     ffi (1.16.3)
     hashdiff (1.1.0)
@@ -264,7 +264,7 @@ DEPENDENCIES
   et_ccd_client!
   et_test_helpers!
   factory_bot
-  faker (~> 2.0)
+  faker (~> 3.0)
   httparty (~> 0.18)
   i18n (~> 1.8)
   mail

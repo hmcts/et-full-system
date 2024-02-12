@@ -38,7 +38,7 @@ end
 
 group :development, :test do
   gem 'dotenv', '~> 2.2', '>= 2.2.2'
-  gem 'faker', '~> 2.0'
+  gem 'faker', '~> 3.0'
   gem 'parallel_tests'
 end
 
