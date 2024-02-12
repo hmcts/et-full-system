@@ -33,7 +33,7 @@ group :test do
 
   # rtf and pdf file reader
   gem 'ruby-rtf', '~> 0.0.5'
-  gem 'pdf-reader', '~> 2.11.0'
+  gem 'pdf-reader', '~> 2.11'
 end
 
 group :development, :test do
