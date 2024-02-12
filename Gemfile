@@ -41,8 +41,6 @@ group :development, :test do
   gem 'dotenv', '~> 2.2', '>= 2.2.2'
   gem 'faker', '~> 2.0'
   gem 'parallel_tests'
-  gem 'ruby-debug-ide'
-  gem 'debase'
 end
 
 gem 'thor', '~> 0.20.3'
