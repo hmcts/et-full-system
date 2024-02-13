@@ -5,6 +5,7 @@ module EtFullSystem
     class AdminApi
       include ::RSpec::Matchers
       include ::EtFullSystem::Test::I18n
+      include ::EtFullSystem::Test::Admin
 
 
       def url

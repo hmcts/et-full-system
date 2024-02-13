@@ -2,6 +2,7 @@ module EtFullSystem
   module Test
     # A single admin window for use by all tests
     module CommonAdminWindow
+      include Admin
       WINDOW_VAR_NAME = :et_full_system_test_admin_window
 
       def admin_username
@@ -12,7 +13,7 @@ module EtFullSystem
         ::EtFullSystem::Test::Configuration.admin_password
       end
 
-      def reset
+      def reset_common_admin_window
         Thread.current[WINDOW_VAR_NAME] = nil
       end
 

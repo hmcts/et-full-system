@@ -2,6 +2,7 @@ module EtFullSystem
   module Test
     module Admin
       class DashboardPage < Admin::BasePage
+        include EtFullSystem::Test::Admin
         set_url ""
 
         def admin_login(username, password)

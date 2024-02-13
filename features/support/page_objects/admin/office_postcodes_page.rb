@@ -3,6 +3,7 @@ module EtFullSystem
   module Test
     module Admin
       class OfficePostcodesPage < ::EtFullSystem::Test::Admin::BasePage
+        include ::EtFullSystem::Test::Admin
         include ::RSpec::Matchers
         element :new_office_postcode, '#titlebar_right .action_item'
         element :success_error_msg, '.flash_notice' 

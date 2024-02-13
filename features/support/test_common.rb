@@ -12,21 +12,21 @@ require_relative './matchers'
 require_relative './api/admin'
 require_relative './ccd_config'
 require_relative './ccd_support/ccd_office_lookup'
-include EtFullSystem::Test::Pages
-include EtFullSystem::Test::Et1ClaimHelper
-include EtFullSystem::Test::Et3ResponseHelper
-include EtFullSystem::Test::DiversityHelper
-include EtFullSystem::Test::CommonAdminWindow
-include EtFullSystem::Test::Housekeeping
-include EtFullSystem::Test::Et1Export
-include EtFullSystem::Test::Et3Export
-include EtFullSystem::Test::CcdOfficeLookUp
-include EtFullSystem::Test::Admin
-include EtFullSystem::Test::CcdHelper
-include EtFullSystem::Test::SettingsHelper
-include EtFullSystem::Test::MessageBroadcast
+World EtFullSystem::Test::Pages
+World EtFullSystem::Test::Et1ClaimHelper
+World EtFullSystem::Test::Et3ResponseHelper
+World EtFullSystem::Test::DiversityHelper
+World EtFullSystem::Test::CommonAdminWindow
+World EtFullSystem::Test::Housekeeping
+World EtFullSystem::Test::Et1Export
+World EtFullSystem::Test::Et3Export
+World EtFullSystem::Test::CcdOfficeLookUp
+World EtFullSystem::Test::Admin
+World EtFullSystem::Test::CcdHelper
+World EtFullSystem::Test::SettingsHelper
+World EtFullSystem::Test::MessageBroadcast
 Before do
-  EtFullSystem::Test::CommonAdminWindow.reset
+  reset_common_admin_window
 end
 After do
   EtFullSystem::Test::CommonAdminWindow.ensure_admin_window_closed

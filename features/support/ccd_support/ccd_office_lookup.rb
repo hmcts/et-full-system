@@ -1,6 +1,7 @@
 module EtFullSystem
   module Test
     module CcdOfficeLookUp
+      include Admin
       def office_lookup
         return Thread.current['ccd_office_lookup'] if Thread.current['ccd_office_lookup']
 

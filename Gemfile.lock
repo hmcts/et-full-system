@@ -225,7 +225,6 @@ GEM
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 3.0)
       websocket (~> 1.0)
-    settingslogic (2.0.9)
     site_prism (4.0.3)
       addressable (~> 2.8)
       capybara (~> 3.27)
@@ -278,7 +277,6 @@ DEPENDENCIES
   ruby-rtf (~> 0.0.5)
   rubyzip (~> 2.3)
   selenium-webdriver (~> 4.7)
-  settingslogic
   site_prism (~> 4.0)
   webdrivers (~> 5.2)
 
