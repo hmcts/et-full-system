@@ -75,7 +75,7 @@ module EtFullSystem
           # Acas number
           expect(respondent_2).to have_acas_number
           # I don't have an acas number
-          expect(respondent_2).to have_no_acas_number
+          expect(respondent_2).to have_respondent_no_acas_number
           expect(respondent_2).to have_no_acas_number_note_one
           respondent_2.respondent_no_acas_number_reason.assert_valid_options
           # Add another respondent
@@ -135,10 +135,10 @@ module EtFullSystem
           set_field section, :county, respondent
           set_field section, :post_code, respondent
           if respondent.key?(:no_acas_number_reason)
-            section.no_acas_number.set(:no)
+            section.respondent_no_acas_number.set(:no)
             section.respondent_no_acas_number_reason.set(respondent[:no_acas_number_reason])
           else
-            section.no_acas_number.set(:yes)
+            section.respondent_no_acas_number.set(:yes)
             set_field section, :acas_number, respondent
           end
         end

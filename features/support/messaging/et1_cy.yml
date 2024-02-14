@@ -303,7 +303,7 @@ cy:
             'no': :'simple_form.labels.respondent.no'
         acas_early_conciliation_certificate_number:
           label: Rhif Acas
-        no_acas_number:
+        respondent_no_acas_number:
           label: "Nid oes gen i rif Acas"
           options:
             'yes': :'simple_form.labels.respondent.yes'
@@ -331,7 +331,7 @@ cy:
           address_post_code: Cod post
           address_country: Gwlad
           acas_early_conciliation_certificate_number: Rhif Acas
-          no_acas_number: Nid oes gen i rif Acas
+          respondent_no_acas_number: Nid oes gen i rif Acas
           no_acas_number_reason:
             joint_claimant_has_acas_number: "Mae gan unigolyn arall yr wyf yn gwneud hawliad ag ef/ȃ hi rif tystysgrif cymodi cynnar Acas"
             acas_has_no_jurisdiction: "Nid oes gan Acas y pŵer i gymodi ar rai agweddau o fy hawliad neu fy hawliad cyfan"
@@ -699,7 +699,7 @@ cy:
       step_two_header: Cam 2
       save_csv_format: "Cadw ffeil mewn fformat CSV"
       how_to_save: "Gwnewch hyn drwy ddewis File > Save as / Export To > Format: Comma Separated Values (.csv)"
-      no_spaces: "Peidiwch â chynnwys bylchau yn enw'r ffeil"
+      dont_include_spaces: "Peidiwch â chynnwys bylchau yn enw'r ffeil"
       step_three_header: Cam 3
       upload_limit: "Uchafswm maint ffeil: 5MB"
 

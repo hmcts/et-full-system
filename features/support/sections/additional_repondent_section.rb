@@ -12,10 +12,10 @@ module EtFullSystem
       # Acas number
       gds_text_input :acas_number, :'simple_form.labels.respondent.acas_early_conciliation_certificate_number'
       # I don't have an Acas number
-      # @!method no_acas_number
-      #   A govuk radio button component for no_acas_number question
+      # @!method respondent_no_acas_number
+      #   A govuk radio button component for respondent_no_acas_number question
       #   @return [EtTestHelpers::Components::GovUKCollectionRadioButtons] The site prism section
-      gds_radios :no_acas_number, :'simple_form.labels.respondent.no_acas_number'
+      gds_radios :respondent_no_acas_number, :'simple_form.labels.respondent.respondent_no_acas_number'
       gds_radios :respondent_no_acas_number_reason, :'claims.additional_respondents.no_acas_number_reason'
     end
   end

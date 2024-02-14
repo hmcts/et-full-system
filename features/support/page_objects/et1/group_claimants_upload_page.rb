@@ -36,7 +36,7 @@ module EtFullSystem
           element :step_2, :paragraph, 'claims.additional_claimants_upload.step_two_header'
           element :save_csv_format_text, :paragraph, 'claims.additional_claimants_upload.save_csv_format', exact: false
           element :how_to_save, :paragraph, 'claims.additional_claimants_upload.how_to_save'
-          element :no_spaces, :paragraph, 'claims.additional_claimants_upload.no_spaces', exact: false
+          element :dont_include_spaces, :paragraph, 'claims.additional_claimants_upload.dont_include_spaces', exact: false
           # Step 3
           element :step_3, :paragraph, 'claims.additional_claimants_upload.step_three_header'
           element :file_spreadsheet_labelled, :form_labelled,
@@ -91,7 +91,7 @@ module EtFullSystem
           expect(group_claims).to have_step_2
           expect(group_claims).to have_save_csv_format_text
           expect(group_claims).to have_how_to_save
-          expect(group_claims).to have_no_spaces
+          expect(group_claims).to have_dont_include_spaces
           expect(group_claims).to have_step_3
           expect(group_claims).to have_file_spreadsheet_labelled
           expect(group_claims).to have_upload_limit
