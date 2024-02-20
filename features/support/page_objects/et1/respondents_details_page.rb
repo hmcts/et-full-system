@@ -86,10 +86,10 @@ module EtFullSystem
         #   @return [EtTestHelpers::Components::GovUKTextField] The site prism section
         gds_text_input :acas_certificate_number, :'claims.respondent.acas_legend'
 
-        # @!method no_acas_number
-        #   A govuk radio button component for no_acas_number question
+        # @!method respondent_no_acas_number
+        #   A govuk radio button component for respondent_no_acas_number question
         #   @return [EtTestHelpers::Components::GovUKCollectionRadioButtons] The site prism section
-        gds_radios :no_acas_number, :'simple_form.labels.respondent.no_acas_number'
+        gds_radios :respondent_no_acas_number, :'simple_form.labels.respondent.respondent_no_acas_number'
 
         # I don't have an Acas number
         # @!method respondent_no_acas_number_reason
@@ -146,7 +146,7 @@ module EtFullSystem
           # Acas early conciliation certifcate number
           acas_certificate_number.assert_valid_hint
           # I don't have an acas number
-          expect(self).to have_no_acas_number
+          expect(self).to have_respondent_no_acas_number
           # Why don't you have an Acas number?
           respondent_no_acas_number_reason.assert_valid_hint
           # Save and continue
@@ -206,14 +206,14 @@ module EtFullSystem
           end
 
           if data.key?(:no_acas_number_reason)
-            no_acas_number.set(:no)
+            respondent_no_acas_number.set(:no)
             respondent_no_acas_number_reason.set(data[:no_acas_number_reason])
           else
-            no_acas_number.set(:yes)
+            respondent_no_acas_number.set(:yes)
           end
           return unless data.key?(:acas_number)
 
-          no_acas_number.set(:yes)
+          respondent_no_acas_number.set(:yes)
           acas_certificate_number.set(data[:acas_number])
         end
 

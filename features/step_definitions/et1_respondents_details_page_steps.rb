@@ -10,13 +10,13 @@ end
 
 Then("I can verify that the copy text on Respondent's details page displayed correctly") do
   et1_respondents_details_page.work_address.same_address.set(:"simple_form.labels.respondent.no")
-  et1_respondents_details_page.no_acas_number.set(:'simple_form.labels.respondent.yes')
+  et1_respondents_details_page.respondent_no_acas_number.set(:'simple_form.labels.respondent.yes')
   expect(et1_respondents_details_page.has_correct_translation?).to be true
 end
 
 When("I submit a blank Respondent's details page") do
   et1_respondents_details_page.work_address.same_address.set(:"simple_form.labels.respondent.no")
-  et1_respondents_details_page.no_acas_number.set(:"simple_form.labels.respondent.yes")
+  et1_respondents_details_page.respondent_no_acas_number.set(:"simple_form.labels.respondent.yes")
   et1_respondents_details_page.save_and_continue
 end
 

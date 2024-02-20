@@ -13,7 +13,7 @@ end
 
 Then("I can verify that the copy text on Additional respondent's details page displayed correctly") do
   et1_additional_respondents_details_page.additional_respondents.set(:"claims.additional_respondents.additional_respondents.options.yes")
-  et1_additional_respondents_details_page.respondent_2.no_acas_number.set(:'simple_form.no')
+  et1_additional_respondents_details_page.respondent_2.respondent_no_acas_number.set(:'simple_form.no')
   #expect(et1_additional_respondents_details_page.has_correct_translation?).to be true
 end
 
@@ -28,7 +28,7 @@ end
 
 When("entering invalid acas number for Additional respondent's details page") do
   et1_additional_respondents_details_page.additional_respondents.set(:"claims.additional_respondents.additional_respondents.options.yes")
-  et1_additional_respondents_details_page.respondent_2.no_acas_number.set(:'simple_form.yes')
+  et1_additional_respondents_details_page.respondent_2.respondent_no_acas_number.set(:'simple_form.yes')
   et1_additional_respondents_details_page.respondent_2.acas_number.set('88234w')
   et1_additional_respondents_details_page.save_and_continue 
 end
@@ -39,7 +39,7 @@ end
 
 When("entering invalid postcode for Additional respondent's details page") do
   et1_additional_respondents_details_page.additional_respondents.set(:"claims.additional_respondents.additional_respondents.options.yes")
-  et1_additional_respondents_details_page.respondent_2.no_acas_number.set(:'simple_form.yes')
+  et1_additional_respondents_details_page.respondent_2.respondent_no_acas_number.set(:'simple_form.yes')
   et1_additional_respondents_details_page.respondent_2.post_code.set('88234w')
   et1_additional_respondents_details_page.save_and_continue 
 end

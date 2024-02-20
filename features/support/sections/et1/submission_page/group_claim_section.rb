@@ -7,7 +7,7 @@ module EtFullSystem
           section :group_claim, :govuk_summary_list_row, :'review.group_claim.questions.group_claim.label' do
             element :answer, :govuk_summary_list_col
             element :yes_answer, :govuk_summary_list_col, :'review.group_claim.questions.group_claim.options.yes'
-            element :no_answer, :govuk_summary_list_col, :'review.group_claim.questions.group_claim.options.no'
+            element :answer_no, :govuk_summary_list_col, :'review.group_claim.questions.group_claim.options.no'
           end
           section :csv_file_name, :govuk_summary_list_row, :'review.group_claim.questions.csv_file_name' do
             element :answer, :govuk_summary_list_col
@@ -97,7 +97,7 @@ module EtFullSystem
                 expect(self).to have_no_csv_file_name
                 expect(self).to have_no_number_of_additional_claimants
                 expect(self).to have_no_claimants
-                expect(group_claim).to have_no_answer
+                expect(group_claim).to have_answer_no
               end
             else
               raise "#{self.class.name} #has_correct_translation? called with empty claimants - If this is valid, please teach it what to do :-)"

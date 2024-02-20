@@ -24,6 +24,7 @@ module EtFullSystem
         end
         result unless result.is_a?(::I18n::MissingTranslation)
       end
+      alias_method :resolve_entry, :resolve
     end
 
     # A singleton class for translating i18n keys in the test suite.

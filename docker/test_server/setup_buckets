@@ -1,4 +1,0 @@
-#!/bin/sh
-# Only used by old 'docker_run' script - @TODO Decide on whether to remove or not
-cd /home/app/full_system
-bundle exec et_full_system local file_storage setup

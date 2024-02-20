@@ -1,6 +1,8 @@
+require_relative '../ccd_support/ccd_office_lookup'
 module EtFullSystem
   module Test
     module CcdHelper
+      include EtFullSystem::Test::CcdOfficeLookUp
       def ccd
         return @ccd if defined?(@ccd)
         @ccd = ::EtCcdClient::UiClient.new
@@ -9,16 +11,14 @@ module EtFullSystem
       end
 
       def find_or_create_any_claim_in_ccd
-        ccd_office_lookup = ::EtFullSystem::Test::CcdOfficeLookUp
         ccd_object = EtFullSystem::Test::Ccd::Et1CcdSingleClaimant.
-            find_latest(ccd_office_lookup.office_lookup[:manchester][:single][:case_type_id])
+            find_latest(office_lookup[:manchester][:single][:case_type_id])
         return ccd_object unless ccd_object.nil? || ccd_object.ethos_case_reference.nil? || ccd_object.ethos_case_reference !=~ /\A\d\d\d\d\d\d\d\/\d\d\d\d\z/
 
         create_any_claim_in_ccd
       end
 
       def create_any_claim_in_ccd
-        ccd_office_lookup = ::EtFullSystem::Test::CcdOfficeLookUp
         @claimant = FactoryBot.create_list(:claimant, 1, :person_data)
         @representative = FactoryBot.create_list(:representative, 1, :et1_information)
         @respondent = FactoryBot.create_list(:respondent,  1, :yes_acas, :both_addresses, work_post_code: 'M1 1AQ', expected_office: '24')
@@ -36,13 +36,12 @@ module EtFullSystem
         et1_answer_claim_outcome_questions
         et1_answer_more_about_the_claim_questions
         et1_submit_claim
-        EtFullSystem::Test::Ccd::Et1CcdSingleClaimant.find_and_wait_for_latest(ccd_office_lookup.office_lookup['24'][:single][:case_type_id]).tap do |result|
+        EtFullSystem::Test::Ccd::Et1CcdSingleClaimant.find_and_wait_for_latest(office_lookup['24'][:single][:case_type_id]).tap do |result|
           raise "No claims were present in CCD and for some reason one could not be created - suggests a problem with the app or maybe a wrong office code" if result.nil?
         end
       end
 
       def create_reformed_claim_in_ccd(office_code:)
-        office_lookup = ::EtFullSystem::Test::CcdOfficeLookUp.office_lookup
         case_type_id = office_lookup[office_code.to_s][:single][:case_type_id]
 
         resp = ccd.caseworker_start_case_creation(case_type_id: case_type_id, extra_headers: {})
