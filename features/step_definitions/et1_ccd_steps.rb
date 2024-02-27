@@ -287,3 +287,20 @@ And(/^the PDF is converted correctly$/) do
   expect(rtf_text_first_line.length).to eq(pdf_content_first_line.length)
   expect(rtf_text_second_line.length).to eq(pdf_content_second_line.length)
 end
+
+Given(/^a claimant submitting data to trigger a 504 error then a 409 error using fake ccd$/) do
+  @claimant = FactoryBot.create_list(:claimant, 1, :force_error_timeout_then_conflict)
+  @representative = []
+  @respondent = FactoryBot.create_list(:respondent,  1, :yes_acas, :both_addresses, telephone_number: '', work_post_code: 'M1 1AQ', expected_office: '24')
+  @employment = nil
+  @claim = FactoryBot.create(:claim, :simple)
+end
+
+Given(/^a claimant submitting data to trigger a 504 error then a 409 error only in a secondary claimant using fake ccd$/) do
+  @claimant = FactoryBot.create_list(:claimant, 3, :person_data)
+  @claimant[1] = FactoryBot.create(:claimant, :force_error_timeout_then_conflict)
+  @representative = []
+  @respondent = FactoryBot.create_list(:respondent,  1, :yes_acas, :both_addresses, telephone_number: '', work_post_code: 'M1 1AQ', expected_office: '24')
+  @employment = nil
+  @claim = FactoryBot.create(:claim, :simple)
+end

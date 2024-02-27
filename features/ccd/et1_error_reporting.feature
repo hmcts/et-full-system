@@ -22,3 +22,15 @@ Feature:
     Given a claimant submitting mandatory Claimant's Details fields
     When the completed form is submitted
     Then the claim in the admin should show that the export sent to CCD
+
+  Scenario: Submitting a claim that has the famous 504 error then 409 conflict afterwards
+    Given a claimant submitting data to trigger a 504 error then a 409 error using fake ccd
+    When the completed form is submitted
+    Then the claim in the admin should show that the export to CCD is erroring
+    And the claim in the admin should show that the export to CCD is erroring with a 504 error
+    Then the claim in the admin should show that the export sent to CCD
+
+  Scenario: Submitting a claim where one of the secondary claimants will cause the famouse 504 error then 409 conflict afterwards
+    Given a claimant submitting data to trigger a 504 error then a 409 error only in a secondary claimant using fake ccd
+    When the completed form is submitted
+    Then the claim in the admin should show that the export sent to CCD
