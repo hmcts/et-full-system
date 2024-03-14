@@ -32,8 +32,3 @@ end
 When(/^I select no to are the dates given by the claimant correct$/) do
   claimants_details_page.agree_with_employment_dates_question.set(:no)
 end
-
-# Then(/^I should see the error message saying the further information about dates cant be blank$/) do
-#   claimants_details_page.employment_start.assert_error_message(t('errors.claimants_details.start_date_blank'))
-#   claimants_details_page.employment_end.assert_error_message(t('errors.claimants_details.end_date_blank'))
-# end

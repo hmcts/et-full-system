@@ -47,7 +47,7 @@ FactoryBot.define do
     trait :fake_ccd_error_422_claimant do
       title { :"simple_form.options.claimant.title.ms" }
       first_name { 'Force' }
-      last_name { "ErrorUnprocessableEntity #{SecureRandom.uuid.gsub(/[\d-]/) { |x| (x.ord + 58).chr }}" }
+      last_name { "ErrorUnprocessableEntity-#{SecureRandom.uuid.gsub(/[\d-]/) { |x| (x.ord + 58).chr }}" }
       date_of_birth { '21/11/1982' }
       building { Faker::Address.building_number }
       street { Faker::Address.street_name }
