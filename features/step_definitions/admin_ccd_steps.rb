@@ -57,3 +57,12 @@ And(/^the claim in the admin should show that the export to CCD is erroring for 
   admin_pages.claims_page.follow_export_for_erroring_ccd_state(claim['reference'])
   admin_pages.export_page.assert_erroring_event('422 Unprocessable Entity - Case data validation failed')
 end
+
+And(/^the claim in the admin should show that the export to CCD is erroring with a 504 error$/) do
+  claim = admin_api.processed_claim(claim_reference: @claim_reference)
+  config = ::EtFullSystem::Test::Configuration
+  admin_pages.dashboard_page.admin_login(config.admin_username, config.admin_password)
+  admin_pages.dashboard_page.menu.click_claims
+  admin_pages.claims_page.follow_export_for_erroring_ccd_state(claim['reference'])
+  admin_pages.export_page.assert_erroring_event('504 Gateway Timeout - Proxy Timeout')
+end

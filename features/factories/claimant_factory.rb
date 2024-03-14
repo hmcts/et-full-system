@@ -68,6 +68,18 @@ FactoryBot.define do
       post_code { 'SW1H 9AJ' }
     end
 
+    trait :force_error_timeout_then_conflict do
+      title { :"simple_form.options.claimant.title.ms" }
+      first_name { 'Deliberate' }
+      last_name { 'Error' }
+      date_of_birth { '21/11/1982' }
+      building { Faker::Address.building_number }
+      street { "ForceErrorSequence SuccessWithTimeout Conflict" }
+      locality { 'London' }
+      county { 'Manchester' }
+      post_code { 'SW1H 9AJ' }
+    end
+
     trait :dummy_data do
       title { :"simple_form.options.claimant.title.ms" }
       first_name { 'DUMMY' }
