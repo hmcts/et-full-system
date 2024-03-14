@@ -16,7 +16,8 @@ Scenario: Successfully submits required claimants details only
   When I successfully submit required claimants details only
   Then I should be taken to the earnings and benefits page
 
-Scenario: Dates given by the claimant error message
+Scenario: Dates given by the claimant optional validation
   When I select no to are the dates given by the claimant correct
   But I do not provide the correct employment dates or give a reason
-  Then I should see the error message saying the further information about dates cant be blank
+#  Then I should see the error message saying the further information about dates cant be blank
+  Then I should be taken to the earnings and benefits page
