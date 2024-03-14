@@ -3,7 +3,7 @@ require_relative './base'
 require 'rack/utils'
 module EtFullSystem
   module Test
-    class Et1ClaimContinueEmailHtml < SitePrism::Page
+    class Et1ClaimContinueEmailHtml < Base
       include RSpec::Matchers
       include ::EtFullSystem::Test::I18n
       element(:claim_number_element, :xpath, XPath.generate { |x| x.descendant(:td)[x.string.n.starts_with('Claim number')].child(:p)[2] })
@@ -30,13 +30,6 @@ module EtFullSystem
         end
       rescue Timeout::Error
         return nil
-      end
-
-      def initialize(mail)
-        self.mail = mail
-        part = mail.parts.detect { |p| p.content_type =~ %r{text\/html} }
-        body = part.nil? ? '' : part.body.to_s
-        load(body)
       end
 
       def claim_number

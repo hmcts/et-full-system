@@ -3,7 +3,7 @@ require_relative './base'
 require 'rack/utils'
 module EtFullSystem
   module Test
-    class Et1ResetPasswordEmailHtml < SitePrism::Page
+    class Et1ResetPasswordEmailHtml < Base
       include RSpec::Matchers
 
       # @return [Et1::Test::EmailObjects::ResetPasswordEmailHtml, Nil]
@@ -28,14 +28,6 @@ module EtFullSystem
         end
       rescue Timeout::Error
         return nil
-      end
-
-
-      def initialize(mail)
-        self.mail = mail
-        part = mail.parts.detect { |p| p.content_type =~ %r{text\/html} }
-        body = part.nil? ? '' : part.body.to_s
-        load(body)
       end
 
       def has_correct_email_address?

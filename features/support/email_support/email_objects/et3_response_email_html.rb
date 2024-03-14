@@ -4,7 +4,7 @@ require_relative './base'
 require 'rack/utils'
 module EtFullSystem
   module Test
-    class Et3ResponseEmailHtml < SitePrism::Page
+    class Et3ResponseEmailHtml < Base
       include RSpec::Matchers
       include EtFullSystem::Test::I18n
 
@@ -29,15 +29,6 @@ module EtFullSystem
         end
       rescue Timeout::Error
         return nil
-      end
-
-      def initialize(mail, locale:)
-        self.mail = mail
-        self.locale = locale
-        multipart = mail.parts.detect { |p| p.content_type =~ %r{multipart\/alternative} }
-        part = multipart.parts.detect { |p| p.content_type =~ %r{text\/html} }
-        body = part.nil? ? '' : part.body.to_s
-        load(body)
       end
 
       def has_reference_element?(reference)
@@ -85,8 +76,6 @@ module EtFullSystem
       def attached_pdf_for(reference:)
         mail.parts.attachments.detect { |a| a.filename == "#{reference}.pdf" }
       end
-
-      attr_accessor :mail, :locale
     end
   end
 end
