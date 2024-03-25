@@ -26,3 +26,18 @@ Feature:
     Given an employee making a claim by uploading a Rich Text Format document
     And the claimant is on the Submission page
     Then I should see a valid submission page
+
+  Scenario: Response time measure
+    Given an employee making a claim with email
+    And the claimant is on the Submission page
+    Then the page loading time is less than '100' milliseconds
+
+  Scenario: Response time measure - multiple claimants < 5
+    Given '5' employees making a claim
+    And the claimant is on the Submission page
+    Then the page loading time is less than '100' milliseconds
+
+  Scenario: Response time measure - multiple claimants > 5
+    Given 1000 employees making a claim by uploading CSV file
+    And the claimant is on the Submission page
+    Then the page loading time is less than '100' milliseconds
