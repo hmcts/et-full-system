@@ -89,5 +89,9 @@ FactoryBot.define do
     trait :group_claims do
       group_claims_csv { 'simple_user_with_csv_group_claims.csv' }
     end
+
+    trait :class_claims do
+      group_claims_csv { 'simple_user_with_1000_claimant.csv' }
+    end
   end
 end

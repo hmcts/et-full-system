@@ -120,3 +120,11 @@ Given("a claimant submitted an ET1 who live outside UK") do
   @employment = FactoryBot.create(:employment, :still_employed)
   @claim = FactoryBot.create(:claim, :yes_to_whistleblowing_claim)
 end
+
+Given("1000 employees making a claim by uploading CSV file") do
+  @claimant = FactoryBot.create_list(:claimant, 1, :person_data, :class_claims)
+  @representative = FactoryBot.create_list(:representative, 1, :et1_information)
+  @respondent = FactoryBot.create_list(:respondent,  1, :yes_acas, :both_addresses, work_post_code: 'M1 1AQ', expected_office: '24')
+  @employment = FactoryBot.create(:employment, :still_employed)
+  @claim = FactoryBot.create(:claim, :yes_to_whistleblowing_claim)
+end
