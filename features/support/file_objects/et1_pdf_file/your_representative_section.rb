@@ -9,16 +9,12 @@ module EtFullSystem
               expected_values = {
                   name_of_organisation: representative.organisation_name,
                   name_of_representative: representative.name,
-                  building: representative.building,
-                  street: representative.street,
-                  locality: representative.locality,
-                  county: representative.county,
+                  address: [representative.building, representative.street, representative.locality, representative.county].compact.join("\n"),
                   post_code: post_code_for(representative.post_code),
                   telephone_number: representative.telephone_number,
                   alternative_telephone_number: representative.alternative_telephone_number,
                   reference: nil, # Should be populated by ET1 but it isnt yet
                   communication_preference: nil, # ET1 Doesnt capture this
-                  fax_number: nil, # ET1 Doesnt capture this
                   email_address: be_blank,
                   dx_number: be_blank
               }
@@ -28,18 +24,14 @@ module EtFullSystem
             expected_values = {
               name_of_organisation: be_blank,
               name_of_representative: be_blank,
-              building: be_blank,
-              street: be_blank,
-              locality: be_blank,
-              county: be_blank,
+              address: be_blank,
               post_code: be_blank,
               dx_number: be_blank,
               telephone_number: be_blank,
               alternative_telephone_number: be_blank,
               reference: be_blank,
               email_address: be_blank,
-              communication_preference: be_blank,
-              fax_number: be_blank
+              communication_preference: be_blank
           }
           end
             expect(mapped_field_values).to include expected_values
