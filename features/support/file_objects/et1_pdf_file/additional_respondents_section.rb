@@ -10,24 +10,16 @@ module EtFullSystem
               expected_values = {
                 respondent4: {
                     name: respondents[3].try(:name),
-                    building: respondents[3].try(:building),
-                    street: respondents[3].try(:street),
-                    locality: respondents[3].try(:locality),
-                    county: respondents[3].try(:county),
+                    address: [respondents[3].try(:building), respondents[3].try(:street), respondents[3].try(:locality), respondents[3].try(:county)].reject(&:blank?).join("\n"),
                     post_code: post_code_for(respondents[3].try(:post_code), optional: true),
-                    telephone_number: "",
                     have_acas: respondents[2]&.acas_number.present?,
                     acas_number: respondents[3].try(:acas_number)
 
                 },
                 respondent5: {
                     name: respondents[4].try(:name),
-                    building: respondents[4].try(:building),
-                    street: respondents[4].try(:street),
-                    locality: respondents[4].try(:locality),
-                    county: respondents[4].try(:county),
+                    address: [respondents[4].try(:building), respondents[4].try(:street), respondents[4].try(:locality), respondents[4].try(:county)].reject(&:blank?).join("\n"),
                     post_code: post_code_for(respondents[4].try(:post_code), optional: true),
-                    telephone_number: "",
                     have_acas: respondents[4]&.acas_number.present?,
                     acas_number: respondents[4].try(:acas_number)
                 }
@@ -36,23 +28,15 @@ module EtFullSystem
               expected_values = {
                 respondent4: {
                   name: be_blank,
-                  building: be_blank,
-                  street: be_blank,
-                  locality: be_blank,
-                  county: be_blank,
+                  address: be_blank,
                   post_code: be_blank,
-                  telephone_number: be_blank,
                   have_acas: be_blank,
                   acas_number: be_blank
                 },
                 respondent5: {
                   name: be_blank,
-                  building: be_blank,
-                  street: be_blank,
-                  locality: be_blank,
-                  county: be_blank,
+                  address: be_blank,
                   post_code: be_blank,
-                  telephone_number: be_blank,
                   have_acas: be_blank,
                   acas_number: be_blank
                 }

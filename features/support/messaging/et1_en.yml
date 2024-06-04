@@ -26,9 +26,6 @@ en:
         contact_preference:
           email: Email
           post: Post
-        allow_video_attendance:
-          'yes': 'Yes'
-          'no': 'No'
         title:
           mr: Mr
           mrs: Mrs
@@ -181,11 +178,12 @@ en:
           options:
             email: :'simple_form.options.claimant.contact_preference.email'
             post: :'simple_form.options.claimant.contact_preference.post'
-        allow_video_attendance:
-          label: Would you be able to take part in a hearing by video? (Requires internet access).
+        allow_phone_or_video_attendance:
+          label: Would you be able to take part in hearings by video and phone?
           options:
-            yes: :'simple_form.options.claimant.allow_video_attendance.yes'
-            no: :'simple_form.options.claimant.allow_video_attendance.no'
+            "video": 'Yes, I can take part in video hearings'
+            "phone": 'Yes, I can take part in phone hearings'
+            "neither": 'None'
         _destroy: 'Remove this claimant'
 
       additional_claimants:
@@ -365,6 +363,8 @@ en:
           options:
             'yes': :'claims.claim_type.yes'
             'no': :'claims.claim_type.no'
+        whistleblowing_regulator_name:
+          label: Name of relevant regulator
       confirmation_email:
         email_addresses: Select or enter the recipients you’d like to send a copy to
 
@@ -409,7 +409,7 @@ en:
         has_representative: "Someone who has agreed to represent you (for example, to prepare your case and/or act on your behalf if there is a hearing)"
         applying_for_remission: "You may not have to pay a fee if you have limited savings and you’re on benefits or a low income. Do I qualify for help?"
         contact_preference: "Note that if you have a representative (eg solicitor), then all future correspondence will be sent to them"
-        allow_video_attendance: "Further details on video hearings can be found on the following link https://www.gov.uk/guidance/hmcts-telephone-and-videohearings-during-coronavirus-outbreak"
+        allow_phone_or_video_attendance: "Further details on video hearings can be found on the following link https://www.gov.uk/guidance/hmcts-telephone-and-videohearings-during-coronavirus-outbreak"
         address_county: "Eg if London, Greater London; if Manchester, Greater Manchester"
       claimants:
         address_county: Eg if London, Greater London; if Manchester, Greater Manchester
@@ -972,8 +972,6 @@ en:
               blank: Say whether you require assistance at the tribunal hearing
             contact_preference:
               blank: "Say whether you’d like correspondence to be sent to the claimant by post or email"
-            allow_video_attendance:
-              blank: "Please say whether you would be able to attend a hearing by video"
             address_building:
               blank: "Enter the building number or name from the claimant’s address"
             address_street:
@@ -1097,14 +1095,17 @@ en:
           - 1.1 Title Mrs
           - 1.1 Title Miss
           - 1.1 Title Ms
+          - 1.1 Title other
         select_values:
           Miss:
             - 'Off'
             - 'Off'
             - 'Miss'
             - 'Off'
+            - 'Off'
           Mr:
             - 'Mister'
+            - 'Off'
             - 'Off'
             - 'Off'
             - 'Off'
@@ -1113,7 +1114,15 @@ en:
             - 'Missus'
             - 'Off'
             - 'Off'
+            - 'Off'
           Ms:
+            - 'Off'
+            - 'Off'
+            - 'Off'
+            - 'Miz'
+            - 'Off'
+          Other:
+            - 'Off'
             - 'Off'
             - 'Off'
             - 'Off'
@@ -1123,7 +1132,9 @@ en:
           - 'Off'
           - 'Off'
           - 'Off'
-
+          - 'Off'
+      other_specify:
+        field_name: 1.1 other specify
       first_name:
         field_name: 1.2 first names
       last_name:
@@ -1136,26 +1147,28 @@ en:
         field_name: 1.4 DOB year
       gender:
         field_name:
-        - 1.4 gender - Male
-        - 1.4 gender - Female
+          - 1.5 sex
+          - 1.5 sex female
+          - 1.5 sex prefer not to say
         select_values:
           female:
             - 'Off'
-            - Female
-          male:
-            - Male
+            - female
             - 'Off'
+          male:
+            - 'Yes'
+            - 'Off'
+            - 'Off'
+          "n/k":
+            - 'Off'
+            - 'Off'
+            - prefer not to say
         unselected_value:
           - 'Off'
           - 'Off'
-      building:
+          - 'Off'
+      address:
         field_name: 1.5 number
-      street:
-        field_name: 1.5 street
-      locality:
-        field_name: 1.5 town city
-      county:
-        field_name: 1.5 county
       post_code:
         field_name: 1.5 postcode
       telephone_number:
@@ -1168,54 +1181,45 @@ en:
         field_name:
           - 1.8 How should we contact you - Email
           - 1.8 How should we contact you - Post
-          - 1.8 How should we contact you - Fax
         select_values:
           email:
             - Email
             - 'Off'
-            - 'Off'
-          fax:
-            - 'Off'
-            - 'Off'
-            - Fax
           post:
             - 'Off'
             - Post
-            - 'Off'
         unselected_value:
-          - 'Off'
           - 'Off'
           - 'Off'
       allow_video_attendance:
-        field_name:
-          - 1.11 Able to take part in a hearing by video - yes
-          - 1.11 Able to take part in a hearing by video - no
+        field_name: 1.11 video
         select_values:
-          yes:
-            - 'Yes'
-            - 'Off'
-          no:
-            - 'Off'
-            - 'No'
-        unselected_value:
-          - 'Off'
-          - 'Off'
+          yes: 'Yes'
+          no: 'Off'
+        unselected_value: 'Off'
+      allow_phone_attendance:
+        field_name: 1.11 phone
+        select_values:
+          yes: 'Yes'
+          no: 'Off'
+        unselected_value: 'Off'
+      no_phone_or_video_attendance:
+        field_name: 1.11 no
+        select_values:
+          yes: 'Yes'
+          no: 'Off'
+        unselected_value: 'Off'
+      no_phone_or_video_reason:
+        field_name: 1.11 explain
+
     respondents_details:
       name:
         field_name: '2.1 Give the name of your employer or the person or organisation you are claiming against'
       address:
-        building:
+        details:
           field_name: 2.2 number
-        street:
-          field_name: 2.2 street
-        locality:
-          field_name: 2.2 town city
-        county:
-          field_name: 2.2 county
         post_code:
           field_name: 2.2 postcode
-        telephone_number:
-          field_name: 2.2 phone number
       acas:
         have_acas:
           field_name:
@@ -1266,18 +1270,10 @@ en:
             - 'Off'
             - 'Off'
       different_address:
-        building:
+        details:
           field_name: 2.4 Full, different working address - Number or name
-        street:
-          field_name: 2.4 Full, different working address - Street
-        locality:
-          field_name: 2.4 Full, different working address - Town or city
-        county:
-          field_name: 2.4 Full, different working address - County
         post_code:
           field_name: 2.4 Full, different working address - postcode
-        telephone_number:
-          field_name: 2.4 Full, different working address - phone number
       additional_respondents:
         field_name: 2.5 If there are other respondents please tick this box and put their names and addresses here
         select_values:
@@ -1287,18 +1283,10 @@ en:
         name:
           field_name: 2.5 R2 name
         address:
-          building:
+          details:
             field_name: 2.5 R2 number
-          street:
-            field_name: 2.5 R2 street
-          locality:
-            field_name: 2.5 R2 town
-          county:
-            field_name: 2.5 R2 county
           post_code:
             field_name: 2.5 R2 postcode
-          telephone_number:
-            field_name: 2.5 R2 phone number
         acas:
           have_acas:
             field_name:
@@ -1320,30 +1308,22 @@ en:
         name:
           field_name: 2.7 R3 name
         address:
-          building:
+          details:
             field_name: 2.7 R3 number
-          street:
-            field_name: 2.7 R3 street
-          locality:
-            field_name: 2.7 R3 town city
-          county:
-            field_name: 2.7 R3 county
           post_code:
             field_name: 2.7 R3 postcode
-          telephone_number:
-            field_name: 2.7 R3 phone number
         acas:
           have_acas:
             field_name:
-              - 2.8 Do you have an Acas early conciliation certificate number? Yes
-              - 2.8 Do you have an Acas early conciliation certificate number? No
+              - 2.8 yes
+              - 2.8 no
             select_values:
               true:
                 - 'Yes'
                 - 'Off'
               false:
                 - 'Off'
-                - 'No'
+                - 'Yes'
             unselected_value:
               - 'Off'
               - 'Off'
@@ -1367,8 +1347,20 @@ en:
       other_claimants:
         field_name: 3.1 if yes, give the names of any other claimants
     not_your_employer:
-      claim_type:
-        field_name: '4.1 where the respondent was not your employer, state the type pf claim you are making'
+      was_employed:
+        field_name:
+          - 4.1 yes
+          - 4.1 no
+        select_values:
+          false:
+            - 'Off'
+            - 'Yes'
+          true:
+            - 'Yes'
+            - 'Off'
+        unselected_value:
+          - 'Off'
+          - 'Off'
     employment_details:
       job_title:
         field_name: '5.2 Please say what job you do or did'
@@ -1402,14 +1394,22 @@ en:
           field_name:
             - 6.2 pay before tax - weekly
             - 6.2 pay before tax - monthly
+            - 6.2 pay before tax - annually
           select_values:
             weekly:
               - 'Weekly'
               - 'Off'
+              - 'Off'
             monthly:
               - 'Off'
               - 'Monthly'
+              - 'Off'
+            annually:
+              - 'Off'
+              - 'Off'
+              - 'annually'
           unselected_value:
+            - 'Off'
             - 'Off'
             - 'Off'
       pay_after_tax:
@@ -1419,14 +1419,22 @@ en:
           field_name:
             - 6.2 normal pay - weekly
             - 6.2 normal pay - monthly
+            - 6.2 normal pay - annually
           select_values:
             weekly:
               - 'Weekly'
               - 'Off'
+              - 'Off'
             monthly:
               - 'Off'
               - 'Monthly'
+              -  'Off'
+            annually:
+              - 'Off'
+              - 'Off'
+              - 'annually'
           unselected_value:
+            - 'Off'
             - 'Off'
             - 'Off'
       paid_for_notice_period:
@@ -1483,6 +1491,28 @@ en:
         field_name: '7.2 Please say when you started (or will start) work'
       salary:
         field_name: '7.3 Please say how much you are now earning (or will earn)'
+      salary_period:
+        field_name:
+          - 7.3 weekly
+          - 7.3 monthly
+          - 7.3 annually
+        select_values:
+          weekly:
+            - 'Weekly'
+            - 'Off'
+            - 'Off'
+          monthly:
+            - 'Off'
+            - 'Monthly'
+            - 'Off'
+          annually:
+            - 'Off'
+            - 'Off'
+            - 'annually'
+        unselected_value:
+          - 'Off'
+          - 'Off'
+          - 'Off'
     type_and_details:
       unfairly_dismissed:
         field_name: 8.1 I was unfairly dismissed (including constructive dismissal)
@@ -1536,6 +1566,11 @@ en:
           true: 'Yes'
       discriminated_religion:
         field_name: 8.1 religion or belief
+        select_values:
+          false: 'Off'
+          true: 'Yes'
+      whistleblowing:
+        field_name: 8.1 whistleblowing
         select_values:
           false: 'Off'
           true: 'Yes'
@@ -1607,19 +1642,15 @@ en:
         select_values:
           false: 'Off'
           true: 'yes'
+      regulator_name:
+        field_name: 10.1 name of relevant regulator
     your_representative:
       name_of_representative:
         field_name: '11.1 Name of representative'
       name_of_organisation:
         field_name: '11.2 Name of organisation'
-      building:
+      address:
         field_name: "11.3 Representative's address: number or name"
-      street:
-        field_name: "11.3 Representative's address: street"
-      locality:
-        field_name: "11.3 Representative's address: town or city"
-      county:
-        field_name: "11.3 Representative's address: county"
       post_code:
         field_name: "11.3 Representative's address: postcode"
       dx_number:
@@ -1636,26 +1667,16 @@ en:
         field_name:
           - 11.9 How would you prefer us to communicate with them? Email
           - 11.9 How would you prefer us to communicate with them? Post
-          - 11.9 How would you prefer us to communicate with them? Fax
         unselected_value:
-          - 'Off'
           - 'Off'
           - 'Off'
         select_values:
           email:
             - 'Email'
             - 'Off'
-            - 'Off'
-          fax:
-            - 'Off'
-            - 'Off'
-            - 'Fax'
           post:
             - 'Off'
             - 'Post'
-            - 'Off'
-      fax_number:
-        field_name: 11.10 Fax number
     disability:
       has_special_needs:
         field_name:
@@ -1677,18 +1698,10 @@ en:
       respondent4:
         name:
           field_name: 13 R4 name
-        building:
+        address:
           field_name: 13 R4 number
-        street:
-          field_name: 13 R4 street
-        locality:
-          field_name: 13 R4 town city
-        county:
-          field_name: 13 R4 county
         post_code:
           field_name: 13 R4 postcode
-        telephone_number:
-          field_name: 13 R4 phone number
         have_acas:
           field_name:
             - 13 R4 Do you have an Acas early conciliation certificate number? Yes
@@ -1708,18 +1721,10 @@ en:
       respondent5:
         name:
           field_name: 13 R5 name
-        building:
+        address:
           field_name: 13 R5 number
-        street:
-          field_name: 13 R5 street
-        locality:
-          field_name: 13 R5 town city
-        county:
-          field_name: 13 R5 county
         post_code:
           field_name: 13 R5 postcode
-        telephone_number:
-          field_name: 13 R5 phone number
         have_acas:
           field_name:
             - 13 R5 Do you have an Acas early conciliation certificate number? Yes
