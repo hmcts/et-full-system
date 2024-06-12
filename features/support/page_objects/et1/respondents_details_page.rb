@@ -130,6 +130,7 @@ module EtFullSystem
           expect(self).to have_county
           county.assert_valid_hint
           expect(self).to have_post_code
+          expect(self).to have_telephone_number
           # Your work address
           expect(self).to have_work_address_header
           work_address.same_address.assert_valid_options
@@ -141,6 +142,7 @@ module EtFullSystem
           expect(work_address).to have_county
           work_address.county.assert_valid_hint
           expect(work_address).to have_post_code
+          expect(work_address).to have_telephone_number
           # Acas early conciliation certifcate number
           acas_certificate_number.assert_valid_hint
           # I don't have an acas number
@@ -189,6 +191,7 @@ module EtFullSystem
           set_field :locality, data
           set_field :county, data
           set_field :post_code, data
+          set_field :telephone_number, data
 
           if data.key?(:work_building)
             work_address.same_address.set(:no)
@@ -197,6 +200,7 @@ module EtFullSystem
             work_address.locality.set(data[:work_locality])
             work_address.county.set(data[:work_county])
             work_address.post_code.set(data[:work_post_code])
+            work_address.telephone_number.set(data[:work_telephone_number])
           else
             work_address.same_address.set(:yes)
           end

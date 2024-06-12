@@ -36,6 +36,10 @@ Feature:
     When I submit an invalid date of birth for claimant details page
     Then I should see an invalid error message for date of birth claimant details page
 
+  Scenario: Invalid allow video attendance error
+    When I submit an invalid allow video attendance for claimant details page
+    Then I should see an invalid error message for allow video attendance claimant details page
+
   # Scenario: Save and complete later
   #   When I click on Save and complete later
   #   Then I should be able to return to where I was left off

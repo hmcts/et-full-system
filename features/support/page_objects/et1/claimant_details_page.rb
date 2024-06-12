@@ -100,10 +100,10 @@ module EtFullSystem
         #   @return [EtTestHelpers::Components::GovUKCollectionRadioButtons] The site prism section
         gds_radios :claimant_contact_preference, :'simple_form.labels.claimant.contact_preference'
 
-        # @!method allow_phone_or_video_attendance
-        #   A govuk radio button component for allow_phone_or_video_attendance question
+        # @!method allow_video_attendance
+        #   A govuk radio button component for allow_video_attendance question
         #   @return [EtTestHelpers::Components::GovUKCollectionRadioButtons] The site prism section
-        gds_checkboxes :allow_phone_or_video_attendance, :'simple_form.labels.claimant.allow_phone_or_video_attendance'
+        gds_radios :allow_video_attendance, :'simple_form.labels.claimant.allow_video_attendance'
         # Save and continue
         gds_submit_button :save_and_continue_button, t('helpers.submit.update')
 
@@ -151,7 +151,7 @@ module EtFullSystem
           claimant_contact_preference.assert_valid_hint
           claimant_contact_preference.assert_valid_options
           # Allow video attendance
-          allow_phone_or_video_attendance.assert_valid_options
+          allow_video_attendance.assert_valid_options
           # Save and continue
           expect(self).to have_save_and_continue_button
           # Support
@@ -184,6 +184,10 @@ module EtFullSystem
           expect(date_of_birth).to have_error(text: t('activemodel.errors.models.additional_claimants_form/additional_claimant.attributes.date_of_birth.invalid'))
         end
 
+        def has_correct_invalid_error_message_for_allow_video_attendance?
+          expect(allow_video_attendance).to have_error(text: t('activemodel.errors.models.claimant.attributes.allow_video_attendance.blank'))
+        end
+
         def has_correct_validation_error_message?
           # Errors on page
           expect(self).to have_error_summary
@@ -196,6 +200,7 @@ module EtFullSystem
           expect(county).to have_error(text: t('activemodel.errors.models.claimant.attributes.address_county.blank'))
           expect(post_code).to have_error(text: t('activemodel.errors.models.claimant.attributes.address_post_code.blank'))
           expect(claimant_contact_preference).to have_error(text: t('activemodel.errors.models.claimant.attributes.contact_preference.blank'))
+          expect(allow_video_attendance).to have_error(text: t('activemodel.errors.models.claimant.attributes.allow_video_attendance.blank'))
         end
 
         # Fills in the entire page for the user given
@@ -213,7 +218,7 @@ module EtFullSystem
           assistance.set(data[:special_needs]) if data[:has_special_needs].to_s.split('.').last == 'yes'
 
           claimant_contact_preference.set(data[:correspondence])
-          allow_phone_or_video_attendance.set(data[:allow_phone_or_video_attendance])
+          allow_video_attendance.set(data[:allow_video_attendance])
           set_field(:building, data)
           set_field(:street, data)
           set_field(:locality, data)

@@ -25,6 +25,7 @@ module EtFullSystem
               expect(name).to have_answer(text: with_not_entered(respondent.name))
               expect(acas_number).to have_answer(text: with_not_entered(respondent.acas_number))
               expect(address).to have_answer(text: with_not_entered_address(respondent))
+              expect(phone).to have_answer(text: with_not_entered(respondent.telephone_number))
               expect(work_address).to have_answer(text: with_not_entered_work_address(respondent))
             end
             true

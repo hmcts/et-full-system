@@ -50,11 +50,6 @@ module EtFullSystem
           end
         end
 
-        # @!method whistleblowing_regulator_name
-        #   A govuk radio button component for whistleblowing_regulator_name question
-        #   @return [EtTestHelpers::Components::GovUKTextField] The site prism section
-        gds_text_input :whistleblowing_regulator_name, :'simple_form.labels.claim.whistleblowing_regulator_name'
-
         # Do you want us to send a copy of your claim to the relevant person or body that deals with whistleblowing?
         # @!method send_to_relevant_person
         #   A govuk radio button component for send_to_relevant_person question
@@ -102,7 +97,6 @@ module EtFullSystem
           whistleblowing_claim.is_whistleblowing.assert_valid_options
           # whistleblowing_entity
           send_to_relevant_person.assert_valid_options
-          expect(self).to have_whistleblowing_regulator_name
           # Save and continue
           expect(self).to have_save_and_continue_button
           # Support
@@ -138,7 +132,6 @@ module EtFullSystem
           end
           whistleblowing_claim.is_whistleblowing.set(data[:whistleblowing_claim])
           set_field self, :send_to_relevant_person, data
-          set_field self, :whistleblowing_regulator_name, claim.to_h
         end
 
         private

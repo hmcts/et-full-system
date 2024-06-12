@@ -90,7 +90,6 @@ FactoryBot.define do
       :new_employment_and_compensation]
     end
     preferred_outcome_notes {'I would like 50,000 GBP due to the stress this caused me'}
-    whistleblowing_regulator_name { 'Whistleblowing Regulator' }
     whistleblowing_claim {:"claims.claim_type.yes"}
     send_to_relevant_person {:"simple_form.yes"}
     similar_claims {:"claims.claim_type.yes"}

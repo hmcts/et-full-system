@@ -11,7 +11,7 @@ FactoryBot.define do
     email_address { "claimant@hmcts.net" }
     correspondence { :"simple_form.options.claimant.contact_preference.email" }
     memorable_word { 'password' }
-    allow_phone_or_video_attendance { [:"simple_form.labels.claimant.allow_phone_or_video_attendance.options.video"] }
+    allow_video_attendance { :"simple_form.options.claimant.allow_video_attendance.yes" }
 
     trait :contact_by_post do
       correspondence { :"simple_form.options.claimant.contact_preference.post" }

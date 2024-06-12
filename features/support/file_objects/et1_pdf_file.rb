@@ -14,7 +14,7 @@ module EtFullSystem
           Et1PdfFileSection::YourDetailsSection.new(tempfile).has_contents_for?(claimant: claimants.first)
           Et1PdfFileSection::RespondentsDetailsSection.new(tempfile).has_contents_for?(respondents: respondents)
           Et1PdfFileSection::MultipleCasesSection.new(tempfile).has_contents_for?(claim: claim)
-          Et1PdfFileSection::NotYourEmployerSection.new(tempfile).has_contents_for?(employment: employment)
+          Et1PdfFileSection::NotYourEmployerSection.new(tempfile).has_contents_for?
           Et1PdfFileSection::EmploymentDetailsSection.new(tempfile).has_contents_for?(employment: employment)
           Et1PdfFileSection::EarningsAndBenefitsSection.new(tempfile).has_contents_for?(employment: employment)
           Et1PdfFileSection::WhatHappenedSinceSection.new(tempfile).has_contents_for?(employment: employment)

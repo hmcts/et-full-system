@@ -27,8 +27,8 @@ module EtFullSystem
         common = {
           "respondent_ACAS" => respondent[:acas_number],
           "respondent_name" => respondent[:name],
-          "respondent_phone1" => nil,
-          "respondent_ACAS_question" => respondent[:acas_number]&.present? ? "Yes" : "No",
+          "respondent_phone1" => respondent[:telephone_number],
+          "respondent_ACAS_question" => respondent[:acas_number].present? ? "Yes" : "No",
           "respondent_address" => {
             "County" => respondent[:county],
             "PostCode" => respondent[:post_code],
@@ -55,7 +55,7 @@ module EtFullSystem
               "AddressLine2" => respondent[:street],
               "Country" => nil
             },
-            "claimant_work_phone_number" => nil
+            "claimant_work_phone_number" => respondent[:telephone_number]
           }
         else
           {
@@ -67,7 +67,7 @@ module EtFullSystem
               "AddressLine2" => respondent[:work_street],
               "Country" => nil
             },
-            "claimant_work_phone_number" => nil
+            "claimant_work_phone_number" => respondent[:work_telephone_number]
           }
         end
       end
