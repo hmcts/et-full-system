@@ -116,7 +116,7 @@ module EtFullSystem
 
       def et3_answer_defend_claim_question
         user = @claimant[0]
-        response_page.defend_claim_question.set(user.defend_claim.to_s.split('.').last.to_sym)
+        response_page.defend_claim_question.set(user.defend_claim)
         if user.defend_claim.to_s.split('.').last == 'yes'
           response_page.defend_claim_facts.set(user.defend_claim_facts)
         end
@@ -141,7 +141,7 @@ module EtFullSystem
           your_representatives_details_page.representative_mobile_question.set(user.representative_mobile)
           your_representatives_details_page.representative_dx_number_question.set(user.dx_number)
           your_representatives_details_page.representative_reference_question.set(user.representative_reference)
-          your_representatives_details_page.representative_contact_preference_question.set(user.representative_contact_preference.to_s.split('.').last.to_sym)
+          your_representatives_details_page.representative_contact_preference_question.set(user.representative_contact_preference)
           if user.representative_contact_preference.end_with?('.email')
             your_representatives_details_page.preference_email.set(user.representative_email)
           end

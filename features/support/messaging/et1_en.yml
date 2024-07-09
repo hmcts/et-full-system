@@ -155,8 +155,8 @@ en:
           label: "Do you have a disability which means you require assistance at the tribunal hearing?"
           hint: :'simple_form.hints.claimant.has_special_needs'
           options:
-            yes: :'simple_form.yes'
-            no: :'simple_form.no'
+            'yes': :'simple_form.yes'
+            'no': :'simple_form.no'
         special_needs: Describe the assistance you require (optional)
         address_telephone_number: Phone or mobile number (optional)
         address_building: Building number or name
@@ -378,8 +378,8 @@ en:
         send_claim_to_whistleblowing_entity:
           label: "Do you want us to send a copy of your claim to the relevant person or body that deals with whistleblowing?"
           options:
-            yes: :'simple_form.yes'
-            no: :'simple_form.no'
+            'yes': :'simple_form.yes'
+            'no': :'simple_form.no'
       claim_details:
         other_known_claimants:
           label: "Do you know of any other claimants (not already listed) making similar claims against the same employer?"

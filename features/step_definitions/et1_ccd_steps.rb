@@ -42,7 +42,7 @@ Given("a female employee making a claim") do
 end
 
 Given("a claimant who does not require assistance at the tribunal hearing submitted an ET1 online") do
-  @claimant = FactoryBot.create_list(:claimant, 1, :person_data, has_special_needs: :"simple_form.no")
+  @claimant = FactoryBot.create_list(:claimant, 1, :person_data, has_special_needs: :"simple_form.labels.claimant.has_special_needs.options.no")
   @representative = FactoryBot.create_list(:representative, 1, :et1_information)
   @respondent = FactoryBot.create_list(:respondent,  1, :yes_acas, :both_addresses, work_post_code: 'G1 2FF', expected_office: '41')
   @employment = FactoryBot.create(:employment, :still_employed)

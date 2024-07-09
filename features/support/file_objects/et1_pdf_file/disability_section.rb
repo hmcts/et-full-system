@@ -5,7 +5,7 @@ module EtFullSystem
       module Et1PdfFileSection
         class DisabilitySection < EtFullSystem::Test::FileObjects::Et1PdfFileSection::Base
           def has_contents_for?(claimant:)
-            if claimant.has_special_needs == :"simple_form.no"
+            if claimant.has_special_needs.to_s.split('.').last == "no"
               expected_values = {
                 has_special_needs: false,
                 special_needs: ""

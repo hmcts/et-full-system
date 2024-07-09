@@ -39,7 +39,7 @@ FactoryBot.define do
     representative_mobile {'07987654321'}
     representative_reference {'Rep Ref'}
     representative_fax {'0207 345 6789'}
-    representative_contact_preference {:"simple_form.options.representative.contact_preference.email"}
+    representative_contact_preference {:"questions.representative_contact_preference.options.email"}
   end
 
   trait :et1_no_representative do

@@ -54,7 +54,7 @@ module EtFullSystem
 
           def employers_pension_scheme(employment)
             return nil if employment.nil?
-            employment.employers_pension_scheme.to_s.split('.').last.downcase == 'true'
+            employment.employers_pension_scheme.to_s.split('.').last.downcase.in?(['true', 'yes'])
           end
 
           def notice_period(notice_period, notice_period_type)
