@@ -5,6 +5,7 @@ module EtFullSystem
   module Test
     class Et1ResetPasswordEmailHtml < Base
       include RSpec::Matchers
+      include ::EtFullSystem::Test::I18n
 
       # @return [Et1::Test::EmailObjects::ResetPasswordEmailHtml, Nil]
       def self.find(search_url: ::EtFullSystem::Test::Configuration.mailhog_search_url, email_address:, sleep: 10, timeout: 50)
@@ -13,7 +14,7 @@ module EtFullSystem
         new(item)
       end
 
-      def self.find_email(email_address, search_url, timeout: 50, sleep: 10, subject_text: 'Employment Tribunal: Reset your memorable word')
+      def self.find_email(email_address, search_url, timeout: 50, sleep: 10, subject_text: t('base_mailer.et1_reset_password_email.subject'))
         Timeout.timeout(timeout) do
           item = nil
           until item.present? do
@@ -21,7 +22,7 @@ module EtFullSystem
             url = URI.parse(search_url)
             url.query = query
             response = HTTParty.get(url, headers: { accept: 'application/json' })
-            item = response.parsed_response['items'].detect {|i| i.dig('Content', 'Headers', 'Subject').try(:first) == subject_text}
+            item = response.parsed_response['items'].detect {|i| i.dig('Content', 'Headers', 'Subject').try(:first).then { |v| Mail::Encodings.value_decode(v) } == subject_text}
             sleep sleep unless item.present?
           end
           Mail.new item.dig('Raw', 'Data')
@@ -43,7 +44,7 @@ module EtFullSystem
       end
 
       def has_correct_subject? # rubocop:disable Naming/PredicateName
-        mail.subject == "Employment Tribunal: Reset your memorable word"
+        mail.subject == t('base_mailer.et1_reset_password_email.subject', locale: locale)
       end
 
       def has_correct_to_address?(email_address) # rubocop:disable Naming/PredicateName
@@ -56,7 +57,9 @@ module EtFullSystem
 
       private
 
-      element :reset_memorable_word_link, :link, 'Reset my memorable word'
+      def reset_memorable_word_link
+        find(:link, t('base_mailer.et1_reset_password_email.reset_memorable_word'))
+      end
 
       attr_accessor :mail
     end

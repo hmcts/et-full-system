@@ -141,8 +141,7 @@ cy:
           email_address: Rhowch eich cyfeiriad e-bost i gael copi o rif eich hawliad drwy neges e-bost.
         memorable_word:
           email_sent_flash_text: Byddwch yn cael neges e-bost gyda chyfarwyddiadau ar sut i ailosod eich gair cofiadwy mewn ychydig funudau.
-          updated_flash_text: Ni fydd eich gair cofiadwy yn cael ei newid hyd nes y byddwch yn ei ailosod trwy glicio ar y ddolen isod.
-
+          updated_flash_text: Mae eich gair cofiadwy wedi'i ddiweddaru. Gallwch ei ddefnyddio isod a dychwelyd i'ch cais.
       claimant:
         first_name: Enw cyntaf
         last_name: Enw olaf

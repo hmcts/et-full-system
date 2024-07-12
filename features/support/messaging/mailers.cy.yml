@@ -21,7 +21,7 @@ cy:
       claim_number: Eich rhif hawliad
       footer:
         contact_us: Cysylltu â ni
-      subject: 'Tribiwnlys Cyflogaeth: hawliad wedi''i gyflwyno'
+      subject: 'Tribiwnlys Cyflogaeth: hawliad wedi’i gyflwyno'
       header: Hawliad wedi'i gyflwyno
       intro:
         normal:
@@ -61,7 +61,8 @@ cy:
         see_attached_pdf: Gweler y PDF sydd ynghlwm
         attachments: 'Dogfennau ychwanegol:'
         submission_information: 'Hawliad wedi''i gyflwyno:'
-        submitted_on: "ar %{date}"
+        submitted_on: "Cyflwynwyd ar %{date}"
+        submitted_on_prefix: "Cyflwynwyd ar"
         submitted_to: "i swyddfa tribiwnlys %{office}"
         payment_amount: 'Ffi cyflwyno wedi''i thalu:'
         fee_to_pay: 'Talu ffi cyflwyno:'
@@ -77,6 +78,9 @@ cy:
       diversity_text: |
         Helpwch ni i gadw cofnodion cywir . Llenwch ein holiadur monitro amrywiaeth.
 
+    et1_reset_password_email:
+      subject: "Tribiwnlys Cyflogaeth: Ailosodwch eich gair cofiadwy"
+      reset_memorable_word: Ailosod fy ngair cofiadwy
     shared:
       button_fee_remission:
         apply_for_fee_remission: "Gwneud cais am help i dalu ffioedd"

@@ -55,7 +55,8 @@ en:
         see_attached_pdf: See attached PDF
         attachments: 'Additional documents:'
         submission_information: 'Claim submitted:'
-        submitted_on: "on %{date} "
+        submitted_on: "Submitted %{date} "
+        submitted_on_prefix: "Submitted"
         submitted_to: to tribunal office %{office}
         payment_amount: 'Issue fee paid:'
         fee_to_pay: 'Issue fee payment:'
@@ -70,7 +71,9 @@ en:
         Help us keep track. Complete our <a href="%{href}">diversity monitoring questionnaire</a>.
       diversity_text: |
         Help us keep track. Complete our diversity monitoring questionnaire.
-
+    et1_reset_password_email:
+      subject: "Employment Tribunal: Reset your memorable word"
+      reset_memorable_word: Reset my memorable word
     shared:
       button_fee_remission:
         apply_for_fee_remission: Complete an application for help with fees
