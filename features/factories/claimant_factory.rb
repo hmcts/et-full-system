@@ -4,7 +4,7 @@ FactoryBot.define do
   factory :claimant, class: OpenStruct do
     gender { :"simple_form.options.claimant.gender.prefer_not_to_say" }
     country { :"simple_form.options.claimant.address_country.united_kingdom" }
-    has_special_needs { :"simple_form.yes" }
+    has_special_needs { :"simple_form.labels.claimant.has_special_needs.options.yes" }
     special_needs { 'My special needs are as follows' }
     telephone_number { '01234 567890' }
     alternative_telephone_number { '01234 098765' }

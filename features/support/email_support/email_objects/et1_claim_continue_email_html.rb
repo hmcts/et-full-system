@@ -8,7 +8,7 @@ module EtFullSystem
       include ::EtFullSystem::Test::I18n
       element(:claim_number_element, :xpath, XPath.generate { |x| x.descendant(:td)[x.string.n.starts_with('Claim number')].child(:p)[2] })
       element(:claim_submitted_element, :xpath, XPath.generate { |x| x.descendant(:tr)[x.child(:td)[x.string.n.starts_with('Claim submitted:')]].child(:td)[2] })
-    
+
       def self.find(search_url: ::EtFullSystem::Test::Configuration.mailhog_search_url, claim_number:, sleep: 10, timeout: 50)
         item = find_email(claim_number, search_url, sleep: sleep, timeout: timeout)
         raise "ET1 Mail with claim number #{claim_number} not found" unless item.present?
@@ -23,7 +23,7 @@ module EtFullSystem
             url = URI.parse(search_url)
             url.query = query
             response = HTTParty.get(url, headers: { accept: 'application/json' })
-            item = response.parsed_response['items'].detect {|i| i.dig('Content', 'Headers', 'Subject').try(:first) == subject_text}
+            item = response.parsed_response['items'].detect {|i| i.dig('Content', 'Headers', 'Subject').try(:first).then { |v| Mail::Encodings.value_decode(v) } == subject_text}
             sleep sleep unless item.present?
           end
           Mail.new item.dig('Raw', 'Data')

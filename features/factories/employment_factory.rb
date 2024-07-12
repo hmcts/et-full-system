@@ -21,7 +21,7 @@ FactoryBot.define do
       pay_period_type { :"simple_form.options.employment.pay_period_type.monthly" }
       pay_before_tax {'3000'}
       pay_after_tax {'2000'}
-      employers_pension_scheme {:"claims.employment.false"}
+      employers_pension_scheme {:"simple_form.labels.employment.enrolled_in_pension_scheme.options.no"}
       benefits {'Company car, private health care'}
       #New Job
       new_job {nil}
@@ -45,7 +45,7 @@ FactoryBot.define do
       pay_period_type { :"simple_form.options.employment.pay_period_type.monthly" }
       pay_before_tax {'3000'}
       pay_after_tax {'2000'}
-      employers_pension_scheme {:"claims.employment.true"}
+      employers_pension_scheme {:"simple_form.labels.employment.enrolled_in_pension_scheme.options.yes"}
       benefits {'Company car, private health care'}
       #New Job
       new_job {nil}
@@ -70,7 +70,7 @@ FactoryBot.define do
       pay_period_type { :"simple_form.options.employment.pay_period_type.monthly" }
       pay_before_tax {'3000'}
       pay_after_tax {'2000'}
-      employers_pension_scheme {:"claims.employment.true"}
+      employers_pension_scheme {:"simple_form.labels.employment.enrolled_in_pension_scheme.options.yes"}
       benefits {'Company car, private health care'}
       #New Job
       new_job {:"claims.employment.new_job.yes"}

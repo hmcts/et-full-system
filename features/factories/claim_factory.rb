@@ -25,7 +25,7 @@ FactoryBot.define do
     end
     preferred_outcome_notes {'I would like 50,000 GBP due to the stress this caused me'}
     whistleblowing_claim {:"claims.claim_type.yes"}
-    send_to_relevant_person {:"simple_form.yes"}
+    send_to_relevant_person {:"simple_form.labels.claim_type.send_claim_to_whistleblowing_entity.options.yes"}
     similar_claims {:"claims.claim_type.yes"}
     add_other_claimants {'Jimmy Barnes, Bryon Adams, Shelly Temple, Doris Day'}
     other_claimant_names {'Similar ClaimA, Similar ClaimB'}
@@ -43,7 +43,7 @@ FactoryBot.define do
     end
     preferred_outcome_notes {'I would like 50,000 GBP due to the stress this caused me'}
     whistleblowing_claim {:"claims.claim_type.yes"}
-    send_to_relevant_person {:"simple_form.yes"}
+    send_to_relevant_person {:"simple_form.labels.claim_type.send_claim_to_whistleblowing_entity.options.yes"}
     similar_claims {:"claims.claim_type.yes"}
     add_other_claimants {'Jimmy Barnes, Bryon Adams, Shelly Temple, Doris Day'}
     other_claimant_names {'Similar ClaimA, Similar ClaimB'}
@@ -92,7 +92,7 @@ FactoryBot.define do
     preferred_outcome_notes {'I would like 50,000 GBP due to the stress this caused me'}
     whistleblowing_regulator_name { 'Whistleblowing Regulator' }
     whistleblowing_claim {:"claims.claim_type.yes"}
-    send_to_relevant_person {:"simple_form.yes"}
+    send_to_relevant_person {:"simple_form.labels.claim_type.send_claim_to_whistleblowing_entity.options.yes"}
     similar_claims {:"claims.claim_type.yes"}
     other_claimant_names {'James Blunt, Punky Brewsters, Shirly Temple'}
     other_additional_information {:'claims.additional_information.has_miscellaneous_information.options.yes'}
@@ -108,7 +108,7 @@ FactoryBot.define do
     end
     preferred_outcome_notes {'I would like 50,000 GBP due to the stress this caused me'}
     whistleblowing_claim {:"claims.claim_type.yes"}
-    send_to_relevant_person {:"simple_form.yes"}
+    send_to_relevant_person {:"simple_form.labels.claim_type.send_claim_to_whistleblowing_entity.options.yes"}
     similar_claims {:"claims.claim_type.no"}
     other_claimant_names {''}
     other_additional_information {:'claims.additional_information.has_miscellaneous_information.options.yes'}
@@ -119,7 +119,7 @@ FactoryBot.define do
     preferred_outcome {[]}
     preferred_outcome_notes {''}
     whistleblowing_claim {:"claims.claim_type.yes"}
-    send_to_relevant_person {:"simple_form.yes"}
+    send_to_relevant_person {:"simple_form.labels.claim_type.send_claim_to_whistleblowing_entity.options.yes"}
     similar_claims {:"claims.claim_type.no"}
     other_claimant_names {''}
     other_additional_information {:'claims.additional_information.has_miscellaneous_information.options.yes'}
@@ -135,7 +135,7 @@ FactoryBot.define do
     end
     preferred_outcome_notes {''}
     whistleblowing_claim {:"claims.claim_type.yes"}
-    send_to_relevant_person {:"simple_form.yes"}
+    send_to_relevant_person {:"simple_form.labels.claim_type.send_claim_to_whistleblowing_entity.options.yes"}
     similar_claims {:"claims.claim_type.no"}
     other_claimant_names {''}
     other_additional_information {:'claims.additional_information.has_miscellaneous_information.options.no'}

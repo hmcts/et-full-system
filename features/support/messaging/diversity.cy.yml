@@ -106,7 +106,7 @@ cy:
             caribbean: Caribïaidd
             any-other-black-african-caribbean-background: "Unrhyw gefndir Du / Affricanaidd / Caribïaidd arall"
             none-of-the-above: Dim un o'r uchod
-        other-ethnic-group:      
+        any-other-mixed-multiple-ethnic-background:
           label: "Beth yw eich ethnig?"
           options:
             arab: Arabaidd
@@ -130,7 +130,7 @@ cy:
       return_title: Dychwelyd i wefan GOV.UK
     edit: Newid
 
-  
+
   relationship:
     single-that-is-never-married-and-never-registered-in-a-same-sex-civil-partnership: "Sengl, hynny yw, heb briodi erioed a heb gofrestru erioed mewn partneriaeth sifil gyfunrywiol"
     married: Priod
@@ -176,40 +176,40 @@ cy:
     no_answer: 'Nac oes'
     prefer-not-to-say: "Mae'n well gen i beidio dweud"
   pregnancy:
-    yes_answer: 'Oeddwn'
-    no_answer: 'Nac oeddwn'
+    yes_answer: 'Oes'
+    no_answer: 'Nac oes'
     prefer-not-to-say: "Mae'n well gen i beidio dweud"
-  summary: 
-    claim: 
+  summary:
+    claim:
       label: "Beth yw natur eich hawliad?"
       edit_link: :'diversities.edit'
-    sex: 
+    sex:
       label: "Beth yw eich rhyw?"
       edit_link: :'diversities.edit'
-    sexual_identity: 
+    sexual_identity:
       label: "Pa un o'r opsiynau isod sy'n disgrifio orau eich hunaniaeth rywiol?"
       edit_link: :'diversities.edit'
-    relationship: 
+    relationship:
       label: "Beth yw statws eich perthynas?"
       edit_link: Golygu Perthynas atebion
-    age: 
+    age:
       label: "Ym mha grŵp oedran ydych chi?"
       edit_link: :'diversities.edit'
-    care: 
+    care:
       label: "A oes gennych chi unrhyw gyfrifoldebau gofalu?"
       edit_link: :'diversities.edit'
-    religion: 
-      label: "Beth yw eich crefydd?"
+    religion:
+      label: "Crefydd"
       edit_link: Golygu Crefydd atebion
-    ethnicity_group: 
+    ethnicity_group:
       label: "Beth yw eich grŵp ethnig?"
       edit_link: Golygu Ethnigrwydd atebion
-    ethnicity_type: 
+    ethnicity_type:
       label: "Beth yw eich ethnig?"
       edit_link: Golygu Ethnigrwydd atebion
-    health: 
+    health:
       label: "A oes gennych unrhyw gyflyrau neu anhwylderau iechyd meddwl neu iechyd corfforol sy'n parhau neu'n debygol o barhau am 12 mis neu ragor?"
       edit_link: Golygu Anabledd atebion
-    pregnancy: 
+    pregnancy:
       label: "A oeddech chi'n feichiog pan gawsoch eich diswyddo?"
       edit_link: Golygu Beichiogrwydd atebion

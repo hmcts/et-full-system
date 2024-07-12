@@ -6,7 +6,7 @@ FactoryBot.define do
     other { [] }
     other_type_of_claim_details { nil }
     whistleblowing_claim {:yes}
-    send_to_relevant_person {:"simple_form.yes"}
+    send_to_relevant_person {:"simple_form.labels.claim_type.send_claim_to_whistleblowing_entity.options.yes"}
     trait :unfair_dismissal do
       unfair_dismissal do
         [:is_unfair_dismissal]
