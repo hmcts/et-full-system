@@ -18,8 +18,10 @@ FactoryBot.define do
     representative_have {:"questions.have_representative.options.yes"}
     representative_mobile {'07987654321'}
     representative_reference {'Rep Ref'}
-    representative_contact_preference {:"questions.representative_contact_preference.options.fax"}
+    representative_contact_preference {:"questions.representative_contact_preference.options.email"}
+    representative_email { 'contact@solicitorsrus.com' }
     representative_fax {'0207 345 6789'}
+    allow_phone_or_video_attendance { [:video] }
   end
 
   trait :et1_information do
@@ -81,6 +83,7 @@ FactoryBot.define do
     representative_contact_preference {nil}
     representative_fax {''}
     employer_contract_claim {''}
+    allow_phone_or_video_attendance { [] }
   end
 
   trait :contact_by_post do

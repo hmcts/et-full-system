@@ -3,6 +3,9 @@ require 'faker'
 FactoryBot.define do
   factory :et3_respondent, class: OpenStruct do
     case_number {"2454321/2017"}
+    title { 'Mr' }
+    company_number { '63729391' }
+    company_type { :limited_company }
     name { Faker::Company.name }
     building_name {"the-shard"}
     street_name { Faker::Address.street_name }
@@ -10,7 +13,7 @@ FactoryBot.define do
     county {"london"}
     postcode {"wc1 1aa"}
     organisation_more_than_one_site {:"questions.organisation_more_than_one_site.options.no"}
-    allow_video_attendance { :"questions.allow_video_attendance.options.yes" }
+    allow_phone_or_video_attendance { [:video] }
     memorable_word { 'password' }
   end
 
@@ -59,6 +62,6 @@ FactoryBot.define do
     email_receipt {''}
     disability {nil}
     disability_information {''}
-    allow_video_attendance { :"questions.allow_video_attendance.options.no" }
+    allow_phone_or_video_attendance { [] }
   end
 end

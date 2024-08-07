@@ -86,7 +86,7 @@ FactoryBot.define do
     claimants_name {''}
     agree_with_early_conciliation_details {:"questions.agree_with_early_conciliation_details.options.no"}
     disagree_conciliation_reason {''}
-    continued_employment {:"questions.continued_employment.options.no"}
+    continued_employment { nil }
     agree_with_claimants_description_of_job_or_title {nil}
     disagree_claimants_job_or_title {''}
     agree_with_claimants_hours {nil}
@@ -103,7 +103,7 @@ FactoryBot.define do
     defend_claim {:"questions.defend_claim.options.no"}
     defend_claim_facts {''}
     agree_with_employment_dates {:"questions.agree_with_employment_dates.options.yes"}
-    allow_video_attendance { :"questions.allow_video_attendance.no.label" }
+    allow_phone_or_video_attendance { [] }
     employment_start {''}
     employment_end {''}
     disagree_employment {''}
