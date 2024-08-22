@@ -20,6 +20,9 @@ module EtFullSystem
       def et3_answer_respondents_details
         user = @respondent[0]
         respondents_details_page.case_number_question.set(user.case_number)
+        respondents_details_page.company_number_question.set(user.company_number)
+        respondents_details_page.title_question.set(user.title)
+        respondents_details_page.title_other_question.set(user.title_other) if(user.title == 'Other')
         respondents_details_page.name_question.set(user.name)
         respondents_details_page.contact_question.set(user.contact)
         respondents_details_page.building_name_question.set(user.building_name)
@@ -32,11 +35,10 @@ module EtFullSystem
         respondents_details_page.contact_mobile_number_question.set(user.contact_mobile_number)
         respondents_details_page.contact_preference_question.set(user.contact_preference.to_s.split('.').last&.to_sym)
         respondents_details_page.email_address_question.set(user.email_address) if user.contact_preference.to_s.split('.').last == 'email'
-        respondents_details_page.fax_number_question.set(user.fax_number) if user.contact_preference.to_s.split('.').last == 'fax'
         respondents_details_page.organisation_more_than_one_site_question.set(user.organisation_more_than_one_site.to_s.split('.').last.to_sym)
         respondents_details_page.employment_at_site_number_question.set(user.employment_at_site_number) if user.organisation_more_than_one_site.to_s.split('.')[-2] == 'yes'
         respondents_details_page.organisation_employ_gb_question.set(user.organisation_employ_gb)
-        respondents_details_page.allow_video_attendance_question.set(user.allow_video_attendance.to_s.split('.').last.to_sym)
+        respondents_details_page.allow_phone_or_video_attendance_question.set(user.allow_phone_orvideo_attendance)
 
         respondents_details_page.next
       end
@@ -54,7 +56,6 @@ module EtFullSystem
         respondents_details_page.street_question.set(user.street_name)
         respondents_details_page.town_question.set(user.town)
         respondents_details_page.postcode_question.set(user.postcode)
-        respondents_details_page.allow_video_attendance_question.set(user.allow_video_attendance.to_s.split('.').last.to_sym)
         respondents_details_page.organisation_more_than_one_site_question.set(user.organisation_more_than_one_site.to_s.split('.').last.to_sym)
 
         respondents_details_page.next
@@ -145,9 +146,7 @@ module EtFullSystem
           if user.representative_contact_preference.end_with?('.email')
             your_representatives_details_page.preference_email.set(user.representative_email)
           end
-          if user.representative_contact_preference.end_with?('.fax')
-            your_representatives_details_page.preference_fax.set(user.representative_fax)
-          end
+          your_representatives_details_page.allow_phone_or_video_attendance_question.set(user.allow_phone_or_video_attendance)
           your_representatives_details_page.next
         else
           your_representative_page.next

@@ -24,6 +24,15 @@ module EtFullSystem
           section :name_row, :govuk_summary_list_row, :'questions.name.label', exact: true do
             element :name_answer, :govuk_summary_list_col
           end
+          section :company_number_row, :govuk_summary_list_row, :'questions.company_number.label', exact: true do
+            element :company_number_answer, :govuk_summary_list_col
+          end
+          section :type_of_employer_row, :govuk_summary_list_row, :'questions.type_of_employer.label', exact: true do
+            element :type_of_employer_answer, :govuk_summary_list_col
+          end
+          section :title_row, :govuk_summary_list_row, :'questions.title.label', exact: true do
+            element :title_answer, :govuk_summary_list_col
+          end
           section :contact_row, :govuk_summary_list_row, :'questions.contact.label', exact: true do
             element :contact_answer, :govuk_summary_list_col
           end
@@ -57,14 +66,14 @@ module EtFullSystem
           section :email_address_row, :govuk_summary_list_row, :'questions.contact_preference.email.input_label', exact: true do
             element :email_address_answer, :govuk_summary_list_col
           end
-          section :fax_number_row, :govuk_summary_list_row, :'questions.contact_preference.fax.input_label', exact: true do
-            element :fax_number_answer, :govuk_summary_list_col
-          end
           section :organisation_employ_gb_row, :govuk_summary_list_row, :'questions.organisation_employ_gb.label', exact: true do
             element :organisation_employ_gb_answer, :govuk_summary_list_col
           end
           section :organisation_more_than_one_site_row, :govuk_summary_list_row, :'questions.organisation_more_than_one_site.label', exact: true do
             element :organisation_more_than_one_site_answer, :govuk_summary_list_col
+          end
+          section :allow_phone_or_video_attendance_row, :govuk_summary_list_row, :'questions.allow_phone_or_video_attendance.label', exact: true do
+            element :allow_phone_or_video_attendance_answer, :govuk_summary_list_col
           end
           section :employment_at_site_number_row, :govuk_summary_list_row, :'questions.organisation_more_than_one_site.employment_at_site_number.label', exact: true do
             element :employment_at_site_number_answer, :govuk_summary_list_col
@@ -203,8 +212,8 @@ module EtFullSystem
           section :email_row, :govuk_summary_list_row, :'questions.representative_contact_preference.email.input_label', exact: true do
             element :email_answer, :govuk_summary_list_col
           end
-          section :fax_row, :govuk_summary_list_row, :'questions.representative_contact_preference.fax.input_label', exact: true do
-            element :fax_answer, :govuk_summary_list_col
+          section :allow_phone_or_video_attendance_row, :govuk_summary_list_row, :'questions.allow_phone_or_video_attendance.label', exact: true do
+            element :allow_phone_or_video_attendance_answer, :govuk_summary_list_col
           end
           element :back_to_top, :govuk_link, :'confirmation.back_to_the_top'
         end

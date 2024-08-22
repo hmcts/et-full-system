@@ -2,6 +2,7 @@ module EtFullSystem
   module Test
     module Admin
       class ResponsesPage < Admin::BasePage
+        QUESTIONS_WITH_NOT_APPLICABLE = [:agree_with_claimants_description_of_job_or_title, :agree_with_claimants_hours, :agree_with_earnings_details, :agree_with_claimant_notice, :agree_with_claimant_pension_benefits, :agree_with_employment_dates, :continued_employment].freeze
         set_url "/responses"
 
         element :reference_value, 'td.col.col-reference'
@@ -22,11 +23,13 @@ module EtFullSystem
         def check_json(user, reference)
           responses_data = admin_api.responses(q:{reference_cont:reference})
           date_keys = [:employment_end, :employment_start]
-          expected_values = user.to_h.transform_values do |v|
-            next v.to_s unless v.is_a?(Symbol)
-            next v.to_s unless v.to_s.split('.').last =~ /\Ayes|no\z/
-            v.to_s.split('.').last == 'yes'
-          end
+          expected_values = user.to_h.map do |k, v|
+            next [k, v.to_s] unless v.is_a?(Symbol)
+            next [k, v.to_s] unless v.to_s.split('.').last =~ /\Ayes|no\z/
+            next [k, v.to_s.split('.').last == 'yes'] unless k.in?(QUESTIONS_WITH_NOT_APPLICABLE)
+            [k, v.to_s.split('.').last == 'yes' ? 'true' : 'false']
+          end.to_h
+
           if expected_values[:employment_end] != ""
             expected_values.each_pair do |k,v|
               expected_values[k] = k.in?(date_keys) ? Date.parse(v).strftime('%Y-%m-%d') : v
@@ -46,10 +49,11 @@ module EtFullSystem
 
         def minimal_check_json(user, reference)
           responses_data = admin_api.responses(q:{reference_cont:reference})
-          expected_values = user.to_h.transform_values do |v|
-            next v.to_s unless v.to_s.split('.').last =~ /\Ayes|no\z/
-            v.to_s.split('.').last == 'yes'
-          end
+          expected_values = user.to_h.map do |k, v|
+            next [k, v.to_s] unless v.to_s.split('.').last =~ /\Ayes|no\z/
+            next [k, v.to_s.split('.').last == 'yes'] unless k.in?(QUESTIONS_WITH_NOT_APPLICABLE)
+            [k, v.to_s.split('.').last.then {|value| value.nil? ? nil : (value == 'yes' ? 'true' : 'false') }]
+          end.to_h
           static_values = expected_values.slice(:defend_claim, :claimants_name)
           expected_values = expected_values.to_h.transform_values do |v|
             next v unless v == false || v == ""
@@ -57,7 +61,9 @@ module EtFullSystem
           end
           expected_values[:defend_claim] = static_values[:defend_claim]
           expected_values[:claimants_name] = static_values[:claimants_name]
-          expect(responses_data.first).to include(expected_values.except(:disagree_claimant_notice_reason, :disagree_claimant_pension_benefits_reason, :allow_video_attendance).stringify_keys)
+          expected_values[:allow_phone_attendance] = expected_values[:allow_phone_or_video_attendance].include?('phone')
+          expected_values[:allow_video_attendance] = expected_values.delete(:allow_phone_or_video_attendance).include?('phone')
+          expect(responses_data.first).to include(expected_values.except(:disagree_claimant_notice_reason, :disagree_claimant_pension_benefits_reason, :allow_video_attendance, :allow_phone_attendance).stringify_keys)
           #TODO: remove exceptions (see bug ticket RST-4945)
         end
 

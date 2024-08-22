@@ -21,6 +21,10 @@ module EtFullSystem
         gds_text_input :case_number_question, :'questions.case_number.label', exact: false
         # Name of individual, company or organisation
         gds_text_input :name_question, :'questions.name.label'
+        gds_text_input :company_number_question, :'questions.company_number.label', exact: false
+        gds_select :type_of_employer_question, :'questions.type_of_employer', exact: false
+        gds_select :title_question, :'questions.title', exact: false
+        gds_text_input :title_other_question, :'questions.other_title'
         # Name of contact (optional)
         # For example, John Smith
         gds_text_input :contact_question, :'questions.contact.label'
@@ -44,11 +48,12 @@ module EtFullSystem
         # How would you prefer us to contact you? (optional)
         gds_radios :contact_preference_question, :'questions.contact_preference'
         gds_text_input :email_address_question, :'questions.email_address'
-        gds_text_input :fax_number_question, :'questions.fax_number'
         gds_text_input :employment_at_site_number_question, :'questions.employment_at_site_number'
 
-        # Does the respondent want to allow a video session ?
-        gds_radios :allow_video_attendance_question, :'questions.allow_video_attendance'
+        # @!method allow_phone_or_video_attendance_question
+        #   A govuk radio button component for the phone or video question
+        #   @return [EtTestHelpers::Components::GovUKCollectionCheckBoxes] The site prism section
+        gds_checkboxes :allow_phone_or_video_attendance_question, :'questions.allow_phone_or_video_attendance'
         # How many people does this organisation employ in Great Britain? (optional)
         gds_text_input :organisation_employ_gb_question, :'questions.organisation_employ_gb', exact: false
         # Does this organisation have more than one site in Great Britain? (optional)
@@ -98,6 +103,10 @@ module EtFullSystem
           expect(self).to have_contact_preference_question
           # Does this organisation have more than one site in Great Britain?
           expect(self).to have_organisation_employ_gb_question
+          expect(self).to have_company_number_question
+          expect(self).to have_type_of_employer_question
+          expect(self).to have_title_question
+          expect(self).to have_allow_phone_or_video_attendance_question
         end
 
         def has_correct_blank_error_messages?
