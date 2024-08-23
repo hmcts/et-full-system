@@ -10,3 +10,4 @@ Feature:
     And the submitted Employment Tribunal response is exported to ccd for me
     Then the response should have been moved to the Bristol office
     And the response should be viewable in the admin json
+    And an email is sent to notify user that a respondent has been successfully submitted
