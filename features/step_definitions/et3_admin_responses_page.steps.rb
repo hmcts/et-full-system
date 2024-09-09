@@ -15,3 +15,8 @@ Then(/^I should see the updated office in the responses page$/) do
   admin_pages.responses_page.load
   admin_pages.responses_page.verify_office
 end
+
+When(/^I wait for the first row to have a valid office$/) do
+  sleep 60
+  
+end

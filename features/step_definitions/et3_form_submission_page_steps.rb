@@ -23,8 +23,7 @@ end
 
 Then(/^I should see the date\/time my application was submitted$/) do
   date = Date.today
-  month = t('date.month_names')[date.month]
-  expect(form_submission_page).to have_submission_date(i18n_params: {submitted_date: date.strftime("%-d #{month} %Y"), office_address: 'Alexandra House, 14-22 The Parsonage, Manchester M3 2JA'})
+  form_submission_page.assert_valid_submission_date(date)
 end
 
 Then(/^I can download a PDF of my application$/) do
