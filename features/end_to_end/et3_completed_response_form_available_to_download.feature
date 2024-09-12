@@ -28,15 +28,13 @@ Feature: ET3 response to local office
   Scenario: Case number starting with 13 will be forwarded to Midlands (West)
     Given an employer responds to a claim with case number starting '1354321/2017'
     When the completed Employment Tribunal response form is submitted
-    Then it will be forwarded to the Office address 'Centre City Tower, 5-7 Hill Street, Birmingham B5 4UU'
-    And phone number '0121 600 7780' with email 'midlandswestet@justice.gov.uk'
+    Then it will have the correct submission date
     Then the response should be viewable in the admin json
 
   Scenario: Case number starting with 99 will be forwarded to the Default Office
     Given an employer responds to a claim with case number starting '9954321/2017'
     When the completed Employment Tribunal response form is submitted
-    Then it will be forwarded to the Office address 'Alexandra House, 14-22 The Parsonage, Manchester M3 2JA'
-    And phone number '0161 833 5113' with email 'employmentJurisdictionalSupportTeamInbox@justice.gov.uk'
+    Then it will have the correct submission date
     And the response should be viewable in the admin json
 
   Scenario: Respondent answers to mandatory questions

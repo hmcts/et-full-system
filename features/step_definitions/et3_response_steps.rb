@@ -10,7 +10,7 @@ When(/^the completed Employment Tribunal response form is submitted$/) do
   additional_information
   et3_confirmation_of_supplied_details
 
-  @my_et3_reference = form_submission_page.reference_number.text
+  @my_et3_reference = form_submission_page.reference_number_text
 end
 
 When(/^an employer responds to mandatory questions$/) do
@@ -41,7 +41,7 @@ When(/^an employer responds to mandatory questions$/) do
   additional_information
   confirmation_of_supplied_details_page.next
 
-  @my_et3_reference = form_submission_page.reference_number.text
+  @my_et3_reference = form_submission_page.reference_number_text
 end
 
 When("an employer responds to a claim with special characters in the company's name") do
@@ -72,7 +72,7 @@ When("an employer responds to a claim with special characters in the company's n
   additional_information
   confirmation_of_supplied_details_page.next
 
-  @my_et3_reference = form_submission_page.reference_number.text
+  @my_et3_reference = form_submission_page.reference_number_text
 end
 
 When(/^a DUMMY USER responds to a claim$/) do
@@ -100,5 +100,5 @@ When(/^a DUMMY USER responds to a claim$/) do
   additional_information
   confirmation_of_supplied_details_page.next
 
-  @my_et3_reference = form_submission_page.reference_number.text
+  @my_et3_reference = form_submission_page.reference_number_text
 end

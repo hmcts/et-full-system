@@ -13,7 +13,7 @@ Given(/^I am on the ET3 form submission page$/) do
   additional_information
   et3_confirmation_of_supplied_details
 
-  @my_et3_reference = form_submission_page.reference_number.text
+  @my_et3_reference = form_submission_page.reference_number_text
 end
 
 Then(/^I should see my application reference number$/) do

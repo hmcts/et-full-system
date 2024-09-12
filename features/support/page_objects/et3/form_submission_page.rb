@@ -39,6 +39,10 @@ module EtFullSystem
             expect(page).to have_selector '.govuk-summary-list__value', text: date.strftime("%-d #{month} %Y")
           end
         end
+
+        def reference_number_text
+          reference_number.find('.govuk-summary-list__value').text
+        end
       end
     end
   end
