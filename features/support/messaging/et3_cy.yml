@@ -439,10 +439,11 @@ cy:
     thank_you: "Rydym wedi anfon copi o’ch ymateb i %{email}. Gallwch chi hefyd"
     thank_you_without_email: "Gallwch chi "
     office_contact: "Os oes arnoch angen cysylltu â nhw, anfonwch neges e-bost i %{office_email} neu ffoniwch %{office_phone}"
-    date: "Mae eich ymateb, a gyflwynwyd ar %{submitted_date}, wedi cael ei anfon i %{office_address}"
+    date: Cyflwynwyd yr ymateb
     include_quote_case: "Bydd angen ichi gynnwys neu ddyfynnu eich rhif achos."
     return_link: Dychwelyd i GOV.UK
     return_href: https://gov.uk
+    reference_number: Cyfeirnod cyflwyno
   confirmation_of_supplied_details:
     upload_additional_information: "Llwythwch ffeil i ddarparu unrhyw wybodaeth ychwanegol bwysig am eich ymateb nad ydych wedi’i chynnwys hyd yma"
     make_employer_contract_claim: Ydych chi eisiau gwneud Hawliad Contract y Cyflogwr?
