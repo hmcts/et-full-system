@@ -9,12 +9,12 @@ local: &local
   ccd_client_url: https://localhost:3501
   oauth2redirect: http://localhost:3451/oauth2redirect
   ccd_case_url: http://localhost:3453
-  et1_url: http://et1.et.127.0.0.1.nip.io:3100
+  et1_url: https://et1.et.127.0.0.1.nip.io:3443
   diversity_url: http://et1.et.127.0.0.1.nip.io:3100/apply/diversity
-  et1_admin_url: http://et1.et.127.0.0.1.nip.io:3100/apply/admin
-  et3_url: http://et3.et.127.0.0.1.nip.io:3100
-  admin_url: http://admin.et.127.0.0.1.nip.io:3100/admin
-  sidekiq_url: http://et1.et.127.0.0.1.nip.io:3100/apply/sidekiq
+  et1_admin_url: https://et1.et.127.0.0.1.nip.io:3443/apply/admin
+  et3_url: https://et3.et.127.0.0.1.nip.io:3443
+  admin_url: https://admin.et.127.0.0.1.nip.io:3443/admin
+  sidekiq_url: https://et1.et.127.0.0.1.nip.io:3443/apply/sidekiq
   mailhog_search_url: http://mail.et.127.0.0.1.nip.io:3100/api/v2/search
   ccd_auth_base_url: http://ccd.et.127.0.0.1.nip.io:3100/auth
   ccd_idam_base_url: http://ccd.et.127.0.0.1.nip.io:3100/idam
