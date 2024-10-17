@@ -339,7 +339,9 @@ module EtFullSystem
       end
 
       def agent
-        @agent ||= Mechanize.new
+        @agent ||= Mechanize.new do |a|
+          a.verify_mode = OpenSSL::SSL::VERIFY_NONE
+        end
       end
 
       attr_accessor :sidekiq_cron_agent, :cookies_hash, :last_response, :csrf_token, :sidekiq_authenticity_token, :sidekiq_cron_form_url, :logged_in, :mechanize_logged_in
