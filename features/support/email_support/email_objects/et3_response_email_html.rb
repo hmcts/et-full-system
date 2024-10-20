@@ -38,12 +38,13 @@ module EtFullSystem
         false
       end
 
-      def has_correct_content_for?(submission_date:, reference:) # rubocop:disable Naming/PredicateName
+      def has_correct_content_for?(submission_date:, reference:, office: nil) # rubocop:disable Naming/PredicateName
         aggregate_failures 'validating content' do
           assert_reference_element(reference)
           expect(has_correct_subject?).to be true
           assert_submission_date_element(submission_date)
           expect(attached_pdf_for(reference: reference)).to be_present
+          expect(has_correct_office?(office)).to be true if office.present?
         end
         true
       end
@@ -68,6 +69,13 @@ module EtFullSystem
 
       def has_submission_date_element?(submission_date)
         assert_submission_date_element(submission_date)
+        true
+      rescue Capybara::ElementNotFound
+        false
+      end
+
+      def has_correct_office?(office)
+        assert_selector(:css, 'p', text: t('response_email.office_name', locale: locale, office: office))
         true
       rescue Capybara::ElementNotFound
         false

@@ -1,4 +1,5 @@
 require 'capybara'
+
 require_relative '../configuration'
 Capybara.configure do |config|
   driver = ENV.fetch('DRIVER', 'chromedriver').to_sym
@@ -40,6 +41,7 @@ Capybara.register_driver :chromedriver_headless do |app|
   options.add_argument('--disable-web-security')   # may be needed
   options.add_argument('--allow-running-insecure-content') # try this
   options.add_argument('--ignore-certificate-errors')
+  options.add_argument('--allow-insecure-localhost')
   options.add_argument("proxy-server=#{EtFullSystem::Test::Configuration['proxy']}") if EtFullSystem::Test::Configuration['proxy']
   Capybara::Selenium::Driver.new(app, browser: :chrome, options: options)
 end
@@ -50,7 +52,7 @@ end
 
 Capybara.register_driver :firefoxdriver_headless do |app|
   options = Selenium::WebDriver::Firefox::Options.new
-  options.headless!
+  options.add_argument('-headless')
   Capybara::Selenium::Driver.new(app, browser: :firefox, options: options)
 end
 

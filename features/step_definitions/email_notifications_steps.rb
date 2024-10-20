@@ -56,7 +56,7 @@ When(/^a respondent completes an ET3 form$/) do
   additional_information
   et3_confirmation_of_supplied_details
 
-  @my_et3_reference = form_submission_page.reference_number.text
+  @my_et3_reference = form_submission_page.reference_number_text
 end
 
 Then(/^an email is sent to notify user that a respondent has been successfully submitted$/) do

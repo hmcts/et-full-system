@@ -13,10 +13,10 @@ module EtFullSystem
         end
         element :header, :main_header, 'submission.confirmation'
         element :submission_confirmation, :element_with_text, 'submission.confirmation'
-        element :reference_number, :css, '.reference-number'
+        element :reference_number, :summary_list_row_labelled, 'submission.reference_number'
         element :thank_you, :element_with_text, 'submission.thank_you'
         element :office_contact, :element_with_text, 'submission.office_contact'
-        element :submission_date, :element_with_text, 'submission.date'
+        element :submission_date, :summary_list_row_labelled, 'submission.date'
         element :valid_pdf_download, :govuk_link, :'links.form_submission.valid_pdf_download'
         element :invalid_pdf_download, :govuk_link, :'links.form_submission.invalid_pdf_download'
         element :return_to_govuk_button, :govuk_link, :'submission.return_link'
@@ -30,6 +30,18 @@ module EtFullSystem
 
         def switch_to_english
           switch_language.english_link.click
+        end
+
+        def assert_valid_submission_date(date)
+          month = t('date.month_names')[date.month]
+
+          within submission_date do 
+            expect(page).to have_selector '.govuk-summary-list__value', text: date.strftime("%-d #{month} %Y")
+          end
+        end
+
+        def reference_number_text
+          reference_number.find('.govuk-summary-list__value').text
         end
       end
     end
