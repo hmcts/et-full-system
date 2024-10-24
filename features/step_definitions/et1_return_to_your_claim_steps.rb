@@ -12,7 +12,7 @@ Given("I'm a return claimant") do
   @claim_number = et1_application_number_page.claim_number_notification.claims_number.text
   @claimant = FactoryBot.create_list(:claimant, 1, :person_data, claim_number: @claim_number)
   et1_answer_login
-  @page_left_off = current_url
+  @page_left_off = current_path
   page.reset!
   load_et1_start_page
   et1_apply_page.return_to_claim
@@ -24,7 +24,7 @@ When("I enter my claim details") do
 end
 
 Then("I should be taken to where I was left off") do
-  expect(current_url).to eq( @page_left_off)
+  expect(current_path).to eq( @page_left_off)
 end
 
 When("I click Start a new claim") do
