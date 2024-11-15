@@ -9,6 +9,7 @@ node_modules
 rubybin/
 report*.html
 cucumber_failures.log
+features/tmp/**/*
 
 .idea/shelf
 .idea/modules
