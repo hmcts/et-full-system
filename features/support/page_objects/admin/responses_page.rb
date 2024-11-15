@@ -9,6 +9,7 @@ module EtFullSystem
         element :respondent_name, 'td.col.col-respondent_name'
         element :case_number, 'td.col.col-case_number'
         element :claimant_name, 'td.col.col-claimants_name'
+        element :office_name, 'td.col.col-office'
 
 
 
@@ -78,6 +79,20 @@ module EtFullSystem
         def verify_office()
           data = self.page.find(:css, "a[href='/admin/responses?scope=all']").text.delete('All ()')
           self.page.find(:css, "tr[id='response_#{data}'] td[class='col col-office']").text == "Bristol"
+        end
+
+        def assert_office(office_code, reference, timeout: 5, sleep: 0.2)
+          office_data = admin_api.office_data_for(office_code)
+          Timeout.timeout(timeout) do
+            loop do
+              response_data = admin_api.responses(q:{reference_cont:reference}).first
+              return true if response_data&.fetch('office_id') == office_data['id']
+
+              sleep(sleep)
+            end
+          end
+        rescue Timeout::Error
+          raise "The response with reference #{reference} had no office or was not the office with code '#{office_code}'"
         end
       end
     end

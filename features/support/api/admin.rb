@@ -265,7 +265,7 @@ module EtFullSystem
       end
 
       def office_data_for(office_code)
-        cached_office_data.detect {|office_data| office_data['code'].to_s == office_code}
+        cached_office_data.detect {|office_data| office_data['code'].to_s == office_code&.to_s}
       end
 
       def cached_office_data

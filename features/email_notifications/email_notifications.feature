@@ -16,4 +16,5 @@ Feature: Email notifications
     Given an employer responds to an existing external reformed case for england and wales Bristol office
     When the completed Employment Tribunal response form is submitted
     And the submitted Employment Tribunal response is exported to ccd for me
-    Then an email is sent to notify user that a respondent has been successfully submitted
+    Then the response should be assigned to office code 14
+    And an email is sent to notify user that a respondent has been successfully submitted
