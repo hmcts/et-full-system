@@ -20,3 +20,7 @@ Then(/^the minimal response should be viewable in the admin json$/) do
   user = @claimant[0]
   admin_pages.responses_page.minimal_check_json(user, @my_et3_reference)
 end
+
+And(/^the response should be assigned to office code (\d+)$/) do |office_code|
+  admin_pages.responses_page.assert_office(office_code, @my_et3_reference)
+end
