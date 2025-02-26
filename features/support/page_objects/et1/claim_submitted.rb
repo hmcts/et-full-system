@@ -6,44 +6,53 @@ module EtFullSystem
         include RSpec::Matchers
         # Claim submitted
         element :page_header, :page_title, 'claim_confirmations.show.header', exact: false
-        section :callout_confirmation, '.govuk-notification-banner' do
-          # Your claim number
-          element :claim_number, '.govuk-notification-banner__title'
-          element :answer, :css, '.number'
-        end
         # What happens next
         element :what_happens_next, :content_header, 'claim_confirmations.show.what_happens_next.header'
         section :numerical_list, '.govuk-list' do
-          # We'll contact you once we have sent your claim to the respondent and explain what happens next. At present, this is taking us an of average of 25 days.
-          element :send_to_respondent, :paragraph, 'claim_confirmations.show.what_happens_next.send_to_respondent',
+          element :send_to_respondent, :paragraph, 'claim_confirmations.show.what_happens_next.content',
                   exact: false
-          # Once we have sent them your claim, the respondent has 28 days to reply
-          element :next_steps, :paragraph, 'claim_confirmations.show.what_happens_next.next_steps', exact: false
+          # We'll check your claim and may contact you if we have any questions
+          # We'll contact you once we've sent your claim to the respondents and explain what happens next
         end
         # Submission details
         section :submission_details, :css, '.submission-details' do
+          # Submission reference
+          section :submission_reference, :css, '.govuk-summary-list__row:nth-of-type(1)' do
+            # Your claim number
+            element :claim_number, :css, '.govuk-summary-list__value'
+          end
+          # Claim submitted
+          section :submission_information, :css,
+                  'claim_confirmations.show.submission_details.submission_information' do
+            element :answer, :css, '.govuk-summary-list__value'
+          end
           # Download your claim
           section :download_application, :grid_row_with_col_labelled,
                   'claim_confirmations.show.download_application.header' do
-            element :download_application_link, :govuk_link, :'claim_confirmations.show.download_application.link_html'
+            element :download_application_link, :govuk_link, :'claim_confirmations.show.download_application.link_text'
+            element :download_application_invalid_link, :govuk_link, :'claim_confirmations.show.download_application.invalid_link_text'
           end
-          # Claim submitted
-          section :submission_information, :grid_row_with_col_labelled,
-                  'claim_confirmations.show.submission_details.submission_information' do
-            element :answer, :css, '.answer'
-          end
-          # Tribunal office
-          section :tribunal_office, :grid_row_with_col_labelled,
-                  'claim_confirmations.show.submission_details.tribunal_office' do
-            element :answer, :css, '.answer'
-          end
-
           # Attachments included
           section :attachments, :grid_row_with_col_labelled,
                   'claim_confirmations.show.submission_details.attachments' do
-            element :answer, :css, '.answer'
+            element :answer, :css, '.govuk-summary-list__value'
           end
         end
+        # For questions about your claim
+        section :office_information, :css, '.office_information' do
+          # Tribunal office
+          element :tribunal_office, :css, '.govuk-summary-list__value:nth-of-type(1)'
+          element :email , :css, '.govuk-summary-list__value:nth-of-type(2)'
+          element :telephone, :css, '.govuk-summary-list__value:nth-of-type(3)'
+        end
+
+        # For questions about the employment tribunal process
+        element :process_questions, :grid_row_with_col_labelled, 'claim_confirmations.show.process_questions'
+        element :process_questions_content, :paragraph, 'claim_confirmations.show.process_questions_content', exact: false
+        element :eng_telephone_number, :paragraph, 'claim_confirmations.show.eng_telephone_number'
+        element :wel_telephone_number, :paragraph, 'claim_confirmations.show.wel_telephone_number'
+        element :sco_telephone_number, :paragraph, 'claim_confirmations.show.sco_telephone_number'
+
         element :print_this_page, :govuk_link, :'claim_confirmations.show.print_link_html'
         element :for_your_record, :paragraph, 'claim_confirmations.show.print_link_info', exact: false
         element :your_feedback, :govuk_link, :'claim_confirmations.show.feedback_html'
@@ -71,8 +80,8 @@ module EtFullSystem
           # Claim submitted
           expect(self).to have_page_header
           # Your claim number
-          expect(callout_confirmation).to have_claim_number
-          expect(callout_confirmation).to have_answer(text: claim_number)
+          expect(submission_reference).to have_claim_number
+          expect(submission_reference).to have_answer(text: claim_number)
           # What happens next
           expect(self).to have_what_happens_next
           expect(numerical_list).to have_send_to_respondent
@@ -81,7 +90,7 @@ module EtFullSystem
           expect(self).to have_submission_details
           # Down your claim
           expect(submission_details).to have_download_application
-          expect(submission_details.download_application).to have_download_application_link
+          expect(submission_details.download_application).to have_download_application_link.or have_download_application_invalid_link
           # Claim submitted
           expect(has_forwarded_to_local_office?(office)).to be true
           # attachment
@@ -128,7 +137,7 @@ module EtFullSystem
         end
 
         def claim_number
-          callout_confirmation.answer.text
+          submission_details.submission_reference.claim_number.text
         end
       end
     end
