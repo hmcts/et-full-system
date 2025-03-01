@@ -1,4 +1,5 @@
-Given /^a claimant continued from Saving your claim page$/ do
+Given(/^a claimant continued from Saving your claim page$/) do
+  @claim = FactoryBot.create(:claim)
   @claimant = FactoryBot.create_list(:claimant, 1, :person_data)
   start_a_new_et1_claim
   @claim_number = et1_application_number_page.claim_number_notification.claims_number.text
@@ -10,17 +11,17 @@ Then(/^an email is sent to notify user that a claim has been started$/) do
   expect(et1_email.has_correct_subject_for_complete_your_claim?).to be true
 end
 
-Given /^a claimant completes an ET1 form$/ do
+Given(/^a claimant completes an ET1 form$/) do
   @claimant = FactoryBot.create_list(:claimant, 1, :person_data)
   @representative = FactoryBot.create_list(:representative, 1)
-  @respondent = FactoryBot.create_list(:respondent,  1, :yes_acas, :both_addresses)
+  @respondent = FactoryBot.create_list(:respondent, 1, :yes_acas, :both_addresses)
   @employment = FactoryBot.create(:employment)
   @claim = FactoryBot.create(:claim)
-
 
   start_a_new_et1_claim
   et1_answer_login
   et1_answer_claimant_questions
+  et1_answer_case_heard_by_page
   et1_answer_group_claimants_questions
   et1_answer_representatives_questions
   et1_answer_respondents_questions
@@ -30,13 +31,12 @@ Given /^a claimant completes an ET1 form$/ do
   et1_answer_claim_outcome_questions
   et1_answer_more_about_the_claim_questions
   et1_submit_claim
-
 end
 
 Then(/^an email is sent to notify user that a claim has been successfully submitted$/) do
   et1_email = EtFullSystem::Test::Et1ClaimCompletedEmailHtml.find(claim_number: @claim_reference)
   date = Time.now
-  expect(et1_email.submission_submitted).to eq(date.strftime("%d #{t("date.month_names")[date.month]} %Y"))
+  expect(et1_email.submission_submitted).to eq(date.strftime("%d #{t('date.month_names')[date.month]} %Y"))
   expect(et1_email.has_correct_subject_for_claim_submitted?).to be true
 end
 
@@ -47,6 +47,7 @@ When(/^a respondent completes an ET3 form$/) do
 
   start_a_new_et3_response
   et3_answer_respondents_details
+  et3_answer_case_heard_by_page
   et3_answer_claimants_details
   et3_answer_earnings_and_benefits
   et3_answer_defend_claim_question
@@ -61,7 +62,9 @@ end
 
 Then(/^an email is sent to notify user that a respondent has been successfully submitted$/) do
   date = Date.today
-  month = t('date.month_names')[date.month]
-  email_sent = ::EtFullSystem::Test::Et3ResponseEmailHtml.find(reference: @my_et3_reference, locale: ::EtFullSystem::Test::Messaging.instance.current_locale)
-  expect(email_sent).to have_correct_content_for(submission_date: Date.today.strftime('%d/%m/%Y'), reference: @my_et3_reference)
+  t('date.month_names')[date.month]
+  email_sent = ::EtFullSystem::Test::Et3ResponseEmailHtml.find(reference: @my_et3_reference,
+                                                               locale: ::EtFullSystem::Test::Messaging.instance.current_locale)
+  expect(email_sent).to have_correct_content_for(submission_date: Date.today.strftime('%d/%m/%Y'),
+                                                 reference: @my_et3_reference)
 end

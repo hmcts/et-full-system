@@ -1,4 +1,4 @@
-require_relative './base.rb'
+require_relative './base'
 module EtFullSystem
   module Test
     module FileObjects
@@ -8,9 +8,10 @@ module EtFullSystem
             if employment.employment_details == :"claims.employment.yes" && employment.paid_for_notice_period == :"claims.employment.paid_for_notice_period.yes"
               expected_values = {
                 average_weekly_hours: employment.try(:average_weekly_hours).try(:to_f).try(:to_s),
-                pay_before_tax: pay_tax(employment.try(:pay_before_tax), employment.pay_period_type.to_s.split('.').last),
+                pay_before_tax: pay_tax(employment.try(:pay_before_tax),
+                                        employment.pay_period_type.to_s.split('.').last),
                 pay_after_tax: pay_tax(employment.try(:pay_after_tax), employment.pay_period_type.to_s.split('.').last),
-                paid_for_notice_period: employment.paid_for_notice_period.to_s.split('.').last == "yes",
+                paid_for_notice_period: employment.paid_for_notice_period.to_s.split('.').last == 'yes',
                 notice_period: notice_period(employment.notice_period, employment.notice_period_type),
                 employers_pension_scheme: employers_pension_scheme(employment),
                 benefits: employment.try(:benefits)
@@ -18,7 +19,8 @@ module EtFullSystem
             elsif employment.employment_details == :"claims.employment.yes" && employment.paid_for_notice_period == :"claims.employment.paid_for_notice_period.no"
               expected_values = {
                 average_weekly_hours: employment.try(:average_weekly_hours).try(:to_f).try(:to_s),
-                pay_before_tax: pay_tax(employment.try(:pay_before_tax), employment.pay_period_type.to_s.split('.').last),
+                pay_before_tax: pay_tax(employment.try(:pay_before_tax),
+                                        employment.pay_period_type.to_s.split('.').last),
                 pay_after_tax: pay_tax(employment.try(:pay_after_tax), employment.pay_period_type.to_s.split('.').last),
                 paid_for_notice_period: false,
                 notice_period: notice_period(employment.notice_period, employment.notice_period_type),
@@ -29,13 +31,13 @@ module EtFullSystem
               expected_values = {
                 average_weekly_hours: be_blank,
                 pay_before_tax: {
-                    'amount': be_blank,
-                    'period': be_blank
+                  'amount': be_blank,
+                  'period': be_blank
                 },
                 paid_for_notice_period: be_blank,
                 notice_period: {
-                    weeks: be_blank,
-                    months: be_blank
+                  weeks: be_blank,
+                  months: be_blank
                 },
                 employers_pension_scheme: be_blank,
                 benefits: be_blank
@@ -54,22 +56,23 @@ module EtFullSystem
 
           def employers_pension_scheme(employment)
             return nil if employment.nil?
-            employment.employers_pension_scheme.to_s.split('.').last.downcase.in?(['true', 'yes'])
+
+            employment.employers_pension_scheme.to_s.split('.').last.downcase.in?(%w[true yes])
           end
 
           def notice_period(notice_period, notice_period_type)
             key = notice_period_type.to_s.split('.').last
-            if key == "months"
-              {:weeks=>"", :months=>"#{notice_period}.0"}
-            elsif key == "weeks"
-              {:weeks=>"#{notice_period}.0", :months=>""}
+            if key == 'months'
+              { weeks: '', months: "#{notice_period}.0" }
+            elsif key == 'weeks'
+              { weeks: "#{notice_period}.0", months: '' }
             else
-              {:weeks=>"", :months=>""}
+              { weeks: '', months: '' }
             end
           end
 
           def pay_tax(amount, period)
-              {:amount=>"#{amount}", :period=>"#{period}"}
+            { amount: "#{amount}", period: "#{period}" }
           end
         end
       end

@@ -40,8 +40,8 @@ module EtFullSystem
 
         def postcode_exist(postcode_id)
           main_content.tbody.postcode.has_content?(postcode_id)
-            rescue Capybara::ElementNotFound
-            return false
+        rescue Capybara::ElementNotFound
+          false
         end
 
         def find_postcode(postcode)
@@ -58,7 +58,7 @@ module EtFullSystem
 
         def ajax_delete_postcode(postcode_record)
           url = "#{self.class.base_url}/office_postcodes/#{postcode_record['id']}"
-          response = ajax_delete(url)
+          ajax_delete(url)
         end
 
         def edit_postcode
@@ -66,15 +66,15 @@ module EtFullSystem
         end
 
         def has_successfully_created_error_msg?
-          expect(success_error_msg).to have_content("Office post code was successfully created")
+          expect(success_error_msg).to have_content('Office post code was successfully created')
         end
 
         def has_successfully_edited_error_msg?
-          expect(success_error_msg).to have_content("Office post code was successfully updated")
+          expect(success_error_msg).to have_content('Office post code was successfully updated')
         end
 
         def has_successfully_delete_error_msg?
-          expect(success_error_msg).to have_content("Office post code was successfully destroyed")
+          expect(success_error_msg).to have_content('Office post code was successfully destroyed')
         end
       end
     end

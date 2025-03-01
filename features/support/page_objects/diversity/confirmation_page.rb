@@ -11,11 +11,11 @@ module EtFullSystem
           element :english_link, :link_or_button, t('switch.language', locale: :cy)
         end
         section :main_content, '.container' do
-          #Thank you
+          # Thank you
           element :header, :main_header, 'diversities.submit.sub_header'
-          #Thank you for completing this diversity monitoring questionnaire.
+          # Thank you for completing this diversity monitoring questionnaire.
           element :content, :paragraph, 'diversities.submit.thank_you'
-          #Return to GOV.UK
+          # Return to GOV.UK
           element :return_button, :govuk_button_link, :'diversities.submit.return'
         end
 

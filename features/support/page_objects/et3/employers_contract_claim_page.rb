@@ -13,7 +13,6 @@ module EtFullSystem
         end
         element :header, :content_header, 'employer_contract_claim.header'
         section :main_header, '.content-header' do
-
         end
         gds_radios :make_employer_contract_claim_question, :'questions.make_employer_contract_claim', exact: true
         gds_text_area :claim_information, :'questions.claim_information', exact: true

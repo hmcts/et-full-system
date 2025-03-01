@@ -6,7 +6,6 @@ module EtFullSystem
     class BaseSection < SitePrism::Section
       include RSpec::Matchers
       include EtFullSystem::Test::I18n
-
     end
   end
 end

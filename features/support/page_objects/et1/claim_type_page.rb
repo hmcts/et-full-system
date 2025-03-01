@@ -10,7 +10,8 @@ module EtFullSystem
         #   A govuk error component
         #   @return [EtTestHelpers::Components::GovUKErrorSummary] The site prism section
         gds_error_summary :error_message, :'shared.error_notification.default_message' do
-          element :default_message, :listing_containing_text, 'activemodel.errors.models.claim_type.attributes.blank', exact: false
+          element :default_message, :listing_containing_text, 'activemodel.errors.models.claim_type.attributes.blank',
+                  exact: false
         end
         # What your claim is about
         element :about_claim, :content_header, 'claims.claim_type.claim_type'

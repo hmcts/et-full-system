@@ -58,59 +58,59 @@ module EtFullSystem
         end
 
         def full_access
-          ["Dashboard",
-            "Acas",
-            "",
-            "",
-            "Addresses",
-            "Claimants",
-            "Claims",
-            "Commands",
-            "Default Office Claims",
-            "Diversity Responses",
-            "Et Offices",
-            "Exports",
-            "External Systems",
-            "Generate References",
-            "Jobs",
-            "Office Postcodes",
-            "Permissions",
-            "Reports",
-            "",
-            "Representatives",
-            "Respondents",
-            "Responses",
-            "Roles",
-            "Uploaded Files",
-            "Users",
-            "",
-            "Logout"]
+          ['Dashboard',
+           'Acas',
+           '',
+           '',
+           'Addresses',
+           'Claimants',
+           'Claims',
+           'Commands',
+           'Default Office Claims',
+           'Diversity Responses',
+           'Et Offices',
+           'Exports',
+           'External Systems',
+           'Generate References',
+           'Jobs',
+           'Office Postcodes',
+           'Permissions',
+           'Reports',
+           '',
+           'Representatives',
+           'Respondents',
+           'Responses',
+           'Roles',
+           'Uploaded Files',
+           'Users',
+           '',
+           'Logout']
         end
 
         def partial_access
-          ["Dashboard",
-            "Acas",
-            "",
-            "",
-            "Claims",
-            "Et Offices",
-            "Generate References",
-            "Office Postcodes",
-            "Responses",
-            "Roles",
-            "Users",
-            "",
-            "Logout"]
+          ['Dashboard',
+           'Acas',
+           '',
+           '',
+           'Claims',
+           'Et Offices',
+           'Generate References',
+           'Office Postcodes',
+           'Responses',
+           'Roles',
+           'Users',
+           '',
+           'Logout']
         end
 
         def basic_access
-          ["Dashboard",
-            "Acas",
-            "",
-            "",
-            "Et Offices",
-            "Generate References",
-            "Logout"]
+          ['Dashboard',
+           'Acas',
+           '',
+           '',
+           'Et Offices',
+           'Generate References',
+           'Logout']
         end
         section :utility_nav, '#header ul#utility_nav' do
           element :logout_menu_item, :link, 'Logout'
@@ -131,6 +131,7 @@ module EtFullSystem
             loop do
               result = yield
               break result if result
+
               sleep sleep
             end
           end
@@ -218,10 +219,11 @@ module EtFullSystem
           script = "window.EtFullSystem.Test.currentRequester = new EtFullSystem.Test.deleteRequester('#{url}', '#{csrf_param[:content]}' ,'#{csrf_token[:content]}'); window.EtFullSystem.Test.currentRequester.makeRequest();"
           execute_script(script)
           wait_for timeout: 1, sleep: 0.05 do
-            execute_script('return window.EtFullSystem.Test.currentRequester.ready');
+            execute_script('return window.EtFullSystem.Test.currentRequester.ready')
           end
           error = execute_script('return window.EtFullSystem.Test.currentRequester.error')
           raise "An error occurred performing a DELETE on #{url} - The error was #{error}" if error
+
           execute_script('return window.EtFullSystem.Test.currentRequester.response')
         end
       end

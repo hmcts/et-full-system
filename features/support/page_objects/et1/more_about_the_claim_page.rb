@@ -70,9 +70,9 @@ module EtFullSystem
           return if data.nil?
 
           other_important_details.set(data[:other_additional_information])
-          if data[:other_additional_information].to_s.split('.').last == 'yes'
-            additional_information_miscellaneous_information.set data[:other_important_details]
-          end
+          return unless data[:other_additional_information].to_s.split('.').last == 'yes'
+
+          additional_information_miscellaneous_information.set data[:other_important_details]
         end
       end
     end

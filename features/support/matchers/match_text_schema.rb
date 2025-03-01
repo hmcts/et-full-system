@@ -15,9 +15,7 @@ module EtFullSystem
         self.actual_values = actual_as_array(actual)
         expected.each_with_index do |specification, idx|
           matcher = matcher_for(specification)
-          unless matcher.matches?(actual_values[idx])
-            mismatches << "Line #{idx + 1} - #{matcher.failure_message}"
-          end
+          mismatches << "Line #{idx + 1} - #{matcher.failure_message}" unless matcher.matches?(actual_values[idx])
         end
         mismatches.empty?
       end
@@ -30,8 +28,8 @@ module EtFullSystem
 
       def actual_as_array(actual)
         case actual
-        when String then actual.lines("\r\n").map {|l| l.gsub(/\r\n\z/, '')}
-        when IO, Tempfile then actual.read.lines("\r\n").map {|l| l.gsub(/\r\n\z/, '')}
+        when String then actual.lines("\r\n").map { |l| l.gsub(/\r\n\z/, '') }
+        when IO, Tempfile then actual.read.lines("\r\n").map { |l| l.gsub(/\r\n\z/, '') }
         else raise "Must be a string or a file containing the data to be read - a #{actual.class.name} was provided"
         end
       end

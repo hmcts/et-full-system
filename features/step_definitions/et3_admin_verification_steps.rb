@@ -1,4 +1,4 @@
-Then("it will have the correct submission date") do
+Then('it will have the correct submission date') do
   date = Date.today
   form_submission_page.assert_valid_submission_date(date)
 end
