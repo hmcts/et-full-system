@@ -6,10 +6,12 @@ module EtFullSystem
         include EtTestHelpers::Page
         include RSpec::Matchers
 
-        #page and main header
+        # page and main header
         element :page_header, :page_title, 'claims.application_number.header'
 
-        section(:claim_number_notification, :xpath, XPath.generate { |x| x.css('.govuk-notification-banner')[x.child(:div)[x.attr(:class).contains_word('govuk-notification-banner__header') & x.string.n.equals(t('claims.application_number.application_number'))]] }) do
+        section(:claim_number_notification, :xpath, XPath.generate do |x|
+          x.css('.govuk-notification-banner')[x.child(:div)[x.attr(:class).contains_word('govuk-notification-banner__header') & x.string.n.equals(t('claims.application_number.application_number'))]]
+        end) do
           element :claims_number, '.number'
         end
         # @!method email_question
@@ -20,7 +22,6 @@ module EtFullSystem
         #   A govuk text field component wrapping the input, label, hint etc..
         #   @return [EtTestHelpers::Components::GovUKTextField] The site prism section
         gds_text_input :memorable_word_question, :'simple_form.labels.application_number.password'
-
 
         element :claims_intro_text, :paragraph, 'claims.application_number.intro_text'
 
@@ -35,7 +36,7 @@ module EtFullSystem
 
         element :example_word, '#save-and-return-user-password-hint'
 
-        #print this page
+        # print this page
         element :print_link, :govuk_link, :'user_sessions.reminder.print_link'
         element :print_copy, :paragraph, 'claims.application_number.print_copy', exact: false
 
@@ -61,27 +62,26 @@ module EtFullSystem
         end
 
         def has_correct_translation?
-          #saving your claim heading
+          # saving your claim heading
           expect(self).to have_page_header
-          #your claim number
+          # your claim number
           expect(self).to have_claim_number_notification
-          #claim intro
+          # claim intro
           expect(self).to have_claims_intro_text
-          #email address
+          # email address
           expect(self).to have_email_question
-          #memorable
+          # memorable
           expect(self).to have_memorable_word_question
-          #print this page
+          # print this page
           expect(self).to have_print_link
           expect(self).to have_print_copy
-          #save and continue button
+          # save and continue button
           expect(self).to have_example_word
-          #Support links
+          # Support links
           expect(support).to have_suport_header
           expect(support).to have_guide
           expect(support).to have_contact_use
         end
-
 
         def set(data)
           main_content.email_label.set(data[0].dig(:email_address))

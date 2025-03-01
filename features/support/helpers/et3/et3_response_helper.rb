@@ -22,7 +22,7 @@ module EtFullSystem
         respondents_details_page.case_number_question.set(user.case_number)
         respondents_details_page.company_number_question.set(user.company_number)
         respondents_details_page.title_question.set(user.title)
-        respondents_details_page.title_other_question.set(user.title_other) if(user.title == 'Other')
+        respondents_details_page.title_other_question.set(user.title_other) if user.title == 'Other'
         respondents_details_page.name_question.set(user.name)
         respondents_details_page.contact_question.set(user.contact)
         respondents_details_page.building_name_question.set(user.building_name)
@@ -35,9 +35,13 @@ module EtFullSystem
         respondents_details_page.contact_number_question.set(user.contact_number)
         respondents_details_page.contact_mobile_number_question.set(user.contact_mobile_number)
         respondents_details_page.contact_preference_question.set(user.contact_preference.to_s.split('.').last&.to_sym)
-        respondents_details_page.email_address_question.set(user.email_address) if user.contact_preference.to_s.split('.').last == 'email'
+        if user.contact_preference.to_s.split('.').last == 'email'
+          respondents_details_page.email_address_question.set(user.email_address)
+        end
         respondents_details_page.organisation_more_than_one_site_question.set(user.organisation_more_than_one_site.to_s.split('.').last.to_sym)
-        respondents_details_page.employment_at_site_number_question.set(user.employment_at_site_number) if user.organisation_more_than_one_site.to_s.split('.')[-2] == 'yes'
+        if user.organisation_more_than_one_site.to_s.split('.')[-2] == 'yes'
+          respondents_details_page.employment_at_site_number_question.set(user.employment_at_site_number)
+        end
         respondents_details_page.organisation_employ_gb_question.set(user.organisation_employ_gb)
         respondents_details_page.allow_phone_or_video_attendance_question.set(user.allow_phone_orvideo_attendance)
 
@@ -67,7 +71,9 @@ module EtFullSystem
         user = @claimant[0]
         claimants_details_page.claimants_name_question.set(user.claimants_name)
         claimants_details_page.agree_with_early_conciliation_details_question.set(user.agree_with_early_conciliation_details.to_s.split('.').last.to_sym)
-        claimants_details_page.disagree_conciliation_reason.set(user.disagree_conciliation_reason) if user.agree_with_early_conciliation_details.to_s.split('.').last == 'no'
+        if user.agree_with_early_conciliation_details.to_s.split('.').last == 'no'
+          claimants_details_page.disagree_conciliation_reason.set(user.disagree_conciliation_reason)
+        end
         claimants_details_page.agree_with_employment_dates_question.set(user.agree_with_employment_dates.to_s.split('.').last.to_sym)
         if user.agree_with_employment_dates.to_s.split('.').last == 'no'
           claimants_details_page.employment_start.set(user.employment_start)
@@ -120,16 +126,14 @@ module EtFullSystem
       def et3_answer_defend_claim_question
         user = @claimant[0]
         response_page.defend_claim_question.set(user.defend_claim)
-        if user.defend_claim.to_s.split('.').last == 'yes'
-          response_page.defend_claim_facts.set(user.defend_claim_facts)
-        end
+        response_page.defend_claim_facts.set(user.defend_claim_facts) if user.defend_claim.to_s.split('.').last == 'yes'
 
         response_page.next
       end
 
       def et3_answer_representative
         user = @representative[0]
-        if user.representative_have.to_s.split('.').last == "yes"
+        if user.representative_have.to_s.split('.').last == 'yes'
           your_representative_page.representative_question.set(:yes)
           your_representative_page.next
           your_representatives_details_page.type_of_representative_question.set(user.type.to_s.split('.').last.to_sym)
@@ -153,13 +157,12 @@ module EtFullSystem
         else
           your_representative_page.next
         end
-
       end
 
       def et3_answer_disability_question
         user = @respondent[0]
         disability_page.disability_question.set(user.disability.to_s.split('.').last&.to_sym)
-        if user.disability&.end_with?('.yes') && user.disability_information != nil
+        if user.disability&.end_with?('.yes') && !user.disability_information.nil?
           disability_page.disability_information.set(user.disability_information)
         end
 
@@ -186,11 +189,14 @@ module EtFullSystem
         make_employer_contract_claim_row.make_employer_contract_claim_answer.text
       end
 
+      def et3_answer_case_heard_by_page
+        et3_case_heard_by_page.fill_in_all(respondent: @respondent[0])
+        et3_case_heard_by_page.save_and_continue
+      end
+
       def additional_information
         user = @respondent[0]
-        if user[:rtf_file]
-          additional_information_page.attach_additional_information_file(user)
-        end
+        additional_information_page.attach_additional_information_file(user) if user[:rtf_file]
         additional_information_page.next
       end
 

@@ -639,6 +639,16 @@ en:
       legend_personal_details: About the claimant
       legend_contact_details: "Claimant’s contact details"
       personal_details_description: "Information about the person or organisation making this claim (known as the 'claimant')."
+    case_heard_by:
+      case_heard_by_preference:
+        label: How do you prefer to have your case heard? (optional)
+        options:
+          "judge": "I prefer my case to be heard by a judge. Give your reasons in the box below."
+          "panel": "I prefer my case to be heard by a panel including non-legal members. Give your reasons in the box below."
+          "no_preference": "I have no preference"
+      case_heard_by_preference_reason:
+        label: Give reason
+      save_and_continue: Save and continue      
     additional_claimants:
       header: Group claims
       subheader: People making a claim with you
@@ -1211,7 +1221,30 @@ en:
         unselected_value: 'Off'
       no_phone_or_video_reason:
         field_name: 1.11 explain
-
+      case_heard_by_preference:
+        field_name:
+          - 1.12 no preference
+          - 1.12 a panel
+          - 1.12 a judge
+        select_values:
+          no_preference:
+            - 'Yes'
+            - 'Off'
+            - 'Off'
+          judge:
+            - 'Off'
+            - 'Off'
+            - 'Yes'
+          panel:
+            - 'Off'
+            - 'Yes'
+            - 'Off'
+        unselected_value:
+          - 'Off'
+          - 'Off'
+          - 'Off'
+      case_heard_by_preference_reason:
+        field_name: 1.12 reasons
     respondents_details:
       name:
         field_name: '2.1 Give the name of your employer or the person or organisation you are claiming against'

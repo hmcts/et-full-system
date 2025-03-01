@@ -8,16 +8,17 @@ module EtFullSystem
       include RSpec::Matchers
       include EtFullSystem::Test::I18n
 
-      def self.find(search_url: ::EtFullSystem::Test::Configuration.mailhog_search_url, reference:, locale:, sleep: 10, timeout: 50)
+      def self.find(reference:, locale:, search_url: ::EtFullSystem::Test::Configuration.mailhog_search_url, sleep: 10, timeout: 50)
         item = find_email(reference, search_url, sleep: sleep, timeout: timeout)
         raise "ET3 Mail with reference #{reference} not found" unless item.present?
+
         new(item, locale: locale)
       end
 
       def self.find_email(reference, search_url, timeout: 50, sleep: 5)
         Timeout.timeout(timeout) do
           item = nil
-          until item.present? do
+          until item.present?
             query = Rack::Utils.build_query(kind: 'containing', query: reference, start: 0, limit: 1)
             url = URI.parse(search_url)
             url.query = query
@@ -28,7 +29,7 @@ module EtFullSystem
           Mail.new item.dig('Raw', 'Data')
         end
       rescue Timeout::Error
-        return nil
+        nil
       end
 
       def has_reference_element?(reference)
@@ -64,7 +65,8 @@ module EtFullSystem
       end
 
       def assert_submission_date_element(submission_date)
-        assert_selector(:css, 'p', text: t('response_email.submission_date', locale: locale, submission_date: submission_date))
+        assert_selector(:css, 'p',
+                        text: t('response_email.submission_date', locale: locale, submission_date: submission_date))
       end
 
       def has_submission_date_element?(submission_date)

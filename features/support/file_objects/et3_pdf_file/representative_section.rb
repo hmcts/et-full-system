@@ -6,6 +6,7 @@ module EtFullSystem
         class RepresentativeSection < ::EtFullSystem::Test::FileObjects::Et3PdfFileSection::Base
           def has_contents_for?(representative:)
             return has_no_representative? if representative.nil?
+
             expected_values = {
               name: representative[:name] || '',
               organisation_name: representative[:organisation_name] || '',

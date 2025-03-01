@@ -110,9 +110,9 @@ module EtFullSystem
           end
           claim_details_claim_details.set(data[:description])
           other_claimants_fieldset.other_known_claimants.set(data[:similar_claims])
-          if data[:similar_claims].to_s.split('.').last == 'yes'
-            other_claimants_fieldset.other_known_claimant_names.set(data[:other_claimant_names])
-          end
+          return unless data[:similar_claims].to_s.split('.').last == 'yes'
+
+          other_claimants_fieldset.other_known_claimant_names.set(data[:other_claimant_names])
         end
       end
     end

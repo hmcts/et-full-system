@@ -1,15 +1,17 @@
-Given("a claimant is on Group claims page") do
+Given('a claimant is on Group claims page') do
   @claimant = FactoryBot.create_list(:claimant, 1, :person_data)
+  @claim = FactoryBot.create(:claim)
   start_a_new_et1_claim
   et1_answer_login
   et1_answer_claimant_questions
+  et1_answer_case_heard_by_page
 end
 
-Then("Group claims page copy texts are displayed in the correct language") do
+Then('Group claims page copy texts are displayed in the correct language') do
   expect(et1_group_claimants_page.has_correct_translation_on_group_claims?).to be true
 end
 
-When("I submit no other people are making claims") do
+When('I submit no other people are making claims') do
   et1_group_claimants_page.set(@claimant)
   et1_group_claimants_page.save_and_continue
 end
@@ -18,66 +20,67 @@ Then("I should be on the Respresentative's details page") do
   expect(et1_representatives_details_page).to have_page_header
 end
 
-When("there 5 or few claimants") do
+When('there 5 or few claimants') do
   et1_group_claimants_page.has_multiple_claimants.set(:yes)
 end
 
-Then("I can very that the copy texts correctly dispayed for group claimants") do
+Then('I can very that the copy texts correctly dispayed for group claimants') do
   expect(et1_group_claimants_page.has_correct_translation_for_group_claimants?).to be true
 end
 
-Then("I should be able to submit two claimant details") do
+Then('I should be able to submit two claimant details') do
   has_loaded = expect(et1_group_claimants_page).to have_page_header(wait: 1)
-  raise "Page not loaded within 1 second" unless has_loaded
+  raise 'Page not loaded within 1 second' unless has_loaded
+
   et1_group_claimants_page.set(@claimant)
   et1_group_claimants_page.save_and_continue
   expect(et1_representatives_details_page).to have_page_header
 end
 
-When("there are group claimants") do
+When('there are group claimants') do
   @claimant = FactoryBot.create_list(:claimant, 1, :group_claims)
   et1_group_claimants_page.set(@claimant)
   et1_group_claimants_upload_page.has_additional_claimants.set(:'simple_form.yes')
 end
 
-Then("I can very that the copy texts correctly dispayed for Upload user details in separate spreadsheet") do
+Then('I can very that the copy texts correctly dispayed for Upload user details in separate spreadsheet') do
   expect(et1_group_claimants_upload_page.has_correct_translation_for_group_claimants?).to be true
 end
 
-When("I submit no to upload group claimant") do
+When('I submit no to upload group claimant') do
   @claimant = FactoryBot.create_list(:claimant, 1)
   et1_group_claimants_page.set(@claimant)
   et1_group_claimants_upload_page.save_and_continue
   expect(et1_representatives_details_page).to have_page_header
 end
 
-When("I changed my mind to manually enter claimant details") do
+When('I changed my mind to manually enter claimant details') do
   @claimant = FactoryBot.create_list(:claimant, 1, :group_claims)
   et1_group_claimants_page.set(@claimant)
   et1_group_claimants_upload_page.manually_link.click
   @claimant = FactoryBot.create_list(:claimant, 2, :person_data)
 end
 
-Then("I submit a group claims via csv file") do
+Then('I submit a group claims via csv file') do
   @claimant = FactoryBot.create_list(:claimant, 1, :group_claims)
   et1_answer_group_claimants_questions
 end
 
-When("I submit without answering any claimant details") do
+When('I submit without answering any claimant details') do
   et1_group_claimants_page.has_multiple_claimants.set(:yes)
   et1_group_claimants_page.save_and_continue
 end
 
-Then("I should see mandatory errors on the Group claims page") do
+Then('I should see mandatory errors on the Group claims page') do
   expect(et1_group_claimants_page.has_correct_mandatory_error_msg_for_group_claimants?).to be true
 end
 
-When("I submit an invalid date of birth") do
+When('I submit an invalid date of birth') do
   et1_group_claimants_page.has_multiple_claimants.set(:yes)
   et1_group_claimants_page.about_claimant_2.date_of_birth.set('0/0/0')
   et1_group_claimants_page.save_and_continue
 end
 
-Then("I should see an invalid error message for date of birth") do
+Then('I should see an invalid error message for date of birth') do
   expect(et1_group_claimants_page.has_correct_invalid_error_msg_for_dob?).to be true
 end

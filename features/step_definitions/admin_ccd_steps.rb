@@ -14,7 +14,6 @@ Then(/^the claim in the admin should show that the export completely failed to C
   admin_api.wait_for_claim_failed_in_ccd_export(claim['reference'], timeout: 1500, sleep: 5) do |found_claim|
     page.execute_script('true;')
   end
-
 end
 
 Then(/^the claim in the admin should show that the export sent to CCD$/) do

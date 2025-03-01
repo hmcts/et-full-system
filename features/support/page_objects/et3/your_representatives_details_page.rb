@@ -25,13 +25,14 @@ module EtFullSystem
         gds_text_input :representative_mobile_question, :'questions.representative_mobile', exact: false
         gds_text_input :representative_dx_number_question, :'questions.representative_dx_number', exact: false
         gds_text_input :representative_reference_question, :'questions.representative_reference', exact: false
-        gds_radios :representative_contact_preference_question, :'questions.representative_contact_preference', exact: false
+        gds_radios :representative_contact_preference_question, :'questions.representative_contact_preference',
+                   exact: false
         gds_text_input :preference_email, :'questions.preference_email'
         # @!method allow_phone_or_video_attendance_question
         #   A govuk radio button component for the phone or video question
         #   @return [EtTestHelpers::Components::GovUKCollectionCheckBoxes] The site prism section
-        gds_checkboxes :allow_phone_or_video_attendance_question, :'questions.representative_allow_phone_or_video_attendance', exact: false
-
+        gds_checkboxes :allow_phone_or_video_attendance_question,
+                       :'questions.representative_allow_phone_or_video_attendance', exact: false
 
         # Save and continue
         gds_submit_button :continue_button, :'components.save_and_continue_button'

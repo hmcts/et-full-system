@@ -6,7 +6,7 @@ module EtFullSystem
         include RSpec::Matchers
         set_url ::EtFullSystem::Test::Configuration.et1_url
         section :static_content, '#main-content .static-content' do
-          #Time limits
+          # Time limits
           section :time_limits, '#time_limits' do
             element :time_limits_title, :content_header, 'guides.time_limits.title'
             element :line_one, :paragraph, 'guides.time_limits.line_one'
@@ -15,7 +15,7 @@ module EtFullSystem
             element :line_two_html, :paragraph, 'guides.time_limits.line_two_html'
             element :line_three, :paragraph, 'guides.time_limits.line_three'
           end
-          #Acas: early conciliation
+          # Acas: early conciliation
           section :early_conciliation, '#acas_early_conciliation' do
             element :conciliation_title, :content_header, 'guides.acas_early_conciliation.title', exact: false
             element :conciliation_line_one, :paragraph, 'guides.acas_early_conciliation.line_one_html', exact: false
@@ -27,11 +27,12 @@ module EtFullSystem
             element :conciliation_title_two, :h3_containing, 'guides.acas_early_conciliation.title_two', exact: false
             element :conciliation_line_four, :paragraph, 'guides.acas_early_conciliation.line_four_html', exact: false
             element :conciliation_line_five, :paragraph, 'guides.acas_early_conciliation.line_five_html', exact: false
-            element :conciliation_title_three, :h3_containing, 'guides.acas_early_conciliation.title_three', exact: false
+            element :conciliation_title_three, :h3_containing, 'guides.acas_early_conciliation.title_three',
+                    exact: false
             element :conciliation_line_six, :paragraph, 'guides.acas_early_conciliation.line_six_html', exact: false
           end
         end
-        #Support links
+        # Support links
         section :support, 'aside[role="complementary"]' do
           element :suport_header, :support_header, 'shared.aside.gethelp_header'
           element :guide, :govuk_link, :'shared.aside.read_guide'
