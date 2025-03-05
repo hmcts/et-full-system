@@ -19,7 +19,7 @@ module EtFullSystem
           # Submission reference
           section :submission_reference, :css, '.govuk-summary-list__row:nth-of-type(1)' do
             # Your claim number
-            element :claim_number, :css, '.govuk-summary-list__value'
+            element :answer, :css, '.govuk-summary-list__value'
           end
           # Claim submitted
           section :submission_information, :css, '.govuk-summary-list__row:nth-of-type(2)' do
@@ -75,8 +75,8 @@ module EtFullSystem
           # Claim submitted
           expect(self).to have_page_header
           # Your claim number
-          expect(submission_details.submission_reference).to have_claim_number
-          expect(submission_details.submission_reference).to have_claim_number(text: claim_number)
+          expect(submission_details.submission_reference).to have_answer
+          expect(submission_details.submission_reference).to have_answer(text: claim_number)
           # What happens next
           expect(self).to have_what_happens_next
           expect(numerical_list).to have_send_to_respondent_1
@@ -125,7 +125,7 @@ module EtFullSystem
         end
 
         def claim_number
-          submission_details.submission_reference.claim_number.text
+          submission_details.submission_reference.answer.text
         end
       end
     end
