@@ -12,6 +12,7 @@ FactoryBot.define do
     town {"westminster"}
     county {"london"}
     postcode {"wc1 1aa"}
+    address_country { :united_kingdom }
     organisation_more_than_one_site {:"questions.organisation_more_than_one_site.options.no"}
     allow_phone_or_video_attendance { [:video] }
     memorable_word { 'password' }
@@ -25,6 +26,7 @@ FactoryBot.define do
     town {'dumm data'}
     county {'dumm data'}
     postcode {'M1 1AQ'}
+    address_country { :united_kingdom }
     organisation_more_than_one_site {:"questions.organisation_more_than_one_site.options.no"}
   end
 

@@ -10,7 +10,7 @@ local: &local
   oauth2redirect: http://localhost:3451/oauth2redirect
   ccd_case_url: http://localhost:3453
   et1_url: https://et1.et.127.0.0.1.nip.io:3443
-  diversity_url: http://et1.et.127.0.0.1.nip.io:3100/apply/diversity
+  diversity_url: https://et1.et.127.0.0.1.nip.io:3443/apply/diversity
   et1_admin_url: https://et1.et.127.0.0.1.nip.io:3443/apply/admin
   et3_url: https://et3.et.127.0.0.1.nip.io:3443
   admin_url: https://admin.et.127.0.0.1.nip.io:3443/admin
@@ -24,7 +24,7 @@ local: &local
   ccd_jurisdiction_id: EMPLOYMENT
   ccd_microservice: ccd_gw
   ccd_microservice_secret: AAAAAAAAAAAAAAAC
-  ccd_use_sidam:  true
+  ccd_use_sidam: true
   ccd_sidam_username: m@m.com
   ccd_sidam_password: p
   ccd_case_management_ui_base_url: http://ccd.et.127.0.0.1.nip.io:3100/case-management-web

@@ -13,7 +13,7 @@ en:
     type_of_employer:
       label: What type of employer is the respondent ? (optional)
       options:
-        '': Please select
+        "": Please select
         individual: Individual
         limited_company: Limited company
         partnership: Partnership
@@ -22,7 +22,7 @@ en:
     title:
       label: Title
       options:
-        '': Please select
+        "": Please select
         Mr: Mr
         Mrs: Mrs
         Miss: Miss
@@ -44,6 +44,11 @@ en:
       label: County (optional)
     postcode:
       label: Postcode
+    country:
+      label: Country
+      options:
+        united_kingdom: United Kingdom
+        outside_united_kingdom: Outside United Kingdom
     dx_number:
       label: Document exchange (DX) number (optional)
     contact_number:
@@ -61,15 +66,15 @@ en:
     allow_phone_or_video_attendance:
       label: Would you be able to take part in hearings by video and phone?
       options:
-        "video": 'Yes, I can take part in video hearings'
-        "phone": 'Yes, I can take part in phone hearings'
+        "video": "Yes, I can take part in video hearings"
+        "phone": "Yes, I can take part in phone hearings"
     organisation_employ_gb:
       label: How many people does this organisation employ in Great Britain? (optional)
     organisation_more_than_one_site:
       label: Does this organisation have more than one site in Great Britain? (optional)
       options:
-        'yes': 'Yes'
-        'no': 'No'
+        "yes": "Yes"
+        "no": "No"
       employment_at_site_number:
         label: How many people are employed at the place where the claimant worked?
         hint: For example, 10
@@ -79,16 +84,16 @@ en:
     agree_with_early_conciliation_details:
       label: Do you agree with the details given by the claimant about Early Conciliation with Acas? (optional)
       options:
-        'yes': 'Yes'
-        'no': 'No'
+        "yes": "Yes"
+        "no": "No"
     disagree_conciliation_reason:
       label: Why do you disagree with the claimant? (optional)
     agree_with_employment_dates:
       label: Are the dates of employment given by the claimant correct? (optional)
       options:
-        'yes': 'Yes'
-        'no': 'No'
-        'not_applicable': 'Not applicable'
+        "yes": "Yes"
+        "no": "No"
+        "not_applicable": "Not applicable"
     employment_start:
       label: When their employment started (optional)
     employment_end:
@@ -98,32 +103,32 @@ en:
     continued_employment:
       label: Is their employment continuing? (optional)
       options:
-        'yes': 'Yes'
-        'no': 'No'
-        'not_applicable': 'Ddim yn berthnasol'
+        "yes": "Yes"
+        "no": "No"
+        "not_applicable": "Ddim yn berthnasol"
     agree_with_claimants_description_of_job_or_title:
       label: Is the claimant's description of their job or job title correct? (optional)
       options:
-        'yes': 'Yes'
-        'no': 'No'
-        'not_applicable': 'Ddim yn berthnasol'
+        "yes": "Yes"
+        "no": "No"
+        "not_applicable": "Ddim yn berthnasol"
     disagree_claimants_job_or_title:
       label: Please give the details you believe to be correct (optional)
     # Earnings and Benefits Page
     agree_with_claimants_hours:
       label: Are the hours of work correct? (optional)
       options:
-        'yes': 'Yes'
-        'no': 'No'
-        'not_applicable': 'Not applicable'
+        "yes": "Yes"
+        "no": "No"
+        "not_applicable": "Not applicable"
     queried_hours:
       label: Tell us the details you believe to be correct.
     agree_with_earnings_details:
       label: Are the earnings correct? (optional)
       options:
-        'yes': 'Yes'
-        'no': 'No'
-        'not_applicable': 'Not applicable'
+        "yes": "Yes"
+        "no": "No"
+        "not_applicable": "Not applicable"
     queried_pay_before_tax:
       label: Pay before tax (optional)
     queried_pay_before_tax_period:
@@ -143,25 +148,25 @@ en:
     agree_with_claimant_notice:
       label: Are the details about being paid for or working a period of notice correct? (optional)
       options:
-        'yes': 'Yes'
-        'no': 'No'
-        'not_applicable': 'Not applicable'
+        "yes": "Yes"
+        "no": "No"
+        "not_applicable": "Not applicable"
     disagree_claimant_notice_reason:
       label: Tell us the details you believe to be correct. (optional)
     agree_with_claimant_pension_benefits:
       label: Are the details about pensions and other benefits correct? (optional)
       options:
-        'yes': 'Yes'
-        'no': 'No'
-        'not_applicable': 'Not applicable'
+        "yes": "Yes"
+        "no": "No"
+        "not_applicable": "Not applicable"
     disagree_claimant_pension_benefits_reason:
       label: Tell us the details you believe to be correct. (optional)
     # Response Page
     defend_claim:
       label: Do you defend the claim ?
       options:
-        'yes': 'Yes'
-        'no': 'No'
+        "yes": "Yes"
+        "no": "No"
     defend_claim_facts:
       label: Tell us the facts that you rely on to defend the claim.
     # Your Representatives Page
@@ -169,8 +174,8 @@ en:
       title: Do you have a representative?
       label: This is someone who has agreed to act on your behalf. (optional)
       options:
-        'yes': 'Yes'
-        'no': 'No'
+        "yes": "Yes"
+        "no": "No"
     # Your Representatives Details Page
     type_of_representative:
       label: Type of Representative
@@ -216,15 +221,15 @@ en:
       label: "Would you be able to take part in hearings by video and phone?"
       hint: "Further details on video hearings can be found on the following link https://www.gov.uk/guidance/hmcts-telephone-and-videohearings-during-coronavirus-outbreak"
       options:
-        "video": 'Yes, I can take part in video hearings'
-        "phone": 'Yes, I can take part in phone hearings'
+        "video": "Yes, I can take part in video hearings"
+        "phone": "Yes, I can take part in phone hearings"
     # Disability Page
     disability:
       label: Do you have a disability? (optional)
       options:
-        'yes': 'Yes'
-        'no': 'No'
-        'not_applicable': 'Not applicable'
+        "yes": "Yes"
+        "no": "No"
+        "not_applicable": "Not applicable"
     disability_information:
       label: It would help us if you could say what this disability is and tell us what assistance, if any, you will need as your claim progresses through the system, including for any hearings that maybe held at tribunal premises
       hint: PLEASE NOTE – You will only be able to enter a limited amount of information here (up to 350 characters) if you would like to include more please use our upload facility at the end of this form where you will be able to upload a Rich Text Format (.rtf) file.
@@ -232,10 +237,10 @@ en:
     make_employer_contract_claim:
       label: Do you wish to make an Employer Contract Claim? (optional)
       options:
-        'yes': 'Yes'
-        'no': 'No'
+        "yes": "Yes"
+        "no": "No"
     claim_information:
-      label: 'Please set out the background and details of your claim below, which should include all important dates (optional)'
+      label: "Please set out the background and details of your claim below, which should include all important dates (optional)"
     # Additional Informatation Page
     upload_additional_information:
       label: Please upload a file to provide any important additional information about your response which you have not been able to include so far (optional)
@@ -277,6 +282,7 @@ en:
       street: Street name can't be blank
       town: Town can't be blank
       postcode_blank: Postcode can't be blank
+      address_country_blank: Please indicate the country
       postcode_invalid: This is not a valid UK postcode
       contact_number_invalid: This is not a valid phone number
       mobile_number_invalid: This is not a valid phone number
@@ -331,8 +337,8 @@ en:
   components:
     save_and_continue_button: Save and continue
     single_choice_option_section:
-      'yes': "Yes"
-      'no': "No"
+      "yes": "Yes"
+      "no": "No"
     sidebar:
       header: Other Relevant Links
       claim_link: How to make a claim
@@ -407,7 +413,6 @@ en:
     confirmation_of_supplied_details:
       email_receipt: For example, name@address.com
 
-
   saving_response:
     header: Saving your response
     application_number: Your save and return number
@@ -454,7 +459,7 @@ en:
     thank_you: We've sent a copy of your response to %{respondent_email}. You can also
     thank_you_without_email: You can
     office_contact: "If you need to contact them, please email %{office_email} or call %{office_phone}"
-    date: 'Response submitted'
+    date: "Response submitted"
     include_quote_case: "You will need to include or quote your case number."
     return_link: Return to GOV.UK
     return_href: https://gov.uk
@@ -467,14 +472,14 @@ en:
   response_pdf_fields:
     header:
       case_number:
-        field_name: 'case number'
+        field_name: "case number"
       date_received:
-        field_name: 'date_received'
+        field_name: "date_received"
       rtf:
-        field_name: 'RTF'
+        field_name: "RTF"
         select_values:
-          true: 'Additional RTF'
-          false: ''
+          true: "Additional RTF"
+          false: ""
     claimant:
       claimants_name:
         field_name: "1.1 Claimant's name"
@@ -488,91 +493,91 @@ en:
           - 2.1 Other
         select_values:
           Miss:
-            - 'Yes'
-            - 'Off'
-            - 'Off'
-            - 'Off'
-            - 'Off'
+            - "Yes"
+            - "Off"
+            - "Off"
+            - "Off"
+            - "Off"
           Mr:
-            - 'Off'
-            - 'Yes'
-            - 'Off'
-            - 'Off'
-            - 'Off'
+            - "Off"
+            - "Yes"
+            - "Off"
+            - "Off"
+            - "Off"
           Mrs:
-            - 'Off'
-            - 'Off'
-            - 'Yes'
-            - 'Off'
-            - 'Off'
+            - "Off"
+            - "Off"
+            - "Yes"
+            - "Off"
+            - "Off"
           Ms:
-            - 'Off'
-            - 'Off'
-            - 'Off'
-            - 'Yes'
-            - 'Off'
+            - "Off"
+            - "Off"
+            - "Off"
+            - "Yes"
+            - "Off"
           Other:
-            - 'Off'
-            - 'Off'
-            - 'Off'
-            - 'Off'
-            - 'Yes'
+            - "Off"
+            - "Off"
+            - "Off"
+            - "Off"
+            - "Yes"
         unselected_value:
-          - 'Off'
-          - 'Off'
-          - 'Off'
-          - 'Off'
-          - 'Off'
+          - "Off"
+          - "Off"
+          - "Off"
+          - "Off"
+          - "Off"
       other_specify:
         field_name: 2.1 other specify
       name:
-        field_name: '2.2 name'
+        field_name: "2.2 name"
       company_number:
-        field_name: '2.3'
+        field_name: "2.3"
       type_of_employer:
-        field_name: '2.4'
+        field_name: "2.4"
       contact:
-        field_name: '2.2 name of contact'
+        field_name: "2.2 name of contact"
       address:
         field_name: "2.3 Respondent's address: number or name"
       post_code:
         field_name: "2.3 Respondent's address: postcode"
       address_dx_number:
-        field_name: '2.3 dx number'
+        field_name: "2.3 dx number"
       phone_number:
-        field_name: '2.4 phone number'
+        field_name: "2.4 phone number"
       mobile_number:
-        field_name: '2.4 mobile number'
+        field_name: "2.4 mobile number"
       contact_preference:
         field_name:
-          - '2.5 Email'
-          - '2.5 Post'
+          - "2.5 Email"
+          - "2.5 Post"
         select_values:
           email:
             - email
-            - 'Off'
+            - "Off"
           post:
-            - 'Off'
+            - "Off"
             - post
         unselected_value:
-          - 'Off'
-          - 'Off'
+          - "Off"
+          - "Off"
       email_address:
-        field_name: '2.6 email address'
+        field_name: "2.6 email address"
       allow_video_attendance:
         field_name: 2.10
         select_values:
-          yes: 'Yes'
-          no: 'Off'
-        unselected_value: 'Off'
+          yes: "Yes"
+          no: "Off"
+        unselected_value: "Off"
       allow_phone_attendance:
         field_name: 2.10 phone
         select_values:
-          yes: 'Yes'
-          no: 'Off'
-        unselected_value: 'Off'
+          yes: "Yes"
+          no: "Off"
+        unselected_value: "Off"
       employ_gb:
-        field_name: '2.11 number of employees'
+        field_name: "2.11 number of employees"
       multi_site_gb:
         field_name:
           - "2.9 more than one site - yes"
@@ -585,110 +590,110 @@ en:
             - "yes"
             - "Off"
         unselected_value:
-          - 'Off'
-          - 'Off'
+          - "Off"
+          - "Off"
       employment_at_site_number:
-        field_name: '2.13 employees employed at that site'
+        field_name: "2.13 employees employed at that site"
     acas:
       agree:
         field_name:
-          - '3.1 early conciliation details - yes'
-          - '3.1 early conciliation details - no'
+          - "3.1 early conciliation details - yes"
+          - "3.1 early conciliation details - no"
         select_values:
           false:
-            - 'Off'
-            - 'No'
+            - "Off"
+            - "No"
           true:
-            - 'Yes'
-            - 'Off'
+            - "Yes"
+            - "Off"
         unselected_value:
-          - 'Off'
-          - 'Off'
+          - "Off"
+          - "Off"
       disagree_explanation:
-        field_name: '3.1 If no, please explain why'
+        field_name: "3.1 If no, please explain why"
     employment_details:
       agree_with_dates:
         field_name:
-          - '4.1 dates correct - yes'
-          - '4.1 dates correct - no'
-          - '4.1 dates correct - not applicable'
+          - "4.1 dates correct - yes"
+          - "4.1 dates correct - no"
+          - "4.1 dates correct - not applicable"
         select_values:
-          'false':
-            - 'Off'
-            - 'no'
-            - 'Off'
-          'true':
-            - 'yes'
-            - 'Off'
-            - 'Off'
-          'not_applicable':
-            - 'Off'
-            - 'Off'
-            - 'no'
+          "false":
+            - "Off"
+            - "no"
+            - "Off"
+          "true":
+            - "yes"
+            - "Off"
+            - "Off"
+          "not_applicable":
+            - "Off"
+            - "Off"
+            - "no"
         unselected_value:
-          - 'Off'
-          - 'Off'
-          - 'Off'
+          - "Off"
+          - "Off"
+          - "Off"
       employment_start_day:
-        field_name: '4.1 date day'
+        field_name: "4.1 date day"
       employment_start_month:
-        field_name: '4.1 date month'
+        field_name: "4.1 date month"
       employment_start_year:
-        field_name: '4.1 date year'
+        field_name: "4.1 date year"
       employment_end_day:
-        field_name: '4.1b date day'
+        field_name: "4.1b date day"
       employment_end_month:
-        field_name: '4.1b date month'
+        field_name: "4.1b date month"
       employment_end_year:
-        field_name: '4.1b date year'
+        field_name: "4.1b date year"
       disagree_with_dates_reason:
         field_name: "4.1 reasons you disagree with the claimant's dates"
       continuing:
         field_name:
-          - '4.2 employment continuing - yes'
-          - '4.2 employment continuing - no'
-          - '4.2 employment continuing - not applicable'
+          - "4.2 employment continuing - yes"
+          - "4.2 employment continuing - no"
+          - "4.2 employment continuing - not applicable"
         select_values:
-          'false':
-            - 'Off'
-            - 'no'
-            - 'Off'
-          'true':
-            - 'yes'
-            - 'Off'
-            - 'Off'
-          'not_applicable':
-            - 'Off'
-            - 'Off'
-            - 'no'
+          "false":
+            - "Off"
+            - "no"
+            - "Off"
+          "true":
+            - "yes"
+            - "Off"
+            - "Off"
+          "not_applicable":
+            - "Off"
+            - "Off"
+            - "no"
         unselected_value:
-          - 'Off'
-          - 'Off'
-          - 'Off'
+          - "Off"
+          - "Off"
+          - "Off"
       agree_with_job_title:
         field_name:
-          - '4.3 job description correct - yes'
-          - '4.3 job description correct - no'
-          - '4.3 job description correct - not applicable'
+          - "4.3 job description correct - yes"
+          - "4.3 job description correct - no"
+          - "4.3 job description correct - not applicable"
         select_values:
-          'false':
-            - 'Off'
-            - 'no'
-            - 'Off'
-          'true':
-            - 'yes'
-            - 'Off'
-            - 'Off'
-          'not_applicable':
-            - 'Off'
-            - 'Off'
-            - 'no'
+          "false":
+            - "Off"
+            - "no"
+            - "Off"
+          "true":
+            - "yes"
+            - "Off"
+            - "Off"
+          "not_applicable":
+            - "Off"
+            - "Off"
+            - "no"
         unselected_value:
-          - 'Off'
-          - 'Off'
-          - 'Off'
+          - "Off"
+          - "Off"
+          - "Off"
       correct_job_title:
-        field_name: '4.3 correct details'
+        field_name: "4.3 correct details"
     earnings:
       agree_with_hours:
         field_name:
@@ -697,169 +702,169 @@ en:
           - "5.1 claimant's hours of work are correct - not applicable"
         select_values:
           false:
-            - 'Off'
-            - 'no'
-            - 'Off'
+            - "Off"
+            - "no"
+            - "Off"
           true:
-            - 'yes'
-            - 'Off'
-            - 'Off'
-          'not_applicable':
-            - 'Off'
-            - 'Off'
-            - 'no'
+            - "yes"
+            - "Off"
+            - "Off"
+          "not_applicable":
+            - "Off"
+            - "Off"
+            - "no"
         unselected_value:
-          - 'Off'
-          - 'Off'
-          - 'Off'
+          - "Off"
+          - "Off"
+          - "Off"
       correct_hours:
-        field_name: 'Work hours details'
+        field_name: "Work hours details"
       agree_with_earnings:
         field_name:
-          - '5.2 earning details correct - yes'
-          - '5.2 earning details correct - no'
-          - '5.2 earning details correct - not applicable'
+          - "5.2 earning details correct - yes"
+          - "5.2 earning details correct - no"
+          - "5.2 earning details correct - not applicable"
         select_values:
-          'false':
-            - 'Off'
-            - 'no'
-            - 'Off'
-          'true':
-            - 'yes'
-            - 'Off'
-            - 'Off'
-          'not_applicable':
-            - 'Off'
-            - 'Off'
-            - 'no'
+          "false":
+            - "Off"
+            - "no"
+            - "Off"
+          "true":
+            - "yes"
+            - "Off"
+            - "Off"
+          "not_applicable":
+            - "Off"
+            - "Off"
+            - "no"
         unselected_value:
-          - 'Off'
-          - 'Off'
-          - 'Off'
+          - "Off"
+          - "Off"
+          - "Off"
       correct_pay_before_tax:
-        field_name: '5.2 pay before tax'
+        field_name: "5.2 pay before tax"
       correct_pay_before_tax_period:
         field_name:
-          - '5.2 pay before tax - weekly'
-          - '5.2 pay before tax - monthly'
-          - '5.2 pay before tax - annually'
+          - "5.2 pay before tax - weekly"
+          - "5.2 pay before tax - monthly"
+          - "5.2 pay before tax - annually"
         select_values:
           Monthly:
-            - 'Off'
-            - 'monthly'
-            - 'Off'
+            - "Off"
+            - "monthly"
+            - "Off"
           Weekly:
-            - 'weekly'
-            - 'Off'
-            - 'Off'
+            - "weekly"
+            - "Off"
+            - "Off"
           Annually:
-            - 'Off'
-            - 'Off'
-            - 'monthly'
+            - "Off"
+            - "Off"
+            - "monthly"
         unselected_value:
-          - 'Off'
-          - 'Off'
-          - 'Off'
+          - "Off"
+          - "Off"
+          - "Off"
       correct_take_home_pay:
-        field_name: '5.2 normal take-home pay'
+        field_name: "5.2 normal take-home pay"
       correct_take_home_pay_period:
         field_name:
-          - '5.2 take-home pay - weekly'
-          - '5.2 take-home pay - monthly'
-          - '5.2 take-home pay - annually'
+          - "5.2 take-home pay - weekly"
+          - "5.2 take-home pay - monthly"
+          - "5.2 take-home pay - annually"
         select_values:
           Monthly:
-            - 'Off'
-            - 'monthly'
-            - 'Off'
+            - "Off"
+            - "monthly"
+            - "Off"
           Weekly:
-            - 'weekly'
-            - 'Off'
-            - 'Off'
+            - "weekly"
+            - "Off"
+            - "Off"
           Annually:
-            - 'Off'
-            - 'Off'
-            - 'monthly'
+            - "Off"
+            - "Off"
+            - "monthly"
         unselected_value:
-          - 'Off'
-          - 'Off'
-          - 'Off'
+          - "Off"
+          - "Off"
+          - "Off"
       agree_with_notice_period:
         field_name:
-          - '5.3 period of notice information - correct'
-          - '5.3 period of notice information - not correct'
-          - '5.3 period of notice information - not applicable'
+          - "5.3 period of notice information - correct"
+          - "5.3 period of notice information - not correct"
+          - "5.3 period of notice information - not applicable"
         select_values:
-          'no':
-            - 'Off'
-            - 'no'
-            - 'Off'
-          'yes':
-            - 'yes'
-            - 'Off'
-            - 'Off'
-          'not_applicable':
-            - 'Off'
-            - 'Off'
-            - 'no'
+          "no":
+            - "Off"
+            - "no"
+            - "Off"
+          "yes":
+            - "yes"
+            - "Off"
+            - "Off"
+          "not_applicable":
+            - "Off"
+            - "Off"
+            - "no"
         unselected_value:
-          - 'Off'
-          - 'Off'
-          - 'Off'
+          - "Off"
+          - "Off"
+          - "Off"
       disagree_notice_period_reason:
-        field_name: '5.3 if information is not correct'
+        field_name: "5.3 if information is not correct"
       agree_with_pension_benefits:
         field_name:
-          - '5.4 pension details - correct'
-          - '5.4 pension details - not correct'
-          - '5.4 pension details - not applicable'
+          - "5.4 pension details - correct"
+          - "5.4 pension details - not correct"
+          - "5.4 pension details - not applicable"
         select_values:
-          'no':
-            - 'Off'
-            - 'no'
-            - 'Off'
-          'yes':
-            - 'yes'
-            - 'Off'
-            - 'Off'
-          'not_applicable':
-            - 'Off'
-            - 'Off'
-            - 'no'
+          "no":
+            - "Off"
+            - "no"
+            - "Off"
+          "yes":
+            - "yes"
+            - "Off"
+            - "Off"
+          "not_applicable":
+            - "Off"
+            - "Off"
+            - "no"
         unselected_value:
-          - 'Off'
-          - 'Off'
-          - 'Off'
+          - "Off"
+          - "Off"
+          - "Off"
       disagree_pension_benefits_reason:
-        field_name: '5.4 if not correct, details'
+        field_name: "5.4 if not correct, details"
     response:
       defend_claim:
         field_name:
-          - '6.1 defend the claim - yes'
-          - '6.1 defend the claim - no'
+          - "6.1 defend the claim - yes"
+          - "6.1 defend the claim - no"
         select_values:
           no:
-            - 'Off'
-            - 'no'
+            - "Off"
+            - "no"
           yes:
-            - 'yes'
-            - 'Off'
+            - "yes"
+            - "Off"
         unselected_value:
-          - 'Off'
-          - 'Off'
+          - "Off"
+          - "Off"
       defend_claim_facts:
-        field_name: '6.1 if yes, facts in defence'
+        field_name: "6.1 if yes, facts in defence"
     contract_claim:
       make_employer_contract_claim:
         field_name: "7.2 Employer's Contract Claim - yes"
         select_values:
-          true: 'yes'
-          false: 'Off'
+          true: "yes"
+          false: "Off"
       information:
         field_name: "7.3 details of Employer's Contract Claim"
     representative:
       name:
-        field_name: '8.1 name of your representative'
+        field_name: "8.1 name of your representative"
       organisation_name:
         field_name: "8.2 Name of representative's organisation"
       address:
@@ -869,9 +874,9 @@ en:
       dx_number:
         field_name: "8.4 representative's DX number"
       phone_number:
-        field_name: '8.5 phone number'
+        field_name: "8.5 phone number"
       mobile_number:
-        field_name: '8.6 mobile phone number'
+        field_name: "8.6 mobile phone number"
       reference:
         field_name: "8.7 representative's reference for correspondence"
       contact_preference:
@@ -881,64 +886,64 @@ en:
           - 8.8 fax
         select_values:
           email:
-            - 'email'
-            - 'Off'
-            - 'Off'
+            - "email"
+            - "Off"
+            - "Off"
           fax:
-            - 'Off'
-            - 'Off'
-            - 'fax'
+            - "Off"
+            - "Off"
+            - "fax"
           post:
-            - 'Off'
-            - 'post'
-            - 'Off'
+            - "Off"
+            - "post"
+            - "Off"
         unselected_value:
-          - 'Off'
-          - 'Off'
-          - 'Off'
+          - "Off"
+          - "Off"
+          - "Off"
       email_address:
-        field_name: '8.9 email address'
+        field_name: "8.9 email address"
       allow_video_attendance:
         field_name: 8.10 video
         select_values:
-          yes: 'Yes'
-          no: 'Off'
-        unselected_value: 'Off'
+          yes: "Yes"
+          no: "Off"
+        unselected_value: "Off"
       allow_phone_attendance:
         field_name: 8.10 phone
         select_values:
-          yes: 'Yes'
-          no: 'Off'
-        unselected_value: 'Off'
+          yes: "Yes"
+          no: "Off"
+        unselected_value: "Off"
     disability:
       has_disability:
         field_name:
-          - '9.1 disability - yes'
-          - '9.1 disability - no'
+          - "9.1 disability - yes"
+          - "9.1 disability - no"
           - "9.1 disability - I'm not sure yet"
         select_values:
-          'no':
-            - 'Off'
-            - 'no'
-            - 'Off'
-          'yes':
-            - 'yes'
-            - 'Off'
-            - 'Off'
-          'not_applicable':
-            - 'Off'
-            - 'Off'
-            - 'no'
+          "no":
+            - "Off"
+            - "no"
+            - "Off"
+          "yes":
+            - "yes"
+            - "Off"
+            - "Off"
+          "not_applicable":
+            - "Off"
+            - "Off"
+            - "no"
         unselected_value:
-          - 'Off'
-          - 'Off'
-          - 'Off'
+          - "Off"
+          - "Off"
+          - "Off"
       information:
-        field_name: '9.1 details of disability'
+        field_name: "9.1 details of disability"
   response_email:
-    reference: 'This is your reference number: %{reference} which should be quoted on all correspondence.'
-    submission_date: 'Submission date: %{submission_date}'
-    office_address: 'Office address: %{address}'
-    office_telephone: 'Telephone: %{telephone}'
-    office_name: 'Thank you for your submission. It has been forwarded to the %{office_name} office which will contact you in due course.'
-    subject: 'Your Response to Employment Tribunal claim online form receipt'
+    reference: "This is your reference number: %{reference} which should be quoted on all correspondence."
+    submission_date: "Submission date: %{submission_date}"
+    office_address: "Office address: %{address}"
+    office_telephone: "Telephone: %{telephone}"
+    office_name: "Thank you for your submission. It has been forwarded to the %{office_name} office which will contact you in due course."
+    subject: "Your Response to Employment Tribunal claim online form receipt"

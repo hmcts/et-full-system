@@ -51,6 +51,9 @@ module EtFullSystem
           section :postcode_row, :govuk_summary_list_row, :'questions.postcode.label', exact: true do
             element :postcode_answer, :govuk_summary_list_col
           end
+          section :address_country_row, :govuk_summary_list_row, :'questions.address_country.label', exact: true do
+            element :address_country_answer, :govuk_summary_list_col
+          end
           section :dx_number_row, :govuk_summary_list_row, :'questions.dx_number.label', exact: true do
             element :dx_number_answer, :govuk_summary_list_col
           end
