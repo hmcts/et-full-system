@@ -38,6 +38,7 @@ module EtFullSystem
         gds_text_input :county_question, :'questions.county.label', exact: false
         # Postcode
         gds_text_input :postcode_question, :'questions.postcode.label', exact: false
+        gds_radios :address_country_question, :'questions.country'
         # Document exchange (DX) number (optional)
         gds_text_input :dx_number_question, :'questions.dx_number.label', exact: false
         # Contact number (optional)
@@ -116,7 +117,7 @@ module EtFullSystem
           building_name_question.assert_error_message(t('errors.respondents_details.building_name'))
           street_question.assert_error_message(t('errors.respondents_details.street'))
           town_question.assert_error_message(t('errors.respondents_details.town'))
-          postcode_question.assert_error_message(t('errors.respondents_details.postcode_blank'))
+          address_country_question.assert_error_message(t('errors.respondents_details.address_country_blank'))
           true
         end
       end
