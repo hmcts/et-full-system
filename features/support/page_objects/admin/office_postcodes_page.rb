@@ -6,7 +6,7 @@ module EtFullSystem
         include ::EtFullSystem::Test::Admin
         include ::RSpec::Matchers
         element :new_office_postcode, '#titlebar_right .action_item'
-        element :success_error_msg, '.flash_notice' 
+        element :success_error_msg, '.flash_notice'
         section :main_content, '#main_content .paginated_collection .paginated_collection_contents' do
           section :tbody, 'tbody' do
             element :postcode, '.col.col-postcode'
@@ -51,8 +51,9 @@ module EtFullSystem
         end
 
         def delete_postcode
-          main_content.tbody.action_table.delete.click
-          page.driver.browser.switch_to.alert.accept
+          page.accept_alert do
+            main_content.tbody.action_table.delete.click
+          end
         end
 
         def ajax_delete_postcode(postcode_record)

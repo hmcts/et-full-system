@@ -53,7 +53,7 @@ module EtFullSystem
         element :print_this_page, :css, 'p.govuk-body:nth-of-type(5) a.govuk-link'
         element :your_feedback, :css, 'p.govuk-body:nth-of-type(6) a.govuk-link'
         element :diversity_info, :css, 'p.govuk-body:nth-of-type(7)'
-        element :diversity_link_element, :css, 'p.govuk-body:nth-of-type(7) a.govuk-link'
+        element :diversity_link_element, :css, 'p.govuk-body:nth-of-type(8) a.govuk-link'
 
         def diversity_link
           diversity_link_element.click

@@ -1,7 +1,7 @@
 # Employment Tribunal Full System - For Development / Testing Use Only
 
 This project groups together all the components of the employment tribunal
-system for development and test purposes and to perform end to end tests on them 
+system for development and test purposes and to perform end to end tests on them
 whilst developing the jadu replacement system.
 
 This allows the test suite to test the entire system to live in this code base - as docker-compose can setup the entire system for you.
@@ -12,8 +12,8 @@ If you do want to go down this route, you are on your own for now !!  But, take 
 in the docker/test_server folder - the docker-compose.yml and you can see the
 different services and how they are setup to talk to one another - you need to achieve the same thing but running everything on localhost.
 
-The above could be done using 'foreman' (which is partly done in bin/foreman) to bring everything together and if someone 
-has the time to do this - or if someone requires that it is done and therefore justifying the time - 
+The above could be done using 'foreman' (which is partly done in bin/foreman) to bring everything together and if someone
+has the time to do this - or if someone requires that it is done and therefore justifying the time -
 then please reach out to me (Gary Taylor) - or just do it and share it !!
 
 A diagram speaks a thousand words - so hopefully the diagram below will show what I mean.  This is how the docker environment
@@ -76,7 +76,7 @@ then, irrespective of branch :-
 
 ```
 
-and wait for a message like this from docker (it takes a while - it has 4 applications to build so you will 
+and wait for a message like this from docker (it takes a while - it has 4 applications to build so you will
 see 4 sets of gemsets building, migrations running etc..)
 
 ```
@@ -118,7 +118,7 @@ This project is an umbrella project using git submodules (https://git-scm.com/do
 same structure, meaning that docker-compose files etc.. can be setup to span across projects.
 
 
-So, to clone - do 
+So, to clone - do
 
 ```
 
@@ -184,7 +184,7 @@ same commands as the docker-compose command line.  So where you see 'up' and 'do
 and you will be able to use other docker-compose command line switches such as '-d' (for detached so you dont view the output all the time).
 
 Whilst we don't want to force you to use docker if you don't want to, right now, it is the only supported way of running this stuff
-together.  But, remember these apps are just rails apps and are very configurable using environment variables etc.. so it won't be 
+together.  But, remember these apps are just rails apps and are very configurable using environment variables etc.. so it won't be
 too hard to get it running using other means.
 
 ## Firing Up The Test Server
@@ -226,7 +226,7 @@ Or, if you want to use the shorter domain (make sure you have modified your host
 
 SERVER_DOMAIN=et ./bin/test_server up
 
-``` 
+```
 
 Or, if you want a different port
 
@@ -251,14 +251,14 @@ If ctrl-c doesn't kill the server and associated processes you may occasionally 
 
 ## Running Tests
 
-You can run tests either from a docker instance or from your local machine. 
+You can run tests either from a docker instance or from your local machine.
 
 However, now that we have the 'single server' approach where all the services are behind a single nginx server, it has
 made it much easier to run the tests locally and there is less need to run them from inside docker.
 
 But, the docker stuff hasn't been removed so it is there if you want it.
 
-First, start up the test servers (see  'Firing Up The Test Server' above for more details) like this 
+First, start up the test servers (see  'Firing Up The Test Server' above for more details) like this
 
 ```
 
@@ -270,7 +270,7 @@ and wait for everything to settle and you will see the 'Passenger core running i
 
 ### Running Tests Locally
 
-If you just want to run the tests with the default browser (chromedriver) - once you have done a 'bundle install' you 
+If you just want to run the tests with the default browser (chromedriver) - once you have done a 'bundle install' you
 can just run cucumber as normal - no external services to run etc...
 
 Note that if you have a non default port or domain when running your server (see the optional sections in 'Firing Up The Server' above),
@@ -285,16 +285,6 @@ bundle exec cucumber
 
 ```
 
-#### Running Tests With Selenium
-
-If you want to run tests using selenium (so the browser doesn't keep popping up, moving your focus, switching desktops
-and generally being annoying) then you will need a selenium server.
-
-The test framework provides this selenium server running inside a VNC server so you can view it if you want.  The VNC 
-server can also be used by the test suite to record video of failing tests.  Note that the test framework also provides
-a docker instance for running stuff from inside the docker network which in this case is wasted as we are not doing so.
-
-Of course, you are free to provide your own selenium server, but the instructions below apply to using the docker version.
 
 To start the test framework :-
 
@@ -357,11 +347,6 @@ then just type in commands as normal - note the app is inside the '/app' folder 
 When developing locally, you can have a browser window visible which is great whilst debugging, but very annoying when you want to get
 on with something else whilst the tests are running.
 
-With the docker version, the browser is not launched on the local machine, but inside a docker container where you can't see it - so
-it won't annoy you.  But, what happens when you want to see it ?  Simple, you connect a vnc client to the port forwarded by the selenium service.
-This port is random to start with (use 'docker ps' when the test suite is uo and look for '5900' in selenium service), but you can lock it down to
-a known free port by setting the SELENIUM_VNC_PORT environment variable.  Note that there is a password setup by default which is 'secret'
-
 ## Re Building Docker Images
 
 Occasionally, if the Dockerfile has changed - things will need re building. If you are asked to rebuild, just add '--build' onto
@@ -413,15 +398,7 @@ The admin username (defaults to admin@example.com - same as seed data)
 
 The admin password (defaults to password - same as seed data)
 
-### SELENIUM_VNC_PORT
 
-If set, the VNC port that selenium exposes will be forwarded to this port.  Otherwise, it is random
-
-### SELENIUM_PORT
-
-The selenium port that the tests talk to can be set using this.  If not set, it is random.
-This could be useful if you wanted to use the docker setup for all of its supporting services, but run the actual tests in ruby on
-your local machine.  Without this, your code would not know which port to connect to.
 
 # Running The Test Suite Locally
 
@@ -438,14 +415,7 @@ Make sure you have the ports you want to use free and start up the test servers 
 
 ### Exposing the ports
 
-The 'test' service in the test framework is not going to be required (as you are effectively running it locally) - however,
-no harm in starting up the test framework as it provides the selenium service
 
-```
-
-SELENIUM_PORT=4444 SELENIUM_VNC_PORT=5900 ./bin/dev/test_framework up
-
-```
 
 ### Setting Up Video Recording (Optional)
 
@@ -486,7 +456,7 @@ I don't know - but if someone finds out, please update this readme
 ## Running The Test Suite
 
 The .env file provided gives the defaults assumed above - the API is running on port 3000, the admin on port 3001, the
-fake S3 server on port 3002, ET1 on port 3003 and selenium on port 4444.
+fake S3 server on port 3002 and ET1 on port 3003.
 
 So, if you want to go with this - just go ahead and run
 

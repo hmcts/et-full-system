@@ -1,6 +1,5 @@
 require_relative './configuration'
 require_relative './capybara'
-require_relative './message_broadcast'
 require_relative './page_objects'
 require_relative './file_objects'
 require_relative './messaging'
@@ -24,7 +23,6 @@ World EtFullSystem::Test::CcdOfficeLookUp
 World EtFullSystem::Test::Admin
 World EtFullSystem::Test::CcdHelper
 World EtFullSystem::Test::SettingsHelper
-World EtFullSystem::Test::MessageBroadcast
 Before do
   reset_common_admin_window
 end

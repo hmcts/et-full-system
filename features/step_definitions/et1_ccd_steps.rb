@@ -181,7 +181,6 @@ Then /^the multiple claimants should be present in CCD$/ do
 
   multiple_reference = claim.dig('last_ccd_export', 'external_data', 'case_reference')
   ccd_object = EtFullSystem::Test::Ccd::Et1CcdMultipleClaimants.find_multiples_by_reference(multiple_reference, office_lookup[office][:multiple][:case_type_id]) do
-    broadcast_message("Waiting for multiples for reference #{@claim_reference} to be sent to CCD")
     page.execute_script('true')
   end
   raise "multiple not found for reference #{@claim_reference} looking for multiple reference #{multiple_reference} at #{Time.now.strftime('%d/%m/%y %H:%M:%S')}" if ccd_object.nil?
