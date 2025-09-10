@@ -11,7 +11,7 @@ group :test do
   gem 'site_prism', '~> 5.0'
   gem 'i18n', '~> 1.8'
   gem 'activesupport', '~> 7.0'
-  gem 'selenium-webdriver', '~> 4.7'
+  gem 'cuprite', '~> 0.17'
   gem 'capybara-screenshot', '~> 1.0'
   gem 'cucumber', '~> 9.0'
   gem 'aws-sdk-s3', '~> 1.9'

@@ -3,7 +3,7 @@ Feature: Username validation
   As an Admin system
   I want to ensure that there are validation against username when adding or editing username
 
-  Background: 
+  Background:
     When an administrator login
     And add a new user
 

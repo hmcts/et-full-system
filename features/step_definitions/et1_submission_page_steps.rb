@@ -17,12 +17,10 @@ Then(/^I should see a valid submission page$/) do
 end
 
 Then(/^the page loading time is less than '(\d+)' milliseconds$/) do |arg|
-  timing = Capybara.current_session.driver.browser.execute_script('return window.performance.timing')
-  loading_time = timing['loadEventEnd'] - timing['navigationStart']
+  navigation_timing = page.evaluate_script('performance.getEntriesByType("navigation")[0]')
+  loading_time = navigation_timing['loadEventEnd'].to_i
 
-  if loading_time >= arg
+  if loading_time >= arg.to_i
     raise "Page loading time exceeded #{arg} milliseconds. Actual loading time: #{loading_time} milliseconds."
   end
-
-  puts "Actual loading time: #{loading_time} milliseconds."
 end

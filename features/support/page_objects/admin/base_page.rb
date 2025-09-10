@@ -155,7 +155,7 @@ module EtFullSystem
                   this.response = this.xhr.response;
                 }
               }.bind(this);
-              
+
               this.xhr.onerror = function() {
                 this.ready = true;
                 this.error = "Request failed";
@@ -171,11 +171,11 @@ module EtFullSystem
           script = "window.EtFullSystem.Test.currentRequester = new EtFullSystem.Test.getRequester('#{url}'); window.EtFullSystem.Test.currentRequester.makeRequest();"
           execute_script(script)
           wait_for timeout: 1, sleep: 0.05 do
-            execute_script('return window.EtFullSystem.Test.currentRequester.ready');
+            evaluate_script('window.EtFullSystem.Test.currentRequester.ready');
           end
-          error = execute_script('return window.EtFullSystem.Test.currentRequester.error')
+          error = evaluate_script('window.EtFullSystem.Test.currentRequester.error')
           raise "An error occurred performing a GET on #{url} - The error was #{error}" if error
-          execute_script('return window.EtFullSystem.Test.currentRequester.response')
+          evaluate_script('window.EtFullSystem.Test.currentRequester.response')
         end
 
         def ajax_delete(url)
@@ -197,7 +197,7 @@ module EtFullSystem
                   this.response = this.xhr.response;
                 }
               }.bind(this);
-              
+
               this.xhr.onerror = function() {
                 this.ready = true;
                 this.error = "Request failed";

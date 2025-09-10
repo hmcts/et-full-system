@@ -98,8 +98,9 @@ module EtFullSystem
           filters_contents.email_section.email_input.set(email_address)
           filters_contents.filter_button.click
           # Then delete the first record
-          find('.col.col-actions .table_actions .delete_link.member_link').click
-          page.driver.browser.switch_to.alert.accept
+          page.accept_alert do
+            find('.col.col-actions .table_actions .delete_link.member_link').click
+          end
           expect(notification_msg).to have_content("User was successfully destroyed.")
         end
 

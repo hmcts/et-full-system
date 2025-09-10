@@ -60,7 +60,6 @@ module EtFullSystem
         end
 
         def save_and_continue
-          page.scroll_to(main_content.save_and_continue, align: :bottom)
           main_content.save_and_continue.click
         end
 
@@ -103,4 +102,3 @@ module EtFullSystem
     end
   end
 end
-
