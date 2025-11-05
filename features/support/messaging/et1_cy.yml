@@ -430,7 +430,7 @@ cy:
             yes: :'claims.claim_type.yes'
             no: :'claims.claim_type.no'
         other_known_claimant_names: "Gallwch ychwanegu enwau unigolion eraill yma. (dewisol)"
-        claim_details_rtf: "Mae angen i'r ddogfen fod mewn Rich Text Format(RTF) (dewisol)"
+        claim_details_rtf: "Gallwch lwytho 1 dogfen yn unig. (dewisol)"
       claim_outcome:
         desired_outcomes: "Beth ydych chi eisiau os yw eich hawliad yn llwyddiannus? (dewisol)"
         other_outcome: "Pa fath o iawndal neu ganlyniad arall ydych chi eisiau? (dewisol)"
@@ -496,7 +496,7 @@ cy:
       claim_details:
         other_known_claimants: "Efallai y bydd y barnwr yn cyfuno hawliadau tebyg i'w rheoli a'u gwrando gyda'i gilydd. Efallai y bydd hyn yn arbed amser ac arian i chi a'r tribiwnlys."
         other_known_claimant_names: "Cewch ddefnyddio hyd at 350 o nodau. (350 o nodau yn weddill)"
-        claim_details_rtf: "Fel arfer gallwch gadw dogfen fel ffeil RTF drwy ddewis File> Save As> Export To> Format: Rich Text Format"
+        claim_details_rtf: "Os ydych eisiau llwytho e-bost, yn gyntaf rhaid i chi lawrlwytho’r neges a’i throsi i fformat addas. Gan amlaf, gallwch lawrlwytho’r neges e-bost fel dogfen pdf neu PostScript."
       claim_outcome:
         desired_outcomes: "Beth ydych chi eisiau os yw eich hawliad yn llwyddiannus?"
         other_outcome: "Os ydych chi'n hawlio iawndal ariannol, gallwch ddweud faint ydych chi eisiau a sut y gwnaethoch gyfrifo'r swm. Gallwch newid y manylion hyn hwyrach ymlaen, neu adael yr adran hon yn wag os nad ydych yn gwybod."
