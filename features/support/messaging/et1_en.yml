@@ -388,7 +388,7 @@ en:
             yes: :'claims.claim_type.yes'
             no: :'claims.claim_type.no'
         other_known_claimant_names: "You can add the names of other people here. (optional)"
-        claim_details_rtf: "The document needs to be in Rich Text Format(RTF) (optional)"
+        claim_details_rtf: "You can only upload 1 document. (optional)"
       claim_outcome:
         desired_outcomes: What do you want if your claim is successful?
         other_outcome: "What compensation or other outcome do you want? (optional)"
@@ -450,7 +450,7 @@ en:
       claim_details:
         other_known_claimants: "A judge may combine similar claims to manage and hear them together. This may save you and the tribunal time and money."
         other_known_claimant_names: Limit is 350 characters.
-        claim_details_rtf: "You can usually save a file as RTF by selecting File> Save As> Export To> Format: Rich Text Format"
+        claim_details_rtf: "If you want to upload an email, download and convert from your email client first. Most email clients will give the option of downloading as pdf or PostScript."
 
       claim_outcome:
         desired_outcomes: You can select more than one
