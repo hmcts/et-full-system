@@ -15,6 +15,8 @@ group :test do
   gem 'capybara-screenshot', '~> 1.0'
   gem 'cucumber', '~> 9.0'
   gem 'aws-sdk-s3', '~> 1.9'
+  # OpenSSL gem to fix issues with cucumber test report uploads over HTTPS
+  gem 'openssl', '~> 3.3'
 
   # Rubyzip used to test zip files
   gem 'rubyzip', '~> 2.3'
