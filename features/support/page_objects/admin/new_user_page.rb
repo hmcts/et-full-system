@@ -29,13 +29,13 @@ module EtFullSystem
           password.set(user[:password])
           confirm_password.set(user[:password])
           role_selection_field.click
-          drop_downList.selection(text: user[:role]).click
+          drop_downList.selection(exact_text: user[:role]).click
           sleep 0.1
           create_user_button.click
         end
 
         def has_successfully_created?
-          expect(success_message).to have_content("User was successfully created.")
+          expect(success_message).to have_content('User was successfully created.')
         end
       end
     end
