@@ -15,7 +15,7 @@ local: &local
   et3_url: https://et3.et.127.0.0.1.nip.io:3443
   admin_url: https://admin.et.127.0.0.1.nip.io:3443/admin
   sidekiq_url: https://et1.et.127.0.0.1.nip.io:3443/apply/sidekiq
-  mailhog_search_url: http://mail.et.127.0.0.1.nip.io:3100/api/v2/search
+  mailhog_search_url: https://mail.et.127.0.0.1.nip.io:3443/api/v2/search
   ccd_auth_base_url: http://ccd.et.127.0.0.1.nip.io:3100/auth
   ccd_idam_base_url: http://ccd.et.127.0.0.1.nip.io:3100/idam
   ccd_data_store_base_url: http://ccd.et.127.0.0.1.nip.io:3100/data_store

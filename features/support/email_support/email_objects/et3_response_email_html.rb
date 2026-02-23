@@ -21,7 +21,7 @@ module EtFullSystem
             query = Rack::Utils.build_query(kind: 'containing', query: reference, start: 0, limit: 1)
             url = URI.parse(search_url)
             url.query = query
-            response = HTTParty.get(url, headers: { accept: 'application/json' })
+            response = HTTParty.get(url, headers: { accept: 'application/json' }, verify: false)
             item = response.parsed_response['items'].first
             sleep sleep unless item.present?
           end

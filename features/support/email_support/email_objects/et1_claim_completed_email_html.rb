@@ -21,7 +21,7 @@ module EtFullSystem
             query = Rack::Utils.build_query(kind: 'containing', query: claim_number, start: 0, limit: 10)
             url = URI.parse(search_url)
             url.query = query
-            response = HTTParty.get(url, headers: { accept: 'application/json' })
+            response = HTTParty.get(url, headers: { accept: 'application/json' }, verify: false)
             item = response.parsed_response['items'].detect {|i| i.dig('Content', 'Headers', 'Subject').try(:first).then { |v| Mail::Encodings.value_decode(v) } == subject_text}
             sleep sleep unless item.present?
           end
