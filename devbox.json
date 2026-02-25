@@ -1,6 +1,12 @@
 {
   "$schema": "https://raw.githubusercontent.com/jetify-com/devbox/0.16.0/.schema/devbox.schema.json",
-  "packages": ["ruby@3.3.0", "pkg-config@latest", "libffi.dev", "openssl.dev"],
+  "packages": [
+    "ruby@3.3.0",
+    "pkg-config@latest",
+    "libffi.dev",
+    "openssl.dev",
+    "pdftk@latest"
+  ],
   "shell": {
     "init_hook": ["gem install ruby-lsp debug"],
     "scripts": {
