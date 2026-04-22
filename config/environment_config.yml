@@ -9,17 +9,17 @@ local: &local
   ccd_client_url: https://localhost:3501
   oauth2redirect: http://localhost:3451/oauth2redirect
   ccd_case_url: http://localhost:3453
-  et1_url: https://et1.et.127.0.0.1.nip.io:3443
-  diversity_url: https://et1.et.127.0.0.1.nip.io:3443/apply/diversity
-  et1_admin_url: https://et1.et.127.0.0.1.nip.io:3443/apply/admin
-  et3_url: https://et3.et.127.0.0.1.nip.io:3443
-  admin_url: https://admin.et.127.0.0.1.nip.io:3443/admin
-  sidekiq_url: https://et1.et.127.0.0.1.nip.io:3443/apply/sidekiq
-  mailhog_search_url: https://mail.et.127.0.0.1.nip.io:3443/api/v2/search
-  ccd_auth_base_url: http://ccd.et.127.0.0.1.nip.io:3100/auth
-  ccd_idam_base_url: http://ccd.et.127.0.0.1.nip.io:3100/idam
-  ccd_data_store_base_url: http://ccd.et.127.0.0.1.nip.io:3100/data_store
-  ccd_gateway_api_url: http://ccd.et.127.0.0.1.nip.io:3100/api-gateway
+  et1_url: https://et1.localhost:3443
+  diversity_url: https://et1.localhost:3443/apply/diversity
+  et1_admin_url: https://et1.localhost:3443/apply/admin
+  et3_url: https://et3.localhost:3443
+  admin_url: https://admin.localhost:3443/admin
+  sidekiq_url: https://et1.localhost:3443/apply/sidekiq
+  mailhog_search_url: https://mail.localhost:3443/api/v2/search
+  ccd_auth_base_url: http://et_ccd.localhost:3100/auth
+  ccd_idam_base_url: http://et_ccd.localhost:3100/idam
+  ccd_data_store_base_url: http://et_ccd.localhost:3100/data_store
+  ccd_gateway_api_url: http://et_ccd.localhost:3100/api-gateway
   ccd_document_store_url_rewrite: false
   ccd_jurisdiction_id: EMPLOYMENT
   ccd_microservice: ccd_gw
@@ -27,8 +27,8 @@ local: &local
   ccd_use_sidam: true
   ccd_sidam_username: m@m.com
   ccd_sidam_password: p
-  ccd_case_management_ui_base_url: http://ccd.et.127.0.0.1.nip.io:3100/case-management-web
-  ccd_case_management_ui_redirect_url: http://ccd.et.127.0.0.1.nip.io:3100/case-management-web/oauth2redirect
+  ccd_case_management_ui_base_url: http://et_ccd.localhost:3100/case-management-web
+  ccd_case_management_ui_redirect_url: http://et_ccd.localhost:3100/case-management-web/oauth2redirect
 local_ccd_docker:
   <<: *local
   ccd_use_sidam: false
