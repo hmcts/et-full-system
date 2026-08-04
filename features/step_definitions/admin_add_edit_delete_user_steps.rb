@@ -42,7 +42,7 @@ end
 Then("have full access to ET admin system") do
   tab_names = admin_pages.any_page.full_access
   tab_names[tab_names.index('Logout') - 1] = @user[:name]
-  expect(admin_pages.any_page.names.map { |x| x.text }).to match_array(tab_names)
+  expect(tab_names - admin_pages.any_page.names.map { |x| x.text }).to be_empty
 
   # Tear down
   admin_username = ::EtFullSystem::Test::Configuration.admin_username

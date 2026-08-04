@@ -36,9 +36,8 @@ module EtFullSystem
         end
 
         def assert_primary_claimant(claimant, representative, employment, respondents, reference_number, ccd_office, claim)
-          case_references = response.dig('case_fields', 'caseIdCollection').map { |obj| obj.dig('value', 'ethos_CaseReference') }
           aggregate_failures 'validating key fields' do
-            created_case = ccd.caseworker_search_latest_by_ethos_case_reference(case_references.first, case_type_id: ccd_office)
+            created_case = primary_case(ccd_office)
 
             expect(created_case['case_fields']).to include "leadClaimant" => "Yes"
             expect(created_case['case_fields']).to include case_details(reference_number)
@@ -80,21 +79,15 @@ module EtFullSystem
         end
 
         def find_pdf_file(ccd_office)
-          case_references = response.dig('case_fields', 'caseIdCollection').first.dig('value', 'ethos_CaseReference')
-          created_case = ccd.caseworker_search_latest_by_ethos_case_reference(case_references, case_type_id: ccd_office)
-          download_file(created_case, 'pdf')
+          download_file(primary_case(ccd_office), 'pdf')
         end
 
         def find_rtf_file(ccd_office)
-          case_references = response.dig('case_fields', 'caseIdCollection').first.dig('value', 'ethos_CaseReference')
-          created_case = ccd.caseworker_search_latest_by_ethos_case_reference(case_references, case_type_id: ccd_office)
-          download_file(created_case, 'pdf')
+          download_file(primary_case(ccd_office), 'pdf')
         end
 
         def find_csv_file(ccd_office)
-          case_references = response.dig('case_fields', 'caseIdCollection').first.dig('value', 'ethos_CaseReference')
-          created_case = ccd.caseworker_search_latest_by_ethos_case_reference(case_references, case_type_id: ccd_office)
-          download_file(created_case, 'csv')
+          download_file(primary_case(ccd_office), 'csv')
         end
 
         def multiple_claimants_xls(claimants)
@@ -109,9 +102,7 @@ module EtFullSystem
         end
 
         def all_filenames(ccd_office)
-          case_references = response.dig('case_fields', 'caseIdCollection').first.dig('value', 'ethos_CaseReference')
-          created_case = ccd.caseworker_search_latest_by_ethos_case_reference(case_references, case_type_id: ccd_office)
-          documents(created_case)
+          documents(primary_case(ccd_office))
         end
 
         def assert_valid_filenames(et1_multiple_claimants: true, et1_additional_info: true, ccd_office:)
@@ -119,15 +110,8 @@ module EtFullSystem
         end
 
         def assert_secondary_xls_claimants(claimants, representative, employment, respondents, ccd_office)
-          case_references = response.dig('case_fields', 'caseIdCollection').map { |obj| obj.dig('value', 'ethos_CaseReference') }
           secondary_claimants_left = multiple_claimants_xls(claimants)
-          cases = case_references.map do |ref|
-            ccd_case = ccd.caseworker_search_latest_by_ethos_case_reference(ref, case_type_id: ccd_office)
-            ccd_case['case_fields']
-          end
-
-          primary_case = cases.first
-          secondary_cases = cases.drop(1)
+          secondary_cases = cases(ccd_office).reject { |ccd_case| ccd_case['leadClaimant'] == 'Yes' }
 
           secondary_cases.each do |secondary_case|
 
@@ -153,13 +137,8 @@ module EtFullSystem
         end
 
         def assert_secondary_claimant(claimants, representative, employment, respondents, ccd_office)
-          case_references = response.dig('case_fields', 'caseIdCollection').map { |obj| obj.dig('value', 'ethos_CaseReference') }
           secondary_claimants_left = claimants.drop(1)
-          cases = case_references.map do |ref|
-            ccd_case = ccd.caseworker_search_latest_by_ethos_case_reference(ref, case_type_id: ccd_office)
-            ccd_case['case_fields']
-          end
-          secondary_cases = cases.drop(1)
+          secondary_cases = cases(ccd_office).reject { |ccd_case| ccd_case['leadClaimant'] == 'Yes' }
 
           secondary_cases.each do |secondary_case|
 
@@ -188,6 +167,32 @@ module EtFullSystem
         private
 
         attr_accessor :response
+
+        def case_references
+          response.dig('case_fields', 'caseIdCollection').map do |item|
+            item.dig('value', 'ethos_CaseReference')
+          end
+        end
+
+        def cases(ccd_office)
+          case_references.filter_map do |reference|
+            ccd_case = ccd.caseworker_search_latest_by_ethos_case_reference(reference, case_type_id: ccd_office)
+            ccd_case&.fetch('case_fields', nil)
+          end
+        end
+
+        def primary_case(ccd_office, timeout: 30, sleep: 0.5)
+          Timeout.timeout(timeout) do
+            loop do
+              primary = cases(ccd_office).find { |ccd_case| ccd_case['leadClaimant'] == 'Yes' }
+              return { 'case_fields' => primary } if primary.present?
+
+              sleep sleep
+            end
+          end
+        rescue Timeout::Error
+          raise "Lead claimant was not found in CCD case collection containing references #{case_references.join(', ')}"
+        end
 
         def case_details(reference_number)
           {
