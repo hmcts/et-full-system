@@ -75,9 +75,28 @@ module EtFullSystem
           end
         end
 
-        def assert_primary_reference(case_fields)
-          expect(response['case_fields']).to include case_details(case_fields)
+        def assert_root_data(reference)
+          expect(response['case_fields']).to include case_details(reference)
         end
+
+        def assert_claimant_other_type(claim)
+          expect(response.dig('case_fields', 'claimantOtherType'))
+            .to include 'dateOfLastEvent' => Date.parse(claim.last_event_date).strftime('%Y-%m-%d')
+        end
+
+        def assert_hearing_preferences(primary_claimant)
+          preference = case primary_claimant[:case_heard_by_preference]
+                       when :judge then "Judge"
+                       when :panel then "Panel"
+                       when :no_preference then 'No preference'
+                       else raise "Unknown preference #{primary_claimant[:case_heard_by_preference]}"
+                       end
+          expect(response.dig('case_fields', 'claimantHearingPreference'))
+            .to include 'claimant_hearing_panel_preference' => preference,
+                        'claimant_hearing_panel_preference_why' => primary_claimant[:case_heard_by_preference_reason]
+
+        end
+
 
         def assert_primary_employment(employment, claimants)
           if employment[:employment_details] == :"claims.employment.no"
@@ -156,10 +175,10 @@ module EtFullSystem
 
         attr_accessor :response
 
-        def case_details(case_fields)
+        def case_details(reference)
           {
             'receiptDate' => Time.now.strftime('%Y-%m-%d'),
-            'feeGroupReference' => case_fields,
+            'feeGroupReference' => reference,
             'claimant_TypeOfClaimant' => 'Individual',
             'caseType' => 'Single',
             'positionType' => 'Received by Auto-Import'

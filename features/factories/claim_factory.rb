@@ -7,6 +7,7 @@ FactoryBot.define do
     other_additional_information { :'claims.additional_information.has_miscellaneous_information.options.no' }
     case_heard_by_preference { :judge }
     case_heard_by_preference_reason { 'I am intimidated by a group of people' }
+    last_event_date { '31/12/2022' }
 
     description { 'Full text version of claim' }
 

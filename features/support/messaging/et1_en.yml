@@ -841,7 +841,9 @@ en:
       claim_details_hint_html: "Limit is 2500 characters. (2500 characters remaining)"
       remove_claim_details_rtf: "Remove previously uploaded document: %{file}"
       similar_claims: Similar claims
-
+      last_event_date:
+        label: "What is the date of the most recent event you are complaining about?"
+        hint: "Tell us the date of the latest event related to your claim. For example, the date you were dismissed, the last act of discrimination, or the most recent incident related to your claim."
     claim_outcome:
       header: Claim outcome
       claim_outcome: Choose your preferred outcome(s)

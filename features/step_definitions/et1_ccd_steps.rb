@@ -159,7 +159,9 @@ Then(/^the claim should be present in CCD$/) do
   ccd_object = EtFullSystem::Test::Ccd::Et1CcdSingleClaimant.find_by_reference(@claim_reference,
                                                                                office_lookup[office][:single][:case_type_id])
 
-  ccd_object.assert_primary_reference(@claim_reference)
+  ccd_object.assert_hearing_preferences(@claimant.first)
+  ccd_object.assert_root_data(@claim_reference)
+  ccd_object.assert_claimant_other_type(@claim)
   ccd_object.assert_primary_claimants(@claimant)
   ccd_object.assert_primary_representative(@representative)
   ccd_object.assert_primary_employment(@employment, @claimant)
@@ -174,7 +176,7 @@ Then(/^the claim should be present in CCD with an attached acas certificate$/) d
   ccd_object = EtFullSystem::Test::Ccd::Et1CcdSingleClaimant.find_by_reference(@claim_reference,
                                                                                office_lookup[office][:single][:case_type_id])
 
-  ccd_object.assert_primary_reference(@claim_reference)
+  ccd_object.assert_root_data(@claim_reference)
   ccd_object.assert_primary_claimants(@claimant)
   ccd_object.assert_primary_representative(@representative)
   ccd_object.assert_primary_employment(@employment, @claimant)
@@ -191,7 +193,7 @@ Then(/^the PDF file should be present in CCD$/) do
   ccd_object = EtFullSystem::Test::Ccd::Et1CcdSingleClaimant.find_by_reference(@claim_reference,
                                                                                office_lookup[office][:single][:case_type_id])
 
-  ccd_object.assert_primary_reference(@claim_reference)
+  ccd_object.assert_root_data(@claim_reference)
   ccd_object.assert_primary_claimants(@claimant)
   ccd_object.assert_primary_representative(@representative)
   ccd_object.assert_primary_employment(@employment, @claimant)
@@ -259,7 +261,7 @@ Then(/^the claim should be present in the "([^"]*)" office CCD system$/) do |off
   ccd_object = EtFullSystem::Test::Ccd::Et1CcdSingleClaimant.find_by_reference(@claim_reference,
                                                                                office_lookup[office][:single][:case_type_id])
 
-  ccd_object.assert_primary_reference(@claim_reference)
+  ccd_object.assert_root_data(@claim_reference)
   ccd_object.assert_primary_claimants(@claimant)
   ccd_object.assert_primary_representative(@representative)
   ccd_object.assert_primary_employment(@employment, @claimant)

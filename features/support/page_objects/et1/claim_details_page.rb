@@ -12,6 +12,7 @@ module EtFullSystem
         #   A govuk error component
         #   @return [EtTestHelpers::Components::GovUKErrorSummary] The site prism section
         gds_error_summary :error_summary, :'shared.error_notification.default_message'
+        gds_date_input :last_event_date, :'claims.claim_details.last_event_date'
         # Describe your claim
         element :describe_your_claim, :govuk_fieldset, :'claims.claim_details.claim_details'
         # Write your claim statement below. Include the background, dates and people involved.
@@ -75,6 +76,7 @@ module EtFullSystem
           # Claim details
           expect(self).to have_page_header
           # Describe your claim
+          expect(self).to have_last_event_date
           expect(self).to have_describe_your_claim_info
           expect(self).to have_about_claim_info
           expect(self).to have_upload_document
@@ -108,6 +110,7 @@ module EtFullSystem
             full_path = File.expand_path(File.join('features', 'support', 'fixtures', data[:rtf_file]))
             file_upload.set(full_path)
           end
+          last_event_date.set(data[:last_event_date])
           claim_details_claim_details.set(data[:description])
           other_claimants_fieldset.other_known_claimants.set(data[:similar_claims])
           return unless data[:similar_claims].to_s.split('.').last == 'yes'

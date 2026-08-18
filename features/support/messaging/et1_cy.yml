@@ -880,7 +880,9 @@ cy:
       claim_details_hint_html: "Cewch ddefnyddio hyd at 2500 o nodau. (2500 o nodau yn weddill)"
       remove_claim_details_rtf: "Dileu'r ddogfen a gafodd ei huwchlwytho yn flaenorol: %{file}"
       similar_claims: Hawliadau tebyg
-
+      last_event_date:
+        label: "Beth yw dyddiad y digwyddiad mwyaf diweddar yr ydych yn cwyno amdano?"
+        hint: "Rhowch ddyddiad y digwyddiad mwyaf diweddar sy'n ymwneud â'ch hawliad. Er enghraifft, y dyddiad y cawsoch eich diswyddo, y weithred wahaniaethu ddiwethaf, neu'r digwyddiad mwyaf diweddar sy'n ymwneud â'ch hawliad."
     claim_outcome:
       header: Canlyniad yr hawliad
       claim_outcome: "Dewiswch y canlyniad(au) a fyddai orau gennych"
