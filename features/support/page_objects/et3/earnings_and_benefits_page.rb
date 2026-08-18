@@ -14,7 +14,6 @@ module EtFullSystem
         # Earnings and Benefits
         element :header, :content_header, 'earnings_and_benefits.header'
         section :main_header, '.content-header' do
-
         end
         gds_radios :agree_with_claimants_hours_question, :'questions.agree_with_claimants_hours', exact: false
         gds_text_input :queried_hours, :'questions.queried_hours', exact: false
@@ -25,8 +24,10 @@ module EtFullSystem
         gds_radios :queried_take_home_pay_period, :'questions.queried_take_home_pay_period'
         gds_radios :agree_with_claimant_notice_question, :'questions.agree_with_claimant_notice', exact: false
         gds_text_area :disagree_claimant_notice_reason, :'questions.disagree_claimant_notice_reason', exact: false
-        gds_radios :agree_with_claimant_pension_benefits_question, :'questions.agree_with_claimant_pension_benefits', exact: false
-        gds_text_area :disagree_claimant_pension_benefits_reason, :'questions.disagree_claimant_pension_benefits_reason', exact: false
+        gds_radios :agree_with_claimant_pension_benefits_question, :'questions.agree_with_claimant_pension_benefits',
+                   exact: false
+        gds_text_area :disagree_claimant_pension_benefits_reason,
+                      :'questions.disagree_claimant_pension_benefits_reason', exact: false
         # Save and continue
         gds_submit_button :continue_button, :'components.save_and_continue_button'
         def next

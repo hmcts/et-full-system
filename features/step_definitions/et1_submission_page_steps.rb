@@ -1,7 +1,8 @@
-Given("the claimant is on the Submission page") do
+Given('the claimant is on the Submission page') do
   start_a_new_et1_claim
   et1_answer_login
   et1_answer_claimant_questions
+  et1_answer_case_heard_by_page
   et1_answer_group_claimants_questions
   et1_answer_representatives_questions
   et1_answer_respondents_questions
@@ -13,7 +14,8 @@ Given("the claimant is on the Submission page") do
 end
 
 Then(/^I should see a valid submission page$/) do
-  et1_submission_page.has_correct_translation?(claimants: @claimant, respondents: @respondent, claim: @claim, employment: @employment, representative: @representative.first)
+  et1_submission_page.has_correct_translation?(claimants: @claimant, respondents: @respondent, claim: @claim,
+                                               employment: @employment, representative: @representative.first)
 end
 
 Then(/^the page loading time is less than '(\d+)' milliseconds$/) do |arg|

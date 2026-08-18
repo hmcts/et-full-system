@@ -12,21 +12,21 @@ module EtFullSystem
         end
         section :main_content, '.container' do
           include EtTestHelpers::Section
-          #Were you pregnant when you were dismissed?
+          # Were you pregnant when you were dismissed?
           element :header, :main_header, 'diversities.pregnancy.hint'
           section :yes, :form_labelled, 'pregnancy.yes_answer' do
             element :field, 'input'
-            def set(*args); field.set(*args); end
+            def set(*args) = field.set(*args)
           end
           section :no, :form_labelled, 'pregnancy.no_answer' do
             element :field, 'input'
-            def set(*args); field.set(*args); end
+            def set(*args) = field.set(*args)
           end
           section :prefer_not_to_say, :form_labelled, 'pregnancy.prefer-not-to-say' do
             element :field, 'input'
-            def set(*args); field.set(*args); end
+            def set(*args) = field.set(*args)
           end
-          #save and continue button
+          # save and continue button
           gds_submit_button :save_and_continue, :'helpers.submit.update'
         end
 
@@ -44,7 +44,7 @@ module EtFullSystem
 
         def set_for(answers)
           data = answers.to_h
-          if data[:pregnancy] != nil
+          unless data[:pregnancy].nil?
             choose(factory_translate(data[:pregnancy]), name: 'diversities_pregnancy[pregnancy]')
           end
           save_and_continue

@@ -29,6 +29,7 @@ en:
 
       submission_details:
         header: Submission details
+        submission_reference: Submission reference
         submission_information: Claim submitted
         attachments: Attachments included
         tribunal_office: Tribunal office

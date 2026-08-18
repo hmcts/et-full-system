@@ -23,25 +23,25 @@ When(/^a claimant answered all questions on the survey participant form$/) do
   answer_diversity_page(@diversity)
 end
 
-Then("the data is updated in ET Admin system") do
+Then('the data is updated in ET Admin system') do
   expect(admin_pages.diversity_responses_page).to have_response_for(@diversity)
 end
 
-Given("a claimant answered {string} on the survey participant form") do |string|
+Given('a claimant answered {string} on the survey participant form') do |_string|
   @diversity = build(:diversity, :not_blank, religion: "Jehovah's Witnesses")
   diversity_load_page
   answer_diversity_page(@diversity)
 end
 
-
-Given("a claimant prefered not to answer ethnicity on the survey participant form") do
+Given('a claimant prefered not to answer ethnicity on the survey participant form') do
   @diversity = build(:diversity, :not_blank, ethnicity: :"ethnicity.prefer-not-to-say", ethnicity_subgroup: nil)
   diversity_load_page
   answer_diversity_page(@diversity)
 end
 
-When("user changed {string} to {string}") do |string, string2|
-  @diversity = build(:diversity, :not_blank, claim_type: :"diversities.claim_type.claim_type.options.redundancy-payment")
+When('user changed {string} to {string}') do |_string, _string2|
+  @diversity = build(:diversity, :not_blank,
+                     claim_type: :"diversities.claim_type.claim_type.options.redundancy-payment")
   diversity_pages.submission_form_page.main_content.summary.claim_type_row.link.click
   diversity_pages.claim_type_page.set_for(@diversity)
 end

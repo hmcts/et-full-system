@@ -1,4 +1,4 @@
-require_relative '../helpers/admin.rb'
+require_relative '../helpers/admin'
 module EtFullSystem
   module Test
     module FileObjects
@@ -11,7 +11,6 @@ module EtFullSystem
         private
 
         attr_accessor :tempfile
-
       end
     end
   end

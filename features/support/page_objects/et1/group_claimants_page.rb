@@ -17,8 +17,10 @@ module EtFullSystem
         gds_radios :has_multiple_claimants, :'simple_form.labels.additional_claimants.has_multiple_claimants'
 
         section :number_claimants_info, '#number_claimants_info' do
-          element :five_more_claimants, :element_with_text, 'claims.additional_claimants.number_claimants_info', exact: false
-          element :six_more_claimants, :element_with_text, 'claims.additional_claimants.csv_upload_text_html', exact: false
+          element :five_more_claimants, :element_with_text, 'claims.additional_claimants.number_claimants_info',
+                  exact: false
+          element :six_more_claimants, :element_with_text, 'claims.additional_claimants.csv_upload_text_html',
+                  exact: false
           element :csv_upload_link, :govuk_link, :'claims.additional_claimants.csv_upload_link', exact: false
         end
 

@@ -1,7 +1,7 @@
 module EtFullSystem
   module Test
     module Et3
-      class BasePage < ::SitePrism::Page
+      class BasePage < ::EtFullSystem::Test::BasePage
         include EtFullSystem::Test::I18n
         section :sidebar, :sidebar_titled, 'components.sidebar.header' do
           element :claim_link, :govuk_link, :'components.sidebar.claim_link'

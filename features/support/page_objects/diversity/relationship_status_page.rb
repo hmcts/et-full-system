@@ -12,49 +12,54 @@ module EtFullSystem
         end
         section :main_content, '.container' do
           include EtTestHelpers::Section
-          #What is your relationship status?
+          # What is your relationship status?
           element :header, :main_header, 'diversities.relationship.header'
-          section :single, :form_labelled, 'relationship.single-that-is-never-married-and-never-registered-in-a-same-sex-civil-partnership'do
+          section :single, :form_labelled,
+                  'relationship.single-that-is-never-married-and-never-registered-in-a-same-sex-civil-partnership' do
             element :field, 'input'
-            def set(*args); field.set(*args); end
+            def set(*args) = field.set(*args)
           end
-          section :married, :form_labelled, 'relationship.married'do
+          section :married, :form_labelled, 'relationship.married' do
             element :field, 'input'
-            def set(*args); field.set(*args); end
+            def set(*args) = field.set(*args)
           end
-          section :separated, :form_labelled, 'relationship.separated-but-still-legally-married'do
+          section :separated, :form_labelled, 'relationship.separated-but-still-legally-married' do
             element :field, 'input'
-            def set(*args); field.set(*args); end
+            def set(*args) = field.set(*args)
           end
-          section :divorced, :form_labelled, 'relationship.divorced'do
+          section :divorced, :form_labelled, 'relationship.divorced' do
             element :field, 'input'
-            def set(*args); field.set(*args); end
+            def set(*args) = field.set(*args)
           end
-          section :widowed, :form_labelled, 'relationship.widowed'do
+          section :widowed, :form_labelled, 'relationship.widowed' do
             element :field, 'input'
-            def set(*args); field.set(*args); end
+            def set(*args) = field.set(*args)
           end
-          section :registered_same_sex_civil_partnership, :form_labelled, 'relationship.in-a-registered-same-sex-civil-partnership'do
+          section :registered_same_sex_civil_partnership, :form_labelled,
+                  'relationship.in-a-registered-same-sex-civil-partnership' do
             element :field, 'input'
-            def set(*args); field.set(*args); end
+            def set(*args) = field.set(*args)
           end
-          section :separated_same_sex_civil_partnership, :form_labelled, 'relationship.separated-but-still-legally-in-a-same-sex-civil-partnership'do
+          section :separated_same_sex_civil_partnership, :form_labelled,
+                  'relationship.separated-but-still-legally-in-a-same-sex-civil-partnership' do
             element :field, 'input'
-            def set(*args); field.set(*args); end
+            def set(*args) = field.set(*args)
           end
-          section :dissolved_same_sex_civil_partnership, :form_labelled, 'relationship.formerly-in-a-same-sex-civil-partnership-which-is-now-legally-dissolved'do
+          section :dissolved_same_sex_civil_partnership, :form_labelled,
+                  'relationship.formerly-in-a-same-sex-civil-partnership-which-is-now-legally-dissolved' do
             element :field, 'input'
-            def set(*args); field.set(*args); end
+            def set(*args) = field.set(*args)
           end
-          section :surviving_partner_same_sex_civil_partnership, :form_labelled, 'relationship.surviving-partner-from-a-same-sex-civil-partnership'do
+          section :surviving_partner_same_sex_civil_partnership, :form_labelled,
+                  'relationship.surviving-partner-from-a-same-sex-civil-partnership' do
             element :field, 'input'
-            def set(*args); field.set(*args); end
+            def set(*args) = field.set(*args)
           end
           section :prefer_not_to_say, :form_labelled, 'relationship.prefer-not-to-say' do
             element :field, 'input'
-            def set(*args); field.set(*args); end
+            def set(*args) = field.set(*args)
           end
-          #save and continue button
+          # save and continue button
           gds_submit_button :save_and_continue, :'helpers.submit.update'
         end
 
@@ -72,7 +77,7 @@ module EtFullSystem
 
         def set_for(answers)
           data = answers.to_h
-          if data[:relationship] != nil
+          unless data[:relationship].nil?
             choose(factory_translate(data[:relationship]), name: 'diversities_relationship[relationship]')
           end
           save_and_continue

@@ -1,6 +1,7 @@
 When(/^the completed Employment Tribunal response form is submitted$/) do
   start_a_new_et3_response
   et3_answer_respondents_details
+  et3_answer_case_heard_by_page
   et3_answer_claimants_details
   et3_answer_earnings_and_benefits
   et3_answer_defend_claim_question
@@ -20,6 +21,7 @@ When(/^an employer responds to mandatory questions$/) do
 
   start_a_new_et3_response
   et3_answer_respondents_details
+  et3_answer_case_heard_by_page
 
   user = @claimant[0]
   claimants_details_page.agree_with_employment_dates_question.set(user.agree_with_employment_dates.to_s.split('.').last&.to_sym)
@@ -31,9 +33,7 @@ When(/^an employer responds to mandatory questions$/) do
   claimants_details_page.next
   earnings_and_benefits_page.next
   response_page.defend_claim_question.set(user.defend_claim)
-  if user.defend_claim.to_s.split('.').last == 'yes'
-    user.defend_claim_facts.set(user.defend_claim_facts)
-  end
+  user.defend_claim_facts.set(user.defend_claim_facts) if user.defend_claim.to_s.split('.').last == 'yes'
   response_page.next
   et3_answer_representative
   et3_answer_disability_question
@@ -51,6 +51,7 @@ When("an employer responds to a claim with special characters in the company's n
 
   start_a_new_et3_response
   et3_answer_respondents_details
+  et3_answer_case_heard_by_page
 
   user = @claimant[0]
   claimants_details_page.agree_with_employment_dates_question.set(user.agree_with_employment_dates.to_s.split('.').last.to_sym)
@@ -62,9 +63,7 @@ When("an employer responds to a claim with special characters in the company's n
   claimants_details_page.next
   earnings_and_benefits_page.next
   response_page.defend_claim_question.set(user.defend_claim)
-  if user.defend_claim.to_s.split('.').last == 'yes'
-    user.defend_claim_facts.set(user.defend_claim_facts)
-  end
+  user.defend_claim_facts.set(user.defend_claim_facts) if user.defend_claim.to_s.split('.').last == 'yes'
   response_page.next
   et3_answer_representative
   et3_answer_disability_question

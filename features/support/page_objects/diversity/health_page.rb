@@ -13,23 +13,23 @@ module EtFullSystem
         section :main_content, '.container' do
           include EtTestHelpers::Section
           include ::EtFullSystem::Test::I18n
-          #Do you have any physical or mental health conditions or illnesses lasting or expected to last for 12 months or more?
+          # Do you have any physical or mental health conditions or illnesses lasting or expected to last for 12 months or more?
           element :header, :main_header, 'diversities.disability.hint', exact: false
           element :definition, :paragraph, 'diversities.disability.act'
           element :example, :paragraph, 'diversities.disability.conditions'
-          section :yes, :form_labelled, 'disability.yes_answer'do
+          section :yes, :form_labelled, 'disability.yes_answer' do
             element :field, 'input'
-            def set(*args); field.set(*args); end
+            def set(*args) = field.set(*args)
           end
-          section :no, :form_labelled, 'disability.no_answer'do
+          section :no, :form_labelled, 'disability.no_answer' do
             element :field, 'input'
-            def set(*args); field.set(*args); end
+            def set(*args) = field.set(*args)
           end
-          section :prefer_not_to_say, :form_labelled, 'disability.prefer-not-to-say'do
+          section :prefer_not_to_say, :form_labelled, 'disability.prefer-not-to-say' do
             element :field, 'input'
-            def set(*args); field.set(*args); end
+            def set(*args) = field.set(*args)
           end
-          #save and continue button
+          # save and continue button
           gds_submit_button :save_and_continue, :'helpers.submit.update'
         end
 
@@ -47,7 +47,7 @@ module EtFullSystem
 
         def set_for(answers)
           data = answers.to_h
-          if data[:disability] != nil
+          unless data[:disability].nil?
             choose(factory_translate(data[:disability]), name: 'diversities_disability[disability]')
           end
           save_and_continue

@@ -15,7 +15,6 @@ module EtFullSystem
         include ::EtFullSystem::Test::Et1ClaimantType
         include ::EtFullSystem::Test::CcdFileHelper
 
-
         def initialize(response)
           self.response = response
         end
@@ -36,19 +35,18 @@ module EtFullSystem
           new(response)
         end
 
-
         # @return [EtFullSystem::Test::Ccd::Et1CcdSingleClaimant,NilClass] The found object or nil if not found
         def self.find_by_reference(reference_number, ccd_office_lookup, timeout: 10, sleep: 0.5)
           Timeout.timeout(timeout) do
             response = nil
-            until response.present? do
+            until response.present?
               response = ccd.caseworker_search_latest_by_reference(reference_number, case_type_id: ccd_office_lookup)
               sleep sleep unless response.present?
             end
             new(response)
           end
         rescue Timeout::Error
-          return nil
+          nil
         end
 
         def self.find_by_ethos_case_reference(reference_number, ccd_office_lookup, timeout: 10, sleep: 0.5)
@@ -68,10 +66,12 @@ module EtFullSystem
 
         def assert_primary_representative(representative)
           if representative[0]['representative_have'] == 'No'
-            expect(response['case_fields']).to include "claimantRepresentedQuestion" => "No"
+            expect(response['case_fields']).to include 'claimantRepresentedQuestion' => 'No'
           else
-            expect(response.dig('case_fields', 'representativeClaimantType')).to include representative_address(representative[0]).as_json
-            expect(response.dig('case_fields', 'representativeClaimantType')).to include representative_claimant_type(representative[0]).as_json
+            expect(response.dig('case_fields',
+                                'representativeClaimantType')).to include representative_address(representative[0]).as_json
+            expect(response.dig('case_fields',
+                                'representativeClaimantType')).to include representative_claimant_type(representative[0]).as_json
           end
         end
 
@@ -81,19 +81,23 @@ module EtFullSystem
 
         def assert_primary_employment(employment, claimants)
           if employment[:employment_details] == :"claims.employment.no"
-            expect(response['case_fields']).to include "claimantOtherType" => a_hash_including("claimant_disabled" => claimants[0][:has_special_needs].to_s.split('.').last.titleize, "claimant_disabled_details" => claimants[0][:special_needs])
+            expect(response['case_fields']).to include 'claimantOtherType' => a_hash_including(
+              'claimant_disabled' => claimants[0][:has_special_needs].to_s.split('.').last.titleize, 'claimant_disabled_details' => claimants[0][:special_needs]
+            )
           else
-            expect(response['case_fields']).to include "claimantOtherType" => a_hash_including(claimant_other_type(employment, claimants).as_json)
+            expect(response['case_fields']).to include 'claimantOtherType' => a_hash_including(claimant_other_type(
+              employment, claimants
+            ).as_json)
           end
         end
 
         def assert_claimant_work_address(respondent)
-          expect(response['case_fields']).to include "claimantWorkAddress" => a_hash_including(claimant_work_address(respondent).as_json)
+          expect(response['case_fields']).to include 'claimantWorkAddress' => a_hash_including(claimant_work_address(respondent).as_json)
         end
 
         def assert_respondents(respondents)
           respondents.each_with_index do |respondent, i|
-            expect(response['case_fields']['respondentCollection'][i]).to include "value" => a_hash_including(respondent_sum_type(respondent))
+            expect(response['case_fields']['respondentCollection'][i]).to include 'value' => a_hash_including(respondent_sum_type(respondent))
           end
         end
 
@@ -102,15 +106,15 @@ module EtFullSystem
           # will be there when we check
           expect(response.dig('case_fields', 'documentCollection')).to \
             include \
-            a_hash_including 'id' => nil,
-            'value' => a_hash_including(
-              'typeOfDocument' => 'ET3',
-              'shortDescription' => "ET3 response from #{respondent.name}",
-              'uploadedDocument' => a_hash_including(
-                'document_url' => an_instance_of(String),
-                'document_binary_url' => an_instance_of(String),
-              )
-            )
+              a_hash_including 'id' => nil,
+                               'value' => a_hash_including(
+                                 'typeOfDocument' => 'ET3',
+                                 'shortDescription' => "ET3 response from #{respondent.name}",
+                                 'uploadedDocument' => a_hash_including(
+                                   'document_url' => an_instance_of(String),
+                                   'document_binary_url' => an_instance_of(String)
+                                 )
+                               )
         end
 
         def has_et3_documents?(respondent)
@@ -137,12 +141,15 @@ module EtFullSystem
         end
 
         def assert_acas_pdf_file
-          expect(find_file_document(response, /\Aacas.*\.pdf\z/)).to be_present, 'Cannot find acas file - should start with acas and end in .pdf'
+          expect(find_file_document(response, /\Aacas.*\.pdf\z/)).to be_present,
+                                                                     'Cannot find acas file - should start with acas and end in .pdf'
         end
 
         def find_acas_names(expected_acas_amount)
           name = response.dig('case_fields', 'documentCollection')
-          acas_names = name[1..expected_acas_amount].map { |r| "#{r["value"]["uploadedDocument"]["document_filename"]}" }
+          name[1..expected_acas_amount].map do |r|
+            "#{r['value']['uploadedDocument']['document_filename']}"
+          end
         end
 
         private
@@ -151,33 +158,30 @@ module EtFullSystem
 
         def case_details(case_fields)
           {
-            "receiptDate" => Time.now.strftime("%Y-%m-%d"),
-            "feeGroupReference" => case_fields,
-            "claimant_TypeOfClaimant" => "Individual",
-            "caseType" => "Single",
-            "positionType" => "Received by Auto-Import"
+            'receiptDate' => Time.now.strftime('%Y-%m-%d'),
+            'feeGroupReference' => case_fields,
+            'claimant_TypeOfClaimant' => 'Individual',
+            'caseType' => 'Single',
+            'positionType' => 'Received by Auto-Import'
           }
         end
 
         def self.wait_for(timeout: 10, sleep: 1)
           Timeout.timeout(timeout) do
             response = nil
-            until response.present? do
+            until response.present?
               response = yield
               sleep sleep unless response.present?
             end
             response
           end
         rescue Timeout::Error
-          return nil
+          nil
         end
 
-        def wait_for(**args)
-          self.class.wait_for(**args) do
-            yield
-          end
+        def wait_for(**args, &block)
+          self.class.wait_for(**args, &block)
         end
-
       end
     end
   end

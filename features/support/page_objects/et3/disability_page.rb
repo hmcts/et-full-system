@@ -13,7 +13,6 @@ module EtFullSystem
         end
         element :header, :content_header, 'disability.header'
         section :main_header, '.content-header' do
-
         end
         gds_error_summary :error_summary, :'errors.header'
         gds_radios :disability_question, :'questions.disability', exact: false

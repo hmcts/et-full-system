@@ -2,20 +2,23 @@ module EtFullSystem
   module Test
     module Admin
       class ClaimsPage < Admin::BasePage
-        set_url "/claims"
+        set_url '/claims'
         section :scopes, :css, '.table_tools .scopes' do
-          section :not_exported_to_ccd_button, :xpath, XPath.generate {|x| x.descendant(:li)[x.child(:a)[x.string.n.starts_with('Not Exported To Ecm')]]} do
+          section(:not_exported_to_ccd_button, :xpath, XPath.generate do |x|
+            x.descendant(:li)[x.child(:a)[x.string.n.starts_with('Not Exported To Ecm')]]
+          end) do
             element :link, :css, 'a'
           end
-          section :not_exported_to_ccd_button_selected, :xpath, XPath.generate {|x| x.css('li.selected')[x.child(:a)[x.string.n.starts_with('Not Exported To Ecm')]]} do
+          section(:not_exported_to_ccd_button_selected, :xpath, XPath.generate do |x|
+            x.css('li.selected')[x.child(:a)[x.string.n.starts_with('Not Exported To Ecm')]]
+          end) do
             element :link, :css, 'a'
           end
         end
         section :main_table, 'table.index' do
           section :row_with_reference, :admin_claim_row do
-
-            element :failed_ccd_state_link, :link, "failed"
-            element :erroring_ccd_state_link, :link, "erroring"
+            element :failed_ccd_state_link, :link, 'failed'
+            element :erroring_ccd_state_link, :link, 'erroring'
             element :checkbox, :checkbox
 
             def select_row
@@ -27,7 +30,9 @@ module EtFullSystem
             row_with_reference(reference: reference).select_row
           end
         end
-        section :batch_actions, :xpath, XPath.generate {|x| x.descendant(:div)[x.child(:a)[x.string.n.equals 'Batch Actions']]} do
+        section(:batch_actions, :xpath, XPath.generate do |x|
+          x.descendant(:div)[x.child(:a)[x.string.n.equals 'Batch Actions']]
+        end) do
           element :link, :link, 'Batch Actions'
           element :export_selected_link, :link, 'Export Selected'
           def select_export_selected
@@ -37,7 +42,9 @@ module EtFullSystem
           end
         end
 
-        section :office_chooser, :xpath, XPath.generate {|x| x.css('.ui-dialog')[x.child(:div)[x.string.n.starts_with 'Are you sure you want to do this?']]} do
+        section(:office_chooser, :xpath, XPath.generate do |x|
+          x.css('.ui-dialog')[x.child(:div)[x.string.n.starts_with 'Are you sure you want to do this?']]
+        end) do
           element :office_selector, :css, 'select'
           element :ok_button, :button, 'OK'
           element :cancel_button, :button, 'Cancel'
@@ -49,9 +56,10 @@ module EtFullSystem
         end
 
         section :flash_messages, :css, '.flashes' do
-          element :claims_queued_for_export, :xpath, XPath.generate {|x| x.descendant(:div)[x.string.n.starts_with 'Claims queued for export']}
+          element(:claims_queued_for_export, :xpath, XPath.generate do |x|
+            x.descendant(:div)[x.string.n.starts_with 'Claims queued for export']
+          end)
         end
-
 
         def list_not_exported_to_ccd
           scopes.not_exported_to_ccd_button.link.click
@@ -76,7 +84,7 @@ module EtFullSystem
         end
 
         def check_json_99(respondent, reference)
-          responses_data = admin_api.claims(q:{reference_cont:reference})
+          responses_data = admin_api.claims(q: { reference_cont: reference })
           verification_keys = respondent.to_h.slice(:expected_office)
           verification_keys[:office_code] = (verification_keys.delete :expected_office).to_i
           verification_keys.merge!(reference: reference)

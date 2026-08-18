@@ -12,7 +12,7 @@ module EtFullSystem
       def wait
         Timeout.timeout(timeout) do
           puts "Attempting to access #{url}"
-          until request_success(:get, url) do
+          until request_success(:get, url)
             puts "Request to #{url} failed - retrying in #{sleep_duration} seconds"
             sleep sleep_duration
           end
@@ -20,7 +20,6 @@ module EtFullSystem
       rescue Timeout::Error
         raise "The test suite cannot start as the server cannot be accessed at #{url}"
       end
-
 
       private
 
@@ -39,11 +38,11 @@ module EtFullSystem
         false
       end
 
-
       attr_accessor :url, :sleep_duration, :timeout
     end
   end
 end
 EtFullSystem::Test::WaitForServer.new("#{::EtFullSystem::Test::Configuration.et1_url}/health").wait
 EtFullSystem::Test::WaitForServer.new("#{::EtFullSystem::Test::Configuration.et3_url}/health").wait
-EtFullSystem::Test::WaitForServer.new("#{::EtFullSystem::Test::Configuration.admin_url.gsub(/\/admin\z/, '')}/health").wait
+EtFullSystem::Test::WaitForServer.new("#{::EtFullSystem::Test::Configuration.admin_url.gsub(%r{/admin\z},
+                                                                                            '')}/health").wait
