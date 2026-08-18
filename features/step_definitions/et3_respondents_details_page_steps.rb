@@ -3,7 +3,7 @@ Given(/^I am on the ET3 respondents details page$/) do
   start_a_new_et3_response
 end
 
-Then("Respondents details page copy texts are displayed in the correct language") do
+Then('Respondents details page copy texts are displayed in the correct language') do
   expect(respondents_details_page.has_correct_translation?).to be true
 end
 
@@ -17,6 +17,10 @@ end
 
 Then(/^I should be taken to the claimants details page$/) do
   expect(claimants_details_page).to have_header
+end
+
+Then(/^I should be taken to the case heard by page$/) do
+  expect(et3_case_heard_by_page).to have_header
 end
 
 When(/^I click on next without providing the required respondents details$/) do

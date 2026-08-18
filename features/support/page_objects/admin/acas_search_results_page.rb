@@ -10,30 +10,50 @@ module EtFullSystem
 
         element :search_button, 'fieldset.actions input[value=Search]'
         section :search_results, '.search-results' do
-          section :respondent_section, :xpath, XPath.generate {|x| x.descendant(:div)[x.child(:h3)[x.string.n.is('Respondent')]]} do
-            section :acas_first_contact, :xpath, XPath.generate {|x| x.descendant(:tr)[x.child(:th)[x.string.n.is('ACAS first contact')]]} do
+          section(:respondent_section, :xpath, XPath.generate do |x|
+            x.descendant(:div)[x.child(:h3)[x.string.n.is('Respondent')]]
+          end) do
+            section(:acas_first_contact, :xpath, XPath.generate do |x|
+              x.descendant(:tr)[x.child(:th)[x.string.n.is('ACAS first contact')]]
+            end) do
               element :value_element, 'td'
             end
-            section :acas_conciliation_closed, :xpath, XPath.generate {|x| x.descendant(:tr)[x.child(:th)[x.string.n.is('ACAS conciliation closed')]]} do
+            section(:acas_conciliation_closed, :xpath, XPath.generate do |x|
+              x.descendant(:tr)[x.child(:th)[x.string.n.is('ACAS conciliation closed')]]
+            end) do
               element :value_element, 'td'
             end
-            section :difference, :xpath, XPath.generate {|x| x.descendant(:tr)[x.child(:th)[x.string.n.is('Difference')]]} do
+            section(:difference, :xpath, XPath.generate do |x|
+              x.descendant(:tr)[x.child(:th)[x.string.n.is('Difference')]]
+            end) do
               element :value_element, 'td'
             end
-            section :certificate_sent, :xpath, XPath.generate {|x| x.descendant(:tr)[x.child(:th)[x.string.n.is('Certificate sent')]]} do
+            section(:certificate_sent, :xpath, XPath.generate do |x|
+              x.descendant(:tr)[x.child(:th)[x.string.n.is('Certificate sent')]]
+            end) do
               element :value_element, 'td'
             end
-            section :full_name, :xpath, XPath.generate {|x| x.descendant(:tr)[x.child(:th)[x.string.n.is('Full name')]]} do
+            section(:full_name, :xpath, XPath.generate do |x|
+              x.descendant(:tr)[x.child(:th)[x.string.n.is('Full name')]]
+            end) do
               element :value_element, 'td'
             end
           end
-          section :lead_claimant_section, :xpath, XPath.generate {|x| x.descendant(:div)[x.child(:h3)[x.string.n.is('Lead Claimant')]]} do
-            section :full_name, :xpath, XPath.generate {|x| x.descendant(:tr)[x.child(:th)[x.string.n.is('Full name')]]} do
+          section(:lead_claimant_section, :xpath, XPath.generate do |x|
+            x.descendant(:div)[x.child(:h3)[x.string.n.is('Lead Claimant')]]
+          end) do
+            section(:full_name, :xpath, XPath.generate do |x|
+              x.descendant(:tr)[x.child(:th)[x.string.n.is('Full name')]]
+            end) do
               element :value_element, 'td'
             end
           end
-          section :certificate_section, :xpath, XPath.generate {|x| x.descendant(:div)[x.child(:h3)[x.string.n.is('Certificate')]]} do
-            section :download, :xpath, XPath.generate {|x| x.descendant(:tr)[x.child(:th)[x.string.n.is('Certificate download')]]} do
+          section(:certificate_section, :xpath, XPath.generate do |x|
+            x.descendant(:div)[x.child(:h3)[x.string.n.is('Certificate')]]
+          end) do
+            section(:download, :xpath, XPath.generate do |x|
+              x.descendant(:tr)[x.child(:th)[x.string.n.is('Certificate download')]]
+            end) do
               element :link, 'td a'
             end
           end
@@ -46,7 +66,7 @@ module EtFullSystem
         end
 
         def has_invalid_certificate_message_for?(_cert)
-          expect(search_errors).to have_content("Please enter a valid certificate number")
+          expect(search_errors).to have_content('Please enter a valid certificate number')
         end
 
         def has_not_found_certificate_message_for?(cert)
@@ -54,11 +74,11 @@ module EtFullSystem
         end
 
         def has_server_error_message_for?(_cert)
-          expect(search_errors).to have_content("There was a problem with the ACAS service - please try again later")
+          expect(search_errors).to have_content('There was a problem with the ACAS service - please try again later')
         end
 
-        def has_download_link_for?(cert)
-          expect(search_results.certificate_section.download.link['href']).to start_with "data:application/pdf;base64,"
+        def has_download_link_for?(_cert)
+          expect(search_results.certificate_section.download.link['href']).to start_with 'data:application/pdf;base64,'
         end
       end
     end

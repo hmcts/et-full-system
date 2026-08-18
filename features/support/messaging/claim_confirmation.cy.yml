@@ -26,6 +26,7 @@ cy:
 
       submission_details:
         header: Manylion cyflwyno
+        submission_reference: Cyfeirnod cyflwyno
         submission_information: Hawliad wedi'i gyflwyno
         attachments: Atodiadau wedi'u cynnwys
         tribunal_office: Swyddfa tribiwnlys

@@ -2,7 +2,7 @@ module EtFullSystem
   module Test
     module Et1
       class BasePage < ::EtFullSystem::Test::BasePage
-        #your feedback header
+        # your feedback header
         section :cookie, '.govuk-cookie-banner' do
           include EtTestHelpers::Section
           element :header, :cookie_banner_heading, :'banner.title'
@@ -20,7 +20,7 @@ module EtFullSystem
           element :feedback_info, :paragraph, 'shared.feedback_statement_html', exact: false
         end
 
-        #Support links
+        # Support links
         section :support, 'aside[role="complementary"]' do
           element :suport_header, :support_header, 'shared.aside.gethelp_header'
           element :guide, :govuk_link, :'shared.aside.read_guide'

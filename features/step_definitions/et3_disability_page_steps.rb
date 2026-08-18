@@ -4,6 +4,7 @@ Given(/^I am on the ET3 disability page$/) do
   @representative = FactoryBot.create_list(:representative, 1, :et3_information)
   start_a_new_et3_response
   et3_answer_respondents_details
+  et3_answer_case_heard_by_page
   et3_answer_claimants_details
   et3_answer_earnings_and_benefits
   et3_answer_defend_claim_question
@@ -23,17 +24,17 @@ Then(/^I should be taken to the employers contract claim page$/) do
   expect(employers_contract_claim_page).to have_header
 end
 
-When("I click on yes without providing the required disability question") do
+When('I click on yes without providing the required disability question') do
   user = FactoryBot.create(:et3_respondent, :et3_respondent_answers, disability_information: '')
   disability_page.disability_question.set(user.disability.to_s.split('.').last.to_sym)
-  if user.disability.end_with?('.yes') && user.disability_information != nil
+  if user.disability.end_with?('.yes') && !user.disability_information.nil?
     disability_page.disability_information.set(user.disability_information)
   end
 
   disability_page.next
 end
 
-Then("I should see the error message saying the disability details cant be blank") do
+Then('I should see the error message saying the disability details cant be blank') do
   expect(disability_page).to have_error_summary
   disability_page.disability_information.assert_error_message(t('errors.disability.disability_blank'))
 end

@@ -14,7 +14,6 @@ module EtFullSystem
         # Your representative page
         element :header, :content_header, 'questions.have_representative.title'
         section :main_header, '.content-header' do
-
         end
         element :header, :content_header, 'questions.have_representative.title'
         gds_radios :representative_question, :'questions.have_representative', exact: true

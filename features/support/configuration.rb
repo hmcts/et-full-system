@@ -23,7 +23,7 @@ module EtFullSystem
         @data.key?(name.to_s) || super
       end
 
-      def method_missing(symbol, *args)
+      def method_missing(symbol, *_args)
         _load unless @loaded
         @data[symbol.to_s]
       end

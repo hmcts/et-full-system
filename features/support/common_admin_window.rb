@@ -19,6 +19,7 @@ module EtFullSystem
 
       def admin_window
         return Thread.current[WINDOW_VAR_NAME] if Thread.current.key?(WINDOW_VAR_NAME)
+
         window = open_new_window
         Thread.current[WINDOW_VAR_NAME] = window
         start_admin_session(window)
@@ -30,7 +31,9 @@ module EtFullSystem
           admin_pages.dashboard_page.load
           if admin_pages.login_page.displayed?
             admin_pages.login_page.login(username: admin_username, password: admin_password)
-            raise "Could not login to admin with username '#{admin_username}' and password '#{admin_password}'" unless admin_pages.dashboard_page.displayed?
+            unless admin_pages.dashboard_page.displayed?
+              raise "Could not login to admin with username '#{admin_username}' and password '#{admin_password}'"
+            end
           end
         end
         window
@@ -47,7 +50,9 @@ module EtFullSystem
       end
 
       def self.close_admin_window
-        admin_window.close rescue nil
+        admin_window.close
+      rescue StandardError
+        nil
       end
 
       def self.admin_window_opened?

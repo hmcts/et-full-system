@@ -11,7 +11,7 @@ module EtFullSystem
           element :english_link, :link_or_button, t('switch.language', locale: :cy)
         end
 
-        #How do you identify?
+        # How do you identify?
         element :header, :main_header, 'diversities.identity.header', exact: false
         # What is your sex?
         # @!method sex
@@ -24,7 +24,7 @@ module EtFullSystem
         #   @return [EtTestHelpers::Components::GovUKCollectionRadioButtons] The site prism section
 
         gds_radios :sexual_identity, :'diversities.identity.sexual_identity'
-        #save and continue button
+        # save and continue button
         gds_submit_button :save_and_continue_button, :'helpers.submit.update'
 
         def save_and_continue

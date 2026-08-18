@@ -1,4 +1,4 @@
-require_relative './base.rb'
+require_relative './base'
 module EtFullSystem
   module Test
     module FileObjects
@@ -9,21 +9,23 @@ module EtFullSystem
             if respondents.length > 3
               expected_values = {
                 respondent4: {
-                    name: respondents[3].try(:name),
-                    address: [respondents[3].try(:building), respondents[3].try(:street), respondents[3].try(:locality), respondents[3].try(:county)].reject(&:blank?).join("\n"),
-                    post_code: post_code_for(respondents[3].try(:post_code), optional: true),
-                    have_acas: respondents[2]&.acas_number.present?,
-                    acas_number: respondents[3].try(:acas_number)
+                  name: respondents[3].try(:name),
+                  address: [respondents[3].try(:building), respondents[3].try(:street),
+                            respondents[3].try(:locality), respondents[3].try(:county)].reject(&:blank?).join("\n"),
+                  post_code: post_code_for(respondents[3].try(:post_code), optional: true),
+                  have_acas: respondents[2]&.acas_number.present?,
+                  acas_number: respondents[3].try(:acas_number)
 
                 },
                 respondent5: {
-                    name: respondents[4].try(:name),
-                    address: [respondents[4].try(:building), respondents[4].try(:street), respondents[4].try(:locality), respondents[4].try(:county)].reject(&:blank?).join("\n"),
-                    post_code: post_code_for(respondents[4].try(:post_code), optional: true),
-                    have_acas: respondents[4]&.acas_number.present?,
-                    acas_number: respondents[4].try(:acas_number)
+                  name: respondents[4].try(:name),
+                  address: [respondents[4].try(:building), respondents[4].try(:street),
+                            respondents[4].try(:locality), respondents[4].try(:county)].reject(&:blank?).join("\n"),
+                  post_code: post_code_for(respondents[4].try(:post_code), optional: true),
+                  have_acas: respondents[4]&.acas_number.present?,
+                  acas_number: respondents[4].try(:acas_number)
                 }
-            }
+              }
             else
               expected_values = {
                 respondent4: {

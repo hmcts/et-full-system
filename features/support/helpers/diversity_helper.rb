@@ -9,9 +9,9 @@ module EtFullSystem
       def load_diversity_start_page(in_language: ::EtFullSystem::Test::Messaging.instance.current_locale)
         diversity_pages.diversity_landing_page.load
         case in_language
-          when :cy then diversity_pages.diversity_landing_page.switch_to_welsh
-          when :en then nil
-          else raise "We only support languages en and cy - #{in_language} is not supported"
+        when :cy then diversity_pages.diversity_landing_page.switch_to_welsh
+        when :en then nil
+        else raise "We only support languages en and cy - #{in_language} is not supported"
         end
       end
 

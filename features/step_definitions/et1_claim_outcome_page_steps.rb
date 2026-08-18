@@ -1,4 +1,4 @@
-Given("a claimant is on Claim outcome page") do
+Given('a claimant is on Claim outcome page') do
   @claimant = FactoryBot.create_list(:claimant, 1, :person_data)
   @representative = FactoryBot.create_list(:representative, 1, :et1_information)
   @respondent = FactoryBot.create_list(:respondent, 1, :no_acas, :both_addresses, :yes_acas)
@@ -7,6 +7,7 @@ Given("a claimant is on Claim outcome page") do
   start_a_new_et1_claim
   et1_answer_login
   et1_answer_claimant_questions
+  et1_answer_case_heard_by_page
   et1_answer_group_claimants_questions
   et1_answer_representatives_questions
   et1_answer_respondents_questions
@@ -15,18 +16,18 @@ Given("a claimant is on Claim outcome page") do
   et1_answer_claim_details_questions
 end
 
-Then("I can verify that the copy text on Claim outcome page displayed correctly") do
+Then('I can verify that the copy text on Claim outcome page displayed correctly') do
   expect(et1_claim_outcome_page.has_correct_translation?).to be true
 end
 
-Then("I submit without answering Claim outcome questions") do
+Then('I submit without answering Claim outcome questions') do
   et1_claim_outcome_page.save_and_continue
 end
 
-When("I submit my preferred outcomes") do
+When('I submit my preferred outcomes') do
   et1_answer_claim_outcome_questions
 end
 
-Then("I should on More about the claim page") do
+Then('I should on More about the claim page') do
   expect(et1_more_about_the_claim_page).to have_page_header
 end

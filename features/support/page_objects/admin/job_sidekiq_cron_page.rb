@@ -8,7 +8,9 @@ module EtFullSystem
         end
 
         section :jobs, :xpath, cron_jobs_xpath do
-          section :export_claims, :xpath, XPath.generate {|x| x.descendant(:tr)[x.child(:td)[x.string.n.contains('export_claims_job')]]} do
+          section(:export_claims, :xpath, XPath.generate do |x|
+            x.descendant(:tr)[x.child(:td)[x.string.n.contains('export_claims_job')]]
+          end) do
             element :enqueue_button, :css, 'input[value="Enqueue Now"]'
             def run
               enqueue_button.click

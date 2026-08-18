@@ -46,10 +46,11 @@ module EtFullSystem
             section :matcher, '.select2-container' do
               def select(value)
                 root_element.click
-                results = find(:xpath, XPath.generate {|x| x.anywhere.descendant(:ul)[x.attr(:id) == 'select2--results']})
-                results.find(:xpath, XPath.generate {|x| x.child(:li)[x.string.n.equals value]}).click
+                results = find(:xpath, XPath.generate do |x|
+                  x.anywhere.descendant(:ul)[x.attr(:id) == 'select2--results']
+                end)
+                results.find(:xpath, XPath.generate { |x| x.child(:li)[x.string.n.equals value] }).click
               end
-
             end
             element :filter_by_email, 'select.select2-hidden-accessible'
             element :email_input, '#q_email'
@@ -74,7 +75,7 @@ module EtFullSystem
         def assert_users_are_imported
           filename = File.expand_path(File.join('features', 'support', 'fixtures', 'et_admin_users.csv'))
           aggregate_failures 'Validating all users are imported' do
-            CSV.foreach(filename, :headers => true) do |csv_row|
+            CSV.foreach(filename, headers: true) do |csv_row|
               expect(collection_contents.table).to have_user_matching(csv_row)
             end
           end
@@ -83,14 +84,14 @@ module EtFullSystem
         def get_username_password(role)
           filename = File.expand_path(File.join('features', 'support', 'fixtures', 'et_admin_users.csv'))
           data = []
-          CSV.foreach(filename, :headers => true) do |csv_row|
+          CSV.foreach(filename, headers: true) do |csv_row|
             if csv_row['Role'] == role
               data << csv_row['username']
               data << csv_row['password']
               data << csv_row['name']
             end
           end
-          return data
+          data
         end
 
         def delete_user_from_admin(email_address)
@@ -107,7 +108,7 @@ module EtFullSystem
         def delete_uploaded_csv_users_from_admin
           filename = File.expand_path(File.join('features', 'support', 'fixtures', 'et_admin_users.csv'))
           aggregate_failures 'Validating user has been deleted' do
-            CSV.foreach(filename, :headers => true) do |csv_row|
+            CSV.foreach(filename, headers: true) do |csv_row|
               delete_user_from_admin(csv_row['email'])
             end
           end

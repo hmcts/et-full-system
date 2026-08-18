@@ -10,11 +10,11 @@ Scenario: Verify Respondents details copy
   
 Scenario: Successfully submits all respondents details 
   When I successfully submit all the respondents details
-  Then I should be taken to the claimants details page
+  Then I should be taken to the case heard by page
 
 Scenario: Successfully submits required information only
   When I successfully submit the required respondents details only
-  Then I should be taken to the claimants details page
+  Then I should be taken to the case heard by page
 
 Scenario: Displays required information error message
   When I click on next without providing the required respondents details

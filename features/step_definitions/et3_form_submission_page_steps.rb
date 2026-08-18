@@ -4,6 +4,7 @@ Given(/^I am on the ET3 form submission page$/) do
   @representative = FactoryBot.create_list(:representative, 1, :et3_information)
   start_a_new_et3_response
   et3_answer_respondents_details
+  et3_answer_case_heard_by_page
   et3_answer_claimants_details
   et3_answer_earnings_and_benefits
   et3_answer_defend_claim_question
@@ -21,7 +22,7 @@ Then(/^I should see my application reference number$/) do
   expect(form_submission_page).to have_reference_number
 end
 
-Then(/^I should see the date\/time my application was submitted$/) do
+Then(%r{^I should see the date/time my application was submitted$}) do
   date = Date.today
   form_submission_page.assert_valid_submission_date(date)
 end

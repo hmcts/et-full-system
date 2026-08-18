@@ -24,6 +24,11 @@ module EtFullSystem
         et1_claimant_details_page.save_and_continue
       end
 
+      def et1_answer_case_heard_by_page
+        et1_case_heard_by_page.fill_in_all(claim: @claim)
+        et1_case_heard_by_page.save_and_continue
+      end
+
       def et1_answer_group_claimants_questions
         et1_group_claimants_page.set(@claimant)
         group_claims_csv = @claimant[0].dig(:group_claims_csv)
@@ -74,7 +79,7 @@ module EtFullSystem
 
       def et1_submit_claim
         et1_submission_page.submit_claim
-        @claim_reference = et1_claim_submitted.claim_number
+        @claim_reference = et1_claim_submitted.submission_details.submission_reference.answer.text
         log_event :et1_claim_submitted, claim_reference: @claim_reference
       end
     end
