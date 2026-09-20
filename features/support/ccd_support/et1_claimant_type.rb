@@ -30,6 +30,8 @@ module EtFullSystem
           'respondent_name' => respondent[:name],
           'respondent_phone1' => nil,
           'respondent_ACAS_question' => respondent[:acas_number]&.present? ? 'Yes' : 'No',
+          'acasCertificateReceiptDate' => respondent[:acas_number]&.present? ? '2025-09-29' : nil,
+          'acasCertificateIssueDate' => respondent[:acas_number]&.present? ? '2026-01-08' : nil,
           'respondent_address' => {
             'County' => respondent[:county],
             'PostCode' => respondent[:post_code],
