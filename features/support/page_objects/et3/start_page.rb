@@ -14,31 +14,30 @@ module EtFullSystem
         end
         # Introduction
         section :main_header, '.content-header' do
-
         end
-        element :header, :content_header, "introduction.header"
-        element :description, :element_with_text, "introduction.description"
+        element :header, :content_header, 'introduction.header'
+        element :description, :element_with_text, 'introduction.description'
         # What you need for this form
-        section :what_you_need, :wrapper_headered, "introduction.what_title" do
-          element :header, :element_with_text, "introduction.what_title"
-          element :bullet_one, :element_with_text, "introduction.what_content_1"
-          element :bullet_two, :element_with_text, "introduction.what_content_2"
-          element :bullet_three, :element_with_text, "introduction.what_content_3"
-          element :bullet_four, :element_with_text, "introduction.what_content_4"
-          element :bullet_five, :element_with_text, "introduction.what_content_5"
-          element :bullet_six, :element_with_text, "introduction.what_content_6"
+        section :what_you_need, :wrapper_headered, 'introduction.what_title' do
+          element :header, :element_with_text, 'introduction.what_title'
+          element :bullet_one, :element_with_text, 'introduction.what_content_1'
+          element :bullet_two, :element_with_text, 'introduction.what_content_2'
+          element :bullet_three, :element_with_text, 'introduction.what_content_3'
+          element :bullet_four, :element_with_text, 'introduction.what_content_4'
+          element :bullet_five, :element_with_text, 'introduction.what_content_5'
+          element :bullet_six, :element_with_text, 'introduction.what_content_6'
         end
         # How to fill in the form
-        section :how_to_fill, :wrapper_headered, "introduction.how_title" do
-          element :header, :element_with_text, "introduction.how_title"
-          element :bullet_one, :element_with_text, "introduction.how_content_1"
-          element :bullet_two, :element_with_text, "introduction.how_content_2"
-          element :bullet_three, :element_with_text, "introduction.how_content_3"
+        section :how_to_fill, :wrapper_headered, 'introduction.how_title' do
+          element :header, :element_with_text, 'introduction.how_title'
+          element :bullet_one, :element_with_text, 'introduction.how_content_1'
+          element :bullet_two, :element_with_text, 'introduction.how_content_2'
+          element :bullet_three, :element_with_text, 'introduction.how_content_3'
         end
         # Data Protection Act 1998
-        section :dpa, :wrapper_headered, "introduction.data_title"do
-          element :header, :element_with_text, "introduction.data_title"
-          element :content, :element_with_text, "introduction.data_content"
+        section :dpa, :wrapper_headered, 'introduction.data_title' do
+          element :header, :element_with_text, 'introduction.data_title'
+          element :content, :element_with_text, 'introduction.data_content'
         end
         # Start now
         gds_submit_button :start_button, :'introduction.start_now'
@@ -65,7 +64,7 @@ module EtFullSystem
         end
 
         def has_correct_translation?
-          #Introduction
+          # Introduction
           expect(self).to have_header
           expect(self).to have_description
           # What you need for this form

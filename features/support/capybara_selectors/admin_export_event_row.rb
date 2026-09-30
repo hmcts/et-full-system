@@ -1,5 +1,5 @@
 Capybara.add_selector(:admin_export_event_row) do
-  xpath do |locator, _options|
+  xpath do |_locator, _options|
     XPath.generate do |x|
       x.descendant(:tr)
     end

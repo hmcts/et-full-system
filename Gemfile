@@ -40,6 +40,7 @@ group :development, :test do
   gem 'dotenv', '~> 2.2', '>= 2.2.2'
   gem 'faker', '~> 3.0'
   gem 'parallel_tests'
+  gem 'rubocop', '~> 1.72', '>= 1.72.2', require: false
 end
 
 gem 'rake'

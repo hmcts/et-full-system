@@ -1,4 +1,4 @@
-require_relative './base.rb'
+require_relative './base'
 module EtFullSystem
   module Test
     module FileObjects
@@ -6,7 +6,7 @@ module EtFullSystem
         class InformationToRegulatorsSection < EtFullSystem::Test::FileObjects::Et1PdfFileSection::Base
           def has_contents_for?(claim:)
             expected_values = {
-              whistle_blowing: claim.claim_types.whistleblowing_claim.to_s.split('.').last == 'yes',
+              whistle_blowing: claim.claim_types.whistleblowing_claim.to_s.split('.').last == 'yes'
             }
             expect(mapped_field_values).to include expected_values
           end

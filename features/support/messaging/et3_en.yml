@@ -78,6 +78,15 @@ en:
       employment_at_site_number:
         label: How many people are employed at the place where the claimant worked?
         hint: For example, 10
+    # Case heard by page
+    case_heard_by_preference:
+      label: How do you prefer to have your case heard? (optional)
+      options:
+        "judge": "I prefer my case to be heard by a judge. Give your reasons in the box below."
+        "panel": "I prefer my case to be heard by a panel including non-legal members. Give your reasons in the box below."
+        "no_preference": "I have no preference"
+    case_heard_by_preference_reason:
+      label: Give reason
     # Claimant's Details Page
     claimants_name:
       label: Claimant's full name (optional)
@@ -428,6 +437,8 @@ en:
     header: "Respondent's Details"
   claimants_details:
     header: "Claimant's details"
+  case_heard_by:
+    header: "Preference for judge or panel"
   earnings_and_benefits:
     header: "Claimant's earnings and benefits"
   response:

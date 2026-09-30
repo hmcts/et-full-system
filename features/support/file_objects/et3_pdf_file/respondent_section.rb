@@ -32,6 +32,7 @@ module EtFullSystem
 
           def contact_preference(preference)
             return nil if preference.nil?
+
             t(preference).downcase
           end
         end

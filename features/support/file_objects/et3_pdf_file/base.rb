@@ -22,27 +22,27 @@ module EtFullSystem
             self.class.name.demodulize.underscore.gsub(/_section\z/, '')
           end
 
-          def true_false_for(val, yes: true,  no: false)
+          def true_false_for(val, yes: true, no: false)
             return nil if val.nil?
+
             val ? yes : no
           end
 
           def mapped_field_values
             return @mapped_field_values if defined?(@mapped_field_values)
+
             lookup = t("response_pdf_fields.#{i18n_section}", locale: locale)
-            @mapped_field_values = lookup.inject({}) do |acc, (key, value)|
+            @mapped_field_values = lookup.each_with_object({}) do |(key, value), acc|
               v = mapped_value(value, key: key)
               acc[key.to_sym] = v unless v === UndefinedField
-              acc
             end
           end
 
-          def mapped_value(value,  key:)
+          def mapped_value(value, key:)
             if value.is_a?(Hash) && !value.key?(:field_name)
-              value.inject({}) do |acc, (inner_key, inner_value)|
+              value.each_with_object({}) do |(inner_key, inner_value), acc|
                 v = mapped_value(inner_value, key: inner_key)
                 acc[inner_key] = v unless v === UndefinedField
-                acc
               end
             elsif value.is_a?(Hash) && value[:field_name] === false
               UndefinedField
@@ -54,11 +54,12 @@ module EtFullSystem
           def field_value_for(value, key:)
             if value.key?(:select_values)
               raw = raw_value_from_pdf(value)
-              ret = value[:select_values].detect { |(key, v)|  v == raw }.try(:[], 0)
+              ret = value[:select_values].detect { |(_key, v)| v == raw }.try(:[], 0)
               return true if ret == :true || ret === true
               return false if ret == :false || ret === false
               return ret.to_s if ret
               return nil if raw == value[:unselected_value]
+
               raise "Invalid value - '#{raw}' is not in the selected_values list or the unselected_value for field '#{key}' for section #{self.class.name}"
             else
               field_values[value[:field_name]]
@@ -66,12 +67,18 @@ module EtFullSystem
           end
 
           def raw_value_from_pdf(value)
-            value[:field_name].is_a?(Array) ? value[:field_name].map { |f| field_values[f] } : field_values[value[:field_name]]
+            if value[:field_name].is_a?(Array)
+              value[:field_name].map do |f|
+                field_values[f]
+              end
+            else
+              field_values[value[:field_name]]
+            end
           end
-
 
           def date_for(date)
             return date.strftime('%d/%m/%Y') if date.is_a?(Date) || date.is_a?(Time) || date.is_a?(DateTime)
+
             Time.zone.parse(date).strftime('%d/%m/%Y')
           end
 
@@ -85,6 +92,7 @@ module EtFullSystem
 
           def tri_state(value)
             return nil if value.nil?
+
             value == 'Yes'
           end
         end

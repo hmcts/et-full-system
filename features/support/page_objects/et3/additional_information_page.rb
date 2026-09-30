@@ -14,9 +14,8 @@ module EtFullSystem
           element :welsh_link, :link_or_button, t('switch.language', locale: :en)
           element :english_link, :link_or_button, t('switch.language', locale: :cy)
         end
-        element :header, :content_header, "additional_information.header"
+        element :header, :content_header, 'additional_information.header'
         section :main_header, '.content-header' do
-
         end
         gds_file_dropzone_upload :upload_additional_information_question, :'questions.upload_additional_information'
         # Save and continue
@@ -36,9 +35,11 @@ module EtFullSystem
         def attach_additional_information_file(respondent)
           data = respondent.to_h
           return if respondent.nil?
+
           if data.key?(:rtf_file)
             force_remote do
-              upload_additional_information_question.set(File.expand_path(File.join('features', 'support', 'fixtures', data[:rtf_file])))
+              upload_additional_information_question.set(File.expand_path(File.join('features', 'support', 'fixtures',
+                                                                                    data[:rtf_file])))
             end
           end
           page.has_content?('Remove file')

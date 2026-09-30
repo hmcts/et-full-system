@@ -2,7 +2,7 @@ module EtFullSystem
   module Test
     module Admin
       class JobsPage < Admin::BasePage
-        set_url "/jobs"
+        set_url '/jobs'
 
         element :sidekiq_iframe, '.active-admin-sidekiq iframe'
 
@@ -15,7 +15,6 @@ module EtFullSystem
           within_sidekiq_iframe do
             Admin::JobSidekiqCronPage.new.run_export_claims_cron_job
           end
-
         end
       end
     end

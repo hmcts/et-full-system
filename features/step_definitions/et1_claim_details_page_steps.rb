@@ -1,4 +1,4 @@
-Given("a claimant is on Claim details page") do
+Given('a claimant is on Claim details page') do
   @claimant = FactoryBot.create_list(:claimant, 1, :person_data)
   @representative = FactoryBot.create_list(:representative, 1, :et1_information)
   @respondent = FactoryBot.create_list(:respondent, 1, :no_acas, :both_addresses, :yes_acas)
@@ -7,6 +7,7 @@ Given("a claimant is on Claim details page") do
   start_a_new_et1_claim
   et1_answer_login
   et1_answer_claimant_questions
+  et1_answer_case_heard_by_page
   et1_answer_group_claimants_questions
   et1_answer_representatives_questions
   et1_answer_respondents_questions
@@ -14,17 +15,17 @@ Given("a claimant is on Claim details page") do
   et1_answer_claim_type_questions
 end
 
-Then("I can verify that the copy text on Claim details page displayed correctly") do
+Then('I can verify that the copy text on Claim details page displayed correctly') do
   et1_claim_details_page.upload_document.click
   et1_claim_details_page.other_claimants_fieldset.other_known_claimants.set(:"claims.claim_type.yes")
   expect(et1_claim_details_page.has_correct_translation?).to be true
 end
 
-When("I submit without answering Claim details questions") do
+When('I submit without answering Claim details questions') do
   et1_claim_details_page.save_and_continue
 end
 
-Then("an error message displaying Claim details must be answered") do
+Then('an error message displaying Claim details must be answered') do
   expect(et1_claim_details_page.has_mandatory_error_message?).to be true
 end
 
@@ -32,12 +33,12 @@ Then("I submit a claim statement by providing other people's name") do
   et1_claim_details_page.set(@claim)
 end
 
-Then("I submit a claim statement via RTF document") do
+Then('I submit a claim statement via RTF document') do
   @claim = FactoryBot.create(:claim, :upload_your_claim_statement)
   et1_claim_details_page.set(@claim)
 end
 
-Then("I should be on Claim outcome page") do
+Then('I should be on Claim outcome page') do
   et1_claim_details_page.save_and_continue
   expect(et1_claim_outcome_page).to have_page_header
 end

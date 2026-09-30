@@ -20,15 +20,15 @@ module EtFullSystem
               claim_types = claim.claim_types
               if claim_types.nil? || (claim_types.unfair_dismissal + claim_types.discrimination + claim_types.pay + claim_types.other).empty?
                 raise 'claim types must always exist - the application should not let you get this far'
-              else
-                # Other type of claim is never shown as a claim type
-                aggregate_failures 'validating claim types' do
-                  claim_types.discrimination.each do |type|
-                    expect(self).to have_answer(text: t("review.claim_type.questions.types.options.discrimination.#{type}"))
-                  end
-                  claim_types.pay do |type|
-                    expect(self).to have_answer(text: t("review.claim_type.questions.types.options.pay.#{type}"))
-                  end
+              end
+
+              # Other type of claim is never shown as a claim type
+              aggregate_failures 'validating claim types' do
+                claim_types.discrimination.each do |type|
+                  expect(self).to have_answer(text: t("review.claim_type.questions.types.options.discrimination.#{type}"))
+                end
+                claim_types.pay do |type|
+                  expect(self).to have_answer(text: t("review.claim_type.questions.types.options.pay.#{type}"))
                 end
               end
 

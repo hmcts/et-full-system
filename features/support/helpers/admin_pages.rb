@@ -4,7 +4,7 @@ module EtFullSystem
       def self.dashboard_page
         Admin::DashboardPage.new
       end
-      
+
       def self.login_page
         Admin::LoginPage.new
       end
@@ -32,7 +32,6 @@ module EtFullSystem
       def self.claimants_page
         Admin::ClaimantsPage.new
       end
-
 
       # @return [::Admin::ClaimsPage] The page object for claims
       def self.claims_page

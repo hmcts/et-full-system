@@ -4,7 +4,7 @@ module EtFullSystem
       def self.diversity_landing_page
         Diversity::LandingPage.new
       end
-      
+
       def self.claim_type_page
         Diversity::ClaimTypePage.new
       end
@@ -24,7 +24,7 @@ module EtFullSystem
       def self.religion_page
         Diversity::ReligionPage.new
       end
-      
+
       def self.ethnic_group_page
         Diversity::EthnicGroupPage.new
       end

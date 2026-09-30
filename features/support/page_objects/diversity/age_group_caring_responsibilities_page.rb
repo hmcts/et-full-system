@@ -12,59 +12,61 @@ module EtFullSystem
         end
         section :main_content, '.container' do
           include EtTestHelpers::Section
-          #What is your age group and caring responsibilities?
+          # What is your age group and caring responsibilities?
           element :header, :main_header, 'diversities.age_caring.hint'
           # @!method age_group
           #   A govuk radio button component for age_group question
           #   @return [EtTestHelpers::Components::GovUKCollectionRadioButtons] The site prism section
-          section :age_group, govuk_component(:collection_radio_buttons), :govuk_collection_radio_buttons, :'diversities.age_caring.age_group.hint' do
+          section :age_group, govuk_component(:collection_radio_buttons), :govuk_collection_radio_buttons,
+                  :'diversities.age_caring.age_group.hint' do
             section :u25, :form_labelled, 'age_group.under-25' do
               element :field, 'input'
-              def set(*args); field.set(*args); end
+              def set(*args) = field.set(*args)
             end
             section :age_25_34, :form_labelled, 'age_group.25-34' do
               element :field, 'input'
-              def set(*args); field.set(*args); end
+              def set(*args) = field.set(*args)
             end
             section :age_35_44, :form_labelled, 'age_group.35-44' do
               element :field, 'input'
-              def set(*args); field.set(*args); end
+              def set(*args) = field.set(*args)
             end
             section :age_45_54, :form_labelled, 'age_group.45-54' do
               element :field, 'input'
-              def set(*args); field.set(*args); end
+              def set(*args) = field.set(*args)
             end
             section :age_55_64, :form_labelled, 'age_group.55-64' do
               element :field, 'input'
-              def set(*args); field.set(*args); end
+              def set(*args) = field.set(*args)
             end
             section :over_65, :form_labelled, 'age_group.65-over' do
               element :field, 'input'
-              def set(*args); field.set(*args); end
+              def set(*args) = field.set(*args)
             end
             section :prefer_not_to_say, :form_labelled, 'age_group.prefer-not-to-say' do
               element :field, 'input'
-              def set(*args); field.set(*args); end
+              def set(*args) = field.set(*args)
             end
           end
           # @!method caring_responsibility
           #   A govuk radio button component for caring_responsibility question
           #   @return [EtTestHelpers::Components::GovUKCollectionRadioButtons] The site prism section
-          section :caring_responsibility, govuk_component(:collection_radio_buttons), :govuk_collection_radio_buttons, :'diversities.age_caring.caring_responsibility.hint' do
+          section :caring_responsibility, govuk_component(:collection_radio_buttons), :govuk_collection_radio_buttons,
+                  :'diversities.age_caring.caring_responsibility.hint' do
             section :yes, :form_labelled, 'caring_responsibility.yes_answer' do
               element :field, 'input'
-              def set(*args); field.set(*args); end
+              def set(*args) = field.set(*args)
             end
             section :no, :form_labelled, 'caring_responsibility.no_answer' do
               element :field, 'input'
-              def set(*args); field.set(*args); end
+              def set(*args) = field.set(*args)
             end
             section :prefer_not_to_say, :form_labelled, 'caring_responsibility.prefer-not-to-say' do
               element :field, 'input'
-              def set(*args); field.set(*args); end
+              def set(*args) = field.set(*args)
             end
           end
-          #save and continue button
+          # save and continue button
           gds_submit_button :save_and_continue, :'helpers.submit.update'
         end
 
@@ -106,9 +108,9 @@ module EtFullSystem
 
         def set_for_optional(answers, key, name)
           data = answers.to_h
-          if data[key] != nil
-            choose(factory_translate(data[key]), name: name)
-          end
+          return if data[key].nil?
+
+          choose(factory_translate(data[key]), name: name)
         end
       end
     end

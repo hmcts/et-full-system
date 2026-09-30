@@ -1,21 +1,21 @@
-require_relative './base.rb'
+require_relative './base'
 module EtFullSystem
   module Test
     module FileObjects
       module Et1PdfFileSection
         class DisabilitySection < EtFullSystem::Test::FileObjects::Et1PdfFileSection::Base
           def has_contents_for?(claimant:)
-            if claimant.has_special_needs.to_s.split('.').last == "no"
-              expected_values = {
-                has_special_needs: false,
-                special_needs: ""
-              }
-            else
-              expected_values = {
-                has_special_needs: true,
-                special_needs: claimant.special_needs
-              }
-            end
+            expected_values = if claimant.has_special_needs.to_s.split('.').last == 'no'
+                                {
+                                  has_special_needs: false,
+                                  special_needs: ''
+                                }
+                              else
+                                {
+                                  has_special_needs: true,
+                                  special_needs: claimant.special_needs
+                                }
+                              end
             expect(mapped_field_values).to include expected_values
           end
         end

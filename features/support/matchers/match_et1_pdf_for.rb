@@ -16,7 +16,8 @@ module EtFullSystem
       # @param [File] actual The pdf file to test
       def matches?(actual)
         self.page_object = EtFullSystem::Test::FileObjects::Et1PdfFile.new(actual)
-        page_object.has_correct_contents_for?(claim: claim, claimants: claimants, respondents: respondents, representative: representative, employment: employment)
+        page_object.has_correct_contents_for?(claim: claim, claimants: claimants, respondents: respondents,
+                                              representative: representative, employment: employment)
       end
 
       private

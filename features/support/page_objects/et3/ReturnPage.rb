@@ -4,27 +4,29 @@ module EtFullSystem
     module Et3
       class ReturnPage < BasePage
         include RSpec::Matchers
-        #page title
+        # page title
         element :header, :main_header, 'return_response.header'
         section :main_content, '.main-section' do
           include EtTestHelpers::Section
-          #return to your claim
+          # return to your claim
           element :sub_header, :govuk_fieldset, :'user_sessions.new.subheader'
-          #response number
+          # response number
           gds_text_input :response_number, :'simple_form.labels.user_session.new.reference'
-          #memorable word
+          # memorable word
           gds_text_input :memorable_word, :'simple_form.labels.user_session.new.password'
-          #find my response
+          # find my response
           gds_submit_button :find_my_response, :'return_response.find'
-          #don't have these details
+          # don't have these details
           element :form_hint, :paragraph, 'user_sessions.new.hint_html', exact: false
           element :new_response, :govuk_link, :'user_sessions.new.link'
           element :reset_memorable_word_element, :govuk_link, :'helpers.link.user_session.reset_memorable_word'
         end
         section :flash_heading, '#flash-summary' do
-          element :memorable_word_email_sent_flash_element, :content_header, 'simple_form.labels.user_session.memorable_word.email_sent_flash_text'
-          element :memorable_word_updated_flash_element, :content_header, 'simple_form.labels.user_session.memorable_word.updated_flash_text'
-          element :invalid,:content_header, 'user_sessions.new.invalid'
+          element :memorable_word_email_sent_flash_element, :content_header,
+                  'simple_form.labels.user_session.memorable_word.email_sent_flash_text'
+          element :memorable_word_updated_flash_element, :content_header,
+                  'simple_form.labels.user_session.memorable_word.updated_flash_text'
+          element :invalid, :content_header, 'user_sessions.new.invalid'
         end
 
         def find_my_response

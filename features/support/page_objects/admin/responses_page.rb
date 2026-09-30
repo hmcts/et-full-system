@@ -2,8 +2,9 @@ module EtFullSystem
   module Test
     module Admin
       class ResponsesPage < Admin::BasePage
-        QUESTIONS_WITH_NOT_APPLICABLE = [:agree_with_claimants_description_of_job_or_title, :agree_with_claimants_hours, :agree_with_earnings_details, :agree_with_claimant_notice, :agree_with_claimant_pension_benefits, :agree_with_employment_dates, :continued_employment].freeze
-        set_url "/responses"
+        QUESTIONS_WITH_NOT_APPLICABLE = %i[agree_with_claimants_description_of_job_or_title
+                                           agree_with_claimants_hours agree_with_earnings_details agree_with_claimant_notice agree_with_claimant_pension_benefits agree_with_employment_dates continued_employment].freeze
+        set_url '/responses'
 
         element :reference_value, 'td.col.col-reference'
         element :respondent_name, 'td.col.col-respondent_name'
@@ -11,10 +12,8 @@ module EtFullSystem
         element :claimant_name, 'td.col.col-claimants_name'
         element :office_name, 'td.col.col-office'
 
-
-
         def find_user(user, reference)
-          expect(self).to be_displayed()
+          expect(self).to be_displayed
           expect(respondent_name).to have_content(user.name)
           expect(reference_value).to have_content(reference)
           expect(case_number).to have_content(user.case_number)
@@ -22,17 +21,18 @@ module EtFullSystem
         end
 
         def check_json(user, reference)
-          responses_data = admin_api.responses(q:{reference_cont:reference})
-          date_keys = [:employment_end, :employment_start]
+          responses_data = admin_api.responses(q: { reference_cont: reference })
+          date_keys = %i[employment_end employment_start]
           expected_values = user.to_h.map do |k, v|
             next [k, v.to_s] unless v.is_a?(Symbol)
             next [k, v.to_s] unless v.to_s.split('.').last =~ /\Ayes|no\z/
             next [k, v.to_s.split('.').last == 'yes'] unless k.in?(QUESTIONS_WITH_NOT_APPLICABLE)
+
             [k, v.to_s.split('.').last == 'yes' ? 'true' : 'false']
           end.to_h
 
-          if expected_values[:employment_end] != ""
-            expected_values.each_pair do |k,v|
+          if expected_values[:employment_end] != ''
+            expected_values.each_pair do |k, v|
               expected_values[k] = k.in?(date_keys) ? Date.parse(v).strftime('%Y-%m-%d') : v
             end
           else
@@ -40,52 +40,65 @@ module EtFullSystem
             expected_values[:employment_end] = nil
             expected_values[:employment_start] = nil
             expected_values = expected_values.to_h.transform_values do |v|
-              next v unless v == ""
-              v == nil
+              next v unless v == ''
+
+              v.nil?
             end
           end
-          expect(responses_data.first).to include(expected_values.except(:disagree_claimant_notice_reason, :disagree_claimant_pension_benefits_reason).stringify_keys)
-          #TODO: remove exceptions (see bug ticket RST-4945)
+          expect(responses_data.first).to include(expected_values.except(:disagree_claimant_notice_reason,
+                                                                         :disagree_claimant_pension_benefits_reason).stringify_keys)
+          # TODO: remove exceptions (see bug ticket RST-4945)
         end
 
         def minimal_check_json(user, reference)
-          responses_data = admin_api.responses(q:{reference_cont:reference})
+          responses_data = admin_api.responses(q: { reference_cont: reference })
           expected_values = user.to_h.map do |k, v|
             next [k, v.to_s] unless v.to_s.split('.').last =~ /\Ayes|no\z/
             next [k, v.to_s.split('.').last == 'yes'] unless k.in?(QUESTIONS_WITH_NOT_APPLICABLE)
-            [k, v.to_s.split('.').last.then {|value| value.nil? ? nil : (value == 'yes' ? 'true' : 'false') }]
+
+            [k, v.to_s.split('.').last.then do |value|
+              if value.nil?
+                nil
+              else
+                (value == 'yes' ? 'true' : 'false')
+              end
+            end]
           end.to_h
           static_values = expected_values.slice(:defend_claim, :claimants_name)
           expected_values = expected_values.to_h.transform_values do |v|
-            next v unless v == false || v == ""
+            next v unless [false, ''].include?(v)
+
             expected_values[v] = nil
           end
           expected_values[:defend_claim] = static_values[:defend_claim]
           expected_values[:claimants_name] = static_values[:claimants_name]
           expected_values[:allow_phone_attendance] = expected_values[:allow_phone_or_video_attendance].include?('phone')
-          expected_values[:allow_video_attendance] = expected_values.delete(:allow_phone_or_video_attendance).include?('phone')
-          expect(responses_data.first).to include(expected_values.except(:disagree_claimant_notice_reason, :disagree_claimant_pension_benefits_reason, :allow_video_attendance, :allow_phone_attendance).stringify_keys)
-          #TODO: remove exceptions (see bug ticket RST-4945)
+          expected_values[:allow_video_attendance] =
+            expected_values.delete(:allow_phone_or_video_attendance).include?('phone')
+          expect(responses_data.first).to include(expected_values.except(:disagree_claimant_notice_reason,
+                                                                         :disagree_claimant_pension_benefits_reason, :allow_video_attendance, :allow_phone_attendance).stringify_keys)
+          # TODO: remove exceptions (see bug ticket RST-4945)
         end
 
-        def change_office()
-          data = self.page.find(:css, "a[href='/admin/responses?scope=all']").text.delete('All ()') # This allows us to create a CSS matcher for the top row of the data
-          self.page.find(:css,"tr[id='response_#{data}'] a[title='Edit']").click
+        def change_office
+          data = page.find(:css, "a[href='/admin/responses?scope=all']").text.delete('All ()') # This allows us to create a CSS matcher for the top row of the data
+          page.find(:css, "tr[id='response_#{data}'] a[title='Edit']").click
           page.find(:css, '#response_office_input .select2-selection__arrow').click
-          self.page.find(:css, "span[class='select2-container select2-container--default select2-container--open'] li:nth-child(2)").click
-          self.page.find(:css, "input[value='Update Response']").click
+          page.find(:css,
+                    "span[class='select2-container select2-container--default select2-container--open'] li:nth-child(2)").click
+          page.find(:css, "input[value='Update Response']").click
         end
 
-        def verify_office()
-          data = self.page.find(:css, "a[href='/admin/responses?scope=all']").text.delete('All ()')
-          self.page.find(:css, "tr[id='response_#{data}'] td[class='col col-office']").text == "Bristol"
+        def verify_office
+          data = page.find(:css, "a[href='/admin/responses?scope=all']").text.delete('All ()')
+          page.find(:css, "tr[id='response_#{data}'] td[class='col col-office']").text == 'Bristol'
         end
 
         def assert_office(office_code, reference, timeout: 5, sleep: 0.2)
           office_data = admin_api.office_data_for(office_code)
           Timeout.timeout(timeout) do
             loop do
-              response_data = admin_api.responses(q:{reference_cont:reference}).first
+              response_data = admin_api.responses(q: { reference_cont: reference }).first
               return true if response_data&.fetch('office_id') == office_data['id']
 
               sleep(sleep)

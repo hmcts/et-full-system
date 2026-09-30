@@ -18,6 +18,11 @@ module EtFullSystem
         EtFullSystem::Test::Et1::ClaimantDetailsPage.new
       end
 
+      # @return [EtFullSystem::Test::Et1::CaseHeardByPage]
+      def et1_case_heard_by_page
+        ::EtFullSystem::Test::Et1::CaseHeardByPage.new
+      end
+
       def et1_group_claimants_page
         EtFullSystem::Test::Et1::GroupClaimantsPage.new
       end
@@ -135,6 +140,11 @@ module EtFullSystem
         EtFullSystem::Test::Et3::ReturnPage.new
       end
 
+      # @return [EtFullSystem::Test::Et3::CaseHeardByPage]
+      def et3_case_heard_by_page
+        ::EtFullSystem::Test::Et3::CaseHeardByPage.new
+      end
+
       def et1_guide_page
         EtFullSystem::Test::Et1::GuidePage.new
       end
@@ -146,7 +156,6 @@ module EtFullSystem
       def diversity_pages
         @diversity_pages = DiversityPages
       end
-
     end
   end
 end

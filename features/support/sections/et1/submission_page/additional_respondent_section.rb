@@ -10,7 +10,8 @@ module EtFullSystem
             element :answer, :govuk_summary_list_col
           end
 
-          section :acas_number, :govuk_summary_list_row, :'review.additional_respondents.respondent.questions.acas_number' do
+          section :acas_number, :govuk_summary_list_row,
+                  :'review.additional_respondents.respondent.questions.acas_number' do
             element :answer, :govuk_summary_list_col
           end
 

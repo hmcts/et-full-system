@@ -2,9 +2,10 @@ Given(/^I am on the ET3 claimants details page$$/) do
   @respondent = FactoryBot.create_list(:et3_respondent, 1, :et3_respondent_answers)
   start_a_new_et3_response
   et3_answer_respondents_details
+  et3_answer_case_heard_by_page
 end
 
-Then("Claimants details page copy texts are displayed in the correct language") do
+Then('Claimants details page copy texts are displayed in the correct language') do
   claimants_details_page.agree_with_early_conciliation_details_question.set(:no)
   claimants_details_page.agree_with_employment_dates_question.set(:no)
   claimants_details_page.agree_with_claimants_description_of_job_or_title_question.set(:no)

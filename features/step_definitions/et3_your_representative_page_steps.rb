@@ -4,6 +4,7 @@ Given(/^I am on the ET3 your representative page$/) do
   @representative = FactoryBot.create_list(:representative, 1, :et3_information)
   start_a_new_et3_response
   et3_answer_respondents_details
+  et3_answer_case_heard_by_page
   et3_answer_claimants_details
   et3_answer_earnings_and_benefits
   et3_answer_defend_claim_question

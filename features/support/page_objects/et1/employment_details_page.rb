@@ -197,13 +197,13 @@ module EtFullSystem
 
             your_employment_details.set(data[:employment_details])
 
-            if data[:current_situation].to_s.split('.').last == "notice_period"
-              employment_current_situation.set("employment-current-situation-notice-period-field")
+            if data[:current_situation].to_s.split('.').last == 'notice_period'
+              employment_current_situation.set('employment-current-situation-notice-period-field')
               notice_period.set(data[:notice_period_end_date])
-            elsif data[:current_situation].to_s.split('.').last == "still_employed"
-              employment_current_situation.set("employment-current-situation-still-employed-field")
-            elsif data[:current_situation].to_s.split('.').last == "employment_terminated"
-              employment_current_situation.set("employment-current-situation-employment-terminated-field")
+            elsif data[:current_situation].to_s.split('.').last == 'still_employed'
+              employment_current_situation.set('employment-current-situation-still-employed-field')
+            elsif data[:current_situation].to_s.split('.').last == 'employment_terminated'
+              employment_current_situation.set('employment-current-situation-employment-terminated-field')
               employment_end_date.set(data[:end_date])
             end
 

@@ -49,7 +49,8 @@ module EtFullSystem
             # @!method selection
             #   A govuk radio button component for ethnicity_subgroup question
             #   @return [EtTestHelpers::Components::GovUKCollectionRadioButtons] The site prism section
-            gds_radios :black_subgroup, :'diversities.ethnicity.ethnicity_subgroup.black-african-caribbean-black-british'
+            gds_radios :black_subgroup,
+                       :'diversities.ethnicity.ethnicity_subgroup.black-african-caribbean-black-british'
           end
 
           section :other_fieldset, '*[data-subgroup="other-ethnic-group"]' do
@@ -58,7 +59,8 @@ module EtFullSystem
             # @!method selection
             #   A govuk radio button component for ethnicity_subgroup question
             #   @return [EtTestHelpers::Components::GovUKCollectionRadioButtons] The site prism section
-            gds_radios :other_subgroup, :'diversities.ethnicity.ethnicity_subgroup.any-other-mixed-multiple-ethnic-background'
+            gds_radios :other_subgroup,
+                       :'diversities.ethnicity.ethnicity_subgroup.any-other-mixed-multiple-ethnic-background'
           end
           # save and continue button
           gds_submit_button :save_and_continue, :'helpers.submit.update'

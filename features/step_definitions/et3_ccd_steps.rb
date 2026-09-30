@@ -1,4 +1,3 @@
-
 And(/^the submitted Employment Tribunal response is exported to ccd for me$/) do
   ccd_system = admin_api.external_systems(q: { reference_starts_with: 'ccd_' }).detect do |system|
     system[:office_codes].include?(@my_et3_reference[0..1].to_i)

@@ -1,9 +1,11 @@
 Given("a claimant is on Respondent's details page") do
+  @claim = FactoryBot.create(:claim)
   @claimant = FactoryBot.create_list(:claimant, 1, :person_data)
   @representative = FactoryBot.create_list(:representative, 1, :et1_information)
   start_a_new_et1_claim
   et1_answer_login
   et1_answer_claimant_questions
+  et1_answer_case_heard_by_page
   et1_answer_group_claimants_questions
   et1_answer_representatives_questions
 end
@@ -34,18 +36,18 @@ Then("I can verify an invalid UK postcode is being used for Respondent's details
   expect(et1_respondents_details_page.has_correct_error_message_for_invalid_uk_postcode?).to be true
 end
 
-When("I submit yes to Acas early conciliation certificate number") do
-  @respondent = FactoryBot.create_list(:respondent,  1, :yes_acas, :both_addresses)
+When('I submit yes to Acas early conciliation certificate number') do
+  @respondent = FactoryBot.create_list(:respondent, 1, :yes_acas, :both_addresses)
   et1_respondents_details_page.set(@respondent)
   et1_respondents_details_page.save_and_continue
 end
 
-When("I submit no to Acas early conciliation certificate number") do
+When('I submit no to Acas early conciliation certificate number') do
   @respondent = FactoryBot.create_list(:respondent, 1, :no_acas, :both_addresses, :no_acas)
   et1_respondents_details_page.set(@respondent)
   et1_respondents_details_page.save_and_continue
 end
 
-When("I should be taken to Employment details page") do
+When('I should be taken to Employment details page') do
   expect(et1_additional_respondents_details_page).to have_page_header
 end

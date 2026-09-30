@@ -1,4 +1,4 @@
-require_relative './base.rb'
+require_relative './base'
 module EtFullSystem
   module Test
     module FileObjects

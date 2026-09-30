@@ -9,17 +9,17 @@ module EtFullSystem
       #  as one huge expectation based on the input user.
       def calculated_claim_matchers(args)
         claimant = args[:user]
-        if claimant.gender.nil?
-          gender = nil
-        else
-          gender = claimant.gender.to_s.split(".").last == "prefer_not_to_say" ? "N/K" : t(claimant[:gender])
-        end
+        gender = if claimant.gender.nil?
+                   nil
+                 else
+                   claimant.gender.to_s.split('.').last == 'prefer_not_to_say' ? 'N/K' : t(claimant[:gender])
+                 end
         [
           'ET1 - Online Application to an Employment Tribunal',
           '',
           'For Office Use',
           '',
-          starting_with('Received at ET: ').and(ending_with(Date.today.strftime("%d/%m/%Y"))),
+          starting_with('Received at ET: ').and(ending_with(Date.today.strftime('%d/%m/%Y'))),
           'Case Number:',
           'Code:',
           'Initials:',
@@ -42,7 +42,8 @@ module EtFullSystem
           "Postcode: #{args.dig(:user, :post_code)}",
           "~1.6 Phone number: #{args.dig(:user, :telephone_number)}",
           "Mobile number: #{args.dig(:user, :alternative_telephone_number)}",
-          "~1.7 How would you prefer us to communicate with you?: #{factory_translate(args.dig(:user, :correspondence), locale: :en)}",
+          "~1.7 How would you prefer us to communicate with you?: #{factory_translate(args.dig(:user, :correspondence),
+                                                                                      locale: :en)}",
           "E-mail address: #{args.dig(:user, :email_address)}",
           '',
           "## Section 2: Respondent's details",
@@ -56,7 +57,7 @@ module EtFullSystem
           "Respondent Address 4: #{args.dig(:respondents)[0].dig(:county)}",
           "Respondent Postcode: #{args.dig(:respondents)[0].dig(:post_code)}",
           "Respondent Phone: #{args.dig(:respondents)[0].dig(:telephone_number)}",
-          "~2.3 If you worked at an address different from the one you have given at 2.2, please give the full address:",
+          '~2.3 If you worked at an address different from the one you have given at 2.2, please give the full address:',
           "Alternative Respondent Address1: #{args.dig(:respondents)[0].dig(:work_building)}",
           "Alternative Respondent Address2: #{args.dig(:respondents)[0].dig(:work_street)}",
           "Alternative Respondent Address3: #{args.dig(:respondents)[0].dig(:work_locality)}",
@@ -77,7 +78,7 @@ module EtFullSystem
           "~8.4 Representative's Phone number: #{args.dig(:representative, :telephone_number)}",
           "Representative's Mobile number: #{args.dig(:representative, :alternative_telephone_number)}",
           "~8.5 Representative's Reference: #{args.dig(:representative, :dx_number)}",
-          "~8.6 How would they prefer us to communicate with them?:",
+          '~8.6 How would they prefer us to communicate with them?:',
           "Representative's E-mail address: #{args.dig(:representative, :email_address)}",
           "~8.7 Representative's Occupation: #{factory_translate(args.dig(:representative, :type), locale: :en)}",
           '',
@@ -87,30 +88,33 @@ module EtFullSystem
           '',
           '## Section 11: Details of Additional Respondents',
           '',
-          "Name of your employer of the organisation you are claiming against1: #{args.dig(:respondents)[1].try(:dig, :name)}",
+          "Name of your employer of the organisation you are claiming against1: #{args.dig(:respondents)[1].try(:dig,
+                                                                                                                :name)}",
           'Address:',
           "AdditionalAddress1 1: #{args.dig(:respondents)[1].try(:dig, :building)}",
           "AdditionalAddress1 2: #{args.dig(:respondents)[1].try(:dig, :street)}",
           "AdditionalAddress1 3: #{args.dig(:respondents)[1].try(:dig, :locality)}",
           "AdditionalAddress1 4: #{args.dig(:respondents)[1].try(:dig, :county)}",
           "AdditionalPostcode1: #{args.dig(:respondents)[1].try(:dig, :post_code)}",
-          "AdditionalPhoneNumber1: ",
-          "Name of your employer of the organisation you are claiming against2: #{args.dig(:respondents)[2].try(:dig, :name)}",
-          "Address:",
+          'AdditionalPhoneNumber1: ',
+          "Name of your employer of the organisation you are claiming against2: #{args.dig(:respondents)[2].try(:dig,
+                                                                                                                :name)}",
+          'Address:',
           "AdditionalAddress2 1: #{args.dig(:respondents)[2].try(:dig, :building)}",
           "AdditionalAddress2 2: #{args.dig(:respondents)[2].try(:dig, :street)}",
           "AdditionalAddress2 3: #{args.dig(:respondents)[2].try(:dig, :locality)}",
           "AdditionalAddress2 4: #{args.dig(:respondents)[2].try(:dig, :county)}",
           "AdditionalPostcode2: #{args.dig(:respondents)[2].try(:dig, :post_code)}",
-          "AdditionalPhoneNumber2: ",
-          "Name of your employer of the organisation you are claiming against3: #{args.dig(:respondents)[3].try(:dig, :name)}",
-          "Address:",
+          'AdditionalPhoneNumber2: ',
+          "Name of your employer of the organisation you are claiming against3: #{args.dig(:respondents)[3].try(:dig,
+                                                                                                                :name)}",
+          'Address:',
           "AdditionalAddress3 1: #{args.dig(:respondents)[3].try(:dig, :building)}",
           "AdditionalAddress3 2: #{args.dig(:respondents)[3].try(:dig, :street)}",
           "AdditionalAddress3 3: #{args.dig(:respondents)[3].try(:dig, :locality)}",
           "AdditionalAddress3 4: #{args.dig(:respondents)[3].try(:dig, :county)}",
           "AdditionalPostcode3: #{args.dig(:respondents)[3].try(:dig, :post_code)}",
-          "AdditionalPhoneNumber3: "
+          'AdditionalPhoneNumber3: '
         ]
       end
 
@@ -134,7 +138,9 @@ module EtFullSystem
           '',
           'FormVersion: 2',
           '',
-          "The following claimants are represented by  (if applicable) and the relevant required information for all the additional claimants is the same as stated in the main claim of #{args.dig(:user,:first_name)} #{args.dig(:user, :last_name)} v #{args.dig(:respondents)[0].dig(:name)}",
+          "The following claimants are represented by  (if applicable) and the relevant required information for all the additional claimants is the same as stated in the main claim of #{args.dig(
+            :user, :first_name
+          )} #{args.dig(:user, :last_name)} v #{args.dig(:respondents)[0].dig(:name)}",
           '',
           ''
 
@@ -166,6 +172,7 @@ module EtFullSystem
       def group_claimants_for(user)
         full_path = File.absolute_path(File.join('..', 'fixtures', user), __dir__)
         raise "#{full_path} does not exist" unless File.exist?(full_path)
+
         results = CSV.read(full_path, headers: true)
         results.map do |row|
           {

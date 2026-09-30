@@ -36,7 +36,8 @@ module EtFullSystem
           element :step_2, :paragraph, 'claims.additional_claimants_upload.step_two_header'
           element :save_csv_format_text, :paragraph, 'claims.additional_claimants_upload.save_csv_format', exact: false
           element :how_to_save, :paragraph, 'claims.additional_claimants_upload.how_to_save'
-          element :dont_include_spaces, :paragraph, 'claims.additional_claimants_upload.dont_include_spaces', exact: false
+          element :dont_include_spaces, :paragraph, 'claims.additional_claimants_upload.dont_include_spaces',
+                  exact: false
           # Step 3
           element :step_3, :paragraph, 'claims.additional_claimants_upload.step_three_header'
           element :file_spreadsheet_labelled, :form_labelled,
@@ -45,7 +46,8 @@ module EtFullSystem
           # @!method file_upload
           #   A govuk file field component wrapping the input, label, hint etc.. for the file_upload question
           #   @return [EtTestHelpers::Components::GovUKFileDropzoneField] The site prism section
-          gds_file_dropzone_upload :file_upload, :'simple_form.labels.additional_claimants_upload.additional_claimants_csv' do
+          gds_file_dropzone_upload :file_upload,
+                                   :'simple_form.labels.additional_claimants_upload.additional_claimants_csv' do
             include ::EtFullSystem::Test::UploadHelper
             def set(value)
               force_remote do

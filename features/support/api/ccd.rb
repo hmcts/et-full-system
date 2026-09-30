@@ -21,50 +21,49 @@ module EtFullSystem
       end
 
       def get_cookies
-        response = request(:get, "#{ccd_url}/login?response_type=code&client_id=ccd_gateway&redirect_uri=#{oauth2redirect}")
+        response = request(:get,
+                           "#{ccd_url}/login?response_type=code&client_id=ccd_gateway&redirect_uri=#{oauth2redirect}")
         self.csrf_token = response.body.match(/_csrf" value="([^"]*)"/)[1]
       end
 
       def get_oauth2redirect_code
         response = request(:post, "#{ccd_url}/login?response_type=code&client_id=ccd_gateway&redirect_uri=#{oauth2redirect}",
-          follow_redirects: false,
-          headers: {
-            'Content-Type' => 'application/x-www-form-urlencoded'
-          },
-          cookies: cookies_hash,
-          body: {
-            username: Configuration.ccd_username,
-            password: Configuration.ccd_password,
-            continue: oauth2redirect,
-            upliftToken: '',
-            response_type: 'code',
-            _csrf: csrf_token,
-            redirect_uri: oauth2redirect,
-            client_id: 'ccd_gateway',
-            scope: '',
-            state: ''
-          })
-          self.oauth2redirect_code = response.headers['location'].split("=").pop()
+                           follow_redirects: false,
+                           headers: {
+                             'Content-Type' => 'application/x-www-form-urlencoded'
+                           },
+                           cookies: cookies_hash,
+                           body: {
+                             username: Configuration.ccd_username,
+                             password: Configuration.ccd_password,
+                             continue: oauth2redirect,
+                             upliftToken: '',
+                             response_type: 'code',
+                             _csrf: csrf_token,
+                             redirect_uri: oauth2redirect,
+                             client_id: 'ccd_gateway',
+                             scope: '',
+                             state: ''
+                           })
+        self.oauth2redirect_code = response.headers['location'].split('=').pop
       end
 
       def get_access_token
-        response = request(:get, "#{case_url}/oauth2?code=#{oauth2redirect_code}&redirect_uri=#{oauth2redirect}",
-          headers: {
-            'Content-Type' => 'application/x-www-form-urlencoded'
-          }
-        )
+        request(:get, "#{case_url}/oauth2?code=#{oauth2redirect_code}&redirect_uri=#{oauth2redirect}",
+                headers: {
+                  'Content-Type' => 'application/x-www-form-urlencoded'
+                })
         self.access_token = cookies_hash[:accessToken]
       end
 
       def get_ccd_case(fee_group_reference)
         response = request(:get, "#{case_url}/aggregated/caseworkers/:uid/jurisdictions/EMPLOYMENT/case-types/Manchester_Dev/cases?view=WORKBASKET&state=1_Submitted&page=1&case.feeGroupReference=#{fee_group_reference}&page=1&sortDirection=desc",
-          headers: {
-            'Content-Type' => 'application/json'
-          },
-          cookies: {
-            accessToken: access_token
-          }
-        )
+                           headers: {
+                             'Content-Type' => 'application/json'
+                           },
+                           cookies: {
+                             accessToken: access_token
+                           })
         self.case_response = response['results'].first['case_fields']
       end
 
@@ -79,9 +78,7 @@ module EtFullSystem
 
       def request(method, url, options = {})
         self.last_response = HTTParty.send(method, url, options.merge(verify: false))
-        if last_response.headers.key? "set-cookie"
-          cookies_hash.add_cookies(last_response.headers['set-cookie'])
-        end
+        cookies_hash.add_cookies(last_response.headers['set-cookie']) if last_response.headers.key? 'set-cookie'
         last_response
       end
 

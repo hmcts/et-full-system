@@ -2,7 +2,7 @@ module EtFullSystem
   module Test
     module Admin
       class LoginPage < Admin::BasePage
-        set_url "/login"
+        set_url '/login'
         element :username_field, :field, 'Username*'
         element :password_field, :field, 'Password*'
         element :login_button, 'input[value=Login]'

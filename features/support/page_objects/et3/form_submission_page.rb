@@ -35,7 +35,7 @@ module EtFullSystem
         def assert_valid_submission_date(date)
           month = t('date.month_names')[date.month]
 
-          within submission_date do 
+          within submission_date do
             expect(page).to have_selector '.govuk-summary-list__value', text: date.strftime("%-d #{month} %Y")
           end
         end

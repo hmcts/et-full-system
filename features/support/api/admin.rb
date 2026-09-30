@@ -7,7 +7,6 @@ module EtFullSystem
       include ::EtFullSystem::Test::I18n
       include ::EtFullSystem::Test::Admin
 
-
       def url
         Configuration.admin_url
       end
@@ -19,11 +18,14 @@ module EtFullSystem
 
       def mechanize_login
         return if mechanize_logged_in?
+
         page = agent.get(url)
         page.form.field_with(name: 'admin_user[username]').value = ::EtFullSystem::Test::Configuration.admin_username
         page.form.field_with(name: 'admin_user[password]').value = ::EtFullSystem::Test::Configuration.admin_password
         result = agent.submit(page.form)
-        raise "Login failed" if result.search(XPath.generate {|x| x.descendant[x.string.n.contains("Signed in successfully")]}.to_s).empty?
+        raise 'Login failed' if result.search(XPath.generate do |x|
+          x.descendant[x.string.n.contains('Signed in successfully')]
+        end.to_s).empty?
 
         self.csrf_token = page.search('meta[name=csrf-token]').first['content']
         self.mechanize_logged_in = true
@@ -31,26 +33,27 @@ module EtFullSystem
 
       def login
         return if logged_in?
+
         get_token
         resp = request(:post, "#{url}/login",
-          headers: {
-            'Content-Type' => 'application/x-www-form-urlencoded'
-          },
-          cookies: cookies_hash,
-          body: {
-            admin_user: {
-              username: ::EtFullSystem::Test::Configuration.admin_username,
-              password: ::EtFullSystem::Test::Configuration.admin_password,
-              remember_me: '0'
-            },
-            authenticity_token: csrf_token
-          })
-        raise "An error occured trying to login" unless resp.success?
+                       headers: {
+                         'Content-Type' => 'application/x-www-form-urlencoded'
+                       },
+                       cookies: cookies_hash,
+                       body: {
+                         admin_user: {
+                           username: ::EtFullSystem::Test::Configuration.admin_username,
+                           password: ::EtFullSystem::Test::Configuration.admin_password,
+                           remember_me: '0'
+                         },
+                         authenticity_token: csrf_token
+                       })
+        raise 'An error occured trying to login' unless resp.success?
 
         self.logged_in = true
       end
 
-      def claims(query={})
+      def claims(query = {})
         login
         claims = request(:get, "#{url}/claims.json?#{query.to_query}", cookies: cookies_hash)
         JSON.parse(claims.body).map(&:with_indifferent_access)
@@ -106,14 +109,13 @@ module EtFullSystem
         user_record = users.first
         return if user_record.nil?
 
-        agent.post("#{url}/users/#{user_record[:id]}.json", {_method: 'delete'}, 'Accept' => 'application/json', 'X-CSRF-Token' => csrf_token)
+        agent.post("#{url}/users/#{user_record[:id]}.json", { _method: 'delete' }, 'Accept' => 'application/json',
+                                                                                   'X-CSRF-Token' => csrf_token)
       end
-
-
 
       def find_office_postcode(postcode, timeout: 5, sleep: 0.1, raise: false)
         wait_for(timeout: timeout, sleep: sleep, raise: raise) do
-          office_postcodes(q: {postcode_eq: postcode}).first
+          office_postcodes(q: { postcode_eq: postcode }).first
         end
       end
 
@@ -127,8 +129,9 @@ module EtFullSystem
         login
         Timeout.timeout(timeout) do
           loop do
-            responses = responses q: {reference_eq: reference}
-            return responses.first if responses.first[:uploaded_files].any? {|f| f['filename'] =~ /\Aet3_.*\.pdf\z/}
+            responses = responses q: { reference_eq: reference }
+            return responses.first if responses.first[:uploaded_files].any? { |f| f['filename'] =~ /\Aet3_.*\.pdf\z/ }
+
             sleep(sleep)
           end
         end
@@ -140,8 +143,9 @@ module EtFullSystem
         login
         Timeout.timeout(timeout) do
           loop do
-            claims = claims q: {reference_eq: reference}
+            claims = claims q: { reference_eq: reference }
             return claims.first if claims.first['ecm_state'].start_with?('complete')
+
             sleep(sleep)
           end
         end
@@ -165,7 +169,7 @@ module EtFullSystem
           &pregnancy_cont=data[:pregnancy]
           &relationship_cont=data[:relationship]
           &religion_cont=data[:religion]", cookies: cookies_hash)
-        response[0].delete_if { |k, v| %w"id created_at updated_at".include? k}
+        response[0].delete_if { |k, _v| %w[id created_at updated_at].include? k }
       end
 
       def export_response_to_ccd(external_system_id:, response_reference:)
@@ -177,29 +181,33 @@ module EtFullSystem
         token = p.search('meta[name=csrf-token]').first['content']
 
         result = agent.post "#{url}/responses/batch_action",
-                   {
-                       batch_action: 'export',
-                       batch_action_inputs: {external_system_id: external_system_id}.to_json,
-                       collection_selection: [response[:id].to_s],
-                       authenticity_token: token
-                   }.to_json,
-                  'Content-Type' => 'application/json',
-                  'Accept' => 'text/html'
-        raise "export_response_to_ccd failed" if result.search(XPath.generate {|x| x.descendant[x.string.n.contains("Responses queued for export")]}.to_s).empty?
+                            {
+                              batch_action: 'export',
+                              batch_action_inputs: { external_system_id: external_system_id }.to_json,
+                              collection_selection: [response[:id].to_s],
+                              authenticity_token: token
+                            }.to_json,
+                            'Content-Type' => 'application/json',
+                            'Accept' => 'text/html'
+        raise 'export_response_to_ccd failed' if result.search(XPath.generate do |x|
+          x.descendant[x.string.n.contains('Responses queued for export')]
+        end.to_s).empty?
       end
-
 
       def run_export_cron_job
         setup_for_export_cron_job
-        sidekiq_cron_agent.current_page.form(action: "/admin/sidekiq/cron/export_claims_job/enque").submit
+        sidekiq_cron_agent.current_page.form(action: '/admin/sidekiq/cron/export_claims_job/enque').submit
       end
 
       def processed_claim(claim_reference:, timeout: 30, sleep: 0.5)
         login
         Timeout.timeout(timeout) do
           loop do
-            filtered_claims = claims q: {reference_eq: claim_reference}
-            return filtered_claims.first if filtered_claims.first.present? && filtered_claims.first[:uploaded_files].any? {|f| f['filename'] =~ /\Aet1_.*\.pdf\z/}
+            filtered_claims = claims q: { reference_eq: claim_reference }
+            return filtered_claims.first if filtered_claims.first.present? && filtered_claims.first[:uploaded_files].any? do |f|
+              f['filename'] =~ /\Aet1_.*\.pdf\z/
+            end
+
             sleep(sleep)
           end
         end
@@ -212,14 +220,18 @@ module EtFullSystem
         filtered_claims = []
         Timeout.timeout(timeout) do
           loop do
-            filtered_claims = claims q: {reference_eq: reference}
-            return filtered_claims.first if filtered_claims.first.present? && filtered_claims.first[:ecm_state] == 'failed'
+            filtered_claims = claims q: { reference_eq: reference }
+            if filtered_claims.first.present? && filtered_claims.first[:ecm_state] == 'failed'
+              return filtered_claims.first
+            end
+
             yield filtered_claims.first if block_given?
             sleep(sleep)
           end
         end
       rescue Timeout::Error
         raise "The claim with reference #{reference} was not found" if filtered_claims.empty?
+
         raise "The claim with reference #{reference} never had a status of 'failed'"
       end
 
@@ -227,8 +239,11 @@ module EtFullSystem
         login
         Timeout.timeout(timeout) do
           loop do
-            filtered_claims = claims q: {reference_eq: reference}
-            return filtered_claims.first if filtered_claims.first.present? && filtered_claims.first[:ecm_state] == 'erroring'
+            filtered_claims = claims q: { reference_eq: reference }
+            if filtered_claims.first.present? && filtered_claims.first[:ecm_state] == 'erroring'
+              return filtered_claims.first
+            end
+
             yield if block_given?
             sleep(sleep)
           end
@@ -241,8 +256,11 @@ module EtFullSystem
         login
         Timeout.timeout(timeout) do
           loop do
-            filtered_claims = claims q: {reference_eq: reference}
-            return filtered_claims.first if filtered_claims.first.present? && filtered_claims.first[:ecm_state] == 'complete'
+            filtered_claims = claims q: { reference_eq: reference }
+            if filtered_claims.first.present? && filtered_claims.first[:ecm_state] == 'complete'
+              return filtered_claims.first
+            end
+
             yield if block_given?
             sleep(sleep)
           end
@@ -255,8 +273,11 @@ module EtFullSystem
         login
         Timeout.timeout(timeout) do
           loop do
-            filtered_responses = responses q: {case_number_eq: case_number}
-            return filtered_responses.first if filtered_responses.first.present? && filtered_responses.first[:ecm_state] == 'complete'
+            filtered_responses = responses q: { case_number_eq: case_number }
+            if filtered_responses.first.present? && filtered_responses.first[:ecm_state] == 'complete'
+              return filtered_responses.first
+            end
+
             sleep(sleep)
           end
         end
@@ -265,7 +286,7 @@ module EtFullSystem
       end
 
       def office_data_for(office_code)
-        cached_office_data.detect {|office_data| office_data['code'].to_s == office_code&.to_s}
+        cached_office_data.detect { |office_data| office_data['code'].to_s == office_code&.to_s }
       end
 
       def cached_office_data
@@ -277,7 +298,7 @@ module EtFullSystem
         office = office_data_for(office_code)
         Timeout.timeout(timeout) do
           loop do
-            response = admin_api.responses(q: {office_id_eq: office['id'], reference_cont: @my_et3_reference}).first
+            response = admin_api.responses(q: { office_id_eq: office['id'], reference_cont: @my_et3_reference }).first
             return response if response.present?
 
             sleep 5
@@ -294,11 +315,13 @@ module EtFullSystem
           loop do
             result = yield
             return result unless result.nil?
+
             sleep(sleep)
           end
         end
       rescue Timeout::Error
         raise "wait_for timed out waiting for #{timeout} seconds" if raise
+
         nil
       end
 
@@ -312,14 +335,13 @@ module EtFullSystem
 
       def setup_for_export_cron_job
         return if sidekiq_cron_agent.present?
+
         mechanize_login
         self.sidekiq_cron_agent = Mechanize.new do |a|
           a.cookie_jar = agent.cookie_jar
         end
         sidekiq_cron_agent.get("#{url}/sidekiq/cron")
-        sidekiq_cron_agent.click "Cron"
-
-
+        sidekiq_cron_agent.click 'Cron'
       end
 
       def request(method, url, options = {})
@@ -344,7 +366,8 @@ module EtFullSystem
         end
       end
 
-      attr_accessor :sidekiq_cron_agent, :cookies_hash, :last_response, :csrf_token, :sidekiq_authenticity_token, :sidekiq_cron_form_url, :logged_in, :mechanize_logged_in
+      attr_accessor :sidekiq_cron_agent, :cookies_hash, :last_response, :csrf_token, :sidekiq_authenticity_token,
+                    :sidekiq_cron_form_url, :logged_in, :mechanize_logged_in
     end
   end
 end

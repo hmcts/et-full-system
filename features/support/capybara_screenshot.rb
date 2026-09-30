@@ -8,17 +8,17 @@ module Capybara
           unsigned_url = html_path
           key = unsigned_url.split('/').last
           signer = Aws::S3::Presigner.new client: s3_client
-          url = signer.presigned_url(:get_object, bucket: bucket_name, key: key, expires_in: 14400)
+          url = signer.presigned_url(:get_object, bucket: bucket_name, key: key, expires_in: 14_400)
           output "HTML screenshot: #{url}"
         end
 
-        if screenshot_saved?
-          unsigned_url = screenshot_path
-          key = unsigned_url.split('/').last
-          signer = Aws::S3::Presigner.new client: s3_client
-          url = signer.presigned_url(:get_object, bucket: bucket_name, key: key, expires_in: 14400)
-          output "Image screenshot: #{url}"
-        end
+        return unless screenshot_saved?
+
+        unsigned_url = screenshot_path
+        key = unsigned_url.split('/').last
+        signer = Aws::S3::Presigner.new client: s3_client
+        url = signer.presigned_url(:get_object, bucket: bucket_name, key: key, expires_in: 14_400)
+        output "Image screenshot: #{url}"
       end
     end
   end
