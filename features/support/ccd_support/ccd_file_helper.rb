@@ -15,7 +15,7 @@ module EtFullSystem
               f.write chunk
             end
           }
-          RestClient::Request.new(method: :get, url: url, block_response: block).execute
+          RestClient::Request.new(method: :get, url: url, verify_ssl: false, block_response: block).execute
         end
         tempfile
       end

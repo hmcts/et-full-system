@@ -29,6 +29,21 @@ local: &local
   ccd_sidam_password: p
   ccd_case_management_ui_base_url: http://et_ccd.localhost:3100/case-management-web
   ccd_case_management_ui_redirect_url: http://et_ccd.localhost:3100/case-management-web/oauth2redirect
+local_orbstack:
+  <<: *local
+  et1_url: https://et1.k8s.orb.local
+  diversity_url: https://et1.k8s.orb.local/apply/diversity
+  et1_admin_url: https://et1.k8s.orb.local/apply/admin
+  et3_url: https://et3.k8s.orb.local
+  admin_url: https://admin.k8s.orb.local/admin
+  sidekiq_url: https://et1.k8s.orb.local/apply/sidekiq
+  mailhog_search_url: https://mail.k8s.orb.local/api/v2/search
+  ccd_auth_base_url: https://et-ccd.k8s.orb.local/auth
+  ccd_idam_base_url: https://et-ccd.k8s.orb.local/idam
+  ccd_data_store_base_url: https://et-ccd.k8s.orb.local/data_store
+  ccd_gateway_api_url: https://et-ccd.k8s.orb.local/api-gateway
+  ccd_case_management_ui_base_url: https://et-ccd.k8s.orb.local/case-management-web
+  ccd_case_management_ui_redirect_url: https://et-ccd.k8s.orb.local/case-management-web/oauth2redirect
 local_ccd_docker:
   <<: *local
   ccd_use_sidam: false
