@@ -20,7 +20,7 @@ A diagram speaks a thousand words - so hopefully the diagram below will show wha
 is setup.  Again, a similar environment using something like 'foreman' could also be setup with some careful configuration.
 
 Also note that the 'test server' are intended to be as close to production as is possible from a config and general architecture point of view, not
-performance / scaling.  Hence they run in 'production' environment, but configured to use a test SMTP (mailhog) and AWS/S3 server (minio).
+performance / scaling.  Hence they run in 'production' environment, but configured to use a test SMTP (mailpit) and AWS/S3 server (minio).
 
 The test SMTP server allows the test suite (via REST) or the developer (via a web page / web server - details further down vvvvv) to see what emails the
 application(s) would have sent if they were really being sent to users.
@@ -169,8 +169,8 @@ Other numbers with containing 000xxx where xxx is neither 200, 201 or 500 will a
 
 ### Email Testing
 
-The system uses mailhog mounted at mail.et.127.0.0.1.nip.io:3100 normally.  Visit this in your browser and you will see all
-emails sent by the tests (and manual use of the applications).  Mailhog also has an API that you can use within your tests to
+The system uses mailpit mounted at mail.et.127.0.0.1.nip.io:3100 normally.  Visit this in your browser and you will see all
+emails sent by the tests (and manual use of the applications).  Mailpit also has an API that you can use within your tests to
 test that emails have been sent, checking the content etc...
 
 ## Development
@@ -477,7 +477,7 @@ bundle exec cucumber
 * npm
 * postgresql - if not installed, use Postgres.app to run as required (osx)
 * redis - if not installed, use Redis.app to run as required ('brew cask install redis-app' on OSX)
-* mailhog - ('brew install mailhog' on OSX)
+* mailpit - ('brew install mailpit' on OSX)
 * pdftk - (see https://www.pdflabs.com/tools/pdftk-server/)
 
 ## Running The end-to-end test suite in different environments and using profile

@@ -15,7 +15,7 @@ local: &local
   et3_url: https://et3.localhost:3443
   admin_url: https://admin.localhost:3443/admin
   sidekiq_url: https://et1.localhost:3443/apply/sidekiq
-  mailhog_search_url: https://mail.localhost:3443/api/v2/search
+  mail_search_url: https://mail.localhost:3443/api/v1
   ccd_auth_base_url: http://et_ccd.localhost:3100/auth
   ccd_idam_base_url: http://et_ccd.localhost:3100/idam
   ccd_data_store_base_url: http://et_ccd.localhost:3100/data_store
@@ -37,7 +37,7 @@ local_orbstack:
   et3_url: https://et3.k8s.orb.local
   admin_url: https://admin.k8s.orb.local/admin
   sidekiq_url: https://et1.k8s.orb.local/apply/sidekiq
-  mailhog_search_url: https://mail.k8s.orb.local/api/v2/search
+  mail_search_url: https://mail.k8s.orb.local/api/v1
   ccd_auth_base_url: https://et-ccd.k8s.orb.local/auth
   ccd_idam_base_url: https://et-ccd.k8s.orb.local/idam
   ccd_data_store_base_url: https://et-ccd.k8s.orb.local/data_store

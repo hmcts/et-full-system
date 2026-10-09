@@ -8,7 +8,7 @@ module EtFullSystem
       include RSpec::Matchers
       include EtFullSystem::Test::I18n
 
-      def self.find(reference:, locale:, search_url: ::EtFullSystem::Test::Configuration.mailhog_search_url, sleep: 10, timeout: 50)
+      def self.find(reference:, locale:, search_url: ::EtFullSystem::Test::Configuration.mail_search_url, sleep: 10, timeout: 50)
         item = find_email(reference, search_url, sleep: sleep, timeout: timeout)
         raise "ET3 Mail with reference #{reference} not found" unless item.present?
 
@@ -19,14 +19,16 @@ module EtFullSystem
         Timeout.timeout(timeout) do
           item = nil
           until item.present?
-            query = Rack::Utils.build_query(kind: 'containing', query: reference, start: 0, limit: 1)
-            url = URI.parse(search_url)
+            query = Rack::Utils.build_query(query: reference, start: 0, limit: 1)
+            url = URI.parse("#{search_url}/search")
             url.query = query
             response = HTTParty.get(url, headers: { accept: 'application/json' }, verify: false)
-            item = response.parsed_response['items'].first
+            item = response.parsed_response['messages'].first
             sleep sleep unless item.present?
           end
-          Mail.new item.dig('Raw', 'Data')
+          details_url = "#{search_url}/message/#{item['ID']}/raw"
+          details_response = HTTParty.get(details_url, verify: false)
+          Mail.new details_response.body
         end
       rescue Timeout::Error
         nil

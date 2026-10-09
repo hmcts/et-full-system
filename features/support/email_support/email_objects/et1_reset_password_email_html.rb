@@ -8,7 +8,7 @@ module EtFullSystem
       include ::EtFullSystem::Test::I18n
 
       # @return [Et1::Test::EmailObjects::ResetPasswordEmailHtml, Nil]
-      def self.find(email_address:, search_url: ::EtFullSystem::Test::Configuration.mailhog_search_url, sleep: 10, timeout: 50)
+      def self.find(email_address:, search_url: ::EtFullSystem::Test::Configuration.mail_search_url, sleep: 10, timeout: 50)
         item = find_email(email_address, search_url, sleep: sleep, timeout: timeout)
         raise "ET1 Reset password html email for  #{email_address} not found" unless item.present?
 
@@ -19,14 +19,16 @@ module EtFullSystem
         Timeout.timeout(timeout) do
           item = nil
           until item.present?
-            query = Rack::Utils.build_query(kind: 'containing', query: email_address, start: 0, limit: 10)
-            url = URI.parse(search_url)
+            query = Rack::Utils.build_query(query: email_address, start: 0, limit: 10)
+            url = URI.parse("#{search_url}/search")
             url.query = query
             response = HTTParty.get(url, headers: { accept: 'application/json' }, verify: false)
-            item = response.parsed_response['items'].detect {|i| i.dig('Content', 'Headers', 'Subject').try(:first).then { |v| Mail::Encodings.value_decode(v) } == subject_text}
+            item = response.parsed_response['messages'].detect { |i| i['Subject'] == subject_text }
             sleep sleep unless item.present?
           end
-          Mail.new item.dig('Raw', 'Data')
+          details_url = "#{search_url}/message/#{item['ID']}/raw"
+          details_response = HTTParty.get(details_url, verify: false)
+          Mail.new details_response.body
         end
       rescue Timeout::Error
         nil
