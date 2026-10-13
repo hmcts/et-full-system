@@ -1,3 +1,4 @@
+require 'singleton'
 module EtFullSystem
   module Test
     class Configuration

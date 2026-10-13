@@ -363,6 +363,10 @@ module EtFullSystem
       def agent
         @agent ||= Mechanize.new do |a|
           a.verify_mode = OpenSSL::SSL::VERIFY_NONE
+          if ENV['http_proxy']
+            uri = URI.parse(ENV['http_proxy'])
+            a.set_proxy(uri.host, uri.port, uri.user, uri.password)
+          end
         end
       end
 

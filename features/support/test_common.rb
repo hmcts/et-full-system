@@ -1,3 +1,4 @@
+require 'active_support'
 require_relative './configuration'
 require_relative './capybara'
 require_relative './page_objects'
