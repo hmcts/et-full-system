@@ -186,6 +186,8 @@ GEM
       net-protocol
     netrc (0.11.0)
     nkf (0.2.0)
+    nokogiri (1.18.9-aarch64-linux-gnu)
+      racc (~> 1.4)
     nokogiri (1.18.9-arm64-darwin)
       racc (~> 1.4)
     openssl (3.3.2)
@@ -286,6 +288,7 @@ GEM
       nokogiri (~> 1.8)
 
 PLATFORMS
+  aarch64-linux
   arm64-darwin-25
 
 DEPENDENCIES

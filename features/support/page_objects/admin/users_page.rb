@@ -96,7 +96,7 @@ module EtFullSystem
 
         def delete_user_from_admin(email_address)
           # Search for user by email to make it unique
-          filters_contents.email_section.email_input.set(email_address)
+          filters_contents.email_section.email_input.set(email_address.downcase)
           filters_contents.filter_button.click
           # Then delete the first record
           page.accept_alert do

@@ -23,7 +23,7 @@ Then('have basic access to ET admin system') do
   admin_password = ::EtFullSystem::Test::Configuration.admin_password
   admin_pages.dashboard_page.admin_login(admin_username, admin_password)
   admin_pages.any_page.menu.click_users
-  admin_pages.users_page.delete_user_from_admin("#{@user[:email]}@blah.com")
+  admin_pages.users_page.delete_user_from_admin("#{@user[:email].downcase}@blah.com")
 end
 
 Then('have partial access to ET system') do
