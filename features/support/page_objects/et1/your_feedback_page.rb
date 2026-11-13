@@ -3,7 +3,7 @@ module EtFullSystem
   module Test
     module Et1
       class YourFeedbackPage < BasePage
-        set_url 'https://www.smartsurvey.co.uk/s/ETFBS20/'
+        set_url 'https://www.smartsurvey.co.uk/t/ETFBS20/'
       end
     end
   end
